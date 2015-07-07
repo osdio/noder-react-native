@@ -16,7 +16,6 @@
     "react-native-icons": "^0.1.0",
     "react-native-keyboardevents": "^0.4.4",
     "react-native-modal": "^0.3.8",
-    "react-native-overlay": "^0.2.6",
     "react-native-scrollable-tab-view": "^0.1.7"
   },
   "devDependencies": {

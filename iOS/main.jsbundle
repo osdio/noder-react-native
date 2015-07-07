@@ -1073,7 +1073,7 @@ throw new TypeError(
 
 var index=findIndex.call(this,predicate,context);
 return index === -1?undefined:this[index];}});}})();
-__d('noder/index.ios',["react-native/Libraries/react-native/react-native","noder/app/scene/home","noder/app/scene/topic","noder/app/scene/qrCode","noder/app/scene/message","noder/app/scene/comments","noder/app/util/storage","noder/app/scene/user","noder/app/mock/topic","noder/app/mock/user","noder/app/mock/userInfo","noder/app/config/onRun"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}
+__d('noder/index.ios',["react-native/Libraries/react-native/react-native","noder/app/scene/home","noder/app/scene/topic","noder/app/scene/qrCode","noder/app/scene/message","noder/app/scene/comments","noder/app/util/storage","noder/app/scene/user","noder/app/config/onRun"],function(global, require, requireDynamic, requireLazy, module, exports) {  'use strict';var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}
 
 var React=require('react-native/Libraries/react-native/react-native');
 var Home=require('noder/app/scene/home');
@@ -1085,9 +1085,9 @@ var Storage=require('noder/app/util/storage');
 var User=require('noder/app/scene/user');
 
 
-var topic=require('noder/app/mock/topic');
-var user=require('noder/app/mock/user');
-var userInfo=require('noder/app/mock/userInfo').data;
+
+
+
 
 
 
@@ -1153,7 +1153,7 @@ return route.sceneConfig;}
 return Navigator.SceneConfigs.FloatFromRight;},
 
 renderScene:this.renderScene.bind(this),
-onDidFocus:function(route,item){
+onDidFocus:function(route){
 _this2[route.name] && _this2[route.name].componentDidFocus && _this2[route.name].componentDidFocus();}}));}}]);return Noder;})(Component);
 
 
@@ -42263,7 +42263,7 @@ makeNativeSimulator(eventType);}
 
 
 module.exports = ReactTestUtils;});
-__d('noder/app/scene/home',["react-native/Libraries/react-native/react-native","noder/app/util/window","noder/app/components/pageScrollView","noder/app/components/coverImage","noder/app/components/pageNavBar","noder/app/components/pageListView","noder/app/components/userOverlay","noder/app/components/login","noder/app/scene/topic","noder/app/components/topicsInTab","noder/app/components/messageOverlay","noder/app/scene/user","noder/app/util/storage","noder/app/services/userService","noder/app/config/sceneConfig","noder/app/config","noder/app/config/routes","noder/app/styles/home"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/scene/home',["react-native/Libraries/react-native/react-native","noder/app/util/window","noder/app/components/pageScrollView","noder/app/components/coverImage","noder/app/components/pageNavBar","noder/app/components/pageListView","noder/app/components/overlay/userOverlay","noder/app/components/login","noder/app/scene/topic","noder/app/components/topicsInTab","noder/app/components/overlay/messageOverlay","noder/app/scene/user","noder/app/util/storage","noder/app/services/userService","noder/app/config/sceneConfig","noder/app/config","noder/app/config/routes","noder/app/styles/home"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;
 
@@ -42272,11 +42272,11 @@ var PageScrollView=require('noder/app/components/pageScrollView');
 var CoverImage=require('noder/app/components/coverImage');
 var PageNavBar=require('noder/app/components/pageNavBar');
 var PageListView=require('noder/app/components/pageListView');
-var UserOverlay=require('noder/app/components/userOverlay');
+var UserOverlay=require('noder/app/components/overlay/userOverlay');
 var Login=require('noder/app/components/login');
 var Topic=require('noder/app/scene/topic');
 var TopicsInTab=require('noder/app/components/topicsInTab');
-var MessageOverlay=require('noder/app/components/messageOverlay');
+var MessageOverlay=require('noder/app/components/overlay/messageOverlay');
 var User=require('noder/app/scene/user');
 
 var Storage=require('noder/app/util/storage');
@@ -42300,64 +42300,41 @@ View=
 
 
 
-React.View;var StyleSheet=React.StyleSheet;var ScrollView=React.ScrollView;var Component=React.Component;var Text=React.Text;var StatusBarIOS=React.StatusBarIOS;var Image=React.Image;var ListView=React.ListView;var TouchableHighlight=React.TouchableHighlight;var Navigator=React.Navigator;var AsyncStorage=React.AsyncStorage;
 
-var stylesExtends=StyleSheet.create({
-container:{
-width:width},
-
-page:{
-width:width},
-
-scrollContainer:{
-height:height - 40},
-
-listView:{
-
-backgroundColor:'blue'},
-
-navScroll:{
-'height':40,
-'backgroundColor':'rgba(0, 0, 0, 0.75)',
-'position':'absolute',
-'left':0,
-'right':0,
-'overflow':'hidden'}});var 
-
-
+React.View;var StyleSheet=React.StyleSheet;var ScrollView=React.ScrollView;var Component=React.Component;var Text=React.Text;var StatusBarIOS=React.StatusBarIOS;var Image=React.Image;var ListView=React.ListView;var TouchableHighlight=React.TouchableHighlight;var TouchableOpacity=React.TouchableOpacity;var Navigator=React.Navigator;var AsyncStorage=React.AsyncStorage;var 
 
 
 Home=(function(_Component){
 function Home(props){_classCallCheck(this,Home);
 _get(Object.getPrototypeOf(Home.prototype),'constructor',this).call(this,props);
-this.totalPages = 4;
-this.navs = ['精华','主页','招聘','分享'];
-this.tabs = ['good','','job','share'];
-this.space = (width - 60 * 3) / 2 + 60;
-var pageIndex=1;
-var pageScrollContentWidth=width * pageIndex;
-var pageNavBarWith=this.space / width * pageScrollContentWidth;
-var pageNavBarOffset=pageIndex * width / pageScrollContentWidth * pageNavBarWith;
-
 this.state = {
-pageIndex:pageIndex,
-navBarOffset:pageNavBarOffset,
-user:global.user,
+user:null,
+userInfo:null,
 isModalOpen:false,
-messagesCount:0,
-userInfo:null};}_inherits(Home,_Component);_createClass(Home,[{key:'componentDidMount',value:
+messagesCount:0};}_inherits(Home,_Component);_createClass(Home,[{key:'componentDidMount',value:
 
 
 
 
 function componentDidMount(){var _this=this;
-
-
 this._getUserFromStorage().
 then(function(user){
 _this._fetchLoginUserInfo(user);}).
 
-done();}},{key:'_userOverlayOnPress',value:
+done();}},{key:'componentDidFocus',value:
+
+
+
+function componentDidFocus(){
+var message=global.__message__;
+if(message && message.topic_to_home){
+this.setState({
+userInfo:message.topic_to_home.userInfo});
+
+userService.storage.saveUserInfo(message.topic_to_home.userInfo);
+message.topic_to_home = null;}
+
+this.messageOverlay && this.messageOverlay.componentDidFocus();}},{key:'_userOverlayOnPress',value:
 
 
 
@@ -42389,18 +42366,16 @@ userInfo:data.userInfo});}},{key:'_getUserFromStorage',value:
 function _getUserFromStorage(){var _this2=this;
 return userService.storage.getUserAndUserInfo().
 then(function(data){
-console.log('value:');
+
 
 if(data){
 _this2.setState({
 user:data.user,
-userInfo:data.userInfo});}else 
+userInfo:data.userInfo});
 
-
-{
-_this2.setState({
-user:null,
-userInfo:null});}
+global.__data__ = {
+user:data.user,
+userInfo:data.userInfo};}
 
 
 return data.user;}).
@@ -42420,8 +42395,9 @@ if(!user)return;
 userService.req.getLoginUserInfo(user).
 then(function(userInfo){
 _this3.setState({
-userInfo:userInfo});}).
+userInfo:userInfo});
 
+global.__data__.userInfo = userInfo;}).
 
 catch(function(error){
 console.warn(error);}).
@@ -42430,10 +42406,11 @@ done();}},{key:'_renderMessageCount',value:
 
 
 
-function _renderMessageCount(){
+function _renderMessageCount(){var _this4=this;
 if(this.state.user){
 return (
 React.createElement(MessageOverlay,{
+ref:function(view){return _this4.messageOverlay = view;},
 user:this.state.user}));}
 
 
@@ -42474,6 +42451,30 @@ isModalOpen:this.state.isModalOpen})));}}]);return Home;})(Component);
 
 
 
+var stylesExtends=StyleSheet.create({
+container:{
+width:width},
+
+page:{
+width:width},
+
+scrollContainer:{
+height:height - 40},
+
+listView:{
+
+backgroundColor:'blue'},
+
+navScroll:{
+'height':40,
+'backgroundColor':'rgba(0, 0, 0, 0.75)',
+'position':'absolute',
+'left':0,
+'right':0,
+'overflow':'hidden'}});
+
+
+
 module.exports = Home;});
 __d('noder/app/util/window',["react-native/Libraries/react-native/react-native","Dimensions"],function(global, require, requireDynamic, requireLazy, module, exports) {  var React=require('react-native/Libraries/react-native/react-native');
 var Dimensions=require('Dimensions');var 
@@ -42481,7 +42482,8 @@ var Dimensions=require('Dimensions');var
 
 
 AlertIOS=
-React.AlertIOS;
+
+React.AlertIOS;var LinkingIOS=React.LinkingIOS;
 
 
 
@@ -42491,7 +42493,16 @@ return Dimensions.get('window');};
 
 
 exports.alert = function(content){
-AlertIOS.alert(content);};});
+AlertIOS.alert(content);};
+
+
+
+exports.link = function(url){
+LinkingIOS.canOpenURL(url,function(supported){
+if(!supported){
+console.warn('Can\'t support the url');}else 
+{
+LinkingIOS.openURL(url);}});};});
 __d('noder/app/components/pageScrollView',["react-native/Libraries/react-native/react-native","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;var 
@@ -46414,7 +46425,7 @@ __d('noder/app/config',[],function(global, require, requireDynamic, requireLazy,
 domain:'https://cnodejs.org',
 apiPath:'/api/v1',
 bgImgUri:'http://lingyong-me.qiniudn.com/127H.jpg 2014-10-28 20:33-px1366',
-replySuffix:'\n\nFrom [Noder](https://github.com/soliury/noder)'};});
+replySuffix:'\n\nFrom [Noder](https://github.com/soliury/noder-react-native)'};});
 __d('noder/app/components/topicRow',["react-native/Libraries/react-native/react-native","moment/moment","noder/app/config","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var moment=require('moment/moment');
 
@@ -46572,7 +46583,7 @@ sceneConfig:customFloatFromRight});};
 
 
 
-exports.toComponents = function(context,props){
+exports.toComments = function(context,props){
 push(context,props,{
 component:Comments,
 name:'comments',
@@ -46620,7 +46631,8 @@ View=
 
 
 
-React.View;var StyleSheet=React.StyleSheet;var ScrollView=React.ScrollView;var Component=React.Component;var Text=React.Text;var StatusBarIOS=React.StatusBarIOS;var Image=React.Image;var ListView=React.ListView;var TouchableHighlight=React.TouchableHighlight;var Navigator=React.Navigator;var ActivityIndicatorIOS=React.ActivityIndicatorIOS;var 
+
+React.View;var StyleSheet=React.StyleSheet;var ScrollView=React.ScrollView;var Component=React.Component;var Text=React.Text;var StatusBarIOS=React.StatusBarIOS;var Image=React.Image;var ListView=React.ListView;var TouchableHighlight=React.TouchableHighlight;var TouchableOpacity=React.TouchableOpacity;var Navigator=React.Navigator;var ActivityIndicatorIOS=React.ActivityIndicatorIOS;var 
 
 
 User=(function(_Component){
@@ -46647,8 +46659,8 @@ didFocus:true});}},{key:'_onGithubPress',value:
 
 
 
-function _onGithubPress(){}},{key:'_getUserInfo',value:
-
+function _onGithubPress(name){
+window.link('https://github.com/' + name);}},{key:'_getUserInfo',value:
 
 
 
@@ -46707,26 +46719,37 @@ function render(){
 var userInfo=this.state.userInfo;
 if(!userInfo){
 return (
+React.createElement(View,{style:styles.container},
 React.createElement(ActivityIndicatorIOS,{
 hidesWhenStopped:true,
 size:'large',
 animating:true,
-style:styles.loading}));}
+style:styles.loading})));}
+
+
 
 
 var imgUri=config.domain + userInfo.avatar_url;
 var createTime=moment(userInfo.create_at).format('l');
+var authorName=userInfo.githubUsername;
 
 return (
 React.createElement(View,{style:styles.container},
 React.createElement(View,{style:[styles.bgWall,{backgroundColor:this.state.wallColor}]},
+React.createElement(TouchableOpacity,{
+onPress:this._onGithubPress.bind(this,authorName)},
 React.createElement(Image,{
 style:styles.authorImg,
-source:{uri:imgUri}}),
+source:{uri:imgUri}})),
 
 
+
+React.createElement(TouchableOpacity,{
+onPress:this._onGithubPress.bind(this,authorName)},
 React.createElement(Text,{style:styles.github},
-userInfo.githubUsername),
+authorName)),
+
+
 
 
 React.createElement(View,{style:styles.bgWallFooter},
@@ -47118,15 +47141,12 @@ function render(){
 return (
 React.createElement(View,{style:[styles.container,this.props.style]},
 React.createElement(ListView,{
-
 showsVerticalScrollIndicator:true,
 initialListSize:10,
 pagingEnabled:false,
 removeClippedSubviews:true,
 dataSource:this.state.ds,
 renderRow:this._renderRow.bind(this)})));}}]);return UserTopicPage;})(Component);
-
-
 
 
 
@@ -47156,7 +47176,7 @@ top:0}});
 
 
 module.exports = UserTopicPage;});
-__d('noder/app/scene/topic',["react-native/Libraries/react-native/react-native","noder/app/util/window","moment/moment","FAKIconImage","noder/app/components/htmlContent","noder/app/components/return","noder/app/components/commentOverlay","noder/app/components/likeIcon","noder/app/config","noder/app/config/routes","noder/app/util/genColor","noder/app/services/topicService","noder/app/services/userService"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}
+__d('noder/app/scene/topic',["react-native/Libraries/react-native/react-native","noder/app/util/window","moment/moment","FAKIconImage","noder/app/components/htmlRender/htmlContent","noder/app/components/overlay/return","noder/app/components/overlay/commentOverlay","noder/app/components/likeIcon","noder/app/config","noder/app/config/routes","noder/app/util/genColor","noder/app/services/topicService","noder/app/services/userService"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}
 var React=require('react-native/Libraries/react-native/react-native');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;
@@ -47164,9 +47184,10 @@ var moment=require('moment/moment');
 var Icon=require('FAKIconImage');
 
 
-var HtmlContent=require('noder/app/components/htmlContent');
-var Return=require('noder/app/components/return');
-var CommentOverlay=require('noder/app/components/commentOverlay');
+
+var HtmlContent=require('noder/app/components/htmlRender/htmlContent');
+var Return=require('noder/app/components/overlay/return');
+var CommentOverlay=require('noder/app/components/overlay/commentOverlay');
 var LikeIcon=require('noder/app/components/likeIcon');
 
 
@@ -47300,6 +47321,7 @@ backgroundColor:'white'}});var
 Topic=(function(_Component){
 function Topic(props){_classCallCheck(this,Topic);
 _get(Object.getPrototypeOf(Topic.prototype),'constructor',this).call(this,props);
+this.focusFlag = 0;
 this.state = {
 headerColor:genColor(),
 user:null,
@@ -47327,9 +47349,11 @@ return this._fetchTopic();}}},{key:'componentDidFocus',value:
 
 
 function componentDidFocus(){
-
+this.focusFlag++;
+if(this.focusFlag < 2){
 this.setState({
-didFocus:true});}},{key:'_fetchTopic',value:
+didFocus:true});}}},{key:'_fetchTopic',value:
+
 
 
 
@@ -47358,23 +47382,22 @@ content:''}});}).
 
 
 
-done();}},{key:'_isLiked',value:
-
-
-
-function _isLiked(collections){
-var id=this.props.topic.id;
-return collections.some(function(item){
-return item.id == id;});}},{key:'_onCommentOverlayPress',value:
-
+done();}},{key:'_onCommentOverlayPress',value:
 
 
 
 function _onCommentOverlayPress(){
-routes.toComponents(this,{
+routes.toComments(this,{
 topic:this.props.topic,
 from:'topic',
-user:this.state.user});}},{key:'_getUserAndUserInfoFromStorage',value:
+user:this.state.user});}},{key:'_onAuthorImgPress',value:
+
+
+
+
+function _onAuthorImgPress(authorName){
+routes.toUser(this,{
+userName:authorName});}},{key:'_getUserAndUserInfoFromStorage',value:
 
 
 
@@ -47386,14 +47409,9 @@ user=data.user;var userInfo=data.userInfo;
 _this2.userInfo = userInfo;
 
 if(user && userInfo){
-var liked=false;
-if(_this2._isLiked(userInfo.collect_topics)){
-liked = true;}
-
 _this2.setState({
 user:user,
-userInfo:userInfo,
-isLiked:liked});}}).
+userInfo:userInfo});}}).
 
 
 
@@ -47405,14 +47423,10 @@ done();}},{key:'_renderContent',value:
 
 
 function _renderContent(content){
-
-
-
 if(this.state.didFocus && content){
 return (
 React.createElement(HtmlContent,{
 content:content}));}
-
 
 
 
@@ -47430,6 +47444,7 @@ var topic=this.state.topic;
 var domain=config.domain;
 
 var imgUri=domain + topic.author.avatar_url;
+var authorName=topic.author.loginname;
 var date=moment(topic.create_at).startOf('hour').fromNow();
 
 return (
@@ -47438,7 +47453,8 @@ React.createElement(ScrollView,null,
 React.createElement(View,{style:[styles.header,{backgroundColor:this.state.headerColor}]},
 React.createElement(View,{style:styles.authorTouchable},
 React.createElement(View,{style:styles.authorWrapper},
-React.createElement(TouchableHighlight,null,
+React.createElement(TouchableOpacity,{
+onPress:this._onAuthorImgPress.bind(this,authorName)},
 React.createElement(Image,{
 source:{uri:imgUri},
 style:styles.authorImg})))),
@@ -47469,9 +47485,10 @@ date)),
 
 React.createElement(View,{style:styles.like},
 React.createElement(LikeIcon,{
-topicId:topic.id,
+topic:topic,
 style:styles.likeIcon,
 user:this.state.user,
+userInfo:this.state.userInfo,
 isLiked:this.state.isLiked}))))),
 
 
@@ -47600,11 +47617,14 @@ uiViewClassName:'FAKIconImage'});
 
 
 module.exports = FAKIconImage;});
-__d('noder/app/components/htmlContent',["react-native/Libraries/react-native/react-native","noder/app/components/htmlRender","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/htmlRender/htmlContent',["react-native/Libraries/react-native/react-native","noder/app/components/htmlRender/htmlRender","noder/app/util/window","noder/app/config/routes"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 
-var HtmlRender=require('noder/app/components/htmlRender');
+var HtmlRender=require('noder/app/components/htmlRender/htmlRender');
 
-var window=require('noder/app/util/window');var _window$get=
+var window=require('noder/app/util/window');
+var routes=require('noder/app/config/routes');var _window$get=
+
+
 window.get();var width=_window$get.width;var height=_window$get.height;var 
 
 
@@ -47636,14 +47656,15 @@ _get(Object.getPrototypeOf(HtmlContent.prototype),'constructor',this).call(this,
 
 
 function _onLinkPress(url){
-
-
 if(/^\/user\/\w*/.test(url)){
-console.log(url);}
+var authorName=url.replace(/^\/user\//,'');
+routes.toUser(this,{
+userName:authorName});}
+
 
 
 if(/^https?:\/\/.*/.test(url)){
-LinkingIOS.openURL(url);}}},{key:'_renderNode',value:
+window.link(url);}}},{key:'_renderNode',value:
 
 
 
@@ -47653,7 +47674,6 @@ var name=node.name;
 if(node.type == 'block' && type == 'block'){
 if(name == 'img'){
 var uri=node.attribs.src;
-
 if(/^\/\/dn-cnode\.qbox\.me\/.*/.test(uri)){
 uri = 'https:' + uri;}
 
@@ -47675,8 +47695,8 @@ function render(){
 return (
 React.createElement(HtmlRender,{
 value:this.props.content,
-onLinkPress:this._onLinkPress,
-stylesheet:styles,
+stylesheet:this.props.style,
+onLinkPress:this._onLinkPress.bind(this),
 renderNode:this._renderNode}));}}]);return HtmlContent;})(Component);
 
 
@@ -47685,7 +47705,7 @@ renderNode:this._renderNode}));}}]);return HtmlContent;})(Component);
 
 
 module.exports = HtmlContent;});
-__d('noder/app/components/htmlRender',["react-native/Libraries/react-native/react-native","noder/app/util/htmlParse","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/htmlRender/htmlRender',["react-native/Libraries/react-native/react-native","noder/app/util/htmlParse","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 
 var htmlParse=require('noder/app/util/htmlParse');
 
@@ -55775,13 +55795,13 @@ end:0}};},
 
 
 {"./CollectingHandler.js":1,"./FeedHandler.js":2,"./Parser.js":3,"./ProxyHandler.js":4,"./Stream.js":5,"./Tokenizer.js":6,"./WritableStream.js":7,"domelementtype":8,"domhandler":9,"domutils":12}]},{},[])("htmlparser2");});});
-__d('noder/app/components/return',["react-native/Libraries/react-native/react-native","Dimensions","react-native-button/Button","FAKIconImage","noder/app/components/overlayButton","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/overlay/return',["react-native/Libraries/react-native/react-native","Dimensions","react-native-button/Button","FAKIconImage","noder/app/components/overlay/overlayButton","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var Dimensions=require('Dimensions');
 
 var Button=require('react-native-button/Button');
 var Icon=require('FAKIconImage');
 
-var OverlayButton=require('noder/app/components/overlayButton');
+var OverlayButton=require('noder/app/components/overlay/overlayButton');
 
 
 var window=require('noder/app/util/window');var _window$get=
@@ -55962,8 +55982,7 @@ return coalescedChildren;}
 
 
 module.exports = coalesceNonElementChildren;});
-__d('noder/app/components/overlayButton',["react-native/Libraries/react-native/react-native","react-native-button/Button"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
-
+__d('noder/app/components/overlay/overlayButton',["react-native/Libraries/react-native/react-native","react-native-button/Button"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var Button=require('react-native-button/Button');var 
 
 
@@ -56020,13 +56039,13 @@ this.props.children)));}}]);return OverlayButton;})(Component);
 
 
 module.exports = OverlayButton;});
-__d('noder/app/components/commentOverlay',["react-native/Libraries/react-native/react-native","Dimensions","FAKIconImage","react-native-button/Button","noder/app/components/overlayButton","noder/app/config"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/overlay/commentOverlay',["react-native/Libraries/react-native/react-native","Dimensions","FAKIconImage","react-native-button/Button","noder/app/components/overlay/overlayButton","noder/app/config"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var Dimensions=require('Dimensions');
 var Icon=require('FAKIconImage');
 var Button=require('react-native-button/Button');
 
 
-var OverlayButton=require('noder/app/components/overlayButton');
+var OverlayButton=require('noder/app/components/overlay/overlayButton');
 
 
 var config=require('noder/app/config');var _Dimensions$get=
@@ -56133,16 +56152,67 @@ React.View;var Component=React.Component;var TouchableOpacity=React.TouchableOpa
 LikeIcon=(function(_Component){
 function LikeIcon(props){_classCallCheck(this,LikeIcon);
 _get(Object.getPrototypeOf(LikeIcon.prototype),'constructor',this).call(this,props);
+var userInfo=this.props.userInfo;
+var isLiked;
+if(userInfo && userInfo.collect_topics){
+isLiked = this._isLiked(userInfo.collect_topics);}
+
 this.state = {
 isLoading:false,
-isLiked:this.props.isLiked};}_inherits(LikeIcon,_Component);_createClass(LikeIcon,[{key:'componentWillReceiveProps',value:
+isLiked:isLiked};}_inherits(LikeIcon,_Component);_createClass(LikeIcon,[{key:'componentWillReceiveProps',value:
 
 
 
 function componentWillReceiveProps(nextProps){
-if(this.props.isLiked !== nextProps.isLiked){
+if(nextProps.userInfo !== this.props.userInfo){
+var userInfo=nextProps.userInfo;
+var isLiked;
+if(userInfo && userInfo.collect_topics){
+isLiked = this._isLiked(userInfo.collect_topics);}
+
 this.setState({
-isLiked:nextProps.isLiked});}}},{key:'_onLikedPress',value:
+isLiked:isLiked});}}},{key:'_isLiked',value:
+
+
+
+
+
+function _isLiked(collections){
+var id=this.props.topic.id;
+return collections.some(function(item){
+return item.id == id;});}},{key:'_removeTopicFromCollections',value:
+
+
+
+
+function _removeTopicFromCollections(collections,topic){
+var index;
+for(var i=0;i < collections.length;i++) {
+if(collections[i].id == topic.id){
+index = i;}}
+
+
+if(index){
+collections.splice(index,1);}}},{key:'_setMessage',value:
+
+
+
+
+
+function _setMessage(topic,isLiked){
+var userInfo=this.props.userInfo;
+
+if(isLiked){
+userInfo.collect_topics.push(topic);}else 
+
+{
+this._removeTopicFromCollections(userInfo.collect_topics,topic);}
+
+
+
+global.__message__ = {
+topic_to_home:{
+userInfo:userInfo}};}},{key:'_onLikedPress',value:
 
 
 
@@ -56157,10 +56227,13 @@ isLoading:true});
 
 
 
-topicService.req.markTopicAsLike(this.props.topicId,this.props.user.token,this.state.isLiked).
+topicService.req.markTopicAsLike(this.props.topic.id,this.props.user.token,this.state.isLiked).
 then(function(){
+var isLiked=!_this.state.isLiked;
+_this._setMessage(_this.props.topic,isLiked);
+
 _this.setState({
-isLiked:!_this.state.isLiked,
+isLiked:isLiked,
 isLoading:false});}).
 
 
@@ -56175,6 +56248,9 @@ done();}},{key:'_renderIcon',value:
 
 
 function _renderIcon(){
+var userInfo=this.props.userInfo;
+
+
 if(this.state.isLoading){
 return (
 React.createElement(View,null,
@@ -56232,6 +56308,12 @@ var storage={};
 
 storage.saveUser = function(user){
 return Storage.setItem('user',user);};
+
+
+
+storage.saveUserInfo = function(userInfo){
+return Storage.setItem('userInfo',userInfo);};
+
 
 
 storage.getUser = function(){
@@ -56325,7 +56407,7 @@ edgeHitWidth:width / 3});
 exports.customFloatFromRight = Object.assign({},baseConfig,{
 gestures:{
 pop:popGestureConfig}});});
-__d('noder/app/scene/comments',["react-native/Libraries/react-native/react-native","noder/app/util/window","precomputeStyle","moment/moment","FAKIconImage","react-native-keyboardevents/KeyboardEvents.ios","markdown/lib/index","noder/app/components/htmlContent","noder/app/components/return","noder/app/components/commentOverlay","noder/app/components/commentHtml","noder/app/util/storage","noder/app/components/nav","noder/app/services/topicService","noder/app/util/genColor","noder/app/config","noder/app/util/animation","noder/app/config/sceneConfig","noder/app/scene/topic"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/scene/comments',["react-native/Libraries/react-native/react-native","noder/app/util/window","precomputeStyle","moment/moment","FAKIconImage","react-native-keyboardevents/KeyboardEvents.ios","markdown/lib/index","noder/app/components/htmlRender/htmlContent","noder/app/components/overlay/return","noder/app/components/overlay/commentOverlay","noder/app/components/htmlRender/commentHtml","noder/app/util/storage","noder/app/services/topicService","noder/app/util/genColor","noder/app/config","noder/app/util/animation","noder/app/config/sceneConfig","noder/app/config/routes","noder/app/scene/topic"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;
 var precomputeStyle=require('precomputeStyle');
@@ -56337,19 +56419,19 @@ var KeyboardEvents=require('react-native-keyboardevents/KeyboardEvents.ios');
 var KeyboardEventEmitter=KeyboardEvents.Emitter;
 var markdown=require('markdown/lib/index').markdown;
 
-var HtmlContent=require('noder/app/components/htmlContent');
-var Return=require('noder/app/components/return');
-var CommentOverlay=require('noder/app/components/commentOverlay');
-var CommentHtml=require('noder/app/components/commentHtml');
+var HtmlContent=require('noder/app/components/htmlRender/htmlContent');
+var Return=require('noder/app/components/overlay/return');
+var CommentOverlay=require('noder/app/components/overlay/commentOverlay');
+var CommentHtml=require('noder/app/components/htmlRender/commentHtml');
 var Storage=require('noder/app/util/storage');
-var Nav=require('noder/app/components/nav');
 
 var topicService=require('noder/app/services/topicService');
 
 var genColor=require('noder/app/util/genColor');
 var config=require('noder/app/config');
 var animations=require('noder/app/util/animation');
-var sceneConfig=require('noder/app/config/sceneConfig');var 
+var sceneConfig=require('noder/app/config/sceneConfig');
+var routes=require('noder/app/config/routes');var 
 
 
 View=
@@ -56504,6 +56586,9 @@ justifyContent:'space-between',
 alignItems:'flex-start',
 marginTop:15},
 
+up:{
+width:80},
+
 replyIcon:{
 height:12,
 width:15},
@@ -56569,7 +56654,6 @@ var data=[];
 this.state = {
 ds:ds.cloneWithRows(data),
 commentLoading:false,
-user:null,
 textInput:null,
 replyUploading:false,
 isLoaded:false,
@@ -56652,10 +56736,6 @@ return;}
 this.setState({
 commentLoading:true});
 
-
-var timeStart=new Date().getTime();
-
-
 topicService.req.getTopicById(this.props.topic.id).
 then(function(topic){
 _this2.topic = topic;
@@ -56665,22 +56745,11 @@ then(function(replies){
 return replies.reverse();}).
 
 then(function(comments){
-var timeEnd=new Date().getTime();
-var timeUsed=timeEnd - timeStart;
-var updateComments=function(){
-this.comments = comments;
-this.flag++;
-this.setState({
-ds:this.state.ds.cloneWithRows(this.comments),
+_this2.comments = comments;
+_this2.setState({
+ds:_this2.state.ds.cloneWithRows(_this2.comments),
 commentLoading:false,
-isLoaded:true});};
-
-
-if(timeUsed < 500){
-setTimeout(updateComments.bind(_this2),500);}else 
-
-{
-updateComments.bind(_this2)();}}).
+isLoaded:true});}).
 
 
 catch(function(err){
@@ -56723,8 +56792,9 @@ _this3.replyId = null;
 _this3.setState({
 ds:_this3.state.ds.cloneWithRows(_this3.comments),
 textInput:'',
-replyUploading:false});}).
+replyUploading:false});
 
+_this3.textInput.blur();}).
 
 catch(function(err){
 console.warn(err);
@@ -56755,7 +56825,7 @@ textInput:textInput + (' @' + authorName + ' ')});}},{key:'_onSubmitPress',value
 
 
 function _onSubmitPress(){
-console.log('submitIcon');
+
 this._doReply();}},{key:'_onReturnPress',value:
 
 
@@ -56772,13 +56842,30 @@ component:Topic,
 sceneConfig:sceneConfig.customFloatFromRight,
 name:'topic',
 props:{
-topic:this.topic}});}},{key:'_onUpPress',value:
+topic:this.topic}});}},{key:'_onAuthorImgPress',value:
 
 
 
 
 
-function _onUpPress(){}},{key:'renderRow',value:
+function _onAuthorImgPress(authorName){
+routes.toUser(this,{
+userName:authorName});}},{key:'_onUpPress',value:
+
+
+
+
+function _onUpPress(){}},{key:'_onCommentTitlePress',value:
+
+
+
+
+function _onCommentTitlePress(){
+this._listView.setNativeProps({
+contentOffset:{
+x:0,
+y:0}});}},{key:'renderRow',value:
+
 
 
 
@@ -56834,9 +56921,12 @@ ref:function(view){return _this4[comment.id] = view;},
 key:comment.id,
 style:[styles.commentWrapper,focusStyle]},
 React.createElement(View,{style:[styles.imageWrapper]},
+React.createElement(TouchableOpacity,{onPress:this._onAuthorImgPress.bind(this,authorName)},
 React.createElement(Image,{
 style:styles.authorImg,
-source:{uri:domain + comment.author.avatar_url}}),
+source:{uri:domain + comment.author.avatar_url}})),
+
+
 
 
 React.createElement(Text,{style:styles.commentNumText},
@@ -56875,7 +56965,7 @@ content:comment.content})),
 
 
 function _renderComments(){var _this5=this;
-if(this.state.isLoaded){
+if(this.state.didFocus && this.state.isLoaded){
 return (
 React.createElement(ListView,{
 ref:function(view){return _this5._listView = view;},
@@ -56992,7 +57082,9 @@ React.createElement(Text,{style:styles.navReturnText},'返回')),
 
 
 
-React.createElement(TouchableHighlight,{style:styles.navTitle},
+React.createElement(TouchableOpacity,{
+onPress:this._onCommentTitlePress.bind(this),
+style:styles.navTitle},
 React.createElement(Text,{style:styles.titleText},'评论',
 
 React.createElement(Text,{style:styles.countText},
@@ -57002,14 +57094,14 @@ React.createElement(Text,{style:styles.countText},
 
 
 
-this.props.reply && this.state.isLoaded?returnToTopic:null),
+this.state.didFocus && this.props.reply && this.state.isLoaded?returnToTopic:null),
 
 
 
 
 React.createElement(View,{
 ref:function(view){return _this7.commentsView = view;},
-style:[styles.comments]},
+style:[styles.comments,{height:this.props.user?commentsHeight:commentsHeight + replyFormHeight}]},
 this._renderComments()),
 
 
@@ -59042,9 +59134,8 @@ return window.markdown;}else
 
 {
 return exports;}})());});
-__d('noder/app/components/commentHtml',["react-native/Libraries/react-native/react-native","noder/app/components/htmlRender","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
-
-var HtmlRender=require('noder/app/components/htmlRender');
+__d('noder/app/components/htmlRender/commentHtml',["react-native/Libraries/react-native/react-native","noder/app/components/htmlRender/htmlContent","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+var HtmlContent=require('noder/app/components/htmlRender/htmlContent');
 
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;var 
@@ -59055,7 +59146,27 @@ Component=
 
 
 
-React.Component;var View=React.View;var Text=React.Text;var StyleSheet=React.StyleSheet;var Image=React.Image;
+React.Component;var View=React.View;var Text=React.Text;var StyleSheet=React.StyleSheet;var Image=React.Image;var 
+
+
+CommentHtml=(function(_Component){
+function CommentHtml(props){_classCallCheck(this,CommentHtml);
+_get(Object.getPrototypeOf(CommentHtml.prototype),'constructor',this).call(this,props);
+if(this.props.style){
+this.styles = Object.assign({},styles,this.props.style);}}_inherits(CommentHtml,_Component);_createClass(CommentHtml,[{key:'render',value:
+
+
+
+function render(){
+return (
+React.createElement(HtmlContent,{
+content:this.props.content,
+style:this.styles}));}}]);return CommentHtml;})(Component);
+
+
+
+
+
 
 var fontSize=14;
 var titleMargin=5;
@@ -59197,104 +59308,11 @@ paddingRight:20},
 blockquotewrapper:{
 paddingLeft:20,
 borderLeftColor:'#3498DB',
-borderLeftWidth:3}});var 
+borderLeftWidth:3}});
 
 
 
-
-HtmlContent=(function(_Component){
-function HtmlContent(props){_classCallCheck(this,HtmlContent);
-_get(Object.getPrototypeOf(HtmlContent.prototype),'constructor',this).call(this,props);
-if(this.props.style){
-this.styles = Object.assign({},styles,this.props.style);}}_inherits(HtmlContent,_Component);_createClass(HtmlContent,[{key:'render',value:
-
-
-
-function render(){
-
-
-return (
-React.createElement(HtmlRender,{
-value:this.props.content,
-onLinkPress:function(url){return console.log('navigating to: ',url);},
-stylesheet:this.styles}));}}]);return HtmlContent;})(Component);
-
-
-
-
-
-
-module.exports = HtmlContent;});
-__d('noder/app/components/nav',["react-native/Libraries/react-native/react-native","noder/app/util/window","precomputeStyle","react-native-button/Button"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
-var window=require('noder/app/util/window');var _window$get=
-window.get();var width=_window$get.width;var height=_window$get.height;
-var precomputeStyle=require('precomputeStyle');
-var Button=require('react-native-button/Button');var 
-
-
-
-View=
-
-
-
-
-
-React.View;var StyleSheet=React.StyleSheet;var Component=React.Component;var Text=React.Text;var TouchableOpacity=React.TouchableOpacity;var TouchableHighlight=React.TouchableHighlight;
-
-var navHeight=55;var 
-
-
-Nav=(function(_Component){
-function Nav(props){_classCallCheck(this,Nav);
-_get(Object.getPrototypeOf(Nav.prototype),'constructor',this).call(this,props);}_inherits(Nav,_Component);_createClass(Nav,[{key:'_renderNavs',value:
-
-
-
-function _renderNavs(){var _this=this;
-return ['Left','Center','Right'].map(function(nav,index,arr){
-var navMap=_this.props.navMap;
-if(navMap.nav){
-return (
-React.createElement(Button,{
-onPress:_this.props.navMap[nav].onPress,
-style:[styles.navItem,styles['nav' + nav],_this.props.navMap[nav].style]},
-_this.props.navMap[nav].view));}});}},{key:'render',value:
-
-
-
-
-
-
-
-function render(){
-return (
-React.createElement(View,{style:styles.nav},
-this._renderNavs()));}}]);return Nav;})(Component);
-
-
-
-
-
-var styles=StyleSheet.create({
-nav:{
-height:navHeight,
-width:width,
-borderBottomColor:'rgba(0,0,0,0.03)',
-borderBottomWidth:1,
-flexDirection:'row',
-justifyContent:'space-between',
-alignItems:'center'},
-
-
-navItem:{
-height:navHeight,
-paddingLeft:15,
-paddingRight:15}});
-
-
-
-
-module.exports = Nav;});
+module.exports = CommentHtml;});
 __d('noder/app/util/animation',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  var React=require('react-native/Libraries/react-native/react-native');var 
 
 
@@ -59331,7 +59349,7 @@ type:LayoutAnimation.Types.easeInEaseOut}}}};
 
 
 module.exports = animations;});
-__d('noder/app/scene/message',["react-native/Libraries/react-native/react-native","noder/app/util/window","rebound/rebound","FAKIconImage","noder/app/components/pageScrollView","noder/app/components/pageNavBar","noder/app/components/return","noder/app/components/messageListView","noder/app/components/markAsReadOverlay","noder/app/util/storage","noder/app/services/messageService","noder/app/config"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}
+__d('noder/app/scene/message',["react-native/Libraries/react-native/react-native","noder/app/util/window","rebound/rebound","FAKIconImage","noder/app/components/pageScrollView","noder/app/components/pageNavBar","noder/app/components/overlay/return","noder/app/components/messageListView","noder/app/components/overlay/markAsReadOverlay","noder/app/util/storage","noder/app/services/messageService","noder/app/config"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}
 var React=require('react-native/Libraries/react-native/react-native');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;
@@ -59341,9 +59359,9 @@ var Icon=require('FAKIconImage');
 
 var PageScrollView=require('noder/app/components/pageScrollView');
 var PageNavBar=require('noder/app/components/pageNavBar');
-var Return=require('noder/app/components/return');
+var Return=require('noder/app/components/overlay/return');
 var MessageListView=require('noder/app/components/messageListView');
-var MarkAsReadOverlay=require('noder/app/components/markAsReadOverlay');
+var MarkAsReadOverlay=require('noder/app/components/overlay/markAsReadOverlay');
 
 
 var Storage=require('noder/app/util/storage');
@@ -59600,15 +59618,12 @@ onPress:this._onMarkAsReadOverlayPress.bind(this)})));}}]);return Message;})(Com
 
 
 module.exports = Message;});
-__d('noder/app/components/messageListView',["react-native/Libraries/react-native/react-native","moment/moment","noder/app/scene/comments","noder/app/config/sceneConfig","noder/app/config","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/messageListView',["react-native/Libraries/react-native/react-native","moment/moment","noder/app/config","noder/app/config/routes","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var moment=require('moment/moment');
-
-var Comments=require('noder/app/scene/comments');
-var sceneConfig=require('noder/app/config/sceneConfig');
 
 
 var config=require('noder/app/config');
-
+var routes=require('noder/app/config/routes');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;var 
 
@@ -59759,18 +59774,12 @@ this.props.refresh && this.props.refresh();}}},{key:'_onRowPress',value:
 
 
 function _onRowPress(message){
-var navigator=Navigator.getContext(this);
 
-navigator.push({
-component:Comments,
-sceneConfig:sceneConfig.customFloatFromRight,
-name:'comments',
-props:{
+routes.toComments(this,{
 topic:message.topic,
 from:'message',
 user:this.props.user,
-reply:message.reply}});}},{key:'_renderRowFooter',value:
-
+reply:message.reply});}},{key:'_renderRowFooter',value:
 
 
 
@@ -59884,10 +59893,10 @@ onEndReachedThreshold:100})));}}]);return MessageListView;})(Component);
 
 
 module.exports = MessageListView;});
-__d('noder/app/components/markAsReadOverlay',["react-native/Libraries/react-native/react-native","react-native-button/Button","noder/app/components/overlayButton","noder/app/util/window","noder/app/config"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/overlay/markAsReadOverlay',["react-native/Libraries/react-native/react-native","react-native-button/Button","noder/app/components/overlay/overlayButton","noder/app/util/window","noder/app/config"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 
 var Button=require('react-native-button/Button');
-var OverlayButton=require('noder/app/components/overlayButton');
+var OverlayButton=require('noder/app/components/overlay/overlayButton');
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;
 
@@ -59998,6 +60007,15 @@ var apiUrl=config.domain + config.apiPath + '/message/mark_all';
 return request.post(apiUrl,{
 accesstoken:token});};
 
+
+
+
+req.getMessageCount = function(token){
+var url=config.domain + config.apiPath + '/message/count';
+return request.get(url,{
+accesstoken:token}).
+
+then(function(data){return data.data;});};
 
 
 
@@ -60449,11 +60467,10 @@ __d('noder/app/styles/pageListView',[],function(global, require, requireDynamic,
 
 "loading":{
 "marginTop":250}};});
-__d('noder/app/components/userOverlay',["react-native/Libraries/react-native/react-native","FAKIconImage","noder/app/components/overlayButton","noder/app/util/storage","noder/app/config","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/overlay/userOverlay',["react-native/Libraries/react-native/react-native","FAKIconImage","noder/app/components/overlay/overlayButton","noder/app/config","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var Icon=require('FAKIconImage');
 
-var OverlayButton=require('noder/app/components/overlayButton');
-var Storage=require('noder/app/util/storage');
+var OverlayButton=require('noder/app/components/overlay/overlayButton');
 
 var config=require('noder/app/config');
 
@@ -60513,7 +60530,6 @@ style:styles.icon}));}},{key:'render',value:
 function render(){
 return (
 React.createElement(OverlayButton,{
-position:styles.containerStyle,
 onPress:this.props.onPress},
 this._renderOverlayContent()));}}]);return UserOverlay;})(Component);
 
@@ -61756,15 +61772,17 @@ this._renderPageListView())));}}]);return TopicsInTab;})(Component);
 
 
 module.exports = TopicsInTab;});
-__d('noder/app/components/messageOverlay',["react-native/Libraries/react-native/react-native","FAKIconImage","noder/app/components/overlayButton","noder/app/util/storage","noder/app/config","noder/app/config/routes","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
+__d('noder/app/components/overlay/messageOverlay',["react-native/Libraries/react-native/react-native","FAKIconImage","noder/app/components/overlay/overlayButton","noder/app/util/storage","noder/app/config","noder/app/config/routes","noder/app/services/messageService","noder/app/util/window"],function(global, require, requireDynamic, requireLazy, module, exports) {  var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(object,property,receiver){if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {return get(parent,property,receiver);}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)subClass.__proto__ = superClass;}var React=require('react-native/Libraries/react-native/react-native');
 var Icon=require('FAKIconImage');
 
 
-var OverlayButton=require('noder/app/components/overlayButton');
+var OverlayButton=require('noder/app/components/overlay/overlayButton');
 var Storage=require('noder/app/util/storage');
+
 
 var config=require('noder/app/config');
 var routes=require('noder/app/config/routes');
+var messageService=require('noder/app/services/messageService');
 
 var window=require('noder/app/util/window');var _window$get=
 window.get();var width=_window$get.width;var height=_window$get.height;var 
@@ -61776,7 +61794,89 @@ View=
 
 
 
-React.View;var Text=React.Text;var Component=React.Component;var StyleSheet=React.StyleSheet;var Image=React.Image;var Navigator=React.Navigator;
+React.View;var Text=React.Text;var Component=React.Component;var StyleSheet=React.StyleSheet;var Image=React.Image;var Navigator=React.Navigator;var 
+
+
+MessageOverlay=(function(_Component){
+function MessageOverlay(props){_classCallCheck(this,MessageOverlay);
+_get(Object.getPrototypeOf(MessageOverlay.prototype),'constructor',this).call(this,props);
+this.state = {
+messagesCount:0};}_inherits(MessageOverlay,_Component);_createClass(MessageOverlay,[{key:'componentDidMount',value:
+
+
+
+function componentDidMount(){
+this._fetchMessage();}},{key:'componentDidFocus',value:
+
+
+
+function componentDidFocus(){
+
+this._fetchMessage();}},{key:'_fetchMessage',value:
+
+
+
+function _fetchMessage(){var _this=this;
+if(!this.props.user)return;
+
+messageService.req.getMessageCount(this.props.user.token).
+then(function(count){
+if(count > 0){
+_this.setState({
+messagesCount:count});}}).
+
+
+
+catch(function(err){
+console.warn(err);}).
+
+done();}},{key:'_renderMessageCount',value:
+
+
+
+function _renderMessageCount(){
+var count=this.state.messagesCount;
+
+if(count > 0){
+return (
+React.createElement(View,{style:styles.countWrapper},
+React.createElement(Text,{style:styles.countText},
+count > 999?'1k+':count)));}
+
+
+
+
+
+return null;}},{key:'_onPress',value:
+
+
+
+function _onPress(){
+routes.toMessage(this,{
+user:this.props.user});}},{key:'render',value:
+
+
+
+
+function render(){
+if(this.props.user){
+return (
+React.createElement(OverlayButton,{
+position:styles.position,
+onPress:this._onPress.bind(this)},
+React.createElement(Icon,{
+name:'ion|ios-email-outline',
+size:28,
+color:'rgba(255,255,255,0.9)',
+style:styles.icon}),
+
+this._renderMessageCount()));}
+
+
+
+return null;}}]);return MessageOverlay;})(Component);
+
+
 
 
 var overlaySize=45;
@@ -61815,92 +61915,7 @@ bottom:20},
 
 container:{
 backgroundColor:'blue',
-borderRadius:overlaySize / 2}});var 
-
-
-
-
-MessageOverlay=(function(_Component){
-function MessageOverlay(props){_classCallCheck(this,MessageOverlay);
-_get(Object.getPrototypeOf(MessageOverlay.prototype),'constructor',this).call(this,props);
-this.state = {
-messagesCount:0};}_inherits(MessageOverlay,_Component);_createClass(MessageOverlay,[{key:'_fetchMessage',value:
-
-
-
-
-function _fetchMessage(){var _this=this;
-if(!this.props.user)return;
-var url=config.domain + config.apiPath + '/message/count' + '?accesstoken=' + this.props.user.token;
-
-
-
-fetch(url).
-then(function(res){return res.json();}).
-then(function(data){return data.data;}).
-then(function(data){
-console.log(data);
-
-
-if(data > 0){
-_this.setState({
-messagesCount:data});}}).
-
-
-
-catch(function(err){
-console.warn(err);}).
-
-done();}},{key:'_renderMessageCount',value:
-
-
-
-function _renderMessageCount(){
-var count=this.state.messagesCount;
-
-if(count > 0){
-return (
-React.createElement(View,{style:styles.countWrapper},
-React.createElement(Text,{style:styles.countText},
-count > 999?'1k+':count)));}
-
-
-
-
-
-return null;}},{key:'_onPress',value:
-
-
-
-function _onPress(){
-routes.toMessage(this,{
-user:this.props.user});}},{key:'componentDidMount',value:
-
-
-
-
-function componentDidMount(){
-this._fetchMessage();}},{key:'render',value:
-
-
-
-function render(){
-if(this.props.user){
-return (
-React.createElement(OverlayButton,{
-position:styles.position,
-onPress:this._onPress.bind(this)},
-React.createElement(Icon,{
-name:'ion|ios-email-outline',
-size:28,
-color:'rgba(255,255,255,0.9)',
-style:styles.icon}),
-
-this._renderMessageCount()));}
-
-
-
-return null;}}]);return MessageOverlay;})(Component);
+borderRadius:overlaySize / 2}});
 
 
 
@@ -61913,507 +61928,8 @@ __d('noder/app/styles/home',[],function(global, require, requireDynamic, require
 
 "scrollContainer":{
 "flex":1}};});
-__d('noder/app/mock/topic',[],function(global, require, requireDynamic, requireLazy, module, exports) {  module.exports = {
-"data":{
-"id":"55604d9c4eb040084cfe5d4a",
-"author_id":"51ed5627f4963ade0ea60395",
-"tab":"share",
-"content":"<div class=\"markdown-text\"><h1>Markdown 语法简明手册</h1>\n<blockquote>\n<p>$ 表示行内公式：\n质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达</p>\n</blockquote>\n<h3>1. 使用 * 和 ** 表示斜体和粗体</h3>\n<p>示例：</p>\n<p>这是 <em>斜体</em>，这是 <strong>粗体</strong>。</p>\n<h3>2. 使用 === 表示一级标题，使用 — 表示二级标题</h3>\n<p>示例：</p>\n<h1>这是一个一级标题</h1>\n<h2>这是一个二级标题</h2>\n<h3>这是一个三级标题</h3>\n<h4>这是个四级标题</h4>\n<h5>这是个五级标题</h5>\n<h6>这是个六级标题</h6>\n<p>你也可以选择在行首加井号表示不同级别的标题，例如：# H1, ## H2, ### H3。</p>\n<h3>3. 使用 [描述](链接地址) 为文字增加外链接</h3>\n<p>示例：</p>\n<p>这是去往 <a href=\"http://ghosertblog.github.com\">本人博客</a> 的链接。</p>\n<h3>4. 在行末加两个空格表示换行</h3>\n<p>示例：</p>\n<p>第一行(此行最右有两个看不见的空格)<br>\n第二行</p>\n<h3>5. 使用 *，+，- 表示无序列表</h3>\n<p>示例：</p>\n<ul>\n<li>无序列表项 一</li>\n<li>无序列表项 二</li>\n<li>无序列表项 三</li>\n</ul>\n<h3>6. 使用数字和点表示有序列表</h3>\n<p>示例：</p>\n<ol>\n<li>有序列表项 一</li>\n<li>有序列表项 二</li>\n<li>有序列表项 三</li>\n</ol>\n<h3>7. 使用 &gt; 表示文字引用</h3>\n<p>示例：</p>\n<blockquote>\n<p>野火烧不尽，春风吹又生</p>\n</blockquote>\n<h3>8. 使用 `代码` 表示行内代码块</h3>\n<p>示例：</p>\n<p>让我们聊聊 <code>html</code></p>\n<h3>9.  使用 四个缩进空格 表示代码块</h3>\n<p>示例：</p>\n<pre class=\"prettyprint\"><code>这是一个代码块，此行左侧有四个不可见的空格\n</code></pre><h3>10.  使用 ![描述](图片链接地址) 插入图像</h3>\n<p>示例：</p>\n<p><img src=\"//dn-cnode.qbox.me/Fhm2rfT4GHwqRBEk6Nbp_SWdRZIi\" alt=\"IMG_0417.PNG\"></p>\n<p><img src=\"http://tp3.sinaimg.cn/2204681022/180/5606968568/1\" alt=\"我的头像\"></p>\n<h1>Cmd 高阶语法手册</h1>\n<h3>1. LaTeX 公式，表达式支持</h3>\n<p>$ 表示行内公式：</p>\n<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达</p>\n<p>$$ 表示整行公式：</p>\n<p>$$\\sum_{i=1}^n a_i=0$$</p>\n<p>$$f(x_1,x_x,\\ldots,x_n) = x_1^2 + x_2^2 + \\cdots + x_n^2 $$</p>\n<p>$$\\sum^{j-1}<em>{k=0}{\\widehat{\\gamma}</em>{kj} z_k}$$</p>\n<h3>2. 加强的代码块，支持四十一种编程语言的语法高亮的显示，行号显示</h3>\n<p>非代码示例：</p>\n<pre class=\"prettyprint\"><code>$ sudo apt-get install vim-gnome\n</code></pre><p>Python 示例：</p>\n<pre class=\"prettyprint language-python\"><code>@requires_authorization\ndef somefunc(param1=&#x27;&#x27;, param2=0):\n    &#x27;&#x27;&#x27;A docstring&#x27;&#x27;&#x27;\n    if param1 &gt; param2: # interesting\n        print &#x27;Greater&#x27;\n    return (param2 - param1 + 1) or None\n\nclass SomeClass:\n    pass\n\n&gt;&gt;&gt; message = &#x27;&#x27;&#x27;interpreter\n... prompt&#x27;&#x27;&#x27;\n</code></pre><p>JavaScript 示例：</p>\n<pre class=\"prettyprint language-javascript\"><code>/**\n* nth element in the fibonacci series.\n* @param n &gt;= 0\n* @return the nth element, &gt;= 0.\n*/\nfunction fib(n) {\n  var a = 1, b = 1;\n  var tmp;\n  while (--n &gt;= 0) {\n    tmp = a;\n    a += b;\n    b = tmp;\n  }\n  return a;\n}\n\ndocument.write(fib(10));\n</code></pre><h3>3. 表格支持</h3>\n<p>示例：</p>\n<table>\n<thead>\n<tr><th>项目</th><th>价格</th><th>数量</th></tr>\n</thead>\n<tbody>\n<tr><td>计算机</td><td>$1600</td><td>5</td></tr>\n<tr><td>手机</td><td>$12</td><td>12</td></tr>\n<tr><td>管线</td><td>$1</td><td>234</td></tr>\n</tbody>\n</table>\n<h3>4. 定义型列表</h3>\n<p>名词 1\n:   定义 1（左侧有一个可见的冒号和四个不可见的空格）</p>\n<p>代码块 2\n:   这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）</p>\n<pre class=\"prettyprint\"><code>    代码块（左侧有八个不可见的空格）\n</code></pre><hr>\n</div>",
-"title":"请勿删除此贴，正在调试react-native cnode客户端html渲染",
-"last_reply_at":"2015-06-23T09:00:32.914Z",
-"good":false,
-"top":false,
-"reply_count":12,
-"visit_count":636,
-"create_at":"2015-05-23T09:51:24.233Z",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"replies":[{
-"id":"55618d248f294e213d10b82c",
-"author":{
-"loginname":"alsotang",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F1147375%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>好用心地在调整格式啊</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-24T08:34:44.076Z"},
-{
-"id":"556190258f294e213d10b831",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>先来点谍照。。。。</p>\n<p><img src=\"//dn-cnode.qbox.me/Fhm2rfT4GHwqRBEk6Nbp_SWdRZIi\" alt=\"IMG_0417.PNG\"></p>\n<p><img src=\"//dn-cnode.qbox.me/FryQLxDJpwya7RcSpzBrDm3p5JhE\" alt=\"IMG_0418.PNG\"></p>\n<p><img src=\"//dn-cnode.qbox.me/FuKbAhdaBNSkpKj04bo8tjfkp8Ss\" alt=\"IMG_0420.PNG\"></p>\n<pre class=\"prettyprint\"><code>![IMG_0421.PNG](//dn-cnode.qbox.me/Fi93MaU3HXiaBu8mt8LBWr4FODXY)</code></pre></div>",
-"ups":["551a5c05687c387d2f5b2bff"],
-"create_at":"2015-05-24T08:47:33.126Z"},
-{
-"id":"556190828f294e213d10b832",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>渲染html时没用webview哦，用得本地视图来显示的哦</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-24T08:49:06.798Z"},
-{
-"id":"5561e0dd8f294e213d10b864",
-"author":{
-"loginname":"WangZishi",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8288105%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>期待啊\n自豪地采用 <a href=\"https://github.com/lanceli/cnodejs-ionic\">CNodeJS ionic</a></p>\n</div>",
-"ups":[],
-"create_at":"2015-05-24T14:31:57.215Z"},
-{
-"id":"5562a8288f294e213d10b8f9",
-"author":{
-"loginname":"booxood",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F124ea13daf1648975e002b3c5e89d7e2%3Fsize%3D48"},
-
-"content":"<div class=\"markdown-text\"><p>赞</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-25T04:42:16.211Z"},
-{
-"id":"5562b7f28f294e213d10b913",
-"author":{
-"loginname":"thondery",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F7646730%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>好漂亮，期待试用</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-25T05:49:38.556Z"},
-{
-"id":"5562c3ce8f294e213d10b920",
-"author":{
-"loginname":"ilanceli",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F874744%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>赞\n不过lz最好自己搭个测试环境</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-25T06:40:14.832Z"},
-{
-"id":"556547867d4c64752effb524",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p><a href=\"/user/ilanceli\">@ilanceli</a> 没搭，干脆就这么滴了</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-27T04:26:46.910Z"},
-{
-"id":"556566207d4c64752effb545",
-"author":{
-"loginname":"jysperm",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F1191561%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p>感觉网页版的样式也要调一调 …</p>\n</div>",
-"ups":[],
-"create_at":"2015-05-27T06:37:20.821Z"},
-{
-"id":"5565db1ebf0bd1f1570a0036",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p><a href=\"/user/jysperm\">@jysperm</a> 要不你来调一调嘛，网页版的确实也需要改进啊\n自豪地采用 <a href=\"https://github.com/lanceli/cnodejs-ionic\">CNodeJS ionic</a></p>\n</div>",
-"ups":[],
-"create_at":"2015-05-27T14:56:30.466Z"},
-{
-"id":"5589202301d3ce0d73d69106",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><h3>9.  使用 四个缩进空格 表示代码块</h3>\n<p>示例：</p>\n<pre class=\"prettyprint\"><code>这是一个代码块，此行左侧有四个不可见的空格\n</code></pre><h3>10.  使用 ![描述](图片链接地址) 插入图像</h3>\n<p>示例：</p>\n<p><img src=\"http://tp3.sinaimg.cn/2204681022/180/5606968568/1\" alt=\"我的头像\"></p>\n</div>",
-"ups":[],
-"create_at":"2015-06-23T09:00:19.652Z"},
-{
-"id":"5589203001d3ce0d73d69108",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"content":"<div class=\"markdown-text\"><p><a href=\"/user/soliury\">@soliury</a> ### 9.  使用 四个缩进空格 表示代码块</p>\n<p>示例：</p>\n<pre class=\"prettyprint\"><code>这是一个代码块，此行左侧有四个不可见的空格\n</code></pre><h3>10.  使用 ![描述](图片链接地址) 插入图像</h3>\n<p>示例：</p>\n<p><img src=\"http://tp3.sinaimg.cn/2204681022/180/5606968568/1\" alt=\"我的头像\"></p>\n</div>",
-"ups":[],
-"create_at":"2015-06-23T09:00:32.897Z"}]}};});
-__d('noder/app/mock/user',[],function(global, require, requireDynamic, requireLazy, module, exports) {  module.exports = {
-"success":true,
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120",
-"id":"51ed5627f4963ade0ea60395",
-token:"d376572b-f372-4ff8-836a-091c5d2455fc"};});
-__d('noder/app/mock/userInfo',[],function(global, require, requireDynamic, requireLazy, module, exports) {  module.exports = {
-"data":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120",
-"githubUsername":"soliury",
-"create_at":"2013-07-22T15:56:23.097Z",
-"score":1275,
-"recent_topics":[{
-"id":"55604d9c4eb040084cfe5d4a",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"title":"请勿删除此贴，正在调试react-native cnode客户端html渲染",
-"last_reply_at":"2015-07-02T10:08:24.522Z"},
-{
-"id":"55561c2e7cabb7b45ee6bc69",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"title":"【Gulp Tips】错误处理",
-"last_reply_at":"2015-05-15T16:17:50.185Z"},
-{
-"id":"5552fc48c62bb7483db55101",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"title":"【Gulp Tips】如何正确地删除文件",
-"last_reply_at":"2015-05-13T07:24:56.959Z"},
-{
-"id":"5551b1cf7664e06d7cd471a6",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"title":"【Gulp Tips】gulp流为何流",
-"last_reply_at":"2015-05-12T14:21:21.231Z"},
-{
-"id":"5551a6067664e06d7cd4718f",
-"author":{
-"loginname":"soliury",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5032079%3Fv%3D3%26s%3D120"},
-
-"title":"关于gulp",
-"last_reply_at":"2015-05-13T10:46:18.039Z"}],
-
-"recent_replies":[{
-"id":"5595f55547e6bdc30297ed8b",
-"author":{
-"loginname":"meiguixu",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F13146138%3Fv%3D3%26s%3D120"},
-
-"title":"【巨头联手：阿里巴巴+SMG】平台广阔，坐标上海，第一财经高薪招募RUBY及WEB开发工程师",
-"last_reply_at":"2015-07-03T02:50:38.925Z"},
-{
-"id":"55955f2147e6bdc30297ecd7",
-"author":{
-"loginname":"zenghongyujia123",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F7914166%3Fv%3D3%26s%3D120"},
-
-"title":"［上海］已拿A轮融资的互联网+物流创业新军 -  底薪180K+ 和 15K+期权  颜值（高）味道（爆）与环境 (爽)，诚聘 js 程序员 ！",
-"last_reply_at":"2015-07-03T04:25:46.068Z"},
-{
-"id":"5595402b47e6bdc30297ecb7",
-"author":{
-"loginname":"mmXiaoYao",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F13150693%3Fv%3D3%26s%3D120"},
-
-"title":"velocity.Parser and velocity.Compile",
-"last_reply_at":"2015-07-02T13:59:55.532Z"},
-{
-"id":"5594f0a047e6bdc30297ebf4",
-"author":{
-"loginname":"youlong723687543",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F13144449%3Fv%3D3%26s%3D120"},
-
-"title":"技术世界一片茫然",
-"last_reply_at":"2015-07-03T00:25:20.826Z"},
-{
-"id":"5594ed6947e6bdc30297ebeb",
-"author":{
-"loginname":"somonus",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5165612%3Fv%3D3%26s%3D120"},
-
-"title":"[杭州-滨江] 阿里巴巴数据产品部招聘前端/全端工程师",
-"last_reply_at":"2015-07-03T01:39:29.849Z"}],
-
-"collect_topics":[{
-"id":"55928df39418ff516f650e6b",
-"author":{
-"loginname":"DavidCai1993",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5886475%3Fv%3D3%26s%3D120"},
-
-"title":"分享一个自己翻译的io.js API 中文文档（完成度100%）",
-"last_reply_at":"2015-07-03T04:38:05.380Z"},
-{
-"id":"5590adbbebf9c92d17e734de",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"mongodb运维之副本集实践",
-"last_reply_at":"2015-07-01T08:00:54.885Z"},
-{
-"id":"558d1453ebf9c92d17e732fa",
-"author":{
-"loginname":"PaulGuo",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F758740%3Fv%3D3%26s%3D120"},
-
-"title":"美团酒店Node全栈开发实践",
-"last_reply_at":"2015-07-01T04:00:23.493Z"},
-{
-"id":"558b6b92c31358754d3aa3cd",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"sails vs meteor之sails篇",
-"last_reply_at":"2015-06-30T01:17:55.285Z"},
-{
-"id":"558a80b0c31358754d3aa343",
-"author":{
-"loginname":"turing",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Ffd05a307dcd03fdef795a3c9810ae667%3Fsize%3D48"},
-
-"title":"聊聊实时 Node 应用性能监测的实现",
-"last_reply_at":"2015-07-03T04:04:14.020Z"},
-{
-"id":"55815f28395a0c1812f18257",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"Koa 还是 Express？",
-"last_reply_at":"2015-06-24T13:22:20.747Z"},
-{
-"id":"557c354d16839d2d539362b6",
-"author":{
-"loginname":"luoyjx",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F4217102%3Fv%3D3%26s%3D120"},
-
-"title":"分享下重放攻击的概念",
-"last_reply_at":"2015-06-16T05:46:03.935Z"},
-{
-"id":"55778225c4e7fbea6e9a3357",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"Nodejs RESTFul架构实践",
-"last_reply_at":"2015-06-14T12:47:37.356Z"},
-{
-"id":"5536708e48636414313a72ff",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"使用config来管理配置文件",
-"last_reply_at":"2015-04-23T15:17:00.088Z"},
-{
-"id":"552b3b9382388cec50cf6d95",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"客户端 API 开发总结",
-"last_reply_at":"2015-06-24T01:59:19.938Z"},
-{
-"id":"5524989ab50122cc0bf6d60e",
-"author":{
-"loginname":"2596887568",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F9349200%3Fv%3D3%26s%3D120"},
-
-"title":"AngularJS的启动引导过程",
-"last_reply_at":"2015-04-08T10:51:50.328Z"},
-{
-"id":"551802d3687c387d2f5b2906",
-"author":{
-"loginname":"JerryC8080",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F6801672%3Fv%3D3%26s%3D120"},
-
-"title":"基于RESTful API 怎么设计用户权限控制？",
-"last_reply_at":"2015-05-27T01:19:10.861Z"},
-{
-"id":"551200e6d792542a29789a43",
-"author":{
-"loginname":"tw93",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8736212%3Fv%3D3%26s%3D120"},
-
-"title":"深入浅出Nodejs读书笔记",
-"last_reply_at":"2015-06-11T04:53:25.330Z"},
-{
-"id":"54b3fc05edf686411e1b9ce1",
-"author":{
-"loginname":"wewoor",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F2766811%3Fv%3D3%26s%3D120"},
-
-"title":"谁也阻挡不了我穿墙！！搭建自己的VPN",
-"last_reply_at":"2015-01-29T12:15:12.992Z"},
-{
-"id":"549ec1388ade094b67f3fdb4",
-"author":{
-"loginname":"i5ting",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3118295%3Fv%3D3%26s%3D120"},
-
-"title":"关于sloc",
-"last_reply_at":"2014-12-28T14:59:02.225Z"},
-{
-"id":"5475befe65e5a201268b9193",
-"author":{
-"loginname":"wizardforcel",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5080126%3Fv%3D3%26s%3D120"},
-
-"title":"W3School 教程整理",
-"last_reply_at":"2014-12-07T01:10:08.412Z"},
-{
-"id":"546c0b721c825b0c4d79e84a",
-"author":{
-"loginname":"zengliqi",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F9347370%3Fv%3D3%26s%3D120"},
-
-"title":"也谈如何构建高性能服务端程序",
-"last_reply_at":"2014-11-19T03:56:27.098Z"},
-{
-"id":"546a08fa7981ed441bdda690",
-"author":{
-"loginname":"pockry",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F530c7eeafcacfbe52827a98c6a4a1358%3Fsize%3D48"},
-
-"title":"passport.js学习笔记",
-"last_reply_at":"2014-11-24T03:11:08.567Z"},
-{
-"id":"545628badcf5d4372651d18c",
-"author":{
-"loginname":"justjavac",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F359395%3Fv%3D3%26s%3D120"},
-
-"title":"开发者必备的 Chrome 扩展",
-"last_reply_at":"2014-11-02T15:19:26.933Z"},
-{
-"id":"5450e433d0c2f0fe2f5339dc",
-"author":{
-"loginname":"laomayi",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F2da2a62c55430459e62a6cdb41a41a06%3Fsize%3D48"},
-
-"title":"我用NodeJS写了个DHT爬虫, 发现比Python写出的还牛逼!",
-"last_reply_at":"2014-10-31T07:08:19.658Z"},
-{
-"id":"54474a6b649ac9220757b8c7",
-"author":{
-"loginname":"justjavac",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F359395%3Fv%3D3%26s%3D120"},
-
-"title":"Firebase 相关文章的索引",
-"last_reply_at":"2014-10-23T07:01:14.870Z"},
-{
-"id":"541414d88518442c6218e15d",
-"author":{
-"loginname":"lgqlee",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F6489372%3Fv%3D3%26s%3D120"},
-
-"title":"大家都是怎么学node的呢？",
-"last_reply_at":"2014-09-21T03:46:49.567Z"},
-{
-"id":"540880ebf4d8f79a5a0706df",
-"author":{
-"loginname":"okoala",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F2127199%3Fv%3D3%26s%3D120"},
-
-"title":"教你如何快速掌握Chrome DevTools中的各种NB技能~~",
-"last_reply_at":"2014-09-06T02:51:21.993Z"},
-{
-"id":"53ca1b2d2df7453a44f8ebf4",
-"author":{
-"loginname":"FuGardenia",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F3283580%3Fv%3D3%26s%3D120"},
-
-"title":"全国省市乡镇村地区五级联动",
-"last_reply_at":"2014-07-20T05:18:53.891Z"},
-{
-"id":"53c652bfc9507b404446ee40",
-"author":{
-"loginname":"lcjnil",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F5821684%3Fv%3D3%26s%3D120"},
-
-"title":"【翻译】在Nodejs中使用JSON WEB Tokens",
-"last_reply_at":"2014-07-17T07:02:00.576Z"},
-{
-"id":"5354cfdb1969a7b22afbbf82",
-"author":{
-"loginname":"youqingkui",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F7046903%3Fv%3D3%26s%3D120"},
-
-"title":"请问在 Express 4.0 里如何实现上传？",
-"last_reply_at":"2015-04-02T00:21:22.285Z"},
-{
-"id":"535376501969a7b22aca6d24",
-"author":{
-"loginname":"nswbmw",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F11c35a5b58d99d2c8a950165b795917d%3Fsize%3D48"},
-
-"title":"学习 Node.js 的 6 个步骤",
-"last_reply_at":"2014-08-11T13:41:50.494Z"},
-{
-"id":"5203a71844e76d216a727d2e",
-"author":{
-"loginname":"ggaaooppeenngg",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F4769989%3Fv%3D3%26s%3D120"},
-
-"title":"通读cheerio API",
-"last_reply_at":"2015-05-11T07:16:24.961Z"},
-{
-"id":"51fc8bd944e76d216ab64939",
-"author":{
-"loginname":"kimady",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F2c63b57d3c76ccaed06fcc34ba0e8d33%3Fsize%3D48"},
-
-"title":"Node.js 对图片进行裁切、缩放 (gm)",
-"last_reply_at":"2014-12-04T08:59:47.007Z"},
-{
-"id":"5190d61263e9f8a542acd83b",
-"author":{
-"loginname":"shiedman",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F849581002e39edc8ffe0cb8b97ee6f12%3Fsize%3D48"},
-
-"title":"[技术讨论]mongodb驱动的正确使用方法",
-"last_reply_at":"2014-08-20T05:02:55.341Z"},
-{
-"id":"516526766d38277306c7d277",
-"author":{
-"loginname":"lhfcws",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F19775e24394f727eb342154459370d20%3Fsize%3D48"},
-
-"title":"初识 mocha in NodeJS",
-"last_reply_at":"2015-06-05T04:19:13.338Z"},
-{
-"id":"50aeec5e637ffa41559d2fbe",
-"author":{
-"loginname":"luofei614",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fe45ec2d493a3ffdd0b8a80bb3f8ed5b2%3Fsize%3D48"},
-
-"title":"nodejs+cloudfoundry  实现代理服务器。",
-"last_reply_at":"2012-11-23T16:08:23.196Z"},
-{
-"id":"5076313f25bf229e20212ba8",
-"author":{
-"loginname":"342479384",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fab32ab04dd8ab0a45a6760ae8a466e2a%3Fsize%3D48"},
-
-"title":"如何用node.js 获取访问者的公网IP?",
-"last_reply_at":"2015-06-15T09:03:11.382Z"},
-{
-"id":"504b4924e2b84515770103dd",
-"author":{
-"loginname":"a272121742",
-"avatar_url":"/agent?url=http%3A%2F%2Fwww.gravatar.com%2Favatar%2Fb087595f7b1a3801718f7a04d24add89%3Fsize%3D48"},
-
-"title":"Mongoose学习参考文档——基础篇",
-"last_reply_at":"2015-05-18T11:01:56.015Z"},
-{
-"id":"4fa94df3b92b05485007fd87",
-"author":{
-"loginname":"JacksonTian",
-"avatar_url":"/agent?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F327019%3Fv%3D3%26s%3D120"},
-
-"title":"Node内存泄漏专题",
-"last_reply_at":"2014-12-05T03:08:30.190Z"}]}};});
-__d('noder/app/config/onRun',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  var React=require('react-native/Libraries/react-native/react-native');var 
+__d('noder/app/config/onRun',["react-native/Libraries/react-native/react-native","noder/app/services/userService"],function(global, require, requireDynamic, requireLazy, module, exports) {  var React=require('react-native/Libraries/react-native/react-native');
+var userService=require('noder/app/services/userService');var 
 
 
 StatusBarIOS=

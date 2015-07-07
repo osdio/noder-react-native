@@ -32,4 +32,5 @@ npm-debug.log
 app/mock/user.js
 
 react-packager-cache**
+.rnplay
 

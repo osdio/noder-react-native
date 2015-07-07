@@ -19,71 +19,71 @@ var User = require('./app/scene/user');
 require('./app/config/onRun')
 
 var {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    Navigator,
-    Component,
-    StatusBarIOS
-    } = React;
+	AppRegistry,
+	StyleSheet,
+	Text,
+	View,
+	Navigator,
+	Component,
+	StatusBarIOS
+	} = React;
 
 
 var styles = StyleSheet.create({
-    sceneStyle: {
-        flex: 1
-    }
+	sceneStyle: {
+		flex: 1
+	}
 });
 
 
 class Noder extends Component {
-    constructor(props) {
-        super(props)
-        //Storage.setItem('user', user)
-        //Storage.removeItem('user')
-        //Storage.removeItem('userInfo')
-    }
+	constructor(props) {
+		super(props)
+		//Storage.setItem('user', user)
+		//Storage.removeItem('user')
+		//Storage.removeItem('userInfo')
+	}
 
 
-    renderScene(route, navigator) {
-        if (route.name == 'home') {
-            return (
-                //<User
-                //    userName='alsotang'
-                //    //user={user}
-                //    //userInfo={userInfo}
-                //    ></User>
-                //<Test navigator={navigator}></Test>
-                <Home ref={view=>this[route.name]=view} navigator={navigator}></Home>
-                //<Message></Message>
-                //<Topic navigator={navigator} topic={topic.data}></Topic>
-                //<Comments topic={topic.data} user={user}></Comments>
-                //<QRCode></QRCode>
+	renderScene(route, navigator) {
+		if (route.name == 'home') {
+			return (
+				//<User
+				//    userName='alsotang'
+				//    //user={user}
+				//    //userInfo={userInfo}
+				//    ></User>
+				//<Test navigator={navigator}></Test>
+				<Home ref={view=>this[route.name]=view} navigator={navigator}></Home>
+				//<Message></Message>
+				//<Topic navigator={navigator} topic={topic.data}></Topic>
+				//<Comments topic={topic.data} user={user}></Comments>
+				//<QRCode></QRCode>
 
-            );
-        }
-        if (route.component) {
-            return React.createElement.bind(this)(route.component, Object.assign({}, route.props, {ref: view=>this[route.name] = view}))
-        }
-    }
+			);
+		}
+		if (route.component) {
+			return React.createElement.bind(this)(route.component, Object.assign({}, route.props, {ref: view=>this[route.name] = view}))
+		}
+	}
 
-    render() {
-        return (
-            <Navigator
-                initialRoute={{name:'home', index:0}}
-                configureScene={(route)=>{
+	render() {
+		return (
+			<Navigator
+				initialRoute={{name:'home', index:0}}
+				configureScene={(route)=>{
                     if(route.sceneConfig){
                         return route.sceneConfig;
                     }
                     return Navigator.SceneConfigs.FloatFromRight;
                 }}
-                renderScene={this.renderScene.bind(this)}
-                onDidFocus={(route)=>{
+				renderScene={this.renderScene.bind(this)}
+				onDidFocus={(route)=>{
                     this[route.name]&&this[route.name].componentDidFocus && this[route.name].componentDidFocus()
                 }}
-                />
-        )
-    }
+				/>
+		)
+	}
 }
 
 AppRegistry.registerComponent('noder', () => Noder);

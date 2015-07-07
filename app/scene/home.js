@@ -69,6 +69,7 @@ class Home extends Component {
             userService.storage.saveUserInfo(message.topic_to_home.userInfo)
             message.topic_to_home = null
         }
+        this.messageOverlay && this.messageOverlay.componentDidFocus()
     }
 
 

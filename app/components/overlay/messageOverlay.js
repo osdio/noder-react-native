@@ -37,6 +37,7 @@ class MessageOverlay extends Component {
 
 
     componentDidFocus() {
+        //console.log('_fetchMessage()');
         this._fetchMessage()
     }
 

@@ -17,6 +17,11 @@ Then click run in Xcode, if failed, you should rebuild all package that this pro
 
 If you want to run on you local iPhone app, you should follow the [doc](http://facebook.github.io/react-native/docs/runningondevice.html#content).
 
+If you don't want to update the ip by hand, you can use this:
+
+```
+gulp replace
+``
 
 
 ## ScreenShots

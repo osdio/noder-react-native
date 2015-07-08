@@ -12,6 +12,7 @@
     "react-native": "^0.6.0",
     "react-native-button": "^1.2.0",
     "react-native-camera": "^0.2.11",
+    "react-native-html-render": "^1.0.2",
     "react-native-icons": "^0.1.0",
     "react-native-keyboardevents": "^0.4.4",
     "react-native-modal": "^0.3.8",

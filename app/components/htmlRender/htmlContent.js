@@ -1,6 +1,6 @@
 var React = require('react-native')
 
-var HtmlRender = require('./htmlRender')
+var HtmlRender = require('react-native-html-render')
 
 var window = require('../../util/window')
 var routes = require('../../config/routes')

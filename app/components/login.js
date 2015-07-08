@@ -1,17 +1,17 @@
-var React = require('react-native');
-var Modal = require('react-native-modal');
-var Button = require('react-native-button');
-var Icon = require('FAKIconImage');
-var Camera = require('react-native-camera');
+var React = require('react-native')
+var Modal = require('react-native-modal')
+var Button = require('react-native-button')
+var Icon = require('FAKIconImage')
+var Camera = require('react-native-camera')
 
 
-var Storage = require('../util/storage');
-var userService = require('../services/userService');
+var Storage = require('../util/storage')
+var userService = require('../services/userService')
 
-var config = require('../config');
+var config = require('../config/config')
 var routes = require('../config/routes')
 
-var window = require('../util/window');
+var window = require('../util/window')
 var { width, height } = window.get()
 
 var {
@@ -170,9 +170,6 @@ class Login extends Component {
                 return userService.req.getLoginUserInfo(user)
             })
             .then((userInfo)=> {
-                //console.log('ok');
-                //console.log(userInfo);
-
                 if (userInfo) {
                     this.setState({
                         isModalOpen: false

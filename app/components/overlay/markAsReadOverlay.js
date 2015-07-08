@@ -5,7 +5,7 @@ var OverlayButton = require('./overlayButton');
 var window = require('../../util/window');
 var { width, height } = window.get()
 
-var config = require('../../config');
+var config = require('../../config/config');
 
 
 var {

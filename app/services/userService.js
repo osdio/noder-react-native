@@ -1,5 +1,5 @@
 var Storage = require('../util/storage')
-var config = require('../config')
+var config = require('../config/config')
 var request = require('./request')
 
 var storage = {}

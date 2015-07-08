@@ -5,7 +5,7 @@ var TopicRow = require('./topicRow')
 var Topic = require('../scene/topic')
 
 var sceneConfig = require('../config/sceneConfig')
-var config = require('../config')
+var config = require('../config/config')
 
 var window = require('../util/window')
 var { width, height } = window.get()

@@ -1,13 +1,13 @@
-var React = require('react-native');
-var rebound = require('rebound');
+var React = require('react-native')
+var rebound = require('rebound')
 
 // custom component
-var PageScrollView = require('./pageScrollView');
-var PageNavBar = require('./pageNavBar');
-var PageListView = require('./pageListView');
+var PageScrollView = require('./pageScrollView')
+var PageNavBar = require('./pageNavBar')
+var PageListView = require('./pageListView')
 
 
-var window = require('../util/window');
+var window = require('../util/window')
 var { width, height } = window.get()
 
 var {
@@ -84,9 +84,6 @@ class TopicsInTab extends Component {
 
     //don't render when the pageIndex is not change
     shouldComponentUpdate(nextProps, nextState) {
-        //if (nextState.pageIndex == this.state.pageIndex) {
-        //    return true;
-        //}
         return false;
     }
 
@@ -113,7 +110,6 @@ class TopicsInTab extends Component {
                     pageIndex={index}
                     navs={navs}
                     space={space}
-                    //currentPageIndex={self.state.pageIndex}
                     />
             )
         });

@@ -10,7 +10,7 @@ var MessageOverlay = require('../components/overlay/messageOverlay')
 
 var userService = require('../services/userService')
 
-var config = require('../config')
+var config = require('../config/config')
 var routes = require('../config/routes')
 var styles = require('../styles/home')
 
@@ -33,7 +33,7 @@ var {
 
 class Home extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             user: null,
             userInfo: null,
@@ -81,7 +81,6 @@ class Home extends Component {
 
 
     _onLoginSuccess(data) {
-        //this._fetchLoginUserInfo(user)
         this.setState({
             user: data.user,
             isModalOpen: false,

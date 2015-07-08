@@ -1,9 +1,9 @@
-var React = require('react-native');
-var window = require('../util/window');
+var React = require('react-native')
+var window = require('../util/window')
 var { width, height } = window.get()
-var Camera = require('react-native-camera');
-var Icon = require('FAKIconImage');
-var Button = require('react-native-button');
+var Camera = require('react-native-camera')
+var Icon = require('FAKIconImage')
+var Button = require('react-native-button')
 
 
 var {
@@ -31,7 +31,6 @@ var styles = StyleSheet.create({
     header: {
         height: 80,
         width: 350,
-        //backgroundColor: 'red',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
@@ -39,7 +38,6 @@ var styles = StyleSheet.create({
     cameraView: {
         height: cameraSize,
         width: cameraSize,
-        //backgroundColor: 'blue'
     },
     container: {
         height: 350

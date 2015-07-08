@@ -1,15 +1,14 @@
 var React = require('react-native');
 var moment = require('moment');
 
-var Storage = require('../util/storage');
 var topicService = require('../services/topicService')
 var TopicRow = require('../components/topicRow')
 
 var routes = require('../config/routes')
-var config = require('../config');
+var config = require('../config/config')
 var sceneConfig = require('../config/sceneConfig')
-var styles = require('../styles/pageListView');
-var window = require('../util/window');
+var styles = require('../styles/pageListView')
+var window = require('../util/window')
 var { width, height } = window.get()
 
 var {
@@ -258,8 +257,6 @@ class PageListView extends Component {
                     dataSource={this.state.ds}
                     renderRow={this.renderRow.bind(this)}
                     onEndReached={this.onEndReached.bind(this)}
-                    onEndReachedThreshold={16}
-                    //scrollRenderAheadDistance={30}
                     />
                 {this._renderLoading('bottom')}
             </View>

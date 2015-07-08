@@ -6,7 +6,7 @@ var OverlayButton = require('./overlayButton')
 var Storage = require('../../util/storage')
 
 
-var config = require('../../config')
+var config = require('../../config/config')
 var routes = require('../../config/routes')
 var messageService = require('../../services/messageService')
 

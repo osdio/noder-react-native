@@ -2,7 +2,7 @@ var React = require('react-native')
 var moment = require('moment')
 
 
-var config = require('../config')
+var config = require('../config/config')
 
 var window = require('../util/window')
 var { width, height } = window.get()

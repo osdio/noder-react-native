@@ -1,13 +1,16 @@
 var React = require('react-native')
 var moment = require('moment')
+
+// React-Native Module
 var ScrollableTabView = require('react-native-scrollable-tab-view')
 
+// Custom Component
 var UserTopicPage = require('../components/userTopicPage')
 
 
 var genColor = require('../util/genColor')
 var userService = require('../services/userService')
-var config = require('../config')
+var config = require('../config/config')
 var window = require('../util/window')
 var { width, height } = window.get()
 

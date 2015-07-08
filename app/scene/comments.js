@@ -416,7 +416,6 @@ class Comments extends Component {
 
 
     _onSubmitPress() {
-        //console.log('submitIcon');
         this._doReply()
     }
 
@@ -561,16 +560,12 @@ class Comments extends Component {
                 <ListView
                     ref={view=>this._listView=view}
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
-                    //onScroll={this.onScroll.bind(this)}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
                     pagingEnabled={false}
                     removeClippedSubviews={true}
                     dataSource={this.state.ds}
                     renderRow={this.renderRow.bind(this)}
-                    //onEndReached={this.onEndReached.bind(this)}
-                    onEndReachedThreshold={16}
-                    //scrollRenderAheadDistance={30}
                     />
             )
         }

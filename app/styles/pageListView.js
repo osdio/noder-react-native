@@ -1,4 +1,4 @@
-module.exports ={
+module.exports = {
     "row": {
         "height": 90,
         "flexDirection": "row",

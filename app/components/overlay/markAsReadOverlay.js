@@ -8,7 +8,6 @@ var { width, height } = window.get()
 var config = require('../../config');
 
 
-
 var {
     View,
     StyleSheet,

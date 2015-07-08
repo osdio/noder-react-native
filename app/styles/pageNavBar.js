@@ -1,4 +1,4 @@
-module.exports ={
+module.exports = {
     "navBar": {
         "height": 40,
         "backgroundColor": "rgba(0, 0, 0, 0.75)",

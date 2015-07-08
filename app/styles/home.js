@@ -1,4 +1,4 @@
-module.exports ={
+module.exports = {
     "container": {
         "flex": 1,
         "backgroundColor": "transparent"

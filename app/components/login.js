@@ -152,7 +152,7 @@ class Login extends Component {
     }
 
     _onLoginPress() {
-        routes.toQRCode(this,{
+        routes.toQRCode(this, {
             onSuccess: this._onSuccess.bind(this)
         })
     }

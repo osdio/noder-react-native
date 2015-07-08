@@ -49,7 +49,7 @@ exports.toTopic = function (context, props) {
 }
 
 
-exports.toComments= function (context, props) {
+exports.toComments = function (context, props) {
     push(context, props, {
         component: Comments,
         name: 'comments',

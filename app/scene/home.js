@@ -1,26 +1,18 @@
-var React = require('react-native');
-var window = require('../util/window');
+var React = require('react-native')
+var window = require('../util/window')
 var { width, height } = window.get()
 
 // custom component
-var PageScrollView = require('../components/pageScrollView');
-var CoverImage = require('../components/coverImage');
-var PageNavBar = require('../components/pageNavBar');
-var PageListView = require('../components/pageListView');
-var UserOverlay = require('../components/overlay/userOverlay');
-var Login = require('../components/login');
-var Topic = require('../scene/topic');
-var TopicsInTab = require('../components/topicsInTab');
-var MessageOverlay = require('../components/overlay/messageOverlay');
-var User = require('../scene/user')
+var UserOverlay = require('../components/overlay/userOverlay')
+var Login = require('../components/login')
+var TopicsInTab = require('../components/topicsInTab')
+var MessageOverlay = require('../components/overlay/messageOverlay')
 
-var Storage = require('../util/storage');
-var userService = require('../services/userService');
-var sceneConfig = require('../config/sceneConfig')
+var userService = require('../services/userService')
 
-var config = require('../config');
+var config = require('../config')
 var routes = require('../config/routes')
-var styles = require('../styles/home');
+var styles = require('../styles/home')
 
 
 var {
@@ -197,7 +189,6 @@ var stylesExtends = StyleSheet.create({
         height: height - 40
     },
     listView: {
-        //flex: 1,
         backgroundColor: 'blue'
     },
     navScroll: {

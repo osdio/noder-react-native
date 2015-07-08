@@ -37,14 +37,6 @@ var styles = StyleSheet.create({
 
 
 class Noder extends Component {
-	constructor(props) {
-		super(props)
-		//Storage.setItem('user', user)
-		//Storage.removeItem('user')
-		//Storage.removeItem('userInfo')
-	}
-
-
 	renderScene(route, navigator) {
 		if (route.name == 'home') {
 			return (

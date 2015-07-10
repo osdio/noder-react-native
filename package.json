@@ -16,7 +16,8 @@
     "react-native-icons": "^0.1.0",
     "react-native-keyboardevents": "^0.4.4",
     "react-native-modal": "^0.3.8",
-    "react-native-scrollable-tab-view": "^0.1.7"
+    "react-native-scrollable-tab-view": "^0.1.7",
+    "redux": "^1.0.0-alpha"
   },
   "devDependencies": {
     "coffee-script": "^1.9.2",

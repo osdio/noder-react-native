@@ -179,13 +179,16 @@ class Home extends Component {
 
 var stylesExtends = StyleSheet.create({
     container: {
-        width: width
+        width: width,
+        "flex": 1,
+        "backgroundColor": "transparent"
     },
     page: {
         width: width
     },
     scrollContainer: {
-        height: height - 40
+        height: height - 40,
+        "flex": 1
     },
     listView: {
         backgroundColor: 'blue'

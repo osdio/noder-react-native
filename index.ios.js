@@ -5,6 +5,10 @@ var user = require('./app/mock/user')
 var userInfo = require('./app/mock/userInfo')
 var userService = require('./app/services/userService')
 
+
+// on run
+require('./app/config/onRun')
+
 Object.assign(user, userInfo)
 
 

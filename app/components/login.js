@@ -111,50 +111,16 @@ var modalStyles = StyleSheet.create({
 class Login extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            isModalOpen: false
-        }
-    }
-
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            isModalOpen: nextProps.isModalOpen
-        })
     }
 
 
     closeModal() {
-        this.setState({
-            isModalOpen: false
-        })
+        this.props.actions.closeLoginModal()
     }
 
-    openModal() {
-        this.setState({
-            isModalOpen: true
-        })
-    }
-
-
-    _getCustomCloseButton() {
-        return (
-            <View style={styles.closeButton}>
-                <Button>
-                    <Icon
-                        name='ion|ios-close-empty'
-                        size={30}
-                        color='rgba(255,255,255,0.5)'
-                        style={styles.closeIcon}/>
-                </Button>
-            </View>
-        )
-    }
 
     _onLoginPress() {
-        routes.toQRCode(this, {
-            onSuccess: this._onSuccess.bind(this)
-        })
+        routes.toQRCode(this)
     }
 
     _onSuccess(token) {
@@ -187,6 +153,21 @@ class Login extends Component {
     }
 
 
+
+    _getCustomCloseButton() {
+        return (
+            <View style={styles.closeButton}>
+                <Button>
+                    <Icon
+                        name='ion|ios-close-empty'
+                        size={30}
+                        color='rgba(255,255,255,0.5)'
+                        style={styles.closeIcon}/>
+                </Button>
+            </View>
+        )
+    }
+
     render() {
 
         return (
@@ -197,7 +178,7 @@ class Login extends Component {
                 hideCloseButton={false}
                 backdropType='blur'
                 backdropBlur='dark'
-                isVisible={this.state.isModalOpen}
+                isVisible={this.props.isModalOpen}
                 onClose={() => this.closeModal()}>
 
                 <View style={styles.wrapper}>

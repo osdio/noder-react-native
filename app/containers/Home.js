@@ -7,6 +7,8 @@ var TopicsInTab = require('../components/topicsInTab')
 var MessageOverlay = require('../components/overlay/messageOverlay')
 
 
+var routes = require('../config/routes')
+
 var config = require('../config/config')
 var window = require('../util/window')
 var { width, height } = window.get()
@@ -25,11 +27,24 @@ var {
 class Home extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            isModalOpen: false
-        }
     }
 
+    _onLoginSuccess() {
+        this.setState({
+            isModalOpen: false
+        })
+    }
+
+    _userOverlayOnPress() {
+        let actions = this.props.actions
+        let state = this.props.state
+        if (!state.user) {
+            actions.openLoginModal()
+        }
+        else {
+            routes.toUser(this)
+        }
+    }
 
 
     render() {
@@ -46,14 +61,16 @@ class Home extends Component {
                 <UserOverlay
                     ref='userOverlay'
                     user={this.props.state.user}
-                    //onPress={this._userOverlayOnPress.bind(this)}
+                    onPress={this._userOverlayOnPress.bind(this)}
                     />
 
 
                 <Login
                     ref='login'
-                    //onLoginSuccess={this._onLoginSuccess.bind(this)}
-                    isModalOpen={this.state.isModalOpen}/>
+                    onLoginSuccess={this._onLoginSuccess.bind(this)}
+                    isModalOpen={this.props.state.home.isModalOpen}
+                    actions={this.props.actions}
+                    />
 
             </View>
         )

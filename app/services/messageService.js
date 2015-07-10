@@ -31,7 +31,7 @@ req.markAsRead = function (token) {
 }
 
 
-req.getMessageCount = function (token) {
+req.getUnreadMessageCount = function (token) {
     let url = config.domain + config.apiPath + '/message/count'
     return request.get(url, {
         accesstoken: token

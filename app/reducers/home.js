@@ -1,7 +1,8 @@
 var types = require('../constants/ActionTypes')
 
 var initialState = {
-    isModalOpen: false
+    isModalOpen: false,
+    checkTokenLoading: false
 }
 
 
@@ -15,6 +16,16 @@ module.exports = function (state, action) {
         case types.CLOSE_LOGIN_MODAL:
             return {
                 isModalOpen: false
+            }
+        case types.CHECK_TOKEN_REQUREST:
+            return {
+                ...state,
+                checkTokenLoading: true
+            }
+        case types.CHECK_TOKEN_SUCCESS:
+            return {
+                isModalOpen: false,
+                checkTokenLoading: false
             }
 
         default :

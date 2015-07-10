@@ -116,7 +116,7 @@ class QRCode extends Component {
         self.succesed = true
         VibrationIOS.vibrate()
         Navigator.getContext(this).pop()
-        this.props.onSuccess(result.data)
+        this.props.actions.checkToken(result.data)
     }
 
     _onClosePress() {

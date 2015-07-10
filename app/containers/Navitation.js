@@ -15,7 +15,7 @@ class Navitation extends Component {
 
 
     componentDidMount() {
-        this.props.actions.getUserFromStorage()
+        this.props.actions.getLoginUserFromStorage()
     }
 
 

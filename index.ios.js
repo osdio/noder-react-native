@@ -3,7 +3,7 @@ var App = require('./app/containers/App')
 
 var user = require('./app/mock/user')
 var userInfo = require('./app/mock/userInfo')
-var userService = require('./app/services/userService')
+var UserService = require('./app/services/userService')
 
 
 // on run
@@ -21,7 +21,8 @@ var {
 class Noder extends Component {
 
     componentDidMount() {
-        //userService.storage.saveUser(user)
+        //UserService.storage.saveUser(user)
+        //UserService.storage.clearUser()
     }
 
     render() {

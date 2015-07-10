@@ -10,6 +10,11 @@ storage.saveUser = function (user) {
 }
 
 
+storage.clearUser = function () {
+    return Storage.removeItem('user')
+}
+
+
 storage.saveUserInfo = function (userInfo) {
     return Storage.setItem('userInfo', userInfo)
 }
@@ -60,7 +65,6 @@ req.getUserInfo = function (userName) {
 
     return request.get(apiUrl + '/user/' + userName)
         .then(data=> {
-            console.log(data);
             if (data.error_msg) {
                 throw 'UserNotExist'
             }

@@ -1,14 +1,9 @@
 var React = require('react-native')
 var Icon = require('FAKIconImage')
 
-
 var OverlayButton = require('./overlayButton')
-var Storage = require('../../util/storage')
 
-
-var config = require('../../config/config')
 var routes = require('../../config/routes')
-var messageService = require('../../services/messageService')
 
 var window = require('../../util/window')
 var { width, height } = window.get()
@@ -18,50 +13,22 @@ var {
     Text,
     Component,
     StyleSheet,
-    Image,
-    Navigator
+    Image
     } = React;
 
 
 class MessageOverlay extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            messagesCount: 0
-        }
     }
 
     componentDidMount() {
-        this._fetchMessage()
-    }
-
-
-    componentDidFocus() {
-        //console.log('_fetchMessage()');
-        this._fetchMessage()
-    }
-
-
-    _fetchMessage() {
-        if (!this.props.user) return
-
-        messageService.req.getMessageCount(this.props.user.token)
-            .then(count=> {
-                if (count > 0) {
-                    this.setState({
-                        messagesCount: count
-                    })
-                }
-            })
-            .catch(function (err) {
-                console.warn(err)
-            })
-            .done()
+        this.props.getUnreadCount(this.props.user.token)
     }
 
 
     _renderMessageCount() {
-        var count = this.state.messagesCount
+        var count = this.props.count
 
         if (count > 0) {
             return (
@@ -78,9 +45,7 @@ class MessageOverlay extends Component {
 
 
     _onPress() {
-        routes.toMessage(this, {
-            user: this.props.user
-        })
+        routes.toMessage(this)
     }
 
 

@@ -42,7 +42,7 @@ class OverlayButton extends Component {
     render() {
         return (
             <View
-                style={[styles.container,this.props.position?this.props.position:styles.defaultPosition,this.props.containerStyle]}>
+                style={[styles.container,this.props.position?this.props.position:styles.defaultPosition,this.props.style]}>
                 <Button
                     style={this.props.buttonStyle}
                     onPress={this.props.onPress}>

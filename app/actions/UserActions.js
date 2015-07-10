@@ -2,7 +2,7 @@ var types = require('../constants/ActionTypes')
 var UserService = require('../services/userService')
 
 
-exports.getUser = function getUser(user) {
+function getUser(user) {
     return {
         type: types.GET_USER,
         user: user
@@ -10,22 +10,19 @@ exports.getUser = function getUser(user) {
 }
 
 
-exports.getUserFromStorage = function getUserFromStorage() {
+exports.getLoginUserFromStorage = function () {
     return dispatch=> {
         var userTemp = {}
         UserService.storage.getUser()
             .then((user)=> {
                 console.log('haveLoadedUser');
                 if (user) {
-                    dispatch({
-                        type: types.GET_USER_FROM_STORAGE,
-                        user: user
-                    })
+                    dispatch(getUser(user))
                     userTemp = user
                     return UserService.req.getLoginUserInfo(user)
                 }
                 else {
-                    throw 'getUserFromStorageFailed'
+                    throw 'GET_LOGIN_USER_FROM_STORAGE_FAILED'
                 }
 
             })
@@ -33,18 +30,12 @@ exports.getUserFromStorage = function getUserFromStorage() {
                 console.log('fetchUser');
                 if (userFetched) {
                     var userUpdated = Object.assign(userTemp, userFetched)
-                    Storage.setItem('user', userUpdated)
-                    dispatch({
-                        type: types.FETCH_USER,
-                        user: userUpdated
-                    })
+                    UserService.storage.saveUser(userUpdated)
+                    dispatch(getUser(userTemp))
                 }
             })
             .catch((err)=> {
-                dispatch({
-                    type: types.GET_USER_FROM_STORAGE_FAILED,
-                    err: err
-                })
+                console.warn(err)
             })
             .done()
     }
@@ -57,13 +48,51 @@ exports.fetchUser = function fetchUser(user) {
             .then(userInfo=> {
                 console.log('fetchUser');
                 if (userInfo) {
-                    var userUpdated = Object.assign(user, userInfo)
-                    Storage.setItem('user', userUpdated)
-                    dispatch(getUser(userUpdated))
+                    Object.assign(user, userInfo)
+                    UserService.storage.saveUser(user)
+                    dispatch(getUser(user))
                 }
             })
             .catch(err=> {
                 console.warn(err)
+            })
+            .done()
+    }
+}
+
+
+exports.checkToken = function (token) {
+    return dispatch=> {
+        var userTemp = {}
+        dispatch({
+            type: types.CHECK_TOKEN_REQUREST
+        })
+        UserService.req.checkToken(token)
+            .then(user=> {
+                userTemp = user
+                return UserService.req.getLoginUserInfo(user)
+            })
+            .then((userInfo)=> {
+                if (userInfo) {
+                    Object.assign(userTemp, userInfo)
+                    UserService.storage.saveUser(userTemp)
+                    dispatch(getUser(userTemp))
+                    dispatch({
+                        type: types.CHECK_TOKEN_SUCCESS,
+                        isModalOpen: false
+                    })
+                }
+                else {
+                    throw 'CHECK_TOKEN_FAILED'
+                }
+            })
+            .catch(function (err) {
+                console.warn(err)
+                dispatch({
+                    type: types.CHECK_TOKEN_FAILED,
+                    err: err
+                })
+                window.alert('token验证失败')
             })
             .done()
     }

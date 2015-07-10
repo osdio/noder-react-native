@@ -29,25 +29,32 @@ class Home extends Component {
         super(props)
     }
 
-    _onLoginSuccess() {
-        this.setState({
-            isModalOpen: false
-        })
-    }
 
     _userOverlayOnPress() {
         let actions = this.props.actions
         let state = this.props.state
-        if (!state.user) {
+        if (!state.user.loginUser) {
             actions.openLoginModal()
         }
         else {
-            routes.toUser(this)
+            routes.toUser(this, {
+                isLoginUser: true
+            })
         }
     }
 
 
     render() {
+        let loginUser = this.props.state.user.loginUser
+        let home = this.props.state.home
+        let messageOverlay = (
+            <MessageOverlay
+                user={loginUser}
+                getUnreadCount={this.props.actions.getUnreadMessageCount}
+                count={this.props.state.message.unreadMessageCount}
+                />
+        )
+
         return (
             <View
                 style={[styles.container]}>
@@ -60,17 +67,20 @@ class Home extends Component {
 
                 <UserOverlay
                     ref='userOverlay'
-                    user={this.props.state.user}
+                    user={loginUser}
                     onPress={this._userOverlayOnPress.bind(this)}
                     />
 
 
+                {loginUser ? messageOverlay : null}
+
+
                 <Login
-                    ref='login'
-                    onLoginSuccess={this._onLoginSuccess.bind(this)}
-                    isModalOpen={this.props.state.home.isModalOpen}
+                    isModalOpen={home.isModalOpen}
+                    checkTokenLoading={home.checkTokenLoading}
                     actions={this.props.actions}
                     />
+
 
             </View>
         )

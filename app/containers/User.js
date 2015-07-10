@@ -1,15 +1,18 @@
+// React-Native Module
 var React = require('react-native')
 var moment = require('moment')
-
-// React-Native Module
 var ScrollableTabView = require('react-native-scrollable-tab-view')
+var Icon = require('FAKIconImage')
+
 
 // Custom Component
 var UserTopicPage = require('../components/userTopicPage')
+var Return = require('../components/overlay/return')
+var UserTopicTabBar = require('../components/userTopicTabBar')
 
 
 var genColor = require('../util/genColor')
-var userService = require('../services/userService')
+var UserService = require('../services/userService')
 var config = require('../config/config')
 var window = require('../util/window')
 var { width, height } = window.get()
@@ -34,8 +37,7 @@ class User extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            userInfo: this.props.userInfo,
-            user: this.props.user,
+            userInfo: null,
             wallColor: genColor(),
             didFocus: false
         }
@@ -43,7 +45,12 @@ class User extends Component {
 
 
     componentDidMount() {
-        this._getUserInfo()
+        if (this.props.isLoginUser) {
+            this.props.actions.fetchUser(this.props.state.user.loginUser)
+        }
+        else {
+            this._getUserInfo()
+        }
     }
 
 
@@ -55,19 +62,22 @@ class User extends Component {
 
 
     _onGithubPress(name) {
+        if (name == '' || !name) return
         window.link('https://github.com/' + name)
+    }
+
+
+    _onReturnPress() {
+        Navigator.getContext(this).pop()
     }
 
 
     _getUserInfo() {
         let userName = this.props.userName
-        let user = this.state.user
-        var result = user ? userService.req.getLoginUserInfo(user) : userService.req.getUserInfo(userName)
 
-
-        result
+        UserService.req.getUserInfo(userName)
             .then(userInfo=> {
-                //console.log('update');
+                console.log('get userINfo');
                 this.setState({
                     userInfo: userInfo
                 })
@@ -90,7 +100,9 @@ class User extends Component {
         if (this.state.didFocus) {
             return (
                 <View style={styles.list}>
-                    <ScrollableTabView>
+                    <ScrollableTabView
+                        edgeHitWidth={(width/3)*2}
+                        renderTabBar={()=>UserTopicTabBar}>
                         <UserTopicPage
                             style={styles.userTopicPage}
                             data={recentReplies}
@@ -111,7 +123,14 @@ class User extends Component {
 
 
     render() {
-        let userInfo = this.state.userInfo
+        var userInfo = this.state.userInfo
+
+        let isLoginUser = this.props.isLoginUser
+
+        if (isLoginUser) {
+            userInfo = this.props.state.user.loginUser
+        }
+
         if (!userInfo) {
             return (
                 <View style={styles.container}>
@@ -126,18 +145,47 @@ class User extends Component {
         }
         let imgUri = config.domain + userInfo.avatar_url
         let createTime = moment(userInfo.create_at).format('l')
-        let authorName = userInfo.githubUsername
+        let authorName = userInfo.loginname
+        let githubName = userInfo.githubUsername
+        let pubTopicIcon = (
+            <TouchableOpacity>
+                <Icon
+                    name='ion|ios-compose'
+                    size={34}
+                    color='rgba(255,255,255,0.7)'
+                    style={styles.icon}/>
+            </TouchableOpacity>
+        )
+
+        let settingIcon = (
+            <TouchableOpacity>
+                <Icon
+                    name='ion|ios-gear'
+                    size={34}
+                    color='rgba(255,255,255,0.7)'
+                    style={styles.icon}/>
+            </TouchableOpacity>
+        )
 
         return (
             <View style={styles.container}>
                 <View style={[styles.bgWall,{backgroundColor:this.state.wallColor}]}>
-                    <TouchableOpacity
-                        onPress={this._onGithubPress.bind(this, authorName)}>
-                        <Image
-                            style={styles.authorImg}
-                            source={{uri:imgUri}}>
-                        </Image>
-                    </TouchableOpacity>
+                    <View style={styles.imgRow}>
+
+                        {isLoginUser ? pubTopicIcon : null}
+
+                        <TouchableOpacity
+                            onPress={this._onGithubPress.bind(this, githubName)}>
+                            <Image
+                                style={styles.authorImg}
+                                source={{uri:imgUri}}>
+                            </Image>
+                        </TouchableOpacity>
+
+                        {isLoginUser ? settingIcon : null}
+
+                    </View>
+
 
                     <TouchableOpacity
                         onPress={this._onGithubPress.bind(this, authorName)}>
@@ -158,6 +206,8 @@ class User extends Component {
                     </View>
                 </View>
                 {this._renderUserTopics(userInfo)}
+
+                <Return onPress={this._onReturnPress.bind(this)}></Return>
             </View>
         )
     }
@@ -183,6 +233,15 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 30,
         paddingBottom: 10
+    },
+    imgRow: {
+        width: width,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    icon: {
+        width: 30,
+        height: authorImgSize
     },
     authorWrapper: {
         height: authorWrapperHeight,
@@ -211,6 +270,9 @@ var styles = StyleSheet.create({
     },
     userTopicPage: {
         height: height - bgWallHeight - 70
+    },
+    list: {
+        width: width
     }
 
 })

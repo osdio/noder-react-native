@@ -2,13 +2,8 @@ var React = require('react-native')
 var Modal = require('react-native-modal')
 var Button = require('react-native-button')
 var Icon = require('FAKIconImage')
-var Camera = require('react-native-camera')
 
 
-var Storage = require('../util/storage')
-var userService = require('../services/userService')
-
-var config = require('../config/config')
 var routes = require('../config/routes')
 
 var window = require('../util/window')
@@ -25,7 +20,8 @@ var {
     ListView,
     TouchableHighlight,
     Navigator,
-    AsyncStorage
+    AsyncStorage,
+    ActivityIndicatorIOS
     } = React;
 
 
@@ -75,6 +71,12 @@ var styles = StyleSheet.create({
     },
     buttonText: {
         color: 'rgba(255,255,255,0.8)'
+    },
+    loading: {
+        paddingRight: 40,
+        paddingLeft: 40,
+        paddingTop: 10,
+        paddingBottom: 10
     }
 })
 
@@ -120,38 +122,9 @@ class Login extends Component {
 
 
     _onLoginPress() {
+        if (this.props.checkTokenLoading) return
         routes.toQRCode(this)
     }
-
-    _onSuccess(token) {
-        this._checkToken(token)
-    }
-
-
-    _checkToken(token) {
-        var userTemp = null
-        userService.req.checkToken(token)
-            .then(user=> {
-                userTemp = user
-                return userService.req.getLoginUserInfo(user)
-            })
-            .then((userInfo)=> {
-                if (userInfo) {
-                    this.setState({
-                        isModalOpen: false
-                    })
-                    this.props.onLoginSuccess({
-                        user: userTemp,
-                        userInfo: userInfo
-                    })
-                }
-            })
-            .catch(function (err) {
-                console.warn(err);
-            })
-            .done()
-    }
-
 
 
     _getCustomCloseButton() {
@@ -168,6 +141,34 @@ class Login extends Component {
         )
     }
 
+
+    _renderLoginButton() {
+        if (this.props.checkTokenLoading) {
+            return (
+                <ActivityIndicatorIOS
+                    hidesWhenStopped={false}
+                    size="small"
+                    animating={true}
+                    color='white'
+                    style={styles.loading}
+                    />
+            )
+        }
+        return (
+            <Button
+                onPress={this._onLoginPress.bind(this)}
+                style={styles.button}>
+                <Icon
+                    name='ion|camera'
+                    size={28}
+                    color='rgba(255,255,255,0.7)'
+                    style={styles.icon}/>
+                <Text style={styles.buttonText}>扫码登陆</Text>
+            </Button>
+        )
+    }
+
+
     render() {
 
         return (
@@ -183,21 +184,15 @@ class Login extends Component {
 
                 <View style={styles.wrapper}>
                     <View style={styles.row}>
-                        <Button
-                            onPress={this._onLoginPress.bind(this)}
-                            style={styles.button}>
-                            <Icon
-                                name='ion|camera'
-                                size={28}
-                                color='rgba(255,255,255,0.7)'
-                                style={styles.icon}/>
-                            <Text style={styles.buttonText}>扫码登陆</Text>
-                        </Button>
+
+                        {this._renderLoginButton()}
                     </View>
                 </View>
             </Modal>
         )
     }
+
+
 }
 
 

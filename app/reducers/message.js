@@ -2,7 +2,8 @@ var types = require('../constants/ActionTypes')
 
 var initialState = {
     isLoading: false,
-    messages: [],
+    hasNotRead: [],
+    hasRead: [],
     unreadMessageCount: 0
 }
 
@@ -20,8 +21,9 @@ module.exports = function (state, action) {
         case types.GET_MESSAGES:
             return {
                 isLoading: true,
-                unreadMessageCount: action.messages.hasnot_read_messages.length,
-                messages: messages
+                unreadMessageCount: action.hasNotRead.length,
+                hasRead: action.hasRead,
+                hasNotRead: action.hasNotRead
             }
 
         case types.FETCH_MESSAGES_REQUEST:
@@ -38,9 +40,10 @@ module.exports = function (state, action) {
 
         case types.FETCH_MESSAGES_FAILED:
             return {
-                messages: action.messages,
+                hasNotRead: action.hasNotRead,
+                hasRead: action.hasRead,
                 isLoading: false,
-                unreadMessageCount: action.messages.hasnot_read_messages.length
+                unreadMessageCount: action.hasNotRead.length
             }
 
         default :

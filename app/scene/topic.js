@@ -14,8 +14,8 @@ var LikeIcon = require('../components/likeIcon')
 
 
 // Config module
-var config = require('../config/config')
-var routes = require('../config/routes')
+var config = require('../configs/config')
+var routes = require('../configs/routes')
 
 
 // Util module

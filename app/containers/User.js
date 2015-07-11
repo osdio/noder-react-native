@@ -8,12 +8,12 @@ var Icon = require('FAKIconImage')
 // Custom Component
 var UserTopicPage = require('../components/userTopicPage')
 var Return = require('../components/overlay/return')
-var UserTopicTabBar = require('../components/userTopicTabBar')
+var TabBar = require('../components/TabBar')
 
 
 var genColor = require('../util/genColor')
 var UserService = require('../services/userService')
-var config = require('../config/config')
+var config = require('../configs/config')
 var window = require('../util/window')
 var { width, height } = window.get()
 
@@ -102,7 +102,7 @@ class User extends Component {
                 <View style={styles.list}>
                     <ScrollableTabView
                         edgeHitWidth={(width/3)*2}
-                        renderTabBar={()=>UserTopicTabBar}>
+                        renderTabBar={()=>TabBar}>
                         <UserTopicPage
                             style={styles.userTopicPage}
                             data={recentReplies}

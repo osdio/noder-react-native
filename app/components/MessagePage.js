@@ -7,6 +7,7 @@ var routes = require('../configs/routes')
 var window = require('../util/window')
 var { width, height } = window.get()
 
+
 var {
     View,
     StyleSheet,
@@ -18,7 +19,7 @@ var {
     ActivityIndicatorIOS,
     TouchableHighlight,
     Navigator
-    } = React;
+    } = React
 
 
 var styles = StyleSheet.create({
@@ -116,39 +117,21 @@ var styles = StyleSheet.create({
 })
 
 
-class MessageListView extends Component {
+class MessagePage extends Component {
     constructor(props) {
         super(props)
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-        var data = props.messages || []
+        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.state = {
-            ds: ds.cloneWithRows(data)
+            ds: this.ds.cloneWithRows(this.props.data)
         }
     }
 
 
     componentWillReceiveProps(nextProps) {
-        //console.log(nextProps);
-        var messages = nextProps.messages || []
-        this.setState({
-            ds: this._getDs(messages)
-        })
-    }
-
-
-    //shouldComponentUpdate(nextProps, nextState) {
-    //    return nextProps.messages != this.props.messages
-    //}
-
-
-    _getDs(data) {
-        return this.state.ds.cloneWithRows(data)
-    }
-
-
-    _onScroll(e) {
-        if (e.nativeEvent.contentOffset.y < -90) {
-            this.props.refresh && this.props.refresh()
+        if (nextProps.data != this.props.data) {
+            this.setState({
+                ds: this.ds.cloneWithRows(nextProps.data)
+            })
         }
     }
 
@@ -157,15 +140,13 @@ class MessageListView extends Component {
         routes.toComments(this, {
             topic: message.topic,
             from: 'message',
-            user: this.props.user,
             reply: message.reply
         })
     }
 
 
     _renderRowFooter(message) {
-        var date = moment(message.reply.create_at).startOf('minute').fromNow();
-
+        var date = moment(message.reply.create_at).startOf('minute').fromNow()
 
         return (
             <View style={styles.topicFooter}>
@@ -185,6 +166,7 @@ class MessageListView extends Component {
         )
     }
 
+
     _renderLoading() {
         if (this.props.isLoading) {
             return (
@@ -200,7 +182,6 @@ class MessageListView extends Component {
 
     _renderRow(message) {
         var topic = message.topic
-        var time = message.reply.create_at
         var title = topic.title
         var titleLength = Math.floor((width - 100) / 15) + 2;
         if (title.length > titleLength) {
@@ -237,19 +218,6 @@ class MessageListView extends Component {
     }
 
 
-    _renderEmptyMessage() {
-        if (this.props.messages.length == 0 && this.props.isLoading == false) {
-            return (
-                <View style={styles.emptyMessage}>
-                    <Text style={styles.emptyMessageText}>
-                        空空哒
-                    </Text>
-                </View>
-            )
-        }
-    }
-
-
     render() {
         return (
             <View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
@@ -271,5 +239,5 @@ class MessageListView extends Component {
     }
 }
 
-module.exports = MessageListView
 
+module.exports = MessagePage

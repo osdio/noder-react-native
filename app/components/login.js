@@ -4,7 +4,7 @@ var Button = require('react-native-button')
 var Icon = require('FAKIconImage')
 
 
-var routes = require('../config/routes')
+var routes = require('../configs/routes')
 
 var window = require('../util/window')
 var { width, height } = window.get()

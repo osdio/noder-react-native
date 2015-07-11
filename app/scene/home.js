@@ -10,8 +10,8 @@ var MessageOverlay = require('../components/overlay/messageOverlay')
 
 var userService = require('../services/userService')
 
-var config = require('../config/config')
-var routes = require('../config/routes')
+var config = require('../configs/config')
+var routes = require('../configs/config')
 var styles = require('../styles/home')
 
 

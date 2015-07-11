@@ -17,7 +17,7 @@ var Storage = require('../util/storage');
 var messageService = require('../services/messageService');
 
 // Config module
-var config = require('../config/config');
+var config = require('../configs/config');
 
 
 var {

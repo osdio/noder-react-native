@@ -7,9 +7,9 @@ var TopicsInTab = require('../components/topicsInTab')
 var MessageOverlay = require('../components/overlay/messageOverlay')
 
 
-var routes = require('../config/routes')
+var routes = require('../configs/config')
 
-var config = require('../config/config')
+var config = require('../configs/config')
 var window = require('../util/window')
 var { width, height } = window.get()
 

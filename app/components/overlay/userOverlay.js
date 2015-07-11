@@ -3,7 +3,7 @@ var Icon = require('FAKIconImage')
 
 var OverlayButton = require('./overlayButton')
 
-var config = require('../../config/config')
+var config = require('../../configs/config')
 
 var window = require('../../util/window')
 var { width, height } = window.get()

@@ -7,7 +7,7 @@ var Button = require('react-native-button');
 var OverlayButton = require('./overlayButton');
 
 
-var config = require('../../config/config');
+var config = require('../../configs/config');
 
 var { width, height } = Dimensions.get('window');
 

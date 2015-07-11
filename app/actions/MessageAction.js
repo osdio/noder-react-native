@@ -5,7 +5,8 @@ var MessageService = require('../services/messageService')
 function getMessages(messages) {
     return {
         type: types.GET_MESSAGES,
-        messages: messages,
+        hasRead: messages.has_read_messages,
+        hasNotRead: messages.hasnot_read_messages,
         isLoading: true
     }
 }
@@ -21,7 +22,8 @@ function fetchMessagesSuccess(messages) {
     return {
         type: types.FETCH_MESSAGES_SUCCESS,
         isLoading: false,
-        messages: messages
+        hasRead: messages.has_read_messages,
+        hasNotRead: messages.hasnot_read_messages,
     }
 }
 

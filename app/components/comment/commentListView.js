@@ -19,10 +19,10 @@ var Storage = require('../../util/storage');
 var topicService = require('../../services/topicService');
 
 var genColor = require('../../util/genColor');
-var config = require('../../config/config');
+var config = require('../../configs/config');
 var animations = require('../../util/animation');
-var sceneConfig = require('../../config/sceneConfig')
-var routes = require('../../config/routes')
+var sceneConfig = require('../../configs/config')
+var routes = require('../../configs/routes')
 
 
 var {

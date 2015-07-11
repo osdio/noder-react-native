@@ -4,8 +4,8 @@ var moment = require('moment')
 var TopicRow = require('./topicRow')
 var Topic = require('../scene/topic')
 
-var sceneConfig = require('../config/sceneConfig')
-var config = require('../config/config')
+var sceneConfig = require('../configs/sceneConfig')
+var config = require('../configs/config')
 
 var window = require('../util/window')
 var { width, height } = window.get()

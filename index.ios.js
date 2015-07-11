@@ -1,13 +1,13 @@
 var React = require('react-native')
 var App = require('./app/containers/App')
 
-var user = require('./app/mock/user')
-var userInfo = require('./app/mock/userInfo')
+var user = require('./app/mocks/user')
+var userInfo = require('./app/mocks/userInfo')
 var UserService = require('./app/services/userService')
 
 
 // on run
-require('./app/config/onRun')
+require('./app/configs/onRun')
 
 Object.assign(user, userInfo)
 

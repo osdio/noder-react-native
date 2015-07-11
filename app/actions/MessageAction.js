@@ -29,7 +29,7 @@ function fetchMessagesSuccess(messages) {
 
 function fetchMessagesFailed(err) {
     return {
-        type: type.FETCH_MESSAGES_FAILED,
+        type: types.FETCH_MESSAGES_FAILED,
         isLoading: false,
         err: err
     }
@@ -79,6 +79,7 @@ exports.getMessages = function (token) {
     }
 }
 
+
 exports.fetchMessages = function (token) {
     return dispatch=> {
         dispatch(fetchMessagesRequest())
@@ -97,4 +98,9 @@ exports.fetchMessages = function (token) {
             })
             .done()
     }
+}
+
+
+exports.markAsRead= function (token) {
+
 }

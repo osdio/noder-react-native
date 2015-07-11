@@ -218,14 +218,25 @@ class MessagePage extends Component {
     }
 
 
-    render() {
-        return (
-            <View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
-                {this._renderLoading()}
-                {this._renderEmptyMessage()}
+    _renderEmptyMessage() {
+        if (this.props.data.length == 0 && this.props.isLoading == false) {
+            return (
+                <View style={styles.emptyMessage}>
+                    <Text style={styles.emptyMessageText}>
+                        空空哒
+                    </Text>
+                </View>
+            )
+        }
+    }
+
+
+    _renderListView(){
+        if(this.props.didFocus){
+            return (
                 <ListView
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
-                    onScroll={this._onScroll.bind(this)}
+                    //onScroll={this._onScroll.bind(this)}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
                     pagingEnabled={false}
@@ -234,6 +245,18 @@ class MessagePage extends Component {
                     renderRow={this._renderRow.bind(this)}
                     onEndReachedThreshold={100}
                     />
+            )
+        }
+        return null
+    }
+
+
+    render() {
+        return (
+            <View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
+                {this._renderLoading()}
+                {this._renderEmptyMessage()}
+                {this._renderListView()}
             </View>
         )
     }

@@ -22,7 +22,7 @@ var genColor = require('../util/genColor');
 var config = require('../configs/config');
 var animations = require('../util/animation');
 var sceneConfig = require('../configs/sceneConfig')
-var routes = require('../configs/config')
+var routes = require('../configs/routes')
 
 var {
     View,

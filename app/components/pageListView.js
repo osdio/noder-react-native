@@ -4,7 +4,7 @@ var moment = require('moment');
 var topicService = require('../services/topicService')
 var TopicRow = require('../components/topicRow')
 
-var routes = require('../configs/config')
+var routes = require('../configs/routes')
 var config = require('../configs/config')
 var sceneConfig = require('../configs/sceneConfig')
 var styles = require('../styles/pageListView')

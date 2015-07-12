@@ -1,15 +1,15 @@
-var React = require('react-native');
-var rebound = require('rebound');
-var precomputeStyle = require('precomputeStyle');
+var React = require('react-native')
+var rebound = require('rebound')
+var precomputeStyle = require('precomputeStyle')
 
 
 // custom component
-var PageScrollView = require('./pageScrollView');
+var PageScrollView = require('./pageScrollView')
 
 
-var styles = require('../styles/pageNavBar');
+var styles = require('../styles/pageNavBar')
 
-var window = require('../util/window');
+var window = require('../util/window')
 var { width, height } = window.get()
 
 
@@ -19,9 +19,7 @@ var {
     ScrollView,
     Component,
     Text,
-    StatusBarIOS,
-    Image,
-    ListView
+    TouchableOpacity
     } = React;
 
 
@@ -43,6 +41,11 @@ class PageNavBar extends Component {
     }
 
 
+    _onNavItemPress() {
+        this.props.onItemPress()
+    }
+
+
     _getActiveItemStyle(opacity) {
         return {
             borderTopColor: 'rgba(241,196,15,' + opacity + ')'
@@ -52,35 +55,35 @@ class PageNavBar extends Component {
 
     _getNavs() {
         var pageIndex = this.props.pageIndex
-        var self = this
-        return this.props.navs.map(function (item, index, arr) {
-                var activeStyle = self._getActiveItemStyle(0)
+        return this.props.navs.map((item, index, arr) => {
+                var activeStyle = this._getActiveItemStyle(0)
                 if (index == pageIndex) {
-                    activeStyle = self._getActiveItemStyle(1)
+                    activeStyle = this._getActiveItemStyle(1)
                 }
 
                 return (
                     <View
-                        ref={view => {self._navBars.push(view)}}
+                        ref={view => {this._navBars.push(view)}}
                         key={'navBar'+index}
                         style={[styles['navBar li'],activeStyle]}>
-                        <View style={styles['navBar item']}>
-                            <Text style={styles['navBar text']}>
-                                {item}
-                            </Text>
-                        </View>
+                        <TouchableOpacity onPress={()=>this.props.onItemPress(index)}>
+                            <View style={styles['navBar item']}>
+                                <Text style={styles['navBar text']}>
+                                    {item}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 )
             }
-        );
+        )
     }
 
 
     // update the active nav style
     _updateNavsStyle(offset) {
-        var self = this;
-        var space = this.props.space;
-        this.props.navs.forEach(function (item, index, arr) {
+        var space = this.props.space
+        this.props.navs.forEach((item, index, arr)=> {
                 var min = (index - 1) * space;
                 var max = (index + 1) * space;
                 var center = index * space;
@@ -97,9 +100,9 @@ class PageNavBar extends Component {
                     opacity = 1;
                 }
 
-                var activeStyle = self._getActiveItemStyle(opacity)
+                var activeStyle = this._getActiveItemStyle(opacity)
 
-                self._navBars[index].setNativeProps(precomputeStyle(activeStyle))
+                this._navBars[index].setNativeProps(precomputeStyle(activeStyle))
             }
         );
     }

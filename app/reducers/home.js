@@ -27,7 +27,6 @@ module.exports = function (state, action) {
                 isModalOpen: false,
                 checkTokenLoading: false
             }
-
         default :
             return state
     }

@@ -1,27 +1,19 @@
-var React = require('react-native');
+var React = require('react-native')
 
-var Button = require('react-native-button');
-var OverlayButton = require('./overlayButton');
-var window = require('../../util/window');
+var Button = require('react-native-button')
+var OverlayButton = require('./overlayButton')
+
+var window = require('../../util/window')
 var { width, height } = window.get()
-
-var config = require('../../configs/config');
 
 
 var {
     View,
     StyleSheet,
-    ScrollView,
     Component,
     Text,
-    StatusBarIOS,
-    Image,
-    ListView,
-    TouchableHighlight,
-    Navigator,
-    AsyncStorage,
     ActivityIndicatorIOS
-    } = React;
+    } = React
 
 var overlaySize = 45
 
@@ -52,10 +44,20 @@ class MarkAsRead extends Component {
     }
 
 
+    _onPress() {
+        if (this.props.message.hasNotRead.length == 0) {
+            window.alert('暂无未读消息!')
+        }
+        else {
+            this.props.markAsRead(this.props.token)
+        }
+    }
+
+
     _renderContent() {
         if (this.props.isLoading) {
             return (
-                <ActivityIndicatorIOS></ActivityIndicatorIOS>
+                <ActivityIndicatorIOS/>
             )
         }
         return (
@@ -70,7 +72,7 @@ class MarkAsRead extends Component {
         return (
             <OverlayButton
                 position={styles.position}
-                onPress={this.props.onPress}>
+                onPress={this._onPress.bind(this)}>
                 <View style={styles.content}>
                     {this._renderContent()}
                 </View>

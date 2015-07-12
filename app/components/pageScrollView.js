@@ -1,5 +1,5 @@
-var React = require('react-native');
-var window = require('../util/window');
+var React = require('react-native')
+var window = require('../util/window')
 var { width, height } = window.get()
 
 
@@ -17,13 +17,12 @@ var stylesExtends = StyleSheet.create({
     page: {
         width: width
     }
-});
+})
 
 
 class PageScrollView extends Component {
     constructor(props) {
-        super(props);
-        this.total = props.children ? props.children.length : 3;
+        super(props)
         this.state = {
             index: 0
         }
@@ -36,15 +35,30 @@ class PageScrollView extends Component {
         };
     }
 
+
+    scrollTo(x,type) {
+        if(type>1){
+            this.scrollView.setNativeProps({
+                    contentOffset: {
+                        x: x,
+                        y: 0
+                    }
+                }
+            )
+        }
+        else{
+            this.scrollView.scrollTo(0, x)
+        }
+    }
+
+
     render() {
-        var self = this;
+        var self = this
         return (
             <ScrollView
                 ref={view=>this.scrollView=view}
                 contentOffset={this._getInitContentOffset()}
                 bounces={true}
-                //alwaysBounceVertical={true}
-                //alwaysBounceHorizontal={false}
                 horizontal={true}
                 directionalLockEnabled={true}
                 scrollEventThrottle={16}
@@ -75,4 +89,4 @@ class PageScrollView extends Component {
 }
 
 
-module.exports = PageScrollView;
+module.exports = PageScrollView

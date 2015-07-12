@@ -18,7 +18,6 @@ var req = {}
 req.get = function (token) {
     let apiUrl = config.domain + config.apiPath + '/messages' + '?accesstoken=' + token
 
-    console.log(apiUrl);
     return request.get(apiUrl)
         .then((data)=>data.data)
 }
@@ -29,6 +28,15 @@ req.markAsRead = function (token) {
     return request.post(apiUrl, {
         accesstoken: token
     })
+        .then(data=> {
+            console.log(data);
+            if (data.success) {
+                return data
+            }
+            else {
+                throw 'markAsReadFailed'
+            }
+        })
 }
 
 

@@ -4,6 +4,8 @@ var moment = require('moment')
 
 var config = require('../configs/config')
 var routes = require('../configs/routes')
+
+
 var window = require('../util/window')
 var { width, height } = window.get()
 
@@ -183,9 +185,9 @@ class MessagePage extends Component {
     _renderRow(message) {
         var topic = message.topic
         var title = topic.title
-        var titleLength = Math.floor((width - 100) / 15) + 2;
+        var titleLength = Math.floor((width - 100) / 15) + 2
         if (title.length > titleLength) {
-            title = title.substring(0, titleLength - 3) + '...';
+            title = title.substring(0, titleLength - 3) + '...'
         }
 
 
@@ -231,12 +233,11 @@ class MessagePage extends Component {
     }
 
 
-    _renderListView(){
-        if(this.props.didFocus){
+    _renderListView() {
+        if (this.props.didFocus) {
             return (
                 <ListView
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
-                    //onScroll={this._onScroll.bind(this)}
                     showsVerticalScrollIndicator={true}
                     initialListSize={10}
                     pagingEnabled={false}

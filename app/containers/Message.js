@@ -16,10 +16,7 @@ var {
     View,
     Text,
     Component,
-    StyleSheet,
-    Image,
-    SegmentedControlIOS,
-    AlertIOS
+    StyleSheet
     } = React
 
 
@@ -41,11 +38,6 @@ class Message extends Component {
         this.setState({
             didFocus: true
         })
-    }
-
-
-    _onMarkAsReadOverlayPress() {
-
     }
 
 
@@ -74,11 +66,13 @@ class Message extends Component {
                         tabLabel={"已读消息 " + hasReadCount}/>
                 </ScrollableTabView>
 
-                <Return></Return>
+                <Return/>
                 <MarkAsReadOverlay
-                    isLoading={this.state.marking}
-                    onPress={this._onMarkAsReadOverlayPress.bind(this)}
-                    ></MarkAsReadOverlay>
+                    isLoading={message.isMarkAsReadLoading}
+                    markAsRead={this.props.actions.markAsRead}
+                    message={message}
+                    token={this.props.state.user.loginUser.token}
+                    />
             </View>
         )
     }

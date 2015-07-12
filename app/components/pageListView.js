@@ -79,6 +79,15 @@ class PageListView extends Component {
         }
     }
 
+    scrollToTop() {
+        this._listView.setNativeProps({
+            contentOffset: {
+                x: 0,
+                y: 0
+            }
+        })
+    }
+
 
     _fetchTopic(type) {
         if (this.state.isLoading) return
@@ -248,6 +257,7 @@ class PageListView extends Component {
                 {this._renderLoading('top')}
 
                 <ListView
+                    ref={view => {this._listView=view}}
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
                     onScroll={this.onScroll.bind(this)}
                     showsVerticalScrollIndicator={true}

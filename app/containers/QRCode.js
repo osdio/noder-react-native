@@ -1,9 +1,11 @@
 var React = require('react-native')
-var window = require('../util/window')
-var { width, height } = window.get()
 var Camera = require('react-native-camera')
 var Icon = require('FAKIconImage')
 var Button = require('react-native-button')
+
+
+var window = require('../util/window')
+var { width, height } = window.get()
 
 
 var {

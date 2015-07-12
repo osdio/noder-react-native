@@ -4,7 +4,8 @@ var initialState = {
     isLoading: false,
     hasNotRead: [],
     hasRead: [],
-    unreadMessageCount: 0
+    unreadMessageCount: 0,
+    isMarkAsReadLoading: false
 }
 
 
@@ -44,6 +45,27 @@ module.exports = function (state, action) {
                 hasRead: action.hasRead,
                 isLoading: false,
                 unreadMessageCount: action.hasNotRead.length
+            }
+
+        case types.MARK_AS_READ_REQUEST:
+            return {
+                ...state,
+                isMarkAsReadLoading: true
+            }
+
+        case types.MARK_AS_READ_SUCCESS:
+            return {
+                ...state,
+                hasNotRead: [],
+                hasRead: state.hasNotRead.concat(state.hasRead),
+                unreadMessageCount: 0,
+                isMarkAsReadLoading: false
+            }
+
+        case types.MARK_AS_READ_FAILED:
+            return {
+                ...state,
+                isMarkAsReadLoading: false
             }
 
         default :

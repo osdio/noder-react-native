@@ -1,13 +1,12 @@
-var React = require('react-native');
-var Dimensions = require('Dimensions');
+var React = require('react-native')
 
-var Button = require('react-native-button');
-var Icon = require('FAKIconImage');
+var Button = require('react-native-button')
+var Icon = require('FAKIconImage')
 
-var OverlayButton = require('./overlayButton');
+var OverlayButton = require('./overlayButton')
 
 
-var window = require('../../util/window');
+var window = require('../../util/window')
 var { width, height } = window.get()
 
 var {

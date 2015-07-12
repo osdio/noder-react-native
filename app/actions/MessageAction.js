@@ -2,6 +2,9 @@ var types = require('../constants/ActionTypes')
 var MessageService = require('../services/messageService')
 
 
+var window = require('../util/window')
+
+
 function getMessages(messages) {
     return {
         type: types.GET_MESSAGES,
@@ -101,6 +104,24 @@ exports.fetchMessages = function (token) {
 }
 
 
-exports.markAsRead= function (token) {
-
+exports.markAsRead = function (token) {
+    return dispatch=> {
+        dispatch({
+            type: types.MARK_AS_READ_REQUEST
+        })
+        MessageService.req.markAsRead(token)
+            .then(()=> {
+                dispatch({
+                    type: types.MARK_AS_READ_SUCCESS
+                })
+                window.alert('已全部标记为已读!')
+            })
+            .catch(()=> {
+                dispatch({
+                    type: types.MARK_AS_READ_FAILED
+                })
+                window.alert('标记失败!')
+            })
+            .done()
+    }
 }

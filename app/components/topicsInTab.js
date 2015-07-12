@@ -22,7 +22,7 @@ var {
     TouchableHighlight,
     Navigator,
     AsyncStorage
-    } = React;
+    } = React
 
 
 class TopicsInTab extends Component {
@@ -44,22 +44,22 @@ class TopicsInTab extends Component {
     }
 
     componentWillMount() {
-        this.springSystem = new rebound.SpringSystem();
-        this._scrollSpring = this.springSystem.createSpring();
-        this._updateSpringConfig(this.props);
+        this.springSystem = new rebound.SpringSystem()
+        this._scrollSpring = this.springSystem.createSpring()
+        this._updateSpringConfig(this.props)
 
         this._scrollSpring.addListener({
             onSpringUpdate: () => {
-                var currentValue = this._scrollSpring.getCurrentValue();
-                var space = this.space;
-                var offset = currentValue.offset;
-                var pageScrollContentWidth = currentValue.contentWidth;
+                var currentValue = this._scrollSpring.getCurrentValue()
+                var space = this.space
+                var offset = currentValue.offset
+                var pageScrollContentWidth = currentValue.contentWidth
                 if (offset < 0 || offset > pageScrollContentWidth - width) {
-                    return;
+                    return
                 }
 
-                var pageNavBarWith = (space / width) * pageScrollContentWidth;
-                var pageNavBarOffset = (offset / pageScrollContentWidth) * pageNavBarWith;
+                var pageNavBarWith = (space / width) * pageScrollContentWidth
+                var pageNavBarOffset = (offset / pageScrollContentWidth) * pageNavBarWith
 
                 this._pageNavBar.updateNav(pageNavBarOffset)
             }
@@ -68,43 +68,55 @@ class TopicsInTab extends Component {
 
     componentDidMount() {
         this._scrollSpring.setCurrentValue({
-            offset: 0,
+            offset: this.state.pageIndex * width,
             contentWidth: 0
         });
     }
 
     _updateSpringConfig(props) {
         var springConfig = this._scrollSpring.getSpringConfig();
-        springConfig.tension = rebound.OrigamiValueConverter.tensionFromOrigamiValue(props.springTension || 25);
-        springConfig.friction = rebound.OrigamiValueConverter.frictionFromOrigamiValue(props.springFriction || 8);
+        springConfig.tension = rebound.OrigamiValueConverter.tensionFromOrigamiValue(props.springTension || 25)
+        springConfig.friction = rebound.OrigamiValueConverter.frictionFromOrigamiValue(props.springFriction || 8)
 
-        this._scrollSpring.setOvershootClampingEnabled((typeof props.clampSpring === 'undefined') ? true : props.clampSpring);
+        this._scrollSpring.setOvershootClampingEnabled((typeof props.clampSpring === 'undefined') ? true : props.clampSpring)
     }
 
 
     //don't render when the pageIndex is not change
     shouldComponentUpdate(nextProps, nextState) {
-        return false;
+        return false
     }
 
 
-    pageScrollViewOnScroll(e) {
-        var offset = e.nativeEvent.contentOffset.x;
+    _pageScrollViewOnScroll(e) {
+        var offset = e.nativeEvent.contentOffset.x
         this._scrollSpring.setCurrentValue({
             offset: offset,
             contentWidth: e.nativeEvent.contentSize.width
-        });
+        })
+    }
+
+
+    _onNavItemPress(index) {
+        var {offset} = this._scrollSpring.getCurrentValue()
+        if (offset % width == 0) {
+            var currentIndex = offset / width
+            if (currentIndex == index) {
+                this['_pageListView_' + index] && this['_pageListView_' + index].scrollToTop()
+            }
+            this._pageScrollView.scrollTo(index * width, Math.abs(currentIndex - index))
+        }
     }
 
 
     _renderPageListView() {
-        var navs = this.navs;
-        var tabs = this.tabs;
-        var space = this.space;
-        var self = this;
-        return navs.map(function (nav, index) {
+        var navs = this.navs
+        var tabs = this.tabs
+        var space = this.space
+        return navs.map((nav, index) => {
             return (
                 <PageListView
+                    ref={view => {this['_pageListView_'+index]=view}}
                     key={'listView'+index}
                     tabs={tabs}
                     pageIndex={index}
@@ -112,7 +124,7 @@ class TopicsInTab extends Component {
                     space={space}
                     />
             )
-        });
+        })
     }
 
 
@@ -125,15 +137,17 @@ class TopicsInTab extends Component {
                     space={this.space}
                     navs={this.navs}
                     totalPages={this.totalPages}
+                    onItemPress={this._onNavItemPress.bind(this)}
                     ref={view => {this._pageNavBar=view}}>
                 </PageNavBar>
 
 
                 <PageScrollView
+                    ref={view => {this._pageScrollView=view}}
                     pageIndex={this.state.pageIndex}
                     totalPages={this.totalPages}
-                    onScroll={this.pageScrollViewOnScroll.bind(this)}
-                    onScrollBeginDrag={this.pageScrollViewOnScroll.bind(this)}
+                    onScroll={this._pageScrollViewOnScroll.bind(this)}
+                    onScrollBeginDrag={this._pageScrollViewOnScroll.bind(this)}
                     >
                     {this._renderPageListView()}
                 </PageScrollView>

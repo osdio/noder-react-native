@@ -2,12 +2,25 @@ var request = require('./request')
 var Storage = require('../util/storage')
 
 var config = require('../configs/config')
+var tabs = ['good', 'ask', 'all', 'share', 'job']
 
 
 var storage = {}
 
 storage.get = function (tab) {
     return Storage.getItem('tab_' + tab)
+        .then(topics=> {
+            if (topics) {
+                return topics
+            }
+            throw 'topicsInStorageIsEmpty'
+        })
+}
+
+storage.getAll = function () {
+    return Storage.multiGet(tabs.map(tab=> {
+        return 'tab_' + tab
+    }))
 }
 
 

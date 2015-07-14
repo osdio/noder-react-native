@@ -1,14 +1,13 @@
-var React = require('react-native');
-var moment = require('moment');
+var React = require('react-native')
+var moment = require('moment')
 
-var topicService = require('../services/topicService')
+var TopicService = require('../services/topicService')
 var TopicRow = require('../components/topicRow')
 
 var routes = require('../configs/routes')
-var config = require('../configs/config')
-var sceneConfig = require('../configs/sceneConfig')
-var styles = require('../styles/pageListView')
 var window = require('../util/window')
+
+
 var { width, height } = window.get()
 
 var {
@@ -22,60 +21,71 @@ var {
     ListView,
     ActivityIndicatorIOS,
     TouchableHighlight,
-    Navigator
-    } = React;
+    LayoutAnimation,
+    TouchableOpacity
+    } = React
 
 
 var extendsStyles = StyleSheet.create({
     topic: {
         width: width - 100
     },
-    loadingtop: {
+    loadingupdate: {
         width: width,
         marginTop: 20
     },
-    loadingbottom: {
-        bottom: 0,
-        position: 'absolute',
+    loadingget: {
         width: width,
+        marginBottom: 20,
         marginTop: 20
     }
 });
 
 class PageListView extends Component {
     constructor(porps) {
-        super(porps);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        var data = [];
+        super(porps)
+        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+        this.page = 1
         this.state = {
-            ds: ds.cloneWithRows(data),
-            data: data,
-            page: 0,
+            ds: this.ds.cloneWithRows(this.props.data),
             isLoading: false,
-            loadingPosition: 'top'
-        };
+            loadingPosition: 'top',
+            getTopicError: null
+        }
+    }
+
+
+    componentDidMount() {
+        this._fetchTopic('update')
     }
 
 
     shouldComponentUpdate(nextProps, nextState) {
-        if ((nextState.data != this.state.data) || (nextState.isLoading != this.state.isLoading)) {
-            return true;
+        if (nextProps.data != this.props.data || nextState.isLoading != this.state.isLoading) {
+            return true
         }
-        return false;
+        return false
     }
 
-    componentDidMount() {
-        this._fetchTopic('update')
-        this._getTopicFromStorage()
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.data !== this.props.data) {
+            console.log(this.props.data.length);
+            //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+            this.setState({
+                ds: this.ds.cloneWithRows(nextProps.data)
+            })
+        }
     }
+
 
     onEndReached() {
-        this._fetchTopic('get');
+        this._fetchTopic('get')
     }
 
     onScroll(e) {
         if (e.nativeEvent.contentOffset.y < -90) {
-            this._fetchTopic('update');
+            this._fetchTopic('update')
         }
     }
 
@@ -89,90 +99,77 @@ class PageListView extends Component {
     }
 
 
-    _fetchTopic(type) {
-        if (this.state.isLoading) return
+    _onRowPress(topic) {
+        routes.toTopic(this, {
+            topicId: topic.id,
+            topic: topic
+        })
+    }
 
-        var loadingPositionMap = {
-            update: 'top',
-            get: 'bottom'
+
+    _onGetAgainPress() {
+        this._fetchTopic('get')
+    }
+
+
+    _fetchTopic(type) {
+        if (this.isFreshing) {
+            if (type == 'get') {
+                this.setState({
+                    getTopicError: 'fetchFailed'
+                })
+            }
+            return
         }
 
-
-        // set the loading state, prevent too much fetching at one time
+        this.isFreshing = true
         this.setState({
             isLoading: true,
-            loadingPosition: loadingPositionMap[type]
+            loadingType: type
         })
 
+        var page = (type == 'update') ? 1 : this.page + 1
+        var tab = this.props.tab.name
+        var actions = this.props.actions
+        var getTopics = actions.getTopicsByTab
+        var updateTopics = actions.updateTopicsByTab
 
-        var page = this.state.page + 1
-        var tabs = this.props.tabs
-        var index = this.props.pageIndex
-
-        if (type == 'update') {
-            page = 1
-        }
-
-
-        topicService.req.getTopicsByTab({
+        TopicService.req.getTopicsByTab({
             page: page,
-            tab: tabs[index],
+            tab: tab,
             limit: 10
         })
             .then(topics=> {
-                var newData = [];
-                if (type == 'get') {
-                    newData = this.state.data.concat(topics);
-                }
-                else {
-                    newData = topics;
-                }
-                this.setState({
-                    ds: this.state.ds.cloneWithRows(newData),
-                    data: newData,
-                    page: page,
-                    isLoading: false
-                })
+                console.log('fetched topics');
+                type == 'update' ? updateTopics(topics, tab) : getTopics(topics, tab)
+                return null
             })
-            .catch((error) => {
-                this.setState({
-                    isLoading: false
-                })
-                console.warn(error)
-            })
-            .done()
-    }
-
-
-    _getTopicFromStorage() {
-        let tabs = this.props.tabs
-        let index = this.props.pageIndex
-        topicService.storage.get(tabs[index])
-            .then((data)=> {
-                this.setState({
-                    data: data,
-                    page: 1,
-                    ds: this.state.ds.cloneWithRows(data)
-                })
-            })
-            .catch(function (err) {
+            .catch(err=> {
                 console.warn(err)
+                if (type == 'get') {
+                    return err
+                }
             })
-            .done()
+            .done((err)=> {
+                this.isFreshing = false
+                this.setState({
+                    isLoading: false,
+                    err: err
+                })
+                this.page = page
+            })
     }
 
 
-    _renderLoading(position) {
-        if (this.state.isLoading && position == this.state.loadingPosition) {
-            return (
-                <ActivityIndicatorIOS
-                    hidesWhenStopped={false}
-                    size="large"
-                    animating={this.state.isLoading}
-                    style={[extendsStyles['loading'+position]]}/>
-            )
-        }
-        return null;
+    _renderLoading(loadingType) {
+        return (
+            <ActivityIndicatorIOS
+                hidesWhenStopped={false}
+                size="large"
+                animating={true}
+                style={[extendsStyles['loading'+loadingType]]}
+                />
+        )
     }
 
 
@@ -233,10 +230,25 @@ class PageListView extends Component {
     }
 
 
-    _onRowPress(topic) {
-        routes.toTopic(this, {
-            topic: topic
-        })
+    _renderHeader() {
+        if (this.state.isLoading && this.state.loadingType == 'update') {
+            return this._renderLoading('update')
+        }
+
+        return null
+    }
+
+
+    _renderFooter() {
+        if (this.state.isLoading && this.state.loadingType == 'get') {
+            return this._renderLoading('get')
+        }
+
+        return (
+            <View style={{height:76,width:width}}>
+
+            </View>
+        )
     }
 
 
@@ -250,14 +262,12 @@ class PageListView extends Component {
         )
     }
 
+
     render() {
         return (
             <View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
-
-                {this._renderLoading('top')}
-
                 <ListView
-                    ref={view => {this._listView=view}}
+                    ref={view => {this._listView = view}}
                     style={{backgroundColor:'rgba(255,255,255,1)'}}
                     onScroll={this.onScroll.bind(this)}
                     showsVerticalScrollIndicator={true}
@@ -267,11 +277,97 @@ class PageListView extends Component {
                     dataSource={this.state.ds}
                     renderRow={this.renderRow.bind(this)}
                     onEndReached={this.onEndReached.bind(this)}
+                    scrollRenderAheadDistance={1200}
+                    renderHeader={this._renderHeader.bind(this)}
+                    renderFooter={this._renderFooter.bind(this)}
                     />
-                {this._renderLoading('bottom')}
             </View>
         )
     }
 }
+
+
+var styles = StyleSheet.create({
+    "row": {
+        "height": 90,
+        "flexDirection": "row",
+        "borderBottomColor": "rgba(0, 0, 0, 0.02)",
+        "borderBottomWidth": 1,
+        "paddingTop": 25,
+        "paddingRight": 0,
+        "paddingBottom": 25,
+        "paddingLeft": 20
+    },
+    "imgWrapper": {
+        "width": 90,
+        "position": "absolute",
+        "left": 20,
+        "top": 25,
+        "height": 65
+    },
+    "img": {
+        "height": 40,
+        "width": 40,
+        "borderRadius": 20
+    },
+    "topic": {
+        "marginLeft": 60
+    },
+    "title": {
+        "fontSize": 15
+    },
+    "topicFooter": {
+        "marginTop": 12,
+        "flexDirection": "row"
+    },
+    "topicFooter text": {
+        "fontSize": 11,
+        "color": "rgba(0, 0, 0, 0.5)"
+    },
+    "topicFooter date": {
+        "position": "absolute",
+        "right": 0,
+        "top": 0
+    },
+    "topicFooter count": {
+        "marginRight": 15
+    },
+    "topicFooter top": {
+        "fontSize": 11,
+        "marginTop": 1,
+        "marginRight": 0,
+        "marginBottom": 0,
+        "marginLeft": 10,
+        "color": "#E74C3C"
+    },
+    "topicFooter good": {
+        "fontSize": 11,
+        "marginTop": 1,
+        "marginRight": 0,
+        "marginBottom": 0,
+        "marginLeft": 10,
+        "color": "#2ECC71"
+    },
+    "topicFooter tab": {
+        "fontSize": 11,
+        "marginTop": 1,
+        "marginRight": 0,
+        "marginBottom": 0,
+        "marginLeft": 10
+    },
+    "loading": {
+        "marginTop": 250
+    },
+    footerErrorText: {
+        fontSize: 20,
+        textAlign: 'center',
+        flex: 1
+    },
+    footerError: {
+        height: 76,
+        width: width,
+        flexDirection: 'column'
+    }
+})
 
 module.exports = PageListView;

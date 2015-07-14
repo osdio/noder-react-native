@@ -30,7 +30,7 @@ class TopicsInTab extends Component {
         super(props);
         this.navs = ['精华', '问答', '主页', '分享', '招聘'];
         this.totalPages = this.navs.length;
-        this.tabs = ['good', 'ask', '', 'share', 'job'];
+        this.tabs = ['good', 'ask', 'all', 'share', 'job'];
         this.space = (width - (60 * 3)) / 2 + 60;
         var pageIndex = 2;
         var pageScrollContentWidth = width * pageIndex;
@@ -82,10 +82,13 @@ class TopicsInTab extends Component {
     }
 
 
-    //don't render when the pageIndex is not change
-    shouldComponentUpdate(nextProps, nextState) {
-        return false
-    }
+    ////don't render when the pageIndex is not change
+    //shouldComponentUpdate(nextProps, nextState) {
+    //    if (nextProps.topic !== this.props.topic) {
+    //        return true
+    //    }
+    //    return false
+    //}
 
 
     _pageScrollViewOnScroll(e) {
@@ -114,14 +117,16 @@ class TopicsInTab extends Component {
         var tabs = this.tabs
         var space = this.space
         return navs.map((nav, index) => {
+            var tab = tabs[index]
             return (
                 <PageListView
                     ref={view => {this['_pageListView_'+index]=view}}
                     key={'listView'+index}
-                    tabs={tabs}
-                    pageIndex={index}
                     navs={navs}
                     space={space}
+                    data={this.props.topic[tab].topics}
+                    actions={this.props.actions}
+                    tab={this.props.topic[tab]}
                     />
             )
         })

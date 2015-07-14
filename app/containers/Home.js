@@ -21,12 +21,17 @@ var {
     Text,
     StyleSheet,
     Image,
-
+    ActivityIndicatorIOS
     } = React
 
 class Home extends Component {
     constructor(props) {
         super(props)
+    }
+
+
+    componentDidMount() {
+        this.props.actions.getAllTopicsFromStorage()
     }
 
 
@@ -55,6 +60,7 @@ class Home extends Component {
                 />
         )
 
+
         return (
             <View
                 style={[styles.container]}>
@@ -62,7 +68,10 @@ class Home extends Component {
                     style={{height:height,width:width}}
                     source={{uri:config.bgImgUri}}>
 
-                    <TopicsInTab/>
+                    <TopicsInTab
+                        actions={this.props.actions}
+                        topic={this.props.state.topic}
+                        />
                 </Image>
 
                 <UserOverlay

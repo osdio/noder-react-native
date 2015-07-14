@@ -21,6 +21,7 @@ module.exports = function (state, action) {
 
         case types.GET_MESSAGES:
             return {
+                ...state,
                 isLoading: true,
                 unreadMessageCount: action.hasNotRead.length,
                 hasRead: action.hasRead,
@@ -36,15 +37,16 @@ module.exports = function (state, action) {
         case types.FETCH_MESSAGES_SUCCESS:
             return {
                 ...state,
+                unreadMessageCount: action.hasNotRead.length,
+                hasRead: action.hasRead,
+                hasNotRead: action.hasNotRead,
                 isLoading: false
             }
 
         case types.FETCH_MESSAGES_FAILED:
             return {
-                hasNotRead: action.hasNotRead,
-                hasRead: action.hasRead,
+                ...state,
                 isLoading: false,
-                unreadMessageCount: action.hasNotRead.length
             }
 
         case types.MARK_AS_READ_REQUEST:

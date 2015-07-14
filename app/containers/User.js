@@ -29,7 +29,8 @@ var {
     TouchableHighlight,
     TouchableOpacity,
     Navigator,
-    ActivityIndicatorIOS
+    ActivityIndicatorIOS,
+    LayoutAnimation
     } = React
 
 
@@ -55,6 +56,7 @@ class User extends Component {
 
 
     componentDidFocus() {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         this.setState({
             didFocus: true
         })

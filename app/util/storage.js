@@ -1,8 +1,9 @@
-var React = require('react-native');
+var React = require('react-native')
 
-var AsyncStorage = React.AsyncStorage;
+var AsyncStorage = React.AsyncStorage
 
 var Storage = {}
+
 
 Storage.setItem = function (key, value) {
     if (value == null) return Promise.reject('value is null')
@@ -21,5 +22,14 @@ Storage.getItem = function (key) {
 Storage.clear = AsyncStorage.clear
 
 Storage.removeItem = AsyncStorage.removeItem
+
+Storage.multiGet = function (keys) {
+    return AsyncStorage.multiGet(keys)
+        .then(results=> {
+            return results.map(item=> {
+                return [item[0], JSON.parse(item[1])]
+            })
+        })
+}
 
 module.exports = Storage

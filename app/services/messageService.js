@@ -20,6 +20,15 @@ req.get = function (token) {
 
     return request.get(apiUrl)
         .then((data)=>data.data)
+        .then((messages)=> {
+            if (messages) {
+                storage.save(messages)
+                return messages
+            }
+            else {
+                throw 'getMessagesFailed'
+            }
+        })
 }
 
 req.markAsRead = function (token) {

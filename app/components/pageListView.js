@@ -244,11 +244,12 @@ class PageListView extends Component {
             return this._renderLoading('get')
         }
 
-        return (
-            <View style={{height:76,width:width}}>
-
-            </View>
-        )
+        //return (
+        //    <View style={{height:76,width:width}}>
+        //
+        //    </View>
+        //)
+        return null
     }
 
 

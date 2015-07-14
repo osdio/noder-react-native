@@ -277,7 +277,7 @@ class PageListView extends Component {
                     dataSource={this.state.ds}
                     renderRow={this.renderRow.bind(this)}
                     onEndReached={this.onEndReached.bind(this)}
-                    scrollRenderAheadDistance={1200}
+                    scrollRenderAheadDistance={90}
                     renderHeader={this._renderHeader.bind(this)}
                     renderFooter={this._renderFooter.bind(this)}
                     />

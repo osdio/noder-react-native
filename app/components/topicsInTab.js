@@ -82,13 +82,12 @@ class TopicsInTab extends Component {
     }
 
 
-    ////don't render when the pageIndex is not change
-    //shouldComponentUpdate(nextProps, nextState) {
-    //    if (nextProps.topic !== this.props.topic) {
-    //        return true
-    //    }
-    //    return false
-    //}
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.topic !== this.props.topic) {
+            return true
+        }
+        return false
+    }
 
 
     _pageScrollViewOnScroll(e) {

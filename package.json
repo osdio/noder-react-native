@@ -9,14 +9,15 @@
     "markdown": "^0.5.0",
     "moment": "^2.10.3",
     "query-string": "^2.3.0",
-    "react-native": "^0.6.0",
+    "react-native": "^0.7.1",
     "react-native-button": "^1.2.0",
-    "react-native-camera": "^0.2.11",
+    "react-native-camera": "^0.3.0",
     "react-native-html-render": "^1.0.2",
-    "react-native-icons": "^0.1.0",
+    "react-native-icons": "^0.2.0",
     "react-native-keyboardevents": "^0.4.4",
     "react-native-modal": "^0.3.8",
     "react-native-scrollable-tab-view": "^0.1.7",
+    "rebound": "0.0.13",
     "redux": "^1.0.0-alpha"
   },
   "devDependencies": {

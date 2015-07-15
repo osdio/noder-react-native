@@ -139,7 +139,7 @@ class MessagePage extends Component {
 
 
     _onRowPress(message) {
-        routes.toComments(this, {
+        this.props.router.toComments({
             topic: message.topic,
             from: 'message',
             reply: message.reply
@@ -175,7 +175,7 @@ class MessagePage extends Component {
                 <ActivityIndicatorIOS
                     size="large"
                     animating={this.props.isLoading}
-                    style={{marginTop:20}}/>
+                    style={{marginTop:20,width:width}}/>
             )
         }
         return null;

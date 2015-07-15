@@ -3,7 +3,7 @@ var React = require('react-native')
 var window = require('../util/window')
 var { width, height } = window.get()
 var moment = require('moment')
-var Icon = require('FAKIconImage')
+var { Icon, } = require('react-native-icons')
 
 
 // Component module
@@ -143,11 +143,8 @@ var styles = StyleSheet.create({
 class Topic extends Component {
     constructor(props) {
         super(props)
-        this.focusFlag = 0
+        this.headerColor = genColor()
         this.state = {
-            headerColor: genColor(),
-            user: null,
-            userInfo: null,
             isLiked: false,
             likedLoading: false,
             topic: this.props.topic,
@@ -162,8 +159,6 @@ class Topic extends Component {
 
 
     componentDidMount() {
-        this._getUserAndUserInfoFromStorage()
-
         if (this.props.from == 'user') {
             return this._fetchTopic()
         }
@@ -171,12 +166,9 @@ class Topic extends Component {
 
 
     componentDidFocus() {
-        this.focusFlag++
-        if (this.focusFlag < 2) {
-            this.setState({
-                didFocus: true
-            })
-        }
+        this.setState({
+            didFocus: true
+        })
     }
 
 
@@ -209,38 +201,17 @@ class Topic extends Component {
 
 
     _onCommentOverlayPress() {
-        routes.toComments(this, {
+        this.props.router.toComments({
             topic: this.props.topic,
-            from: 'topic',
-            user: this.state.user
+            from: 'topic'
         })
     }
 
 
     _onAuthorImgPress(authorName) {
-        routes.toUser(this, {
+        this.props.router.toUser({
             userName: authorName
         })
-    }
-
-
-    _getUserAndUserInfoFromStorage() {
-        userService.storage.getUserAndUserInfo()
-            .then((data)=> {
-                var {user,userInfo} = data
-                this.userInfo = userInfo
-
-                if (user && userInfo) {
-                    this.setState({
-                        user: user,
-                        userInfo: userInfo
-                    })
-                }
-            })
-            .catch(function (err) {
-                console.warn(err)
-            })
-            .done()
     }
 
 
@@ -248,6 +219,7 @@ class Topic extends Component {
         if (this.state.didFocus && content) {
             return (
                 <HtmlContent
+                    router={this.props.router}
                     content={content}></HtmlContent>
             )
         }
@@ -256,7 +228,7 @@ class Topic extends Component {
             <ActivityIndicatorIOS
                 size="large"
                 animating={true}
-                style={{marginTop:20}}/>
+                style={{marginTop:20,width:width}}/>
         )
     }
 
@@ -272,7 +244,7 @@ class Topic extends Component {
         return (
             <View style={[styles.container]}>
                 <ScrollView>
-                    <View style={[styles.header,{backgroundColor: this.state.headerColor}]}>
+                    <View style={[styles.header,{backgroundColor: this.headerColor}]}>
                         <View style={styles.authorTouchable}>
                             <View style={styles.authorWrapper}>
                                 <TouchableOpacity
@@ -280,7 +252,6 @@ class Topic extends Component {
                                     <Image
                                         source={{uri:imgUri}}
                                         style={styles.authorImg}>
-
                                     </Image>
                                 </TouchableOpacity>
                             </View>
@@ -309,8 +280,7 @@ class Topic extends Component {
                                     <LikeIcon
                                         topic={topic}
                                         style={styles.likeIcon}
-                                        user={this.state.user}
-                                        userInfo={this.state.userInfo}
+                                        user={this.props.state.user.loginUser}
                                         isLiked={this.state.isLiked}
                                         ></LikeIcon>
                                 </View>
@@ -322,7 +292,7 @@ class Topic extends Component {
                         {this._renderContent(topic.content)}
                     </View>
                 </ScrollView>
-                <Return/>
+                <Return router={this.props.router}/>
                 <CommentOverlay
                     onPress={this._onCommentOverlayPress.bind(this)}
                     topic={topic}/>

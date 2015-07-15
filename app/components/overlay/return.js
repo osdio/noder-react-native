@@ -1,7 +1,7 @@
 var React = require('react-native')
 
 var Button = require('react-native-button')
-var Icon = require('FAKIconImage')
+var { Icon } = require('react-native-icons')
 
 var OverlayButton = require('./overlayButton')
 
@@ -38,7 +38,7 @@ class Return extends Component {
 
 
     _onPress() {
-        Navigator.getContext(this).pop()
+        this.props.router && this.props.router.pop && this.props.router.pop()
     }
 
 

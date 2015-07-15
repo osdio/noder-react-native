@@ -1,6 +1,6 @@
 var React = require('react-native')
 var Camera = require('react-native-camera')
-var Icon = require('FAKIconImage')
+var { Icon, } = require('react-native-icons')
 var Button = require('react-native-button')
 
 

@@ -1,6 +1,6 @@
 var React = require('react-native')
 var OverlayButton = require('./overlayButton')
-var Icon = require('FAKIconImage')
+var { Icon, } = require('react-native-icons')
 
 var {
     Component,

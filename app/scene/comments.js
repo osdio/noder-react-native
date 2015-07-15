@@ -5,7 +5,7 @@ var precomputeStyle = require('precomputeStyle');
 
 
 var moment = require('moment');
-var Icon = require('FAKIconImage');
+var { Icon, } = require('react-native-icons')
 var KeyboardEvents = require('react-native-keyboardevents');
 var KeyboardEventEmitter = KeyboardEvents.Emitter;
 var markdown = require("markdown").markdown;

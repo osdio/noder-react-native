@@ -126,6 +126,7 @@ class TopicsInTab extends Component {
                     data={this.props.topic[tab].topics}
                     actions={this.props.actions}
                     tab={this.props.topic[tab]}
+                    router={this.props.router}
                     />
             )
         })

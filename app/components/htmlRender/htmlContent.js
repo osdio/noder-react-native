@@ -39,7 +39,7 @@ class HtmlContent extends Component {
     _onLinkPress(url) {
         if (/^\/user\/\w*/.test(url)) {
             let authorName = url.replace(/^\/user\//, '')
-            routes.toUser(this, {
+            this.props.router.toUser({
                 userName: authorName
             })
         }

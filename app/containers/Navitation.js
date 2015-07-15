@@ -1,5 +1,6 @@
 var React = require('react-native')
 var Home = require('./Home')
+var Router = require('../configs/routes')
 
 var {
     PropTypes,
@@ -11,6 +12,11 @@ var {
 class Navitation extends Component {
     constructor(props) {
         super(props)
+        this.initialRoute = {
+            name: 'home',
+            index: 0,
+            component: Home
+        }
     }
 
 
@@ -20,21 +26,23 @@ class Navitation extends Component {
 
 
     renderScene(route, navigator) {
-        if (route.name == 'home') {
-            return (
-                <Home ref={view=>this[route.name]=view} state={this.props.state} navigator={navigator}
-                      actions={this.props.actions}></Home>
-            )
-        }
         if (route.component) {
             return React.createElement.bind(this)(route.component, Object.assign({}, route.props,
                 {
                     ref: view=>this[route.name] = view,
                     actions: this.props.actions,
-                    state: this.props.state
+                    state: this.props.state,
+                    router: new Router(navigator)
                 }
             ))
         }
+``
+
+        //navigator.addListener('didfocus', e => {
+        //    console.log(22344);
+        //    let route = e.data.route
+        //    this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
+        //})
     }
 
 
@@ -49,11 +57,12 @@ class Navitation extends Component {
     render() {
         return (
             <Navigator
-                initialRoute={{name:'home', index:0}}
+                ref={view => this.navigator=view}
+                initialRoute={this.initialRoute}
                 configureScene={this.configureScene.bind(this)}
                 renderScene={this.renderScene.bind(this)}
-                onDidFocus={(route)=>{
-                    this[route.name]&&this[route.name].componentDidFocus && this[route.name].componentDidFocus()
+                onDidFocus={route=>{
+                    this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
                 }}
                 />
         )

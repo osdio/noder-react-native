@@ -36,15 +36,10 @@ class UserTopicPage extends Component {
 
 
     _onRowPress(topic) {
-        Navigator.getContext(this).push({
-            component: Topic,
-            sceneConfig: sceneConfig.customFloatFromRight,
-            name: 'topic',
-            props: {
-                topic: topic,
-                from: 'user'
-            }
-        });
+        this.props.router.toTopic({
+            topic: topic,
+            from: 'user'
+        })
     }
 
 

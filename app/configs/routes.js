@@ -18,59 +18,65 @@ var {
 var customFloatFromRight = sceneConfig.customFloatFromRight
 
 
-var push = function (context, props, route) {
-    let navigator = Navigator.getContext(context)
-    let routesList = navigator.getCurrentRoutes()
-    let nextIndex = routesList[routesList.length - 1].index + 1
-    route.props = props
-    route.index = nextIndex
-    navigator.push(route)
+class Router {
+    constructor(navigator) {
+        this.navigator = navigator
+    }
+
+    push(props, route) {
+        let routesList = this.navigator.getCurrentRoutes()
+        let nextIndex = routesList[routesList.length - 1].index + 1
+        route.props = props
+        route.index = nextIndex
+        this.navigator.push(route)
+    }
+
+
+    pop() {
+        this.navigator.pop()
+    }
+
+
+    toUser(props) {
+        this.push(props, {
+            component: User,
+            name: 'user',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
+    toTopic(props) {
+        this.push(props, {
+            component: Topic,
+            name: 'topic',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
+    toComments(props) {
+        this.push(props, {
+            component: Comments,
+            name: 'comments',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
+    toMessage(props) {
+        this.push(props, {
+            component: Message,
+            name: 'message',
+            sceneConfig: customFloatFromRight
+        })
+    }
+
+    toQRCode(props) {
+        this.push(props, {
+            component: QRCode,
+            name: 'qrCode',
+            sceneConfig: Navigator.SceneConfigs.FloatFromBottom
+        })
+    }
 }
 
+module.exports = Router
 
-exports.push = push
-
-
-exports.toUser = function (context, props) {
-    push(context, props, {
-        component: User,
-        name: 'user',
-        sceneConfig: customFloatFromRight
-    })
-}
-
-
-exports.toTopic = function (context, props) {
-    push(context, props, {
-        component: Topic,
-        name: 'topic',
-        sceneConfig: customFloatFromRight
-    })
-}
-
-
-exports.toComments = function (context, props) {
-    push(context, props, {
-        component: Comments,
-        name: 'comments',
-        sceneConfig: customFloatFromRight
-    })
-}
-
-
-exports.toMessage = function (context, props) {
-    push(context, props, {
-        component: Message,
-        name: 'message',
-        sceneConfig: customFloatFromRight
-    })
-}
-
-
-exports.toQRCode = function (context, props) {
-    push(context, props, {
-        component: QRCode,
-        name: 'qrCode',
-        sceneConfig: Navigator.SceneConfigs.FloatFromBottom
-    })
-}

@@ -100,7 +100,7 @@ class PageListView extends Component {
 
 
     _onRowPress(topic) {
-        routes.toTopic(this, {
+        this.props.router.toTopic({
             topicId: topic.id,
             topic: topic
         })

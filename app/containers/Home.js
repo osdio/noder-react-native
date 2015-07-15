@@ -42,7 +42,7 @@ class Home extends Component {
             actions.openLoginModal()
         }
         else {
-            routes.toUser(this, {
+            this.props.router.toUser({
                 isLoginUser: true
             })
         }
@@ -52,11 +52,14 @@ class Home extends Component {
     render() {
         let loginUser = this.props.state.user.loginUser
         let home = this.props.state.home
+        let navigator = this.props.navigator
+
         let messageOverlay = (
             <MessageOverlay
                 user={loginUser}
                 getUnreadCount={this.props.actions.getUnreadMessageCount}
                 count={this.props.state.message.unreadMessageCount}
+                router={this.props.router}
                 />
         )
 
@@ -69,6 +72,7 @@ class Home extends Component {
                     source={{uri:config.bgImgUri}}>
 
                     <TopicsInTab
+                        router={this.props.router}
                         actions={this.props.actions}
                         topic={this.props.state.topic}
                         />

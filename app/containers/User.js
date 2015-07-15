@@ -2,7 +2,7 @@
 var React = require('react-native')
 var moment = require('moment')
 var ScrollableTabView = require('react-native-scrollable-tab-view')
-var Icon = require('FAKIconImage')
+var { Icon, } = require('react-native-icons')
 
 
 // Custom Component
@@ -69,11 +69,6 @@ class User extends Component {
     }
 
 
-    _onReturnPress() {
-        Navigator.getContext(this).pop()
-    }
-
-
     _getUserInfo() {
         let userName = this.props.userName
 
@@ -106,14 +101,17 @@ class User extends Component {
                         edgeHitWidth={(width/3)*2}
                         renderTabBar={()=>TabBar}>
                         <UserTopicPage
+                            router={this.props.router}
                             style={styles.userTopicPage}
                             data={recentReplies}
                             tabLabel="最近回复"/>
                         <UserTopicPage
+                            router={this.props.router}
                             style={styles.userTopicPage}
                             data={recentTopics}
                             tabLabel="最近发布"/>
                         <UserTopicPage
+                            router={this.props.router}
                             style={styles.userTopicPage}
                             data={collectTopics}
                             tabLabel="收藏"/>
@@ -121,6 +119,13 @@ class User extends Component {
                 </View>
             )
         }
+        return (
+            <ActivityIndicatorIOS
+                hidesWhenStopped={true}
+                size="large"
+                animating={true}
+                style={styles.loading}/>
+        )
     }
 
 
@@ -209,7 +214,7 @@ class User extends Component {
                 </View>
                 {this._renderUserTopics(userInfo)}
 
-                <Return onPress={this._onReturnPress.bind(this)}></Return>
+                <Return router={this.props.router}></Return>
             </View>
         )
     }
@@ -226,7 +231,8 @@ var styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     loading: {
-        flex: 1
+        flex: 1,
+        width: width
     },
     bgWall: {
         height: bgWallHeight,

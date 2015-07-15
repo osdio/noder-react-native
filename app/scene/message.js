@@ -3,7 +3,7 @@ var React = require('react-native');
 var window = require('../util/window');
 var { width, height } = window.get()
 var rebound = require('rebound');
-var Icon = require('FAKIconImage');
+var { Icon, } = require('react-native-icons')
 
 // Component module
 var PageScrollView = require('../components/pageScrollView');

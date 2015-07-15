@@ -53,12 +53,14 @@ class Message extends Component {
                     edgeHitWidth={(width/3)*2}
                     renderTabBar={()=>TabBar}>
                     <MessagePage
+                        router={this.props.router}
                         didFocus={didFocus}
                         isLoading={message.isLoading}
                         data={message.hasNotRead}
                         style={styles.userTopicPage}
                         tabLabel={"未读消息 " + hasNotReadCount}/>
                     <MessagePage
+                        router={this.props.router}
                         didFocus={didFocus}
                         isLoading={message.isLoading}
                         data={message.hasRead}
@@ -66,7 +68,7 @@ class Message extends Component {
                         tabLabel={"已读消息 " + hasReadCount}/>
                 </ScrollableTabView>
 
-                <Return/>
+                <Return router={this.props.router}/>
                 <MarkAsReadOverlay
                     isLoading={message.isMarkAsReadLoading}
                     markAsRead={this.props.actions.markAsRead}

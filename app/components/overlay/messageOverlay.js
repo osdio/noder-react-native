@@ -1,5 +1,5 @@
 var React = require('react-native')
-var Icon = require('FAKIconImage')
+var { Icon, } = require('react-native-icons')
 
 var OverlayButton = require('./overlayButton')
 
@@ -45,7 +45,7 @@ class MessageOverlay extends Component {
 
 
     _onPress() {
-        routes.toMessage(this)
+        this.props.router.toMessage()
     }
 
 
@@ -93,7 +93,6 @@ var styles = StyleSheet.create({
     countText: {
         color: 'rgba(255,255,255,0.8)',
         fontSize: countTextSize,
-        containerBackgroundColor: 'transparent',
         lineHeight: countBoxSize - countTextSize / 2,
         textAlign: 'center',
         height: countBoxSize,

@@ -1,7 +1,7 @@
 var React = require('react-native')
 var Modal = require('react-native-modal')
 var Button = require('react-native-button')
-var Icon = require('FAKIconImage')
+var { Icon, } = require('react-native-icons')
 
 
 var routes = require('../configs/routes')

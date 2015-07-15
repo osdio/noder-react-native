@@ -543,6 +543,7 @@ class Comments extends Component {
 
                     <View style={styles.commentContent}>
                         <CommentHtml
+                            router={this.props.router}
                             style={commentHtmlStyle}
                             content={comment.content}/>
                     </View>
@@ -574,7 +575,7 @@ class Comments extends Component {
             <ActivityIndicatorIOS
                 size="large"
                 animating={true}
-                style={{marginTop:20}}/>
+                style={{marginTop:20,width:width}}/>
         )
     }
 

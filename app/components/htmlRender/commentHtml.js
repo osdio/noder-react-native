@@ -26,6 +26,7 @@ class CommentHtml extends Component {
             <HtmlContent
                 content={this.props.content}
                 style={this.styles}
+                router={this.props.router}
                 />
         )
     }

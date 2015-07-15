@@ -141,6 +141,7 @@ class PageListView extends Component {
         })
             .then(topics=> {
                 console.log('fetched topics');
+                LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
                 type == 'update' ? updateTopics(topics, tab) : getTopics(topics, tab)
                 return null
             })

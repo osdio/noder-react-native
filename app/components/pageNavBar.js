@@ -1,13 +1,9 @@
 var React = require('react-native')
-var rebound = require('rebound')
 var precomputeStyle = require('precomputeStyle')
 
 
-// custom component
 var PageScrollView = require('./pageScrollView')
 
-
-var styles = require('../styles/pageNavBar')
 
 var window = require('../util/window')
 var { width, height } = window.get()
@@ -33,7 +29,7 @@ var stylesExtends = StyleSheet.create({
 
 class PageNavBar extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             offset: 0
         }
@@ -41,15 +37,11 @@ class PageNavBar extends Component {
     }
 
 
-    _onNavItemPress() {
-        this.props.onItemPress()
-    }
-
 
     _getActiveItemStyle(opacity) {
         return {
             borderTopColor: 'rgba(241,196,15,' + opacity + ')'
-        };
+        }
     }
 
 
@@ -80,7 +72,6 @@ class PageNavBar extends Component {
     }
 
 
-    // update the active nav style
     _updateNavsStyle(offset) {
         var space = this.props.space
         this.props.navs.forEach((item, index, arr)=> {
@@ -174,6 +165,47 @@ class PageNavBar extends Component {
         )
     }
 }
+
+
+var styles = StyleSheet.create({
+        "navBar": {
+            "height": 40,
+            "backgroundColor": "rgba(0, 0, 0, 0.75)",
+            "flexDirection": "row",
+            "position": "absolute",
+            "top": 0,
+            "left": 0,
+            "alignItems": "center",
+            "justifyContent": "space-between"
+        },
+        "navBar li": {
+            "height": 40,
+            "width": 60,
+            "flexDirection": "column",
+            "alignItems": "center",
+            "justifyContent": "space-around",
+            "borderTopWidth": 4,
+            "borderTopColor": "transparent"
+        },
+        "navBar liActive": {
+            "borderTopColor": "#F1C40F"
+        },
+        "navBar item": {
+            "paddingLeft": 2,
+            "paddingRight": 2,
+            "paddingTop": 12,
+            "paddingBottom": 0,
+            "height": 40
+        },
+        "navBar text": {
+            "color": "white",
+            "fontSize": 14
+        },
+        "navScroll": {
+            "height": 40
+        }
+    }
+)
 
 
 module.exports = PageNavBar;

@@ -98,6 +98,7 @@ var styles = StyleSheet.create({
         height: countBoxSize,
         width: countBoxSize,
         borderRadius: countBoxSize / 2,
+        backgroundColor: 'transparent'
     },
     position: {
         right: 20,

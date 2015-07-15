@@ -357,7 +357,7 @@ class Comments extends Component {
         if (this.state.replyUploading || this.state.textInput == '' || this.state.textInput == null) {
             return
         }
-        let user = this.props.user
+        let user = this.props.state.user
         let topic = this.props.topic
         let content = this.state.textInput + config.replySuffix
 
@@ -547,7 +547,7 @@ class Comments extends Component {
                             content={comment.content}/>
                     </View>
 
-                    {!this.props.user || footer}
+                    {!this.props.state.user || footer}
                 </View>
             </View>
         )
@@ -601,7 +601,7 @@ class Comments extends Component {
 
 
     _renderReplyForm() {
-        var user = this.props.user
+        var user = this.props.state.user
 
         if (!user) return null
 
@@ -687,7 +687,7 @@ class Comments extends Component {
 
                 <View
                     ref={view=>this.commentsView=view}
-                    style={[styles.comments,{height:this.props.user?commentsHeight:commentsHeight+replyFormHeight}]}>
+                    style={[styles.comments,{height:this.props.state.user?commentsHeight:commentsHeight+replyFormHeight}]}>
                     {this._renderComments()}
                 </View>
 

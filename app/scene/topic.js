@@ -15,13 +15,11 @@ var LikeIcon = require('../components/likeIcon')
 
 // Config module
 var config = require('../configs/config')
-var routes = require('../configs/routes')
 
 
 // Util module
 var genColor = require('../util/genColor')
 var topicService = require('../services/topicService')
-var userService = require('../services/userService')
 
 
 var {
@@ -145,7 +143,6 @@ class Topic extends Component {
         super(props)
         this.headerColor = genColor()
         this.state = {
-            isLiked: false,
             likedLoading: false,
             topic: this.props.topic,
             isLoading: false,
@@ -280,8 +277,8 @@ class Topic extends Component {
                                     <LikeIcon
                                         topic={topic}
                                         style={styles.likeIcon}
-                                        user={this.props.state.user.loginUser}
-                                        isLiked={this.state.isLiked}
+                                        user={this.props.state.user}
+                                        actions={this.props.actions}
                                         ></LikeIcon>
                                 </View>
                             </View>

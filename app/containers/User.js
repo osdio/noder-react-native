@@ -47,7 +47,7 @@ class User extends Component {
 
     componentDidMount() {
         if (this.props.isLoginUser) {
-            this.props.actions.fetchUser(this.props.state.user.loginUser)
+            this.props.actions.fetchUser(this.props.state.user)
         }
         else {
             this._getUserInfo()
@@ -119,13 +119,17 @@ class User extends Component {
                 </View>
             )
         }
-        return (
-            <ActivityIndicatorIOS
-                hidesWhenStopped={true}
-                size="large"
-                animating={true}
-                style={styles.loading}/>
-        )
+
+        if (this.props.isLoginUser) {
+            return (
+                <ActivityIndicatorIOS
+                    hidesWhenStopped={true}
+                    size="large"
+                    animating={true}
+                    style={styles.loading}/>
+            )
+        }
+
     }
 
 
@@ -135,7 +139,7 @@ class User extends Component {
         let isLoginUser = this.props.isLoginUser
 
         if (isLoginUser) {
-            userInfo = this.props.state.user.loginUser
+            userInfo = this.props.state.user
         }
 
         if (!userInfo) {

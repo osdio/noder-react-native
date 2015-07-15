@@ -30,15 +30,10 @@ class Home extends Component {
     }
 
 
-    componentDidMount() {
-        this.props.actions.getAllTopicsFromStorage()
-    }
-
-
     _userOverlayOnPress() {
         let actions = this.props.actions
         let state = this.props.state
-        if (!state.user.loginUser) {
+        if (!state.user) {
             actions.openLoginModal()
         }
         else {
@@ -50,9 +45,8 @@ class Home extends Component {
 
 
     render() {
-        let loginUser = this.props.state.user.loginUser
+        let loginUser = this.props.state.user
         let home = this.props.state.home
-        let navigator = this.props.navigator
 
         let messageOverlay = (
             <MessageOverlay

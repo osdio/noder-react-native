@@ -20,8 +20,10 @@ class Navitation extends Component {
     }
 
 
+
     componentDidMount() {
         this.props.actions.getLoginUserFromStorage()
+        this.props.actions.getAllTopicsFromStorage()
     }
 
 
@@ -36,7 +38,6 @@ class Navitation extends Component {
                 }
             ))
         }
-``
 
         //navigator.addListener('didfocus', e => {
         //    console.log(22344);

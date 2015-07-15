@@ -27,10 +27,19 @@ var {
 class UserTopicPage extends Component {
     constructor(props) {
         super(props)
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.data = this.props.data || []
         this.state = {
-            ds: ds.cloneWithRows(this.data)
+            ds: this.ds.cloneWithRows(this.data)
+        }
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.data != this.props.data) {
+            this.setState({
+                ds: this.ds.cloneWithRows(nextProps.data)
+            })
         }
     }
 

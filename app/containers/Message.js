@@ -30,7 +30,7 @@ class Message extends Component {
 
 
     componentDidMount() {
-        this.props.actions.getMessages(this.props.state.user.loginUser.token)
+        this.props.actions.getMessages(this.props.state.user.token)
     }
 
 
@@ -73,7 +73,7 @@ class Message extends Component {
                     isLoading={message.isMarkAsReadLoading}
                     markAsRead={this.props.actions.markAsRead}
                     message={message}
-                    token={this.props.state.user.loginUser.token}
+                    token={this.props.state.user.token}
                     />
             </View>
         )

@@ -46,16 +46,15 @@ exports.fetchUser = function fetchUser(user) {
     return dispatch => {
         UserService.req.getLoginUserInfo(user)
             .then(userInfo=> {
-                console.log('fetchUser');
                 if (userInfo) {
                     Object.assign(user, userInfo)
                     UserService.storage.saveUser(user)
                     dispatch(getUser(user))
                 }
             })
-            .catch(err=> {
-                console.warn(err)
-            })
+            //.catch(err=> {
+            //    console.warn(err)
+            //})
             .done()
     }
 }
@@ -95,5 +94,26 @@ exports.checkToken = function (token) {
                 window.alert('token验证失败')
             })
             .done()
+    }
+}
+
+
+exports.likeTopic = function (topic) {
+    return {
+        type: types.LIKE_TOPIC,
+        topic: {
+            id: topic.id,
+            author: topic.author,
+            title: topic.title,
+            last_reply_at: topic.last_reply_at
+        }
+    }
+}
+
+
+exports.unLikeTopic = function (id) {
+    return {
+        type: types.UN_LIKE_TOPIC,
+        id: id
     }
 }

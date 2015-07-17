@@ -2,8 +2,8 @@ var React = require('react-native')
 
 // Components
 var User = require('../containers/User')
-var Topic = require('../scene/topic')
-var Comments = require('../scene/comments')
+var Topic = require('../containers/Topic')
+var Comments = require('../containers/Comments')
 var Message = require('../containers/Message')
 var QRCode = require('../containers/QRCode')
 

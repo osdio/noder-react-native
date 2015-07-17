@@ -1,5 +1,5 @@
-var request = require('./request')
-var Storage = require('../util/storage')
+var request = require('./Request')
+var Storage = require('./Storage')
 
 var config = require('../configs/config')
 var tabs = ['good', 'ask', 'all', 'share', 'job']

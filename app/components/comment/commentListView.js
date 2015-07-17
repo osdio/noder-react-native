@@ -14,15 +14,15 @@ var HtmlContent = require('../htmlRender/htmlContent');
 var Return = require('../overlay/return');
 var CommentOverlay = require('../overlay/commentOverlay');
 var CommentHtml = require('../htmlRender/commentHtml');
-var Storage = require('../../util/storage');
+var Storage = require('../../services/Storage');
 
-var topicService = require('../../services/topicService');
+var topicService = require('../../services/TopicService');
 
 var genColor = require('../../util/genColor');
 var config = require('../../configs/config');
-var animations = require('../../util/animation');
+var animations = require('../../configs/animation');
 var sceneConfig = require('../../configs/config')
-var routes = require('../../configs/routes')
+var routes = require('../../configs/Router')
 
 
 var {

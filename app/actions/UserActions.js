@@ -1,5 +1,5 @@
 var types = require('../constants/ActionTypes')
-var UserService = require('../services/userService')
+var UserService = require('../services/UserService')
 
 
 function getUser(user) {
@@ -52,9 +52,9 @@ exports.fetchUser = function fetchUser(user) {
                     dispatch(getUser(user))
                 }
             })
-            //.catch(err=> {
-            //    console.warn(err)
-            //})
+            .catch(err=> {
+                console.warn(err)
+            })
             .done()
     }
 }

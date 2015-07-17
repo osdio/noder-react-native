@@ -3,7 +3,7 @@ var App = require('./app/containers/App')
 
 var user = require('./app/mocks/user')
 var userInfo = require('./app/mocks/userInfo')
-var UserService = require('./app/services/userService')
+var UserService = require('./app/services/UserService')
 
 
 // on run

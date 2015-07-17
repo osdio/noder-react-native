@@ -1,5 +1,5 @@
 var types = require('../constants/ActionTypes')
-var MessageService = require('../services/messageService')
+var MessageService = require('../services/MessageService')
 
 
 var window = require('../util/window')

@@ -12,7 +12,7 @@ var TabBar = require('../components/TabBar')
 
 
 var genColor = require('../util/genColor')
-var UserService = require('../services/userService')
+var UserService = require('../services/UserService')
 var config = require('../configs/config')
 var window = require('../util/window')
 var { width, height } = window.get()

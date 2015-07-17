@@ -1,5 +1,5 @@
 var types = require('../constants/ActionTypes')
-var TopicService = require('../services/topicService')
+var TopicService = require('../services/TopicService')
 
 
 exports.fetchTopicsByTab = function (params, cbs) {

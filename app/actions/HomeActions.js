@@ -1,5 +1,5 @@
 var types = require('../constants/ActionTypes')
-var UserService = require('../services/userService')
+var UserService = require('../services/UserService')
 var window = require('../util/window')
 
 

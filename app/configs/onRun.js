@@ -1,5 +1,5 @@
 var React = require('react-native')
-var storage = require('../util/storage')
+var storage = require('../services/Storage')
 
 var packageObj = require('../../package.json')
 

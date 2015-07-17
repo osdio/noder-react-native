@@ -1,10 +1,10 @@
 var React = require('react-native')
 var moment = require('moment')
 
-var TopicService = require('../services/topicService')
+var TopicService = require('../services/TopicService')
 var TopicRow = require('../components/topicRow')
 
-var routes = require('../configs/routes')
+var routes = require('../configs/Router')
 var window = require('../util/window')
 
 

@@ -1,28 +1,24 @@
-var React = require('react-native');
-var window = require('../util/window');
-var { width, height } = window.get();
-var precomputeStyle = require('precomputeStyle');
+var React = require('react-native')
+var window = require('../util/window')
+var { width, height } = window.get()
+var precomputeStyle = require('precomputeStyle')
 
 
-var moment = require('moment');
-var { Icon, } = require('react-native-icons')
-var KeyboardEvents = require('react-native-keyboardevents');
-var KeyboardEventEmitter = KeyboardEvents.Emitter;
-var markdown = require("markdown").markdown;
+var moment = require('moment')
+var { Icon } = require('react-native-icons')
+var KeyboardEvents = require('react-native-keyboardevents')
+var KeyboardEventEmitter = KeyboardEvents.Emitter
+var markdown = require("markdown").markdown
 
-var HtmlContent = require('../components/htmlRender/htmlContent');
-var Return = require('../components/overlay/return');
-var CommentOverlay = require('../components/overlay/commentOverlay');
-var CommentHtml = require('../components/htmlRender/commentHtml');
-var Storage = require('../util/storage');
+var Return = require('../components/overlay/return')
+var CommentOverlay = require('../components/overlay/commentOverlay')
+var CommentHtml = require('../components/htmlRender/commentHtml')
 
-var topicService = require('../services/topicService');
+var TopicService = require('../services/TopicService')
+var genColor = require('../util/genColor')
+var config = require('../configs/config')
+var animations = require('../configs/animation')
 
-var genColor = require('../util/genColor');
-var config = require('../configs/config');
-var animations = require('../util/animation');
-var sceneConfig = require('../configs/sceneConfig')
-var routes = require('../configs/routes')
 
 var {
     View,
@@ -327,7 +323,7 @@ class Comments extends Component {
         this.setState({
             commentLoading: true
         })
-        topicService.req.getTopicById(this.props.topic.id)
+        TopicService.req.getTopicById(this.props.topic.id)
             .then(topic=> {
                 this.topic = topic
                 return topic.replies
@@ -366,7 +362,7 @@ class Comments extends Component {
         })
 
 
-        topicService.req.reply(topic.id, content, user.token, this.replyId)
+        TopicService.req.reply(topic.id, content, user.token, this.replyId)
             .then(replyId=> {
                 var newReply = {
                     id: replyId,
@@ -426,20 +422,14 @@ class Comments extends Component {
 
 
     _onReturnToTopic() {
-        var Topic = require('../scene/topic')
-        Navigator.getContext(this).push({
-            component: Topic,
-            sceneConfig: sceneConfig.customFloatFromRight,
-            name: 'topic',
-            props: {
-                topic: this.topic
-            }
+        this.props.router.toTopic({
+            topic: this.topic
         })
     }
 
 
     _onAuthorImgPress(authorName) {
-        routes.toUser(this, {
+        this.props.router.toUser({
             userName: authorName
         })
     }

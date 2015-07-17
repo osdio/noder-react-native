@@ -4,7 +4,7 @@ var Button = require('react-native-button')
 var { Icon, } = require('react-native-icons')
 
 
-var routes = require('../configs/routes')
+var routes = require('../configs/Router')
 
 var window = require('../util/window')
 var { width, height } = window.get()

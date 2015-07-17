@@ -1,7 +1,7 @@
 var React = require('react-native')
 var { Icon, } = require('react-native-icons')
 
-var topicService = require('../services/topicService');
+var topicService = require('../services/TopicService');
 
 
 var {

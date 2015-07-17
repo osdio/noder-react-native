@@ -19,7 +19,7 @@ var config = require('../configs/config')
 
 // Util module
 var genColor = require('../util/genColor')
-var topicService = require('../services/topicService')
+var topicService = require('../services/TopicService')
 
 
 var {

@@ -3,7 +3,7 @@ var React = require('react-native')
 var HtmlRender = require('react-native-html-render')
 
 var window = require('../../util/window')
-var routes = require('../../configs/routes')
+var routes = require('../../configs/Router')
 
 
 var { width, height } = window.get()

@@ -2,7 +2,7 @@ var React = require('react-native')
 var precomputeStyle = require('precomputeStyle')
 
 
-var PageScrollView = require('./pageScrollView')
+var PageScrollView = require('./PageScrollView')
 
 
 var window = require('../util/window')

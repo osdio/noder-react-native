@@ -1,5 +1,5 @@
 var React = require('react-native')
-var HtmlContent = require('./htmlContent')
+var HtmlContent = require('./HtmlContent')
 
 var window = require('../../util/window')
 var { width, height } = window.get()

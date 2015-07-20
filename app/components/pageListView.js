@@ -2,7 +2,7 @@ var React = require('react-native')
 var moment = require('moment')
 
 var TopicService = require('../services/TopicService')
-var TopicRow = require('../components/topicRow')
+var TopicRow = require('./TopicRow')
 
 var window = require('../util/window')
 
@@ -101,8 +101,8 @@ class PageListView extends Component {
 
     _onRowPress(topic) {
         this.props.router.toTopic({
-            topicId: topic.id,
-            topic: topic
+            topic: topic,
+            from: 'home'
         })
     }
 
@@ -168,7 +168,6 @@ class PageListView extends Component {
             limit: 10
         })
             .then(topics=> {
-                console.log('fetched topics');
                 LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
                 type == 'update' ? updateTopics(topics, tab) : getTopics(topics, tab)
                 return null

@@ -10,9 +10,8 @@ var KeyboardEvents = require('react-native-keyboardevents')
 var KeyboardEventEmitter = KeyboardEvents.Emitter
 var markdown = require("markdown").markdown
 
-var Return = require('../components/overlay/return')
-var CommentOverlay = require('../components/overlay/commentOverlay')
-var CommentHtml = require('../components/htmlRender/commentHtml')
+var Return = require('../components/overlay/Return')
+var CommentHtml = require('../components/htmlRender/CommentHtml')
 
 var TopicService = require('../services/TopicService')
 var genColor = require('../util/genColor')

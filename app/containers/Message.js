@@ -5,8 +5,8 @@ var ScrollableTabView = require('react-native-scrollable-tab-view')
 
 var MessagePage = require('../components/MessagePage')
 var TabBar = require('../components/TabBar')
-var Return = require('../components/overlay/return')
-var MarkAsReadOverlay = require('../components/overlay/markAsReadOverlay')
+var Return = require('../components/overlay/Return')
+var MarkAsReadOverlay = require('../components/overlay/MarkAsReadOverlay')
 
 
 var window = require('../util/window')

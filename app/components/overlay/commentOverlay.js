@@ -4,7 +4,7 @@ var { Icon, } = require('react-native-icons')
 var Button = require('react-native-button');
 
 
-var OverlayButton = require('./overlayButton');
+var OverlayButton = require('./OverlayButton');
 
 
 var config = require('../../configs/config');

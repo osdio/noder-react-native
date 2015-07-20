@@ -2,37 +2,6 @@ var types = require('../constants/ActionTypes')
 var TopicService = require('../services/TopicService')
 
 
-exports.fetchTopicsByTab = function (params, cbs) {
-    return dispatch=> {
-        dispatch({
-            type: types.FETCH_TOPICS_BY_TAB_REQUEST,
-            tab: params.tab
-        })
-        cbs = cbs || {}
-        cbs.request && cbs.request()
-
-        TopicService.req.getTopicsByTab(params)
-            .then(topics=> {
-                console.log('fetchedTopics');
-                dispatch({
-                    type: types.FETCH_TOPICS_BY_TAB_SUCCESS,
-                    tab: params.tab,
-                    topics: topics
-                })
-                cbs.success && cbs.success()
-            })
-            .catch(()=> {
-                dispatch({
-                    type: types.FETCH_MESSAGES_FAILED,
-                    tab: params.tab
-                })
-                cbs.failed && cbs.failed()
-            })
-            .done()
-    }
-}
-
-
 exports.getAllTopicsFromStorage = function () {
     return dispatch=> {
         TopicService.storage.getAll()

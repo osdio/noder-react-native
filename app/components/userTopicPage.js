@@ -1,7 +1,7 @@
 var React = require('react-native')
 var moment = require('moment')
 
-var TopicRow = require('./topicRow')
+var TopicRow = require('./TopicRow')
 var Topic = require('../containers/Topic')
 
 var sceneConfig = require('../configs/sceneConfig')

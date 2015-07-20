@@ -2,9 +2,9 @@ var React = require('react-native')
 var rebound = require('rebound')
 
 // custom component
-var PageScrollView = require('./pageScrollView')
-var PageNavBar = require('./pageNavBar')
-var PageListView = require('./pageListView')
+var PageScrollView = require('./PageScrollView')
+var PageNavBar = require('./PageNavBar')
+var PageListView = require('./PageListView')
 
 
 var window = require('../util/window')

@@ -1,7 +1,7 @@
 var React = require('react-native')
 
 var Button = require('react-native-button')
-var OverlayButton = require('./overlayButton')
+var OverlayButton = require('./OverlayButton')
 
 var window = require('../../util/window')
 var { width, height } = window.get()

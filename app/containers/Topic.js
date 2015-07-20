@@ -1,16 +1,15 @@
 // Require module
 var React = require('react-native')
-var window = require('../util/window')
-var { width, height } = window.get()
+
 var moment = require('moment')
-var { Icon, } = require('react-native-icons')
+var { Icon } = require('react-native-icons')
 
 
 // Component module
-var HtmlContent = require('../components/htmlRender/htmlContent')
-var Return = require('../components/overlay/return')
-var CommentOverlay = require('../components/overlay/commentOverlay')
-var LikeIcon = require('../components/likeIcon')
+var HtmlContent = require('../components/htmlRender/HtmlContent')
+var Return = require('../components/overlay/Return')
+var CommentOverlay = require('../components/overlay/CommentOverlay')
+var LikeIcon = require('../components/LikeIcon')
 
 
 // Config module
@@ -19,7 +18,9 @@ var config = require('../configs/config')
 
 // Util module
 var genColor = require('../util/genColor')
-var topicService = require('../services/TopicService')
+var TopicService = require('../services/TopicService')
+var window = require('../util/window')
+var { width, height } = window.get()
 
 
 var {
@@ -135,7 +136,7 @@ var styles = StyleSheet.create({
         backgroundColor: 'white'
     },
 
-});
+})
 
 
 class Topic extends Component {
@@ -146,10 +147,6 @@ class Topic extends Component {
             likedLoading: false,
             topic: this.props.topic,
             isLoading: false,
-            err: {
-                shouldShow: false,
-                content: null
-            },
             didFocus: false
         }
     }
@@ -157,7 +154,11 @@ class Topic extends Component {
 
     componentDidMount() {
         if (this.props.from == 'user') {
-            return this._fetchTopic()
+            return this._fetchTopic(this.state.topic.id)
+        }
+
+        if (this.props.from == 'html') {
+            return this._fetchTopic(this.props.topicId)
         }
     }
 
@@ -169,15 +170,12 @@ class Topic extends Component {
     }
 
 
-    _fetchTopic() {
+    _fetchTopic(id) {
         this.setState({
             isLoading: true
         })
-        let id = this.state.topic.id
-        topicService.req.getTopicById(id)
+        TopicService.req.getTopicById(id)
             .then(topic=> {
-                //console.log('fetched');
-                //console.log(topic);
                 this.setState({
                     isLoading: false,
                     topic: topic
@@ -186,11 +184,7 @@ class Topic extends Component {
             .catch(err => {
                 console.warn(err)
                 this.setState({
-                    isLoading: false,
-                    err: {
-                        shouldShow: true,
-                        content: ''
-                    }
+                    isLoading: false
                 })
             })
             .done()
@@ -221,6 +215,7 @@ class Topic extends Component {
             )
         }
 
+
         return (
             <ActivityIndicatorIOS
                 size="large"
@@ -231,70 +226,78 @@ class Topic extends Component {
 
 
     render() {
-        var topic = this.state.topic;
-        var domain = config.domain;
+        var topic = this.state.topic
 
-        var imgUri = domain + topic.author.avatar_url;
-        var authorName = topic.author.loginname
-        var date = moment(topic.create_at).startOf('hour').fromNow();
+
+        if (topic) {
+            var domain = config.domain
+
+            var imgUri = domain + topic.author.avatar_url
+            var authorName = topic.author.loginname
+            var date = moment(topic.create_at).startOf('hour').fromNow()
+            return (
+                <View style={[styles.container]}>
+                    <ScrollView>
+                        <View style={[styles.header,{backgroundColor: this.headerColor}]}>
+                            <View style={styles.authorTouchable}>
+                                <View style={styles.authorWrapper}>
+                                    <TouchableOpacity
+                                        onPress={this._onAuthorImgPress.bind(this, authorName)}>
+                                        <Image
+                                            source={{uri:imgUri}}
+                                            style={styles.authorImg}>
+                                        </Image>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+
+
+                            <View style={styles.titleWrapper}>
+                                <Text style={styles.title}>
+                                    {topic.title}
+                                </Text>
+
+                                <View style={styles.titleFooter}>
+                                    <View style={styles.date}>
+                                        <Icon
+                                            name='ion|clock'
+                                            size={12}
+                                            color='rgba(255,255,255,0.5)'
+                                            style={styles.dateIcon}
+                                            />
+                                        <Text style={styles.dateText}>
+                                            {date}
+                                        </Text>
+                                    </View>
+
+                                    <View style={styles.like}>
+                                        <LikeIcon
+                                            topic={topic}
+                                            style={styles.likeIcon}
+                                            user={this.props.state.user}
+                                            actions={this.props.actions}
+                                            ></LikeIcon>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
+                        <View style={styles.content}>
+                            {this._renderContent(topic.content)}
+                        </View>
+                    </ScrollView>
+                    <Return router={this.props.router}/>
+                    <CommentOverlay
+                        onPress={this._onCommentOverlayPress.bind(this)}
+                        topic={topic}/>
+                </View>
+            )
+        }
 
         return (
-            <View style={[styles.container]}>
-                <ScrollView>
-                    <View style={[styles.header,{backgroundColor: this.headerColor}]}>
-                        <View style={styles.authorTouchable}>
-                            <View style={styles.authorWrapper}>
-                                <TouchableOpacity
-                                    onPress={this._onAuthorImgPress.bind(this, authorName)}>
-                                    <Image
-                                        source={{uri:imgUri}}
-                                        style={styles.authorImg}>
-                                    </Image>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
+            <View style={styles.container}></View>
+        )
 
-
-                        <View style={styles.titleWrapper}>
-                            <Text style={styles.title}>
-                                {topic.title}
-                            </Text>
-
-                            <View style={styles.titleFooter}>
-                                <View style={styles.date}>
-                                    <Icon
-                                        name='ion|clock'
-                                        size={12}
-                                        color='rgba(255,255,255,0.5)'
-                                        style={styles.dateIcon}
-                                        />
-                                    <Text style={styles.dateText}>
-                                        {date}
-                                    </Text>
-                                </View>
-
-                                <View style={styles.like}>
-                                    <LikeIcon
-                                        topic={topic}
-                                        style={styles.likeIcon}
-                                        user={this.props.state.user}
-                                        actions={this.props.actions}
-                                        ></LikeIcon>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={styles.content}>
-                        {this._renderContent(topic.content)}
-                    </View>
-                </ScrollView>
-                <Return router={this.props.router}/>
-                <CommentOverlay
-                    onPress={this._onCommentOverlayPress.bind(this)}
-                    topic={topic}/>
-            </View>
-        );
     }
 }
 

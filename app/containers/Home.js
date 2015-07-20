@@ -1,10 +1,10 @@
 var React = require('react-native')
 
 
-var UserOverlay = require('../components/overlay/userOverlay')
-var Login = require('../components/login')
-var TopicsInTab = require('../components/topicsInTab')
-var MessageOverlay = require('../components/overlay/messageOverlay')
+var UserOverlay = require('../components/overlay/UserOverlay')
+var Login = require('../components/Login')
+var TopicsInTab = require('../components/TopicsInTab')
+var MessageOverlay = require('../components/overlay/MessageOverlay')
 
 
 var routes = require('../configs/Router')

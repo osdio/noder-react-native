@@ -6,8 +6,8 @@ var { Icon, } = require('react-native-icons')
 
 
 // Custom Component
-var UserTopicPage = require('../components/userTopicPage')
-var Return = require('../components/overlay/return')
+var UserTopicPage = require('../components/UserTopicPage')
+var Return = require('../components/overlay/Return')
 var TabBar = require('../components/TabBar')
 
 

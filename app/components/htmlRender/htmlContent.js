@@ -30,6 +30,14 @@ var styles = StyleSheet.create({
 })
 
 
+var regs = {
+    http: {
+        topic: /^https?:\/\/cnodejs\.org\/topic\/\w*/,
+        user: /^https?:\/\/cnodejs\.org\/user\/\w*/
+    }
+}
+
+
 class HtmlContent extends Component {
     constructor(props) {
         super(props)
@@ -37,15 +45,33 @@ class HtmlContent extends Component {
 
 
     _onLinkPress(url) {
+        let router = this.props.router
+
         if (/^\/user\/\w*/.test(url)) {
             let authorName = url.replace(/^\/user\//, '')
-            this.props.router.toUser({
+
+            router.toUser({
                 userName: authorName
             })
         }
 
         if (/^https?:\/\/.*/.test(url)) {
-            window.link(url)
+            if (regs.http.topic.test(url)) {
+                let topicId = url.replace(/^https?:\/\/cnodejs\.org\/topic\//, '')
+
+                return router.toTopic({
+                    topicId: topicId,
+                    from: 'html'
+                })
+            }
+
+            if (regs.http.user.test(url)) {
+                let userName = url.replace(/^https?:\/\/cnodejs\.org\/user\//, '')
+
+                return router.toUser({
+                    userName: userName
+                })
+            }
         }
     }
 

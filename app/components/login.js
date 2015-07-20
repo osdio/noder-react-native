@@ -4,8 +4,6 @@ var Button = require('react-native-button')
 var { Icon, } = require('react-native-icons')
 
 
-var routes = require('../configs/Router')
-
 var window = require('../util/window')
 var { width, height } = window.get()
 
@@ -123,7 +121,7 @@ class Login extends Component {
 
     _onLoginPress() {
         if (this.props.checkTokenLoading) return
-        routes.toQRCode(this)
+        //routes.toQRCode(this)
     }
 
 

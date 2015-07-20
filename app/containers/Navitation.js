@@ -20,7 +20,6 @@ class Navitation extends Component {
     }
 
 
-
     componentDidMount() {
         this.props.actions.getLoginUserFromStorage()
         this.props.actions.getAllTopicsFromStorage()
@@ -29,7 +28,7 @@ class Navitation extends Component {
 
     renderScene(route, navigator) {
         if (route.component) {
-            return React.createElement.bind(this)(route.component, Object.assign({}, route.props,
+            return React.createElement(route.component, Object.assign({}, route.props,
                 {
                     ref: view=>this[route.name] = view,
                     actions: this.props.actions,

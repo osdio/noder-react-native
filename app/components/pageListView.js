@@ -4,7 +4,6 @@ var moment = require('moment')
 var TopicService = require('../services/TopicService')
 var TopicRow = require('../components/topicRow')
 
-var routes = require('../configs/Router')
 var window = require('../util/window')
 
 
@@ -44,10 +43,11 @@ var extendsStyles = StyleSheet.create({
 class PageListView extends Component {
     constructor(porps) {
         super(porps)
-        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
         this.page = 1
+        this.listRows = {}
         this.state = {
-            ds: this.ds.cloneWithRows(this.props.data),
+            ds: ds.cloneWithRows(this.props.data),
             isLoading: false,
             loadingPosition: 'top',
             getTopicError: null
@@ -70,10 +70,10 @@ class PageListView extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.data !== this.props.data) {
-            console.log(this.props.data.length);
+            //console.log(this.props.data.length);
             //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
             this.setState({
-                ds: this.ds.cloneWithRows(nextProps.data)
+                ds: this.state.ds.cloneWithRows(nextProps.data)
             })
         }
     }
@@ -104,6 +104,34 @@ class PageListView extends Component {
             topicId: topic.id,
             topic: topic
         })
+    }
+
+
+    _onChangeVisibleRows(visibleRows, changedRows) {
+        //let vRows = visibleRows.s1
+        //let cRows = changedRows.s1
+        //
+        //let listRows = this.listRows
+
+
+        //if (this.visibleRows) {
+        //    for (key in cRows) {
+        //        if (cRows[key]) {
+        //            listRows[key].show()
+        //        }
+        //        else {
+        //            listRows[key].hide()
+        //        }
+        //    }
+        //}
+        //else {
+        //    this.visibleRows = vRows
+        //}
+        //listRows[3].hide()
+        //console.log('visibleRows:');
+        //console.log(vRows);
+        //console.log('changedRows:');
+        //console.log(cRows);
     }
 
 
@@ -244,19 +272,18 @@ class PageListView extends Component {
         if (this.state.isLoading && this.state.loadingType == 'get') {
             return this._renderLoading('get')
         }
-
-        //return (
-        //    <View style={{height:76,width:width}}>
-        //
-        //    </View>
-        //)
         return null
     }
 
 
-    renderRow(topic) {
+    renderRow(topic, sectionId, rowId, highlightRow) {
+        var isVisible = false
+        if (rowId < 10) isVisible = true
         return (
             <TopicRow
+                isVisible={true}
+                ref={view => this.listRows[rowId.toString()]=view}
+                key={topic.id}
                 onPress={this._onRowPress.bind(this)}
                 topic={topic}
                 footer={this._renderTopicFooter(topic)}
@@ -282,6 +309,7 @@ class PageListView extends Component {
                     scrollRenderAheadDistance={90}
                     renderHeader={this._renderHeader.bind(this)}
                     renderFooter={this._renderFooter.bind(this)}
+                    //onChangeVisibleRows={this._onChangeVisibleRows.bind(this)}
                     />
             </View>
         )

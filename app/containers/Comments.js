@@ -601,9 +601,11 @@ class Comments extends Component {
         return (
             <View style={styles.replyFormWrapper}>
                 <View style={styles.replyUserImgWrapper}>
-                    <Image
-                        style={styles.userImg}
-                        source={{uri: userImg}}/>
+                    <TouchableOpacity onPress={()=>this.props.router.toUser({isLoginUser:true})}>
+                        <Image
+                            style={styles.userImg}
+                            source={{uri: userImg}}/>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.replyInputWrapper}>

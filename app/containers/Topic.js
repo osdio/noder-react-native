@@ -234,7 +234,7 @@ class Topic extends Component {
 
             var imgUri = domain + topic.author.avatar_url
             var authorName = topic.author.loginname
-            var date = moment(topic.create_at).startOf('hour').fromNow()
+            var date = moment(topic.create_at).startOf('minute').fromNow()
             return (
                 <View style={[styles.container]}>
                     <ScrollView>

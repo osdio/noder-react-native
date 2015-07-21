@@ -150,6 +150,7 @@ class PageListView extends Component {
             return
         }
 
+
         this.isFreshing = true
         this.setState({
             isLoading: true,

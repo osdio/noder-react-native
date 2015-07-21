@@ -63,7 +63,8 @@ class Home extends Component {
                 style={[styles.container]}>
                 <Image
                     style={{height:height,width:width}}
-                    source={{uri:config.bgImgUri}}>
+                    source={{uri:config.bgImgUri}}
+                    >
 
                     <TopicsInTab
                         router={this.props.router}

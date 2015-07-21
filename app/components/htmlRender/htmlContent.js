@@ -72,6 +72,12 @@ class HtmlContent extends Component {
                     userName: userName
                 })
             }
+
+            window.link(url)
+        }
+
+        if (/^mailto:\w*/.test(url)) {
+            window.link(url)
         }
     }
 

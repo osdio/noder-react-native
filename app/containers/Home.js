@@ -33,7 +33,7 @@ class Home extends Component {
     _userOverlayOnPress() {
         let actions = this.props.actions
         let state = this.props.state
-        if (!state.user) {
+        if (!state.user.id) {
             actions.openLoginModal()
         }
         else {
@@ -80,13 +80,14 @@ class Home extends Component {
                     />
 
 
-                {loginUser ? messageOverlay : null}
+                {loginUser.id ? messageOverlay : null}
 
 
                 <Login
                     isModalOpen={home.isModalOpen}
                     checkTokenLoading={home.checkTokenLoading}
                     actions={this.props.actions}
+                    router={this.props.router}
                     />
 
 

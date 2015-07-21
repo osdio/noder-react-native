@@ -39,7 +39,7 @@ class UserOverlay extends Component {
 
 
     _renderOverlayContent() {
-        if (this.props.user) {
+        if (this.props.user.id) {
             return (
                 <Image
                     style={[styles.icon,styles.userImg]}

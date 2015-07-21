@@ -57,7 +57,8 @@ class MarkAsRead extends Component {
     _renderContent() {
         if (this.props.isLoading) {
             return (
-                <ActivityIndicatorIOS/>
+                <ActivityIndicatorIOS
+                    style={{width:overlaySize}}/>
             )
         }
         return (

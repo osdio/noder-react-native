@@ -121,7 +121,7 @@ class Login extends Component {
 
     _onLoginPress() {
         if (this.props.checkTokenLoading) return
-        //routes.toQRCode(this)
+        this.props.router.toQRCode()
     }
 
 

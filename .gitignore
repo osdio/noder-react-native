@@ -35,5 +35,6 @@ react-packager-cache**
 .rnplay
 tmp
 iOS/main.jsbundle
+test.js
 
 

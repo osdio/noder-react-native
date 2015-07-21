@@ -1,7 +1,5 @@
 gulp = require 'gulp'
 replace = require 'gulp-replace'
-reactCss = require 'gulp-react-native-css'
-sass = require 'gulp-sass'
 gutil = require 'gulp-util'
 runSequence = require 'run-sequence'
 devIp = require 'dev-ip'

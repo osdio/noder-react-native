@@ -3,7 +3,6 @@ var { Icon, } = require('react-native-icons')
 
 var OverlayButton = require('./OverlayButton')
 
-var routes = require('../../configs/Router')
 
 var window = require('../../util/window')
 var { width, height } = window.get()

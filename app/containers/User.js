@@ -83,7 +83,7 @@ class User extends Component {
                 console.warn(err)
                 if (err == 'UserNotExist') {
                     window.alert('用户不存在')
-                    Navigator.getContext(this).pop()
+                    this.props.router.pop()
                 }
             })
             .done()

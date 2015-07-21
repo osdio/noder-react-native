@@ -3,7 +3,6 @@ var moment = require('moment')
 
 
 var config = require('../configs/config')
-var routes = require('../configs/Router')
 
 
 var window = require('../util/window')

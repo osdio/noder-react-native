@@ -416,7 +416,7 @@ class Comments extends Component {
 
 
     _onReturnPress() {
-        Navigator.getContext(this).pop()
+        this.props.router.pop()
     }
 
 

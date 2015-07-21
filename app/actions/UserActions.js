@@ -60,7 +60,7 @@ exports.fetchUser = function fetchUser(user) {
 }
 
 
-exports.checkToken = function (token,router) {
+exports.checkToken = function (token) {
     return dispatch=> {
         var userTemp = {}
         dispatch({
@@ -80,7 +80,6 @@ exports.checkToken = function (token,router) {
                         type: types.CHECK_TOKEN_SUCCESS,
                         isModalOpen: false
                     })
-                    router.pop()
                 }
                 else {
                     throw 'CHECK_TOKEN_FAILED'

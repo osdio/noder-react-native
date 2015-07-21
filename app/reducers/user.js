@@ -1,7 +1,7 @@
 var types = require('../constants/ActionTypes')
 
 
-var initialState = {}
+var initialState = null
 
 function unLikeTopic(state, id) {
     var collections = state.collect_topics

@@ -7,7 +7,7 @@ var {
     StatusBarIOS
     } = React
 
-//storage.clear()
+storage.clear()
 
 StatusBarIOS.setHidden(true, false)
 

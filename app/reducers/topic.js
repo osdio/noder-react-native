@@ -25,7 +25,7 @@ function getTopicsFromStorage(state, action) {
     var {results} =  action
 
     results.forEach((item, index)=> {
-        state[tabs[index]].topics = item[1]
+        state[tabs[index]].topics = item[1] || []
     })
 
     return Object.assign({}, state)

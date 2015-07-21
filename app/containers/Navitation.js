@@ -23,6 +23,11 @@ class Navitation extends Component {
     componentDidMount() {
         this.props.actions.getLoginUserFromStorage()
         this.props.actions.getAllTopicsFromStorage()
+
+        this.navigator.navigationContext.addListener('didfocus', e => {
+            let route = e.data.route
+            this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
+        })
     }
 
 
@@ -37,12 +42,6 @@ class Navitation extends Component {
                 }
             ))
         }
-
-        //navigator.addListener('didfocus', e => {
-        //    console.log(22344);
-        //    let route = e.data.route
-        //    this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
-        //})
     }
 
 
@@ -61,9 +60,6 @@ class Navitation extends Component {
                 initialRoute={this.initialRoute}
                 configureScene={this.configureScene.bind(this)}
                 renderScene={this.renderScene.bind(this)}
-                onDidFocus={route=>{
-                    this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus()
-                }}
                 />
         )
     }

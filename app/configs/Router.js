@@ -76,6 +76,10 @@ class Router {
             sceneConfig: Navigator.SceneConfigs.FloatFromBottom
         })
     }
+
+    replaceWithHome(){
+        this.navigator.popToTop()
+    }
 }
 
 module.exports = Router

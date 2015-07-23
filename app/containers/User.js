@@ -9,6 +9,7 @@ var { Icon, } = require('react-native-icons')
 var UserTopicPage = require('../components/UserTopicPage')
 var Return = require('../components/overlay/Return')
 var TabBar = require('../components/TabBar')
+var Setting = require('../components/Setting')
 
 
 var genColor = require('../util/genColor')
@@ -40,7 +41,8 @@ class User extends Component {
         this.state = {
             userInfo: null,
             wallColor: genColor(),
-            didFocus: false
+            didFocus: false,
+            isSettingModalOpen: false
         }
     }
 
@@ -66,6 +68,20 @@ class User extends Component {
     _onGithubPress(name) {
         if (name == '' || !name) return
         window.link('https://github.com/' + name)
+    }
+
+
+    onSettingModalClosePress() {
+        this.setState({
+            isSettingModalOpen: false
+        })
+    }
+
+
+    onSettingIconPress() {
+        this.setState({
+            isSettingModalOpen: true
+        })
     }
 
 
@@ -169,7 +185,9 @@ class User extends Component {
         )
 
         let settingIcon = (
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={this.onSettingIconPress.bind(this)}
+                >
                 <Icon
                     name='ion|ios-gear'
                     size={34}
@@ -219,6 +237,14 @@ class User extends Component {
                 {this._renderUserTopics(userInfo)}
 
                 <Return router={this.props.router}></Return>
+
+
+                <Setting
+                    actions={this.props.actions}
+                    router={this.props.router}
+                    isModalOpen={this.state.isSettingModalOpen}
+                    closeModal={this.onSettingModalClosePress.bind(this)}
+                    ></Setting>
             </View>
         )
     }

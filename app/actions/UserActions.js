@@ -117,3 +117,11 @@ exports.unLikeTopic = function (id) {
         id: id
     }
 }
+
+
+exports.logout = function () {
+    UserService.storage.clearUser()
+    return {
+        type: types.LOGOUT
+    }
+}

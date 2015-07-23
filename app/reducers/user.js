@@ -26,8 +26,10 @@ module.exports = function (state, action) {
         case types.GET_USER:
             return action.user
 
+
         case types.FETCH_USER:
             return action.user
+
 
         case types.LIKE_TOPIC:
             return {
@@ -35,8 +37,13 @@ module.exports = function (state, action) {
                 collect_topics: [action.topic].concat(state.collect_topics)
             }
 
+
         case types.UN_LIKE_TOPIC:
             return unLikeTopic(state, action.id)
+
+
+        case types.LOGOUT:
+            return null
 
         default:
             return state

@@ -1,5 +1,5 @@
 var React = require('react-native')
-var storage = require('../services/Storage')
+// var storage = require('../services/Storage')
 
 var packageObj = require('../../package.json')
 
@@ -7,7 +7,7 @@ var {
     StatusBarIOS
     } = React
 
-storage.clear()
+// storage.clear()
 
 StatusBarIOS.setHidden(true, false)
 

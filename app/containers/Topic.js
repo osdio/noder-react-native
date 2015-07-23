@@ -279,7 +279,7 @@ class Topic extends Component {
                                     </View>
 
                                     <View style={styles.like}>
-                                        {this.props.user ? likeIcon : null}
+                                        {this.props.state.user ? likeIcon : null}
                                     </View>
                                 </View>
                             </View>

@@ -32,4 +32,8 @@ Storage.multiGet = function (keys) {
         })
 }
 
+Storage.multiRemove = function (keys) {
+    return AsyncStorage.multiRemove(keys)
+}
+
 module.exports = Storage

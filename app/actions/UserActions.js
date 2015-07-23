@@ -1,5 +1,8 @@
 var types = require('../constants/ActionTypes')
 var UserService = require('../services/UserService')
+var TopicService = require('../services/TopicService')
+var MessageService = require('../services/MessageService')
+var Storage = require('../services/Storage')
 
 
 function getUser(user) {
@@ -123,5 +126,14 @@ exports.logout = function () {
     UserService.storage.clearUser()
     return {
         type: types.LOGOUT
+    }
+}
+
+
+exports.clear = function () {
+    TopicService.storage.remove()
+    MessageService.storage.remove()
+    return {
+        type: types.CLEAR
     }
 }

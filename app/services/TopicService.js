@@ -24,6 +24,13 @@ storage.getAll = function () {
 }
 
 
+storage.remove = function () {
+    return Storage.multiRemove(tabs.map(tab=> {
+        return 'tab_' + tab
+    }))
+}
+
+
 var req = {}
 
 

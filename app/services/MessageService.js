@@ -12,6 +12,10 @@ storage.save = function (value) {
     return Storage.setItem('messages', value)
 }
 
+storage.remove = function () {
+    return Storage.removeItem('messages')
+}
+
 
 var req = {}
 

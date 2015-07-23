@@ -235,6 +235,14 @@ class Topic extends Component {
             var imgUri = domain + topic.author.avatar_url
             var authorName = topic.author.loginname
             var date = moment(topic.create_at).startOf('minute').fromNow()
+            var likeIcon = (
+                <LikeIcon
+                    topic={topic}
+                    style={styles.likeIcon}
+                    user={this.props.state.user}
+                    actions={this.props.actions}
+                    ></LikeIcon>
+            )
             return (
                 <View style={[styles.container]}>
                     <ScrollView>
@@ -271,12 +279,7 @@ class Topic extends Component {
                                     </View>
 
                                     <View style={styles.like}>
-                                        <LikeIcon
-                                            topic={topic}
-                                            style={styles.likeIcon}
-                                            user={this.props.state.user}
-                                            actions={this.props.actions}
-                                            ></LikeIcon>
+                                        {this.props.user ? likeIcon : null}
                                     </View>
                                 </View>
                             </View>

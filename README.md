@@ -23,6 +23,14 @@ If you don't want to update the ip by hand, you can use this:
 gulp replace
 ```
 
+Although, there is a good command, just run:
+
+```
+npm start
+```
+
+This will auto replace the ip, and then run the react-native packager.
+
 
 ## ScreenShots
 

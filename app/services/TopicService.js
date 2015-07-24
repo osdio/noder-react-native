@@ -110,5 +110,25 @@ req.reply = function (topicId, content, token, replyId) {
 }
 
 
+req.upComment = function (replyId, token) {
+    let apiUrl = config.domain + config.apiPath
+    var body = {
+        accesstoken: token
+    }
+
+    let url = `${apiUrl}/reply/${replyId}/ups`
+
+    return request.post(url, body)
+        .then(data=> {
+            if (data.success) {
+                return data.action == 'up'
+            }
+            else {
+                throw 'do reply failed'
+            }
+        })
+}
+
+
 exports.storage = storage
 exports.req = req

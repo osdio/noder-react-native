@@ -12,6 +12,7 @@ var markdown = require("markdown").markdown
 
 var Return = require('../components/overlay/Return')
 var CommentHtml = require('../components/htmlRender/CommentHtml')
+var CommentUp = require('../components/comment/CommentUp')
 
 var TopicService = require('../services/TopicService')
 var genColor = require('../util/genColor')
@@ -35,7 +36,461 @@ var {
     PushNotificationIOS,
     TextInput,
     LayoutAnimation
-    } = React;
+    } = React
+
+
+class Comments extends Component {
+    constructor(props) {
+        super(props)
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        var data = [];
+        this.state = {
+            ds: ds.cloneWithRows(data),
+            commentLoading: false,
+            textInput: null,
+            replyUploading: false,
+            isLoaded: false,
+            didFocus: false
+        }
+        this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this)
+        this.resetKeyboardSpace = this.resetKeyboardSpace.bind(this)
+    }
+
+    updateKeyboardSpace(frames) {
+        LayoutAnimation.configureNext(animations.keyboard.layout.spring);
+        this.commentsView.setNativeProps({
+            height: commentsHeight - frames.end.height
+        })
+    }
+
+    resetKeyboardSpace() {
+        LayoutAnimation.configureNext(animations.keyboard.layout.spring);
+        this.commentsView.setNativeProps({
+            height: commentsHeight
+        })
+    }
+
+
+    componentDidMount() {
+        this.flag = 0
+        this._fetchComment()
+        KeyboardEventEmitter.on(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
+        KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
+    }
+
+
+    componentDidFocus() {
+        this.setState({
+            didFocus: true
+        })
+    }
+
+
+    componentWillUnmount() {
+        KeyboardEventEmitter.off(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
+        KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
+    }
+
+
+    componentDidUpdate() {
+        //this._scrollToReply()
+    }
+
+
+    _scrollToReply() {
+        let reply = this.props.reply
+        if (reply && this.flag == 1) {
+            let row = this[reply.id]
+            if (row && row.measure) {
+                row.measure((x, y, width, height, pageX, pageY) => {
+                    this._listView.setNativeProps({
+                        contentOffset: {
+                            x: 0,
+                            y: y
+                        }
+                    })
+                })
+
+                row.setNativeProps(precomputeStyle({
+                    styles: {
+                        backgroundColor: 'red'
+                    }
+                }))
+            }
+        }
+    }
+
+
+    _fetchComment() {
+        if (this.state.commentLoading) {
+            return
+        }
+
+        this.setState({
+            commentLoading: true
+        })
+        TopicService.req.getTopicById(this.props.topic.id)
+            .then(topic=> {
+                this.topic = topic
+                return topic.replies
+            })
+            .then(replies=> {
+                return replies.reverse()
+            })
+            .then(comments=> {
+                this.comments = comments
+                this.setState({
+                    ds: this.state.ds.cloneWithRows(this.comments),
+                    commentLoading: false,
+                    isLoaded: true
+                })
+            })
+            .catch((err)=> {
+                console.warn(err)
+                this.setState({
+                    commentLoading: false
+                })
+            })
+            .done()
+    }
+
+
+    _doReply() {
+        var content = this.textInputValue
+        if (this.state.replyUploading || content == '' || content == null) {
+            return
+        }
+        let user = this.props.state.user
+        let topic = this.props.topic
+        content = content + config.replySuffix
+
+        this.setState({
+            replyUploading: true
+        })
+
+
+        TopicService.req.reply(topic.id, content, user.token, this.replyId)
+            .then(replyId=> {
+                var newReply = {
+                    id: replyId,
+                    author: {
+                        loginname: user.loginname,
+                        avatar_url: user.avatar_url
+                    },
+                    content: markdown.toHTML(content),
+                    ups: [],
+                    create_at: new Date()
+                }
+                this.comments = [newReply].concat(this.comments)
+                this.replyId = null
+                this.setState({
+                    ds: this.state.ds.cloneWithRows(this.comments),
+                    replyUploading: false
+                })
+                this.textInput.setNativeProps({
+                    text: ''
+                })
+                this.textInputValue = ''
+                this.textInput.blur()
+            })
+            .catch(err=> {
+                console.warn(err)
+                this.setState({
+                    replyUploading: false
+                })
+            })
+            .done()
+    }
+
+
+    _onReplyPress(id, authorName) {
+        this.textInput.focus()
+        let text = `@${authorName} `
+        this.textInput.setNativeProps({
+            text: text
+        })
+        this.replyId = id
+        this.textInputValue = text
+    }
+
+
+    _onAuthorTextPress(authorName) {
+        let text = (this.textInputValue || '') + ` @${authorName} `
+
+        this.textInput.setNativeProps({
+            text: text
+        })
+        this.textInputValue = text
+    }
+
+
+    _onReturnPress() {
+        this.props.router.pop()
+    }
+
+
+    _onReturnToTopic() {
+        this.props.router.toTopic({
+            topic: this.topic
+        })
+    }
+
+
+    _onAuthorImgPress(authorName) {
+        this.props.router.toUser({
+            userName: authorName
+        })
+    }
+
+
+    _onUpPress() {
+
+    }
+
+
+    _onCommentTitlePress() {
+        this._listView.setNativeProps({
+            contentOffset: {
+                x: 0,
+                y: 0
+            }
+        })
+    }
+
+
+    renderRow(comment, sectionID, rowID, highlightRow) {
+        var authorName = comment.author.loginname
+        var domain = config.domain
+        var date = moment(comment.create_at).startOf('minute').fromNow()
+        var commentNum = this.comments.length - parseInt(rowID)
+        var focusStyle = {}
+        if (this.props.reply) {
+            let replyId = this.props.reply.id
+            if (replyId == comment.id) {
+                focusStyle = {
+                    backgroundColor: 'rgba(0,2,125,0.07)'
+                }
+            }
+        }
+
+        var footer = (
+            <View style={styles.commentFooter}>
+                <CommentUp
+                    replyId={comment.id}
+                    ups={comment.ups}
+                    user={this.props.state.user}
+                    style={styles.up}
+                    ></CommentUp>
+
+                <View style={styles.reply}>
+                    <TouchableOpacity
+                        onPress={this._onReplyPress.bind(this, comment.id, authorName)}>
+                        <Icon
+                            name={'ion|reply'}
+                            size={20}
+                            color='rgba(0,0,0,0.35)'
+                            style={styles.replyIcon}
+                            />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+
+
+        return (
+            <View
+                ref={view=>this[comment.id]=view}
+                key={comment.id}
+                style={[styles.commentWrapper,focusStyle]}>
+                <View style={[styles.imageWrapper]}>
+                    <TouchableOpacity onPress={this._onAuthorImgPress.bind(this,authorName)}>
+                        <Image
+                            style={styles.authorImg}
+                            source={{uri:domain + comment.author.avatar_url}}
+                            >
+                        </Image>
+                    </TouchableOpacity>
+
+                    <Text style={styles.commentNumText}>
+                        {commentNum} 楼
+                    </Text>
+                </View>
+
+                <View style={styles.commentContentWrapper}>
+                    <View style={styles.commentHeader}>
+                        <View style={styles.author}>
+                            <TouchableOpacity onPress={this._onAuthorTextPress.bind(this,authorName)}>
+                                <Text style={styles.authorText}>
+                                    {{authorName}}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.date}>
+                            <Text style={styles.dateText}>
+                                {date}
+                            </Text>
+                        </View>
+                    </View>
+
+                    <CommentHtml
+                        router={this.props.router}
+                        style={commentHtmlStyle}
+                        content={comment.content}/>
+
+                    {!this.props.state.user || footer}
+                </View>
+            </View>
+        )
+    }
+
+
+    _renderComments() {
+        if (this.state.didFocus && this.state.isLoaded) {
+            return (
+                <ListView
+                    ref={view=>this._listView=view}
+                    style={{backgroundColor:'rgba(255,255,255,1)'}}
+                    showsVerticalScrollIndicator={true}
+                    initialListSize={10}
+                    pagingEnabled={false}
+                    removeClippedSubviews={true}
+                    dataSource={this.state.ds}
+                    renderRow={this.renderRow.bind(this)}
+                    />
+            )
+        }
+
+        return (
+            <ActivityIndicatorIOS
+                size="large"
+                animating={true}
+                style={{marginTop:20,width:width}}/>
+        )
+    }
+
+
+    _renderReplySubmiteIcon() {
+        if (this.state.replyUploading) {
+            return (
+                <View>
+                    <ActivityIndicatorIOS
+                        style={styles.submitIcon}
+                        ></ActivityIndicatorIOS>
+                </View>
+            )
+        }
+        return (
+            <Icon
+                name={'ion|reply'}
+                size={28}
+                color='rgba(0,0,0,0.35)'
+                style={styles.submitIcon}
+                />
+        )
+    }
+
+
+    _renderReplyForm() {
+        var user = this.props.state.user
+
+        if (!user) return null
+
+        var userImg = config.domain + user.avatar_url
+
+        return (
+            <View style={styles.replyFormWrapper}>
+                <View style={styles.replyUserImgWrapper}>
+                    <TouchableOpacity onPress={()=>this.props.router.toUser({isLoginUser:true})}>
+                        <Image
+                            style={styles.userImg}
+                            source={{uri: userImg}}/>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.replyInputWrapper}>
+                    <TextInput
+                        ref={view=>this.textInput=view}
+                        value={this.state.textInput}
+                        multiline={true}
+                        placeholder='嘿，说点啥吧'
+                        style={styles.replyInput}
+                        onChangeText={(text) => {
+                            this.textInput.setNativeProps({
+                                text:text
+                            })
+                            this.textInputValue = text
+                        }}
+                        />
+                </View>
+
+                <View style={styles.submit}>
+                    <TouchableOpacity
+                        onPress={() => this._doReply()}>
+                        {this._renderReplySubmiteIcon()}
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
+
+    render() {
+        var count = this.state.ds.getRowCount()
+        var returnToTopic = (
+            <TouchableHighlight
+                onPress={this._onReturnToTopic.bind(this)}
+                underlayColor='rgba(0,0,0,0.1)'
+                style={styles.navToTopic}>
+                <Text style={styles.navReturnText}>
+                    正文
+                </Text>
+            </TouchableHighlight>
+        )
+
+        return (
+            <View style={styles.container}>
+                <View
+                    ref={view=>this.nav=view}
+                    style={styles.nav}>
+                    <TouchableHighlight
+                        onPress={this._onReturnPress.bind(this)}
+                        underlayColor='rgba(0,0,0,0.1)'
+                        style={styles.navReturn}>
+                        <Text style={styles.navReturnText}>
+                            返回
+                        </Text>
+                    </TouchableHighlight>
+
+                    <TouchableOpacity
+                        onPress={this._onCommentTitlePress.bind(this)}
+                        style={styles.navTitle}>
+                        <Text style={styles.titleText}>
+                            评论
+                            <Text style={styles.countText}>
+                                {' ' + count.toString()}
+                            </Text>
+                        </Text>
+                    </TouchableOpacity>
+
+                    {
+                        (this.state.didFocus && this.props.reply && this.state.isLoaded) ? returnToTopic : null
+                    }
+
+                </View>
+
+                <View
+                    ref={view=>this.commentsView=view}
+                    style={[styles.comments,{height:this.props.state.user?commentsHeight:commentsHeight+replyFormHeight}]}>
+                    {this._renderComments()}
+                </View>
+
+                {this._renderReplyForm()}
+            </View>
+        )
+    }
+}
+
 
 var navHeight = 55
 var authorImgSize = 35
@@ -45,6 +500,13 @@ var replyFormHeight = 55
 var commentsHeight = height - 40 - 20 - replyFormHeight
 var submitButtonWidth = 55
 
+var commentHtmlStyle = StyleSheet.create({
+    img: {
+        width: width - commentContentOffset - 15,
+        height: width - commentContentOffset - 15,
+        resizeMode: Image.resizeMode.contain
+    }
+})
 
 var styles = StyleSheet.create({
     container: {
@@ -173,7 +635,10 @@ var styles = StyleSheet.create({
         marginTop: 15
     },
     up: {
-        width: 80
+        width: 80,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
     },
     replyIcon: {
         height: 12,
@@ -221,472 +686,5 @@ var styles = StyleSheet.create({
         height: authorImgSize
     }
 })
-
-
-var commentHtmlStyle = StyleSheet.create({
-    img: {
-        width: width - commentContentOffset - 15,
-        height: width - commentContentOffset - 15,
-        resizeMode: Image.resizeMode.contain
-    }
-})
-
-
-class Comments extends Component {
-    constructor(props) {
-        super(props)
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        var data = [];
-        this.state = {
-            ds: ds.cloneWithRows(data),
-            commentLoading: false,
-            textInput: null,
-            replyUploading: false,
-            isLoaded: false,
-            didFocus: false
-        }
-        this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this)
-        this.resetKeyboardSpace = this.resetKeyboardSpace.bind(this)
-    }
-
-    updateKeyboardSpace(frames) {
-        LayoutAnimation.configureNext(animations.keyboard.layout.spring);
-        this.commentsView.setNativeProps({
-            height: commentsHeight - frames.end.height
-        })
-    }
-
-    resetKeyboardSpace() {
-        LayoutAnimation.configureNext(animations.keyboard.layout.spring);
-        this.commentsView.setNativeProps({
-            height: commentsHeight
-        })
-    }
-
-
-    componentDidMount() {
-        this.flag = 0
-        this._fetchComment()
-        KeyboardEventEmitter.on(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
-        KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
-    }
-
-
-    componentDidFocus() {
-        this.setState({
-            didFocus: true
-        })
-    }
-
-
-    componentWillUnmount() {
-        KeyboardEventEmitter.off(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
-        KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
-    }
-
-
-    componentDidUpdate() {
-        //this._scrollToReply()
-    }
-
-
-    _scrollToReply() {
-        let reply = this.props.reply
-        if (reply && this.flag == 1) {
-            let row = this[reply.id]
-            if (row && row.measure) {
-                row.measure((x, y, width, height, pageX, pageY) => {
-                    this._listView.setNativeProps({
-                        contentOffset: {
-                            x: 0,
-                            y: y
-                        }
-                    })
-                })
-
-                row.setNativeProps(precomputeStyle({
-                    styles: {
-                        backgroundColor: 'red'
-                    }
-                }))
-            }
-        }
-    }
-
-
-    _fetchComment() {
-        if (this.state.commentLoading) {
-            return
-        }
-
-        this.setState({
-            commentLoading: true
-        })
-        TopicService.req.getTopicById(this.props.topic.id)
-            .then(topic=> {
-                this.topic = topic
-                return topic.replies
-            })
-            .then(replies=> {
-                return replies.reverse()
-            })
-            .then(comments=> {
-                this.comments = comments
-                this.setState({
-                    ds: this.state.ds.cloneWithRows(this.comments),
-                    commentLoading: false,
-                    isLoaded: true
-                })
-            })
-            .catch((err)=> {
-                console.warn(err)
-                this.setState({
-                    commentLoading: false
-                })
-            })
-            .done()
-    }
-
-
-    _doReply() {
-        if (this.state.replyUploading || this.state.textInput == '' || this.state.textInput == null) {
-            return
-        }
-        let user = this.props.state.user
-        let topic = this.props.topic
-        let content = this.state.textInput + config.replySuffix
-
-        this.setState({
-            replyUploading: true
-        })
-
-
-        TopicService.req.reply(topic.id, content, user.token, this.replyId)
-            .then(replyId=> {
-                var newReply = {
-                    id: replyId,
-                    author: {
-                        loginname: user.loginname,
-                        avatar_url: user.avatar_url
-                    },
-                    content: markdown.toHTML(content),
-                    ups: [],
-                    create_at: new Date()
-                }
-                this.comments = [newReply].concat(this.comments)
-                this.replyId = null
-                this.setState({
-                    ds: this.state.ds.cloneWithRows(this.comments),
-                    textInput: '',
-                    replyUploading: false
-                })
-                this.textInput.blur()
-            })
-            .catch(err=> {
-                console.warn(err)
-                this.setState({
-                    replyUploading: false
-                })
-            })
-            .done()
-    }
-
-
-    _onReplyPress(id, authorName) {
-        this.textInput.focus()
-        this.setState({
-            textInput: `@${authorName} `
-        })
-        this.replyId = id
-    }
-
-
-    _onAuthorTextPress(authorName) {
-        let textInput = this.state.textInput || ''
-
-        this.setState({
-            textInput: textInput + ` @${authorName} `
-        })
-    }
-
-
-    _onSubmitPress() {
-        this._doReply()
-    }
-
-
-    _onReturnPress() {
-        this.props.router.pop()
-    }
-
-
-    _onReturnToTopic() {
-        this.props.router.toTopic({
-            topic: this.topic
-        })
-    }
-
-
-    _onAuthorImgPress(authorName) {
-        this.props.router.toUser({
-            userName: authorName
-        })
-    }
-
-
-    _onUpPress() {
-
-    }
-
-
-    _onCommentTitlePress() {
-        this._listView.setNativeProps({
-            contentOffset: {
-                x: 0,
-                y: 0
-            }
-        })
-    }
-
-
-    renderRow(comment, sectionID, rowID, highlightRow) {
-        var authorName = comment.author.loginname
-        var domain = config.domain
-        var date = moment(comment.create_at).startOf('minute').fromNow();
-        var commentNum = this.comments.length - parseInt(rowID)
-        var focusStyle = {}
-        if (this.props.reply) {
-            let replyId = this.props.reply.id
-            //console.log(replyId == comment.id);
-            if (replyId == comment.id) {
-                focusStyle = {
-                    backgroundColor: 'rgba(0,2,125,0.07)'
-                }
-            }
-        }
-
-        var footer = (
-            <View style={styles.commentFooter}>
-                <View style={styles.up}>
-                    <TouchableOpacity
-                        onPress={this._onUpPress.bind(this,comment.id)}>
-                        <Icon
-                            name={'ion|thumbsup'}
-                            size={20}
-                            color='rgba(0,0,0,0.2)'
-                            style={styles.upIcon}
-                            />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.reply}>
-                    <TouchableOpacity
-                        onPress={this._onReplyPress.bind(this, comment.id, authorName)}>
-                        <Icon
-                            name={'ion|reply'}
-                            size={20}
-                            color='rgba(0,0,0,0.35)'
-                            style={styles.replyIcon}
-                            />
-                    </TouchableOpacity>
-                </View>
-            </View>
-        )
-
-
-        return (
-            <View
-                ref={view=>this[comment.id]=view}
-                key={comment.id}
-                style={[styles.commentWrapper,focusStyle]}>
-                <View style={[styles.imageWrapper]}>
-                    <TouchableOpacity onPress={this._onAuthorImgPress.bind(this,authorName)}>
-                        <Image
-                            style={styles.authorImg}
-                            source={{uri:domain + comment.author.avatar_url}}
-                            >
-                        </Image>
-                    </TouchableOpacity>
-
-                    <Text style={styles.commentNumText}>
-                        {commentNum} 楼
-                    </Text>
-                </View>
-
-                <View style={styles.commentContentWrapper}>
-                    <View style={styles.commentHeader}>
-                        <View style={styles.author}>
-                            <TouchableOpacity onPress={this._onAuthorTextPress.bind(this,authorName)}>
-                                <Text style={styles.authorText}>
-                                    {{authorName}}
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        <View style={styles.date}>
-                            <Text style={styles.dateText}>
-                                {date}
-                            </Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.commentContent}>
-                        <CommentHtml
-                            router={this.props.router}
-                            style={commentHtmlStyle}
-                            content={comment.content}/>
-                    </View>
-
-                    {!this.props.state.user || footer}
-                </View>
-            </View>
-        )
-    }
-
-
-    _renderComments() {
-        if (this.state.didFocus && this.state.isLoaded) {
-            return (
-                <ListView
-                    ref={view=>this._listView=view}
-                    style={{backgroundColor:'rgba(255,255,255,1)'}}
-                    showsVerticalScrollIndicator={true}
-                    initialListSize={10}
-                    pagingEnabled={false}
-                    removeClippedSubviews={true}
-                    dataSource={this.state.ds}
-                    renderRow={this.renderRow.bind(this)}
-                    />
-            )
-        }
-
-        return (
-            <ActivityIndicatorIOS
-                size="large"
-                animating={true}
-                style={{marginTop:20,width:width}}/>
-        )
-    }
-
-
-    _renderReplySubmiteIcon() {
-        if (this.state.replyUploading) {
-            return (
-                <View>
-                    <ActivityIndicatorIOS
-                        style={styles.submitIcon}
-                        ></ActivityIndicatorIOS>
-                </View>
-            )
-        }
-        return (
-            <Icon
-                name={'ion|reply'}
-                size={28}
-                color='rgba(0,0,0,0.35)'
-                style={styles.submitIcon}
-                />
-        )
-    }
-
-
-    _renderReplyForm() {
-        var user = this.props.state.user
-
-        if (!user) return null
-
-        var userImg = config.domain + user.avatar_url
-
-        return (
-            <View style={styles.replyFormWrapper}>
-                <View style={styles.replyUserImgWrapper}>
-                    <TouchableOpacity onPress={()=>this.props.router.toUser({isLoginUser:true})}>
-                        <Image
-                            style={styles.userImg}
-                            source={{uri: userImg}}/>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.replyInputWrapper}>
-                    <TextInput
-                        ref={view=>this.textInput=view}
-                        value={this.state.textInput}
-                        multiline={true}
-                        placeholder='嘿，说点啥吧'
-                        style={styles.replyInput}
-                        onChangeText={(text) => {
-                            this.setState({
-                                textInput:text
-                            })
-                        }}
-                        />
-                </View>
-
-                <View style={styles.submit}>
-                    <TouchableOpacity
-                        onPress={this._onSubmitPress.bind(this)}>
-                        {this._renderReplySubmiteIcon()}
-                    </TouchableOpacity>
-                </View>
-            </View>
-        )
-    }
-
-
-    render() {
-        var count = this.state.ds.getRowCount()
-        var returnToTopic = (
-            <TouchableHighlight
-                onPress={this._onReturnToTopic.bind(this)}
-                underlayColor='rgba(0,0,0,0.1)'
-                style={styles.navToTopic}>
-                <Text style={styles.navReturnText}>
-                    正文
-                </Text>
-            </TouchableHighlight>
-        )
-
-        return (
-            <View style={styles.container}>
-                <View
-                    ref={view=>this.nav=view}
-                    style={styles.nav}>
-                    <TouchableHighlight
-                        onPress={this._onReturnPress.bind(this)}
-                        underlayColor='rgba(0,0,0,0.1)'
-                        style={styles.navReturn}>
-                        <Text style={styles.navReturnText}>
-                            返回
-                        </Text>
-                    </TouchableHighlight>
-
-                    <TouchableOpacity
-                        onPress={this._onCommentTitlePress.bind(this)}
-                        style={styles.navTitle}>
-                        <Text style={styles.titleText}>
-                            评论
-                            <Text style={styles.countText}>
-                                {' ' + count.toString()}
-                            </Text>
-                        </Text>
-                    </TouchableOpacity>
-
-                    {
-                        (this.state.didFocus && this.props.reply && this.state.isLoaded) ? returnToTopic : null
-                    }
-
-                </View>
-
-                <View
-                    ref={view=>this.commentsView=view}
-                    style={[styles.comments,{height:this.props.state.user?commentsHeight:commentsHeight+replyFormHeight}]}>
-                    {this._renderComments()}
-                </View>
-
-                {this._renderReplyForm()}
-            </View>
-        )
-    }
-}
 
 module.exports = Comments

@@ -47,7 +47,6 @@ class Comments extends Component {
         this.state = {
             ds: ds.cloneWithRows(data),
             commentLoading: false,
-            textInput: null,
             replyUploading: false,
             isLoaded: false,
             didFocus: false
@@ -72,7 +71,6 @@ class Comments extends Component {
 
 
     componentDidMount() {
-        this.flag = 0
         this._fetchComment()
         KeyboardEventEmitter.on(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
         KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
@@ -93,13 +91,13 @@ class Comments extends Component {
 
 
     componentDidUpdate() {
-        //this._scrollToReply()
+        setTimeout(() => this._scrollToReply())
     }
 
 
     _scrollToReply() {
         let reply = this.props.reply
-        if (reply && this.flag == 1) {
+        if (reply) {
             let row = this[reply.id]
             if (row && row.measure) {
                 row.measure((x, y, width, height, pageX, pageY) => {

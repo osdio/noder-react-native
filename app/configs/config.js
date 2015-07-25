@@ -12,5 +12,6 @@ module.exports = {
         blog: 'http://lingyong.me/about',
         cnodeName: 'soliury'
     },
-    cnodeAbout: 'https://cnodejs.org/about'
+    cnodeAbout: 'https://cnodejs.org/about',
+    RNWebPage: 'http://facebook.github.io/react-native/'
 }

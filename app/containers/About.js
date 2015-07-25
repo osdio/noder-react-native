@@ -89,6 +89,11 @@ class Home extends Component {
                                     ></Image>
                             </TouchableOpacity>
                         </View>
+
+                        <TouchableOpacity onPress={() => window.link(config.RNWebPage)}>
+                            <Text style={styles.reactNative}>Power By
+                                React-Native {'v' + config.package.dependencies['react-native']}</Text>
+                        </TouchableOpacity>
                     </View>
                 </BlurView>
             </Image>
@@ -157,6 +162,11 @@ var styles = StyleSheet.create({
         height: 20,
         width: 100,
         opacity: 0.5
+    },
+    reactNative: {
+        fontSize: 16,
+        color: 'rgba(255,255,255,0.3)',
+        marginBottom: 10
     }
 })
 

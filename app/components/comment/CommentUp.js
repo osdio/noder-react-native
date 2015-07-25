@@ -25,6 +25,9 @@ class CommentUp extends Component {
 
 
     _onUpPress() {
+        if (this.props.user.loginname == this.props.authorName) {
+            return window.alert('不能给自己点赞哦!')
+        }
         if (this.state.isLoading) return
 
         this.setState({

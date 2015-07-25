@@ -90,13 +90,11 @@ class HtmlContent extends Component {
                     uri = 'https:' + uri
                 }
                 return (
-                    <View
+                    <Image
                         key={index}
-                        style={styles.imgWrapper}>
-                        <Image source={{uri:uri}}
-                               style={styles.img}>
-                        </Image>
-                    </View>
+                        source={{uri:uri}}
+                        style={styles.img}>
+                    </Image>
                 )
             }
         }

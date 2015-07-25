@@ -241,11 +241,6 @@ class Comments extends Component {
     }
 
 
-    _onUpPress() {
-
-    }
-
-
     _onCommentTitlePress() {
         this._listView.setNativeProps({
             contentOffset: {
@@ -275,6 +270,7 @@ class Comments extends Component {
             <View style={styles.commentFooter}>
                 <CommentUp
                     replyId={comment.id}
+                    authorName={authorName}
                     ups={comment.ups}
                     user={this.props.state.user}
                     style={styles.up}

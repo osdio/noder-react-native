@@ -57,11 +57,12 @@ class Home extends Component {
                         <Text style={styles.subTitle}>For CNodejs.org</Text>
                     </TouchableOpacity>
 
-
-                    <TouchableOpacity onPress={() => this.props.router.toUser({
-                        userName:config.author.cnodeName
-                    })}>
-                        <Text style={styles.subTitle}>@soliury</Text>
+                    <TouchableOpacity onPress={this._onSourceInGithubPress.bind(this)}>
+                        <Icon
+                            name='ion|social-github'
+                            size={40}
+                            color='rgba(255,204,0,1)'
+                            style={[styles.rowIcon,{marginTop:20}]}/>
                     </TouchableOpacity>
 
 
@@ -73,17 +74,14 @@ class Home extends Component {
 
 
                     <View style={styles.footer}>
-                        <View style={styles.row}>
-                            <TouchableOpacity onPress={this._onSourceInGithubPress.bind(this)}>
-                                <Icon
-                                    name='ion|social-github'
-                                    size={40}
-                                    color='rgba(255,204,0,1)'
-                                    style={styles.rowIcon}/>
-                            </TouchableOpacity>
-                        </View>
 
-                        <View style={styles.row}>
+                        <TouchableOpacity onPress={() => this.props.router.toUser({
+                        userName:config.author.cnodeName
+                    })}>
+                            <Text style={styles.subTitle}>@soliury</Text>
+                        </TouchableOpacity>
+
+                        <View style={[styles.row]}>
                             <TouchableOpacity onPress={()=> window.link(config.author.blog)}>
                                 <Image
                                     style={styles.blog}

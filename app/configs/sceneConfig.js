@@ -14,8 +14,20 @@ var popGestureConfig = Object.assign({}, baseConfig.gestures.pop, {
 });
 
 
+var fullPopGestureConfig = Object.assign({}, Navigator.SceneConfigs.FloatFromBottom.gestures.pop, {
+    edgeHitWidth: width
+})
+
+
 exports.customFloatFromRight = Object.assign({}, baseConfig, {
     gestures: {
         pop: popGestureConfig
     }
-});
+})
+
+
+exports.customFloatFromBottom = Object.assign({}, Navigator.SceneConfigs.FloatFromBottom, {
+    gestures: {
+        pop: fullPopGestureConfig
+    }
+})

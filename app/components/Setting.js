@@ -26,7 +26,7 @@ class Setting extends Component {
 
 
     onAboutPress() {
-
+        this.props.router.toAbout()
     }
 
 

@@ -6,6 +6,7 @@ var Topic = require('../containers/Topic')
 var Comments = require('../containers/Comments')
 var Message = require('../containers/Message')
 var QRCode = require('../containers/QRCode')
+var About = require('../containers/About')
 
 // Config
 var sceneConfig = require('./sceneConfig')
@@ -77,7 +78,17 @@ class Router {
         })
     }
 
-    replaceWithHome(){
+
+    toAbout() {
+        this.push({}, {
+            component: About,
+            name: 'about',
+            sceneConfig: sceneConfig.customFloatFromBottom
+        })
+    }
+
+
+    replaceWithHome() {
         this.navigator.popToTop()
     }
 }

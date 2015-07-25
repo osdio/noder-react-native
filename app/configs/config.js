@@ -9,7 +9,7 @@ module.exports = {
     sourceNameInGithub: 'noder-react-native',
     package: packageObj,
     author: {
-        blog: 'http://lingyong.me',
+        blog: 'http://lingyong.me/about',
         cnodeName: 'soliury'
     },
     cnodeAbout: 'https://cnodejs.org/about'

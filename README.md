@@ -1,7 +1,7 @@
 # Noder - A React-Native Client for [cnodejs.org](http://cnodejs.org)
 
  
-> A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/). 
+> A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/) and [Redux](https://github.com/gaearon/redux). 
 
 
 ## Develop

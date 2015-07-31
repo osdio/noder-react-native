@@ -89,6 +89,7 @@ class HtmlContent extends Component {
                 if (/^\/\/dn-cnode\.qbox\.me\/.*/.test(uri)) {
                     uri = 'https:' + uri
                 }
+                if (/.*\.gif$/.test(uri)) return null
                 return (
                     <Image
                         key={index}

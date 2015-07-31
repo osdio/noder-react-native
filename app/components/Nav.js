@@ -84,7 +84,8 @@ var styles = StyleSheet.create({
     },
     navCenter: {
         textAlign: 'center',
-        flex: 2
+        flex: 2,
+        color: '#3498DB'
     }
 })
 

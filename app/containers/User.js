@@ -175,7 +175,11 @@ class User extends Component {
         let authorName = userInfo.loginname
         let githubName = userInfo.githubUsername
         let pubTopicIcon = (
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={()=>{
+                    this.props.router.toPublish()
+                }}
+                >
                 <Icon
                     name='ion|ios-compose'
                     size={34}

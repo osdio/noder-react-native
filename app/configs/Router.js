@@ -7,6 +7,7 @@ var Comments = require('../containers/Comments')
 var Message = require('../containers/Message')
 var QRCode = require('../containers/QRCode')
 var About = require('../containers/About')
+var Publish = require('../containers/Publish')
 
 // Config
 var sceneConfig = require('./sceneConfig')
@@ -84,6 +85,15 @@ class Router {
             component: About,
             name: 'about',
             sceneConfig: sceneConfig.customFloatFromBottom
+        })
+    }
+
+
+    toPublish() {
+        this.push({}, {
+            component: Publish,
+            name: 'publish',
+            sceneConfig: customFloatFromRight
         })
     }
 

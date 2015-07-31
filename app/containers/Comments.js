@@ -13,6 +13,7 @@ var markdown = require("markdown").markdown
 var Return = require('../components/overlay/Return')
 var CommentHtml = require('../components/htmlRender/CommentHtml')
 var CommentUp = require('../components/comment/CommentUp')
+var Nav = require('../components/Nav')
 
 var TopicService = require('../services/TopicService')
 var genColor = require('../util/genColor')
@@ -222,31 +223,9 @@ class Comments extends Component {
     }
 
 
-    _onReturnPress() {
-        this.props.router.pop()
-    }
-
-
-    _onReturnToTopic() {
-        this.props.router.toTopic({
-            topic: this.topic
-        })
-    }
-
-
     _onAuthorImgPress(authorName) {
         this.props.router.toUser({
             userName: authorName
-        })
-    }
-
-
-    _onCommentTitlePress() {
-        this._listView.setNativeProps({
-            contentOffset: {
-                x: 0,
-                y: 0
-            }
         })
     }
 
@@ -431,47 +410,48 @@ class Comments extends Component {
 
     render() {
         var count = this.state.ds.getRowCount()
-        var returnToTopic = (
-            <TouchableHighlight
-                onPress={this._onReturnToTopic.bind(this)}
-                underlayColor='rgba(0,0,0,0.1)'
-                style={styles.navToTopic}>
-                <Text style={styles.navReturnText}>
-                    正文
-                </Text>
-            </TouchableHighlight>
-        )
+
+        var router = this.props.router
+
+        var navs = {
+            Left: {
+                text: '返回',
+                onPress: ()=> {
+                    router.pop()
+                }
+            },
+            Center: {
+                text: '评论 ' + count,
+                onPress: ()=> {
+                    this._listView.setNativeProps({
+                        contentOffset: {
+                            x: 0,
+                            y: 0
+                        }
+                    })
+                }
+            }
+        }
+
+        if (this.state.didFocus && this.props.reply && this.state.isLoaded) {
+            navs = {
+                ...navs,
+                Right: {
+                    text: '正文',
+                    onPress: ()=> {
+                        router.toTopic({
+                            topic: this.topic
+                        })
+                    }
+                }
+            }
+        }
 
         return (
             <View style={styles.container}>
-                <View
-                    ref={view=>this.nav=view}
-                    style={styles.nav}>
-                    <TouchableHighlight
-                        onPress={this._onReturnPress.bind(this)}
-                        underlayColor='rgba(0,0,0,0.1)'
-                        style={styles.navReturn}>
-                        <Text style={styles.navReturnText}>
-                            返回
-                        </Text>
-                    </TouchableHighlight>
-
-                    <TouchableOpacity
-                        onPress={this._onCommentTitlePress.bind(this)}
-                        style={styles.navTitle}>
-                        <Text style={styles.titleText}>
-                            评论
-                            <Text style={styles.countText}>
-                                {' ' + count.toString()}
-                            </Text>
-                        </Text>
-                    </TouchableOpacity>
-
-                    {
-                        (this.state.didFocus && this.props.reply && this.state.isLoaded) ? returnToTopic : null
-                    }
-
-                </View>
+                <Nav
+                    navs={navs}
+                    ></Nav>
 
                 <View
                     ref={view=>this.commentsView=view}
@@ -507,45 +487,10 @@ var styles = StyleSheet.create({
         backgroundColor: 'white',
         height: height
     },
-    nav: {
-        height: navHeight,
-        width: width,
-        borderBottomColor: 'rgba(0,0,0,0.03)',
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-    navReturn: {
-        height: navHeight,
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
-
-    navToTopic: {
-        height: navHeight,
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        paddingLeft: 15,
-        paddingRight: 15
-    },
-    navReturnText: {
-        lineHeight: navHeight - 20,
-        fontSize: 16
-    },
 
     titleText: {
         color: 'rgba(0,0,0,0.7)',
         fontSize: 16
-    },
-
-    countText: {
-        color: 'rgba(0,0,0,0.45)'
     },
 
     comments: {

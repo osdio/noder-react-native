@@ -11,6 +11,7 @@ If you want to run it on you local simulator, you should:
 ```
 git clone https://github.com/soliury/noder-react-native.git
 npm install
+react-native bundle
 ```
 Then click run in Xcode, if failed, you should rebuild all package that this project used in Xcode(Just choose the package and **command+B** to run compile)
 

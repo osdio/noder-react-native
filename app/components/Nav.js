@@ -36,8 +36,8 @@ class Nav extends Component {
                 )
             }
             return (
-                <View style={[styles.navItem,styles['nav'+position]]}>
-                </View>
+                <Text style={[styles.navItem,styles['nav'+position]]}>
+                </Text>
             )
         })
     }

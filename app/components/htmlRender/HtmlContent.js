@@ -83,6 +83,9 @@ class HtmlContent extends Component {
 
     _renderNode(node, index, parent, type) {
         var name = node.name
+
+        var imgStyle = (this.props.style && this.props.style.img) || styles.img
+
         if (node.type == 'block' && type == 'block') {
             if (name == 'img') {
                 var uri = node.attribs.src;
@@ -94,7 +97,7 @@ class HtmlContent extends Component {
                     <Image
                         key={index}
                         source={{uri:uri}}
-                        style={styles.img}>
+                        style={imgStyle}>
                     </Image>
                 )
             }
@@ -108,7 +111,7 @@ class HtmlContent extends Component {
                 value={this.props.content}
                 stylesheet={this.props.style}
                 onLinkPress={this._onLinkPress.bind(this)}
-                renderNode={this._renderNode}
+                renderNode={this._renderNode.bind(this)}
                 />
         )
     }

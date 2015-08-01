@@ -174,6 +174,11 @@ var styles = StyleSheet.create({
         paddingLeft: 20,
         borderLeftColor: '#3498DB',
         borderLeftWidth: 3
+    },
+    img:{
+        width: width - 80,
+        height: width - 80,
+        resizeMode: Image.resizeMode.contain
     }
 })
 

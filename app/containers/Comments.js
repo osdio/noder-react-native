@@ -423,12 +423,14 @@ class Comments extends Component {
             Center: {
                 text: '评论 ' + count,
                 onPress: ()=> {
-                    this._listView.setNativeProps({
-                        contentOffset: {
-                            x: 0,
-                            y: 0
-                        }
-                    })
+                    if (count > 0) {
+                        this._listView.setNativeProps({
+                            contentOffset: {
+                                x: 0,
+                                y: 0
+                            }
+                        })
+                    }
                 }
             }
         }

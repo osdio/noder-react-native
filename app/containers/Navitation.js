@@ -32,13 +32,14 @@ class Navitation extends Component {
 
 
     renderScene(route, navigator) {
+        this.router = this.router || new Router(navigator)
         if (route.component) {
             return React.createElement(route.component, Object.assign({}, route.props,
                 {
                     ref: view=>this[route.name] = view,
                     actions: this.props.actions,
                     state: this.props.state,
-                    router: new Router(navigator)
+                    router: this.router
                 }
             ))
         }

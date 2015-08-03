@@ -56,7 +56,9 @@ class Nav extends Component {
     }
 }
 
+
 var navHeight = 55
+
 
 var styles = StyleSheet.create({
     nav: {
@@ -89,5 +91,5 @@ var styles = StyleSheet.create({
     }
 })
 
-
+Nav.navHeight = navHeight
 module.exports = Nav

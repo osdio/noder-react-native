@@ -18,7 +18,7 @@ exports.getLoginUserFromStorage = function () {
         var userTemp = {}
         UserService.storage.getUser()
             .then((user)=> {
-                console.log('haveLoadedUser');
+                // console.log('haveLoadedUser');
                 if (user) {
                     dispatch(getUser(user))
                     userTemp = user
@@ -30,7 +30,7 @@ exports.getLoginUserFromStorage = function () {
 
             })
             .then(userFetched=> {
-                console.log('fetchUser');
+                // console.log('fetchUser');
                 if (userFetched) {
                     var userUpdated = Object.assign(userTemp, userFetched)
                     UserService.storage.saveUser(userUpdated)

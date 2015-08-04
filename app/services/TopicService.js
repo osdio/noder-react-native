@@ -71,14 +71,12 @@ req.markTopicAsLike = function (id, token, isLiked) {
         apiUrl += '/topic/de_collect'
     }
 
-    console.log(apiUrl);
 
     return request.post(apiUrl, {
         accesstoken: token,
         topic_id: id
     })
         .then(data => {
-            console.log(data);
             if (!data.success) {
                 throw 'error'
             }

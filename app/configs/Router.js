@@ -101,6 +101,18 @@ class Router {
     replaceWithHome() {
         this.navigator.popToTop()
     }
+
+    replaceWithTopic(props) {
+        let routesList = this.navigator.getCurrentRoutes()
+        let index = routesList[routesList.length - 1].index
+        var route = {
+            props: props,
+            index: index,
+            component: Topic,
+            sceneConfig: customFloatFromRight
+        }
+        this.navigator.replace(route)
+    }
 }
 
 module.exports = Router

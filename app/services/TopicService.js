@@ -130,5 +130,23 @@ req.upComment = function (replyId, token) {
 }
 
 
+req.publish = function (title, tab, content, token) {
+    let url = `${config.domain + config.apiPath}/topics`
+    const body = {
+        title: title,
+        tab: tab,
+        content: content,
+        accesstoken: token
+    }
+    return request.post(url, body)
+        .then(data=> {
+            if (data.success) {
+                return data.topic_id
+            }
+            throw 'publish failed'
+        })
+}
+
+
 exports.storage = storage
 exports.req = req

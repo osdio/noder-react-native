@@ -298,7 +298,12 @@ class Topic extends Component {
         }
 
         return (
-            <View style={styles.container}></View>
+            <View style={styles.container}>
+                <ActivityIndicatorIOS
+                    size="large"
+                    animating={true}
+                    style={{marginTop:20,width:width,flex:1}}/>
+            </View>
         )
 
     }

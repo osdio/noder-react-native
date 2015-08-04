@@ -1,9 +1,14 @@
 var React = require('react-native')
 var { Icon } = require('react-native-icons')
 var Modal = require('react-native-modal')
-
+var precomputeStyle = require('precomputeStyle')
+var KeyboardEvents = require('react-native-keyboardevents')
+var KeyboardEventEmitter = KeyboardEvents.Emitter
 
 var Nav = require('../components/Nav')
+var Loading = require('../components/overlay/Loading')
+
+var TopicService = require('../services/TopicService')
 
 var window = require('../util/window')
 var { width, height } = window.get()
@@ -17,7 +22,8 @@ var {
     StyleSheet,
     PickerIOS,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    ScrollView
     } = React
 
 
@@ -35,21 +41,88 @@ class Publish extends Component {
         this.state = {
             selectTab: 'share',
             isPickerShow: false,
-            dirty: false
+            dirty: false,
+            isPublishing: false
         }
+        this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this)
+        this.resetKeyboardSpace = this.resetKeyboardSpace.bind(this)
     }
 
 
-    _renderPickerContent() {
-        return Object.keys(this.tabs).map(tab=> {
-            return (
-                <PickerItemIOS
-                    key={tab}
-                    value={tab}
-                    label={this.tabs[tab]}
-                    ></PickerItemIOS>
-            )
+    updateKeyboardSpace(frames) {
+        this.contentInput.setNativeProps({
+            height: contentHeight - frames.end.height
         })
+    }
+
+    resetKeyboardSpace() {
+        this.contentInput.setNativeProps({
+            height: contentHeight
+        })
+    }
+
+
+    componentDidMount() {
+        KeyboardEventEmitter.on(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
+        KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
+    }
+
+    componentWillUnmount() {
+        KeyboardEventEmitter.off(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace)
+        KeyboardEventEmitter.off(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace)
+    }
+
+
+    _blur() {
+        this.titleInput.blur()
+        this.contentInput.blur()
+    }
+
+
+    _validateForm() {
+        if (!this.state.dirty) {
+            return window.alert('请选择要发布的板块!')
+        }
+
+
+        if (!this.titleInputValue || this.titleInput == '') {
+            return window.alert('标题不能为空!')
+        }
+
+        if (!this.contentInputValue || this.contentInput == '') {
+            return window.alert('你还没写东西呢!')
+        }
+
+        if (this.titleInputValue.length <= 10) {
+            return window.alert('标题字数必须在10字以上!')
+        }
+
+        return true
+    }
+
+
+    _submit() {
+        if (this.state.isPublishing || !this._validateForm()) return
+
+        this.setState({
+            isPublishing: true
+        })
+        TopicService.req.publish(this.titleInputValue, this.state.selectTab, this.contentInputValue, this.props.state.user.token)
+            .then(topicId=> {
+                this.props.router.replaceWithTopic({
+                    topicId: topicId,
+                    from: 'html'
+                })
+            })
+            .catch(err=> {
+                console.log(err)
+                window.alert('发布帖子失败!')
+            })
+            .done(()=> {
+                this.setState({
+                    isPublishing: false
+                })
+            })
     }
 
 
@@ -58,8 +131,7 @@ class Publish extends Component {
             isPickerShow: true,
             dirty: true
         })
-        this.titleInput.blur()
-        this.contentInput.blur()
+        this._blur()
     }
 
 
@@ -77,6 +149,19 @@ class Publish extends Component {
     }
 
 
+    _renderPickerContent() {
+        return Object.keys(this.tabs).map(tab=> {
+            return (
+                <PickerItemIOS
+                    key={tab}
+                    value={tab}
+                    label={this.tabs[tab]}
+                    ></PickerItemIOS>
+            )
+        })
+    }
+
+
     render() {
         var router = this.props.router
 
@@ -85,6 +170,7 @@ class Publish extends Component {
                 text: '返回',
                 onPress: ()=> {
                     router.pop()
+                    this._blur()
                 }
             },
             Center: {
@@ -92,9 +178,7 @@ class Publish extends Component {
             },
             Right: {
                 text: '发布',
-                onPress: ()=> {
-
-                }
+                onPress: ()=> this._submit()
             }
         }
 
@@ -105,7 +189,9 @@ class Publish extends Component {
                     navs={navs}
                     ></Nav>
 
-                <View style={styles.content}>
+                <ScrollView
+                    ref={view=>this.contentView=view}
+                    style={styles.content}>
                     <TouchableOpacity
                         onPress={this._onPickerPress.bind(this)}
                         >
@@ -142,8 +228,9 @@ class Publish extends Component {
                             ref={view=>this.titleInput=view}
                             placeholder='请输入标题'
                             style={styles.titleInput}
-                            //onChangeText={(text) => this.setState({text})}
-                            //value={this.state.text}
+                            onChangeText={(text) => {
+                                this.titleInputValue = text
+                            }}
                             />
                     </View>
 
@@ -153,11 +240,12 @@ class Publish extends Component {
                         value={'\n'+config.replySuffix}
                         style={styles.topicContent}
                         multiline={true}
-                        //onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
+                        onChangeText={(text) => {
+                            this.contentInputValue = text
+                        }}
                         />
 
-                </View>
+                </ScrollView>
 
 
                 <Modal
@@ -180,6 +268,10 @@ class Publish extends Component {
 
                 </Modal>
 
+                <Loading
+                    isVisible={this.state.isPublishing}
+                    ></Loading>
+
             </View>
         )
     }
@@ -187,7 +279,7 @@ class Publish extends Component {
 
 
 var textColor = 'rgba(0,0,0,0.7)'
-
+var contentHeight = height - 51 * 2 - Nav.navHeight
 
 var styles = StyleSheet.create({
     container: {
@@ -229,7 +321,7 @@ var styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         paddingTop: 20,
-        height: height - 51 * 2 - Nav.navHeight
+        height: contentHeight
     }
 })
 

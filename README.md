@@ -34,7 +34,7 @@ This will auto replace the ip, and then run the react-native packager.
 
 ## ScreenShots
 
-![noder](http://7lrzfj.com1.z0.glb.clouddn.com/soliurynoder.gif)
+![noder](http://7lrzfj.com1.z0.glb.clouddn.com/soliurynoder-v1.0.0.gif)
 
 
 
@@ -52,12 +52,7 @@ Thanks All above.
 
 ## ToDo List
 
-* Add up reply
-* Add setting panel
-* Add login out functional
 * Add Push Notification
-* Add about panel
-* Move the HTML render to a single Module
 * Refactor code
 * Solve the big bug 
   * ***In ListView, sometime scroll on the bottom it can't refresh***

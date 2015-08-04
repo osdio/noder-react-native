@@ -193,7 +193,7 @@ class Topic extends Component {
 
     _onCommentOverlayPress() {
         this.props.router.toComments({
-            topic: this.props.topic,
+            topic: this.state.topic,
             from: 'topic'
         })
     }

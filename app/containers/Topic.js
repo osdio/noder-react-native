@@ -9,7 +9,6 @@ var { Icon } = require('react-native-icons')
 var HtmlContent = require('../components/htmlRender/HtmlContent')
 var Return = require('../components/overlay/Return')
 var CommentOverlay = require('../components/overlay/CommentOverlay')
-var LikeIcon = require('../components/LikeIcon')
 
 
 // Config module
@@ -233,14 +232,6 @@ class Topic extends Component {
             var imgUri = window.parseImgUrl(topic.author.avatar_url)
             var authorName = topic.author.loginname
             var date = moment(topic.create_at).startOf('minute').fromNow()
-            var likeIcon = (
-                <LikeIcon
-                    topic={topic}
-                    style={styles.likeIcon}
-                    user={this.props.state.user}
-                    actions={this.props.actions}
-                    ></LikeIcon>
-            )
             return (
                 <View style={[styles.container]}>
                     <ScrollView>
@@ -276,9 +267,6 @@ class Topic extends Component {
                                         </Text>
                                     </View>
 
-                                    <View style={styles.like}>
-                                        {this.props.state.user ? likeIcon : null}
-                                    </View>
                                 </View>
                             </View>
                         </View>

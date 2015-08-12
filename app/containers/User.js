@@ -108,7 +108,6 @@ class User extends Component {
     _renderUserTopics(userInfo) {
         let recentReplies = userInfo.recent_replies
         let recentTopics = userInfo.recent_topics
-        let collectTopics = userInfo.collect_topics
         if (this.state.didFocus) {
             return (
                 <View style={styles.list}>
@@ -125,11 +124,6 @@ class User extends Component {
                             style={styles.userTopicPage}
                             data={recentTopics}
                             tabLabel="最近发布"/>
-                        <UserTopicPage
-                            router={this.props.router}
-                            style={styles.userTopicPage}
-                            data={collectTopics}
-                            tabLabel="收藏"/>
                     </ScrollableTabView>
                 </View>
             )

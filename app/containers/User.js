@@ -14,7 +14,6 @@ var Setting = require('../components/Setting')
 
 var genColor = require('../util/genColor')
 var UserService = require('../services/UserService')
-var config = require('../configs/config')
 var window = require('../util/window')
 var { width, height } = window.get()
 
@@ -170,7 +169,7 @@ class User extends Component {
 
             )
         }
-        let imgUri = config.domain + userInfo.avatar_url
+        let imgUri = window.parseImgUrl(userInfo.avatar_url)
         let createTime = moment(userInfo.create_at).format('l')
         let authorName = userInfo.loginname
         let githubName = userInfo.githubUsername

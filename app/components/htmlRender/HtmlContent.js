@@ -88,10 +88,7 @@ class HtmlContent extends Component {
 
         if (node.type == 'block' && type == 'block') {
             if (name == 'img') {
-                var uri = node.attribs.src;
-                if (/^\/\/dn-cnode\.qbox\.me\/.*/.test(uri)) {
-                    uri = 'https:' + uri
-                }
+                var uri = window.parseImgUrl(node.attribs.src)
                 if (/.*\.gif$/.test(uri)) return null
                 return (
                     <Image

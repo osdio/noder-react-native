@@ -2,9 +2,6 @@ var React = require('react-native')
 var moment = require('moment')
 
 
-var config = require('../configs/config')
-
-
 var window = require('../util/window')
 var { width, height } = window.get()
 
@@ -199,7 +196,7 @@ class MessagePage extends Component {
                     <View style={styles.imgWrapper}>
                         <Image
                             style={styles.img}
-                            source={{uri:config.domain + message.author.avatar_url}}
+                            source={{uri:window.parseImgUrl(message.author.avatar_url)}}
                             >
                         </Image>
                     </View>

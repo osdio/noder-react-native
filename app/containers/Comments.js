@@ -279,7 +279,7 @@ class Comments extends Component {
                     <TouchableOpacity onPress={this._onAuthorImgPress.bind(this,authorName)}>
                         <Image
                             style={styles.authorImg}
-                            source={{uri:domain + comment.author.avatar_url}}
+                            source={{uri:window.parseImgUrl(comment.author.avatar_url)}}
                             >
                         </Image>
                     </TouchableOpacity>
@@ -369,7 +369,7 @@ class Comments extends Component {
 
         if (!user) return null
 
-        var userImg = config.domain + user.avatar_url
+        var userImg = window.parseImgUrl(user.avatar_url)
 
         return (
             <View style={styles.replyFormWrapper}>

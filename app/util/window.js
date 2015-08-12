@@ -28,3 +28,11 @@ exports.link = function (url) {
         }
     })
 }
+
+
+exports.parseImgUrl= function (url) {
+    if (/^\/\/.*/.test(url)) {
+        url = 'http:' + url
+    }
+    return url
+}

@@ -3,7 +3,6 @@ var { Icon, } = require('react-native-icons')
 
 var OverlayButton = require('./OverlayButton')
 
-var config = require('../../configs/config')
 
 var window = require('../../util/window')
 var { width, height } = window.get()
@@ -43,7 +42,7 @@ class UserOverlay extends Component {
             return (
                 <Image
                     style={[styles.icon,styles.userImg]}
-                    source={{uri:config.domain+this.props.user.avatar_url}}>
+                    source={{uri:window.parseImgUrl(this.props.user.avatar_url)}}>
                 </Image>
             )
         }

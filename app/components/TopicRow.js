@@ -2,8 +2,6 @@ var React = require('react-native')
 var moment = require('moment')
 
 
-var config = require('../configs/config')
-
 var window = require('../util/window')
 var { width, height } = window.get()
 
@@ -57,7 +55,7 @@ class TopicRow extends Component {
 
     render() {
         let topic = this.props.topic
-        let authorImgUri = config.domain + topic.author.avatar_url
+        let authorImgUri = window.parseImgUrl(topic.author.avatar_url)
         var title = topic.title
         var titleLength = Math.floor((width - 100) / 15) + 2
         if (title.length > titleLength) {

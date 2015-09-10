@@ -51,7 +51,8 @@ class Message extends Component {
             <View style={styles.container}>
                 <ScrollableTabView
                     edgeHitWidth={(width/3)*2}
-                    renderTabBar={()=>TabBar}>
+                    renderTabBar={()=><TabBar></TabBar>}
+                    >
                     <MessagePage
                         router={this.props.router}
                         didFocus={didFocus}

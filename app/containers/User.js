@@ -113,7 +113,7 @@ class User extends Component {
                 <View style={styles.list}>
                     <ScrollableTabView
                         edgeHitWidth={(width/3)*2}
-                        renderTabBar={()=>TabBar}>
+                        renderTabBar={()=><TabBar></TabBar>}>
                         <UserTopicPage
                             router={this.props.router}
                             style={styles.userTopicPage}

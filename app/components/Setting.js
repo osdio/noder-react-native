@@ -46,7 +46,6 @@ class Setting extends Component {
         return (
             <Modal
                 style={modalStyles}
-                //onPressBackdrop={() => this.props.closeModal()}
                 hideCloseButton={true}
                 backdropType='blur'
                 backdropBlur='dark'

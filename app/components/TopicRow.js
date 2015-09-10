@@ -31,7 +31,6 @@ class TopicRow extends Component {
 
 
     show() {
-        console.log('show');
         this.imgView.setNativeProps({
             source: {
                 uri: this.authorImg

@@ -28,6 +28,7 @@ class Nav extends Component {
                 return (
                     <TouchableOpacity
                         onPress={nav.onPress}
+                        style={{flex: position=='Center'?2:1}}
                         >
                         <Text style={[styles.navItem,styles['nav'+position]]}>
                             {nav.text}
@@ -86,8 +87,8 @@ var styles = StyleSheet.create({
     },
     navCenter: {
         textAlign: 'center',
-        flex: 2,
-        color: '#3498DB'
+        color: '#3498DB',
+        flex: 2
     }
 })
 

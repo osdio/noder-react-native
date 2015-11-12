@@ -1,44 +1,43 @@
 # Noder - A React-Native Client for [cnodejs.org](http://cnodejs.org)
-
  
 > A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/) and [Redux](https://github.com/gaearon/redux). 
 
 
 ## Develop
 
-If you want to run it on you local simulator, you should:
+For local development you need to follow the below commands:
 
 ```
 git clone https://github.com/soliury/noder-react-native.git
 npm install
 react-native bundle
 ```
-Then click run in Xcode, if failed, you should rebuild all package that this project used in Xcode(Just choose the package and **command+B** to run compile)
 
-If you want to run on you local iPhone app, you should follow the [doc](http://facebook.github.io/react-native/docs/runningondevice.html#content).
+Click the run button in Xcode, if something went wrong, you need to rebuild all packages that be used in this project with Xcode (Just select the package and press **command+B** to run compile).
 
-If you don't want to update the ip by hand, you can use this:
+If you want to run it on you iPhone, please follow the [Offical Doc](http://facebook.github.io/react-native/docs/runningondevice.html#content).
+
+If you don't want to update the ip manually, please run:
 
 ```
 gulp replace
 ```
 
-Although, there is a good command, just run:
+BTW, here is a prettier command, just run:
 
 ```
 npm start
 ```
 
-This will auto replace the ip, and then run the react-native packager.
+The ip will be replaced automatically.
 
 
-## ScreenShots
+## Screenshots
 
 ![noder](http://7lrzfj.com1.z0.glb.clouddn.com/soliurynoder-v1.0.0.gif)
 
 
-
-## React-Native Modules Used
+## React-Native Modules In Using
 
 * [react-native-button](https://github.com/ide/react-native-button)
 * [react-native-camera](https://github.com/lwansbrough/react-native-camera)
@@ -48,38 +47,29 @@ This will auto replace the ip, and then run the react-native packager.
 * [react-native-overlay](https://github.com/brentvatne/react-native-overlay)
 * [react-native-scrollable-tab-view](https://github.com/brentvatne/react-native-scrollable-tab-view)
 
-Thanks All above.
+This project is heavily influenced by the above modules.
 
 ## ToDo List
 
-* Add Push Notification
-* Refactor code
-* Solve the big bug 
-  * ***In ListView, sometime scroll on the bottom it can't refresh***
+* Push Notification
+* Refactor the code
+* Fix the below bugs
+  * In ListView, sometime items on the bottom can't be refreshed
   * ListView **take too much memory**
-  * HTML to native View render take too much **memory and time**
-* Push to App Store  
-* Add test 
+  * HTML to native View render take too much **memory and CPU time**
+* Submit to App Store  
+* Add Unit testing 
 
 ## Change log
 
-See [CHANGELOG]()
+Please read [CHANGELOG]()
 
 ## Contribute
 
-If you find any bugs, just solve it and submit a PR.
+If you find any issues, just solve it and make a PR.
 
-About the code style, Please use the ES6 JSX.
+This project is under the ES6 JSX.
 
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
-
-  
-
-
-
-
-
-

@@ -1,27 +1,25 @@
 {
   "name": "noder",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
-    "start": "gulp start"
+    "start": "react-native-webpack-server start",
+    "hot": "HOT=1 react-native-webpack-server start --hot",
+    "bundle": "react-native-webpack-server bundle"
   },
   "dependencies": {
     "markdown": "0.5.0",
     "moment": "^2.10.6",
-    "query-string": "^2.4.0",
-    "react-native": "^0.10.0",
-    "react-native-blur": "^0.6.1",
-    "react-native-button": "^1.2.1",
-    "react-native-camera": "0.3.3",
-    "react-native-html-render": "^1.0.2",
-    "react-native-icons": "^0.3.6",
-    "react-native-keyboardevents": "^0.4.5",
-    "react-native-modal": "^0.3.10",
-    "react-native-scrollable-tab-view": "0.2.1-alpha",
+    "query-string": "^3.0.0",
+    "react-native": "^0.15.0",
     "rebound": "0.0.13",
-    "redux": "1.0.0-alpha"
+    "redux": "^3.0.5"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "babel-plugin-react-transform": "^1.1.1",
     "coffee-script": "^1.9.2",
     "dev-ip": "^1.0.1",
     "eslint": "^1.1.0",
@@ -29,7 +27,12 @@
     "gulp": "^3.9.0",
     "gulp-replace": "^0.5.4",
     "gulp-util": "^3.0.4",
-    "run-sequence": "^1.1.0"
+    "react-native": "^0.15.0",
+    "react-native-webpack-server": "^0.8.2",
+    "react-transform-hmr": "^1.0.1",
+    "run-sequence": "^1.1.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
   },
   "bundleId": "org.reactjs.native.example.noder"
 }

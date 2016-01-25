@@ -1,28 +1,28 @@
 {
-	"name": "noder",
-	"version": "1.0.0",
-	"private": false,
-	"scripts": {
-		"start": "react-native start"
-	},
-	"dependencies": {
-		"markdown": "0.5.0",
-		"moment": "^2.10.6",
-		"query-string": "^3.0.0",
-		"react-native": "^0.15.0",
-		"rebound": "0.0.13",
-		"redux": "^3.0.5"
-	},
-	"devDependencies": {
-		"coffee-script": "^1.9.2",
-		"dev-ip": "^1.0.1",
-		"eslint": "^1.1.0",
-		"eslint-plugin-react": "^3.2.2",
-		"gulp": "^3.9.0",
-		"gulp-replace": "^0.5.4",
-		"gulp-util": "^3.0.4",
-		"react-native": "^0.15.0",
-		"run-sequence": "^1.1.0"
-	},
-	"bundleId": "org.reactjs.native.example.noder"
+  "name": "noder",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "markdown": "0.5.0",
+    "moment": "^2.10.6",
+    "query-string": "^3.0.0",
+    "react-native": "^0.18.1",
+    "rebound": "0.0.13",
+    "redux": "^3.0.5"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.2",
+    "dev-ip": "^1.0.1",
+    "eslint": "^1.1.0",
+    "eslint-plugin-react": "^3.16.1",
+    "gulp": "^3.9.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-util": "^3.0.4",
+    "react-native": "^0.15.0",
+    "run-sequence": "^1.1.0"
+  },
+  "bundleId": "org.reactjs.native.example.noder"
 }

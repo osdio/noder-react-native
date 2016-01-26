@@ -2,14 +2,20 @@ import React,{
 	Component,
 	PropTypes,
 	View,
-	Text
+	Text,
+	StyleSheet,
+	Dimensions
 } from 'react-native';
+import UserOverlay from '../components/UserOverlay';
+
+
+const { height, width } = Dimensions.get('window');
 
 
 class Home extends Component {
 	render() {
 		return (
-			<View>
+			<View style={styles.container}>
 				<Text>
 					Home
 				</Text>
@@ -23,10 +29,21 @@ class Home extends Component {
 				}}>
 					to About
 				</Text>
+				<UserOverlay>
+
+				</UserOverlay>
 			</View>
 		);
 	}
 }
+
+
+const styles = StyleSheet.create({
+	container: {
+		height,
+		width
+	}
+});
 
 
 export const LayoutComponent = Home;

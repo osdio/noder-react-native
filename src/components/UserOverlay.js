@@ -8,16 +8,13 @@ import OverlayButton from './base/OverlayButton';
 import { parseImgUrl } from '../utils';
 
 
-const overlaySize = 45;
-
-
 class UserOverlay extends Component {
 	_renderOverlayContent() {
 		if (this.props.user) {
 			const uri = parseImgUrl(this.props.user.avatar_url);
 			return (
 				<Image
-					style={[styles.icon, styles.userImg]}
+					style={styles.userImg}
 					source={{
 						uri
 					}}>
@@ -29,8 +26,7 @@ class UserOverlay extends Component {
 			<Icon
 				name='person'
 				size={28}
-				color='rgba(255,255,255,0.9)'
-				style={styles.icon}/>
+				color='rgba(255,255,255,0.9)'/>
 		)
 	}
 
@@ -50,11 +46,6 @@ const styles = StyleSheet.create({
 	userImg: {
 		borderWidth: 2,
 		borderColor: '#2C3E50'
-	},
-	icon: {
-		height: overlaySize,
-		width: overlaySize,
-		borderRadius: overlaySize / 2
 	}
 });
 

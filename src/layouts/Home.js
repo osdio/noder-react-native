@@ -4,9 +4,11 @@ import React,{
 	View,
 	Text,
 	StyleSheet,
-	Dimensions
+	Dimensions,
+	Image
 } from 'react-native';
 import UserOverlay from '../components/UserOverlay';
+import config from '../configs';
 
 
 const { height, width } = Dimensions.get('window');
@@ -16,22 +18,14 @@ class Home extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>
-					Home
-				</Text>
-				<Text onPress={()=>{
-					this.props.actions.test();
-				}}>
-					{ this.props.test.test ? 'true' : 'false' }
-				</Text>
-				<Text onPress={()=>{
-					this.props.router.toAbout();
-				}}>
-					to About
-				</Text>
-				<UserOverlay>
+				<Image
+					style={styles.bgImg}
+					source={{ uri: config.bgImgUri }}>
 
-				</UserOverlay>
+				</Image>
+
+
+				<UserOverlay/>
 			</View>
 		);
 	}
@@ -40,8 +34,13 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		height,
-		width
+		width: width,
+		flex: 1,
+		backgroundColor: "transparent"
+	},
+	bgImg: {
+		width,
+		height
 	}
 });
 

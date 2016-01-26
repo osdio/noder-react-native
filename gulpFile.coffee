@@ -8,30 +8,30 @@ devIp = require 'dev-ip'
 child_process = require 'child_process'
 
 appDelegateSrc = './ios/noder/AppDelegate.m'
-port = 8080
+port = 8081
 
 
 gulp.task 'replace', ->
-	ip = devIp()[0]
-	reg = ///
+  ip = devIp()[0]
+  reg = ///
         jsCodeLocation\s=\s
         \[NSURL\sURLWithString:
         @"http:.*\n
     ///g
-	#  ip = 'localhost'
-	gulp.src appDelegateSrc
-	.pipe replace reg, "jsCodeLocation = [NSURL URLWithString:@\"http://#{ip}:#{port}/index.ios.bundle\"];\n"
-	.pipe gulp.dest './ios/noder'
+  #  ip = 'localhost'
+  gulp.src appDelegateSrc
+  .pipe replace reg, "jsCodeLocation = [NSURL URLWithString:@\"http://#{ip}:#{port}/index.ios.bundle\"];\n"
+  .pipe gulp.dest './ios/noder'
 
 
 gulp.task 'package', (cb)->
-	cmd = "./node_modules/react-native/packager/packager.sh"
-	start = child_process.spawn cmd, ['--port', port]
-	start.stdout.on 'data', (data)->
-		gutil.log data.toString()
-	start.stderr.on 'data', (data)->
-		gutil.log data.toString()
+  cmd = "react-native"
+  start = child_process.spawn cmd, ['start', '--port', port]
+  start.stdout.on 'data', (data)->
+    gutil.log data.toString()
+  start.stderr.on 'data', (data)->
+    gutil.log data.toString()
 
 
 gulp.task 'start', ->
-	runSequence 'replace', 'package'
+  runSequence 'replace', 'package'

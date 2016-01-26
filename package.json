@@ -2,7 +2,9 @@
   "name": "noder",
   "version": "1.0.0",
   "scripts": {
-    "start": "react-native start"
+    "start": "react-native start",
+    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
+    "postinstall": "npm run clean:babelrc"
   },
   "dependencies": {
     "markdown": "0.5.0",

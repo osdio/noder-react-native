@@ -20,7 +20,7 @@ gulp.task 'replace', ->
     ///g
   #  ip = 'localhost'
   gulp.src appDelegateSrc
-  .pipe replace reg, "jsCodeLocation = [NSURL URLWithString:@\"http://#{ip}:#{port}/index.ios.bundle\"];\n"
+  .pipe replace reg, "jsCodeLocation = [NSURL URLWithString:@\"http://#{ip}:#{port}/index.ios.bundle?platform=ios&dev=true\"];\n"
   .pipe gulp.dest './ios/noder'
 
 

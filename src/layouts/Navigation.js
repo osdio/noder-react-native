@@ -1,7 +1,8 @@
 import React,{
 	Component,
 	PropTypes,
-	Navigator
+	Navigator,
+	StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,6 +25,10 @@ class Navigation extends Component {
 		this.navigator.navigationContext.addListener('didfocus', e => {
 			let route = e.data.route;
 			this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus();
+		});
+
+		setTimeout(()=>{
+
 		});
 	}
 
@@ -63,6 +68,7 @@ class Navigation extends Component {
 	render() {
 		return (
 			<Navigator
+				sceneStyle={styles.scene}
 				ref={view => this.navigator=view}
 				initialRoute={initialRoute}
 				configureScene={this.configureScene.bind(this)}
@@ -72,5 +78,12 @@ class Navigation extends Component {
 	}
 }
 
+const styles = StyleSheet.create({
+	scene: {
+		top: 0,
+		bottom: 0,
+		opacity: 1
+	}
+});
 
 export default Navigation;

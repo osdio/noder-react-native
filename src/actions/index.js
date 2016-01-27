@@ -1,10 +1,8 @@
-import { createAction } from 'redux-actions';
-import _ from 'lodash';
-import * as test from './test';
+import * as home from './home';
 
 
 export default {
-	...test
+	...home
 };
 
 

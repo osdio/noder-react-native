@@ -13,6 +13,7 @@
     "moment": "^2.10.6",
     "query-string": "^3.0.0",
     "react-native": "^0.18.1",
+    "react-native-blur": "^0.7.9",
     "react-native-button": "^1.3.1",
     "react-native-vector-icons": "^1.1.0",
     "react-redux": "^4.0.6",

@@ -3,6 +3,7 @@ import React,{
 } from 'react-native';
 import * as About from '../layouts/About';
 
+const { SceneConfigs } = Navigator;
 
 class Router {
 	constructor(navigator) {
@@ -26,7 +27,8 @@ class Router {
 	toAbout(props) {
 		this.push(props, {
 			component: About,
-			name: 'about'
+			name: 'about',
+			sceneConfig: SceneConfigs.FloatFromBottom
 		});
 	}
 }

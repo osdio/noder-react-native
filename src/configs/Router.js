@@ -2,6 +2,9 @@ import React,{
 	Navigator
 } from 'react-native';
 import * as About from '../layouts/About';
+import * as QRCode from '../layouts/QRCode';
+import * as Login from '../layouts/Login';
+
 
 const { SceneConfigs } = Navigator;
 
@@ -31,7 +34,25 @@ class Router {
 			sceneConfig: SceneConfigs.FloatFromBottom
 		});
 	}
+
+
+	toLogin(props) {
+		this.push(props, {
+			component: Login,
+			name: 'login',
+			sceneConfig: SceneConfigs.FloatFromBottom
+		})
+	}
+
+
+	toQRCode(props) {
+		this.push(props, {
+			component: QRCode,
+			name: 'qrcode',
+			sceneConfig: SceneConfigs.FloatFromBottom
+		});
+	}
 }
 
-module.exports = Router;
 
+export default Router;

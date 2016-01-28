@@ -11,13 +11,12 @@ const overlayButtonSize = 45;
 class OverlayButton extends Component {
 	render() {
 		return (
-			<View
-				style={[styles.container, this.props.position ? this.props.position : styles.defaultPosition, this.props.style]}>
-				<TouchableOpacity
-					onPress={this.props.onPress}>
+			<TouchableOpacity
+				onPress={this.props.onPress}>
+				<View style={[styles.container, this.props.position ? this.props.position : styles.defaultPosition, this.props.style]}>
 					{this.props.children}
-				</TouchableOpacity>
-			</View>
+				</View>
+			</TouchableOpacity>
 		)
 	}
 }

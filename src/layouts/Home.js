@@ -8,7 +8,6 @@ import React,{
 	Image
 } from 'react-native';
 import UserOverlay from '../components/UserOverlay';
-import Login from '../components/Login';
 import config from '../configs';
 
 
@@ -17,7 +16,7 @@ const { height, width } = Dimensions.get('window');
 
 class Home extends Component {
 	render() {
-		const { home, actions } = this.props;
+		const { home, actions, router } = this.props;
 		return (
 			<View style={styles.container}>
 				<Image
@@ -29,14 +28,10 @@ class Home extends Component {
 					}}>
 						toAbout
 					</Text>
-
 				</Image>
 
 
-				{ home.loginModalVisible && <Login close={actions.closeLoginModal}/>}
-				<UserOverlay onPress={()=>{
-					actions.openLoginModal();
-				}}/>
+				<UserOverlay onPress={() => router.toLogin() }/>
 			</View>
 		);
 	}

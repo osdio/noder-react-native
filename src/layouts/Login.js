@@ -10,6 +10,7 @@ import React,{
 	PropTypes
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Camera from 'react-native-camera';
 import { BlurView } from 'react-native-blur';
 
 const { height, width } = Dimensions.get('window');
@@ -18,7 +19,7 @@ const { height, width } = Dimensions.get('window');
 class Login extends Component {
 	_onLoginPress() {
 		if (this.props.checkTokenLoading) return;
-		this.props.router.toQRCode.apply(this.props.router);
+		this.props.router.toQRCode();
 	}
 
 
@@ -51,7 +52,7 @@ class Login extends Component {
 
 		return (
 			<BlurView blurType="dark" style={styles.wrapper}>
-				<TouchableHighlight onPress={()=> this.props.router.pop()} style={styles.closeIcon}>
+				<TouchableHighlight onPress={()=> router.pop()} style={styles.closeIcon}>
 					<Icon size={25} color="rgba(255,255,255,0.5)" name="close"/>
 				</TouchableHighlight>
 
@@ -63,8 +64,8 @@ class Login extends Component {
 							国内最专业的 Node.js 开源技术社区
 						</Text>
 					</View>
-					{this._renderLoginButton()}
 				</View>
+				{this._renderLoginButton()}
 			</BlurView>
 		)
 	}
@@ -75,8 +76,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		height,
-		width
+		width,
+		height
 	},
 	content: {
 		flexDirection: 'column',

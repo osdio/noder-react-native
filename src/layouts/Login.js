@@ -18,16 +18,16 @@ const { height, width } = Dimensions.get('window');
 
 class Login extends Component {
 	_onLoginPress() {
-		if (this.props.checkTokenLoading) return;
+		if (this.props.ui.checkTokenLoading) return;
 		this.props.router.toQRCode();
 	}
 
 
 	_renderLoginButton() {
-		if (this.props.checkTokenLoading) {
+		if (this.props.ui.checkTokenLoading) {
 			return (
 				<ActivityIndicatorIOS
-					hidesWhenStopped={false}
+					hidesWhenStopped={true}
 					size="small"
 					animating={true}
 					color='white'
@@ -51,7 +51,7 @@ class Login extends Component {
 		const { router } = this.props;
 
 		return (
-			<BlurView blurType="dark" style={styles.wrapper}>
+			<View style={styles.wrapper}>
 				<TouchableHighlight onPress={()=> router.pop()} style={styles.closeIcon}>
 					<Icon size={25} color="rgba(255,255,255,0.5)" name="close"/>
 				</TouchableHighlight>
@@ -66,7 +66,7 @@ class Login extends Component {
 					</View>
 				</View>
 				{this._renderLoginButton()}
-			</BlurView>
+			</View>
 		)
 	}
 }
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		width,
-		height
+		height,
+		backgroundColor: '#292829'
 	},
 	content: {
 		flexDirection: 'column',
@@ -109,5 +110,7 @@ const styles = StyleSheet.create({
 
 export const LayoutComponent = Login;
 export function mapStateToProps(state) {
-	return {};
+	return {
+		ui: state.loginUI
+	};
 }

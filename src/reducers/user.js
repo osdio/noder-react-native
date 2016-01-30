@@ -2,7 +2,8 @@ import * as types from '../constants/ActionTypes';
 
 
 const initialState = {
-	user: null
+	secret: null,
+	public: null
 };
 
 
@@ -21,7 +22,7 @@ export default function (state = initialState, action) {
 			if (sequence.type === 'next' && !error) {
 				return {
 					...state,
-					user: payload
+					...payload
 				}
 			}
 		default:

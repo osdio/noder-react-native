@@ -9,6 +9,17 @@ import { parseImgUrl } from '../utils';
 
 
 class UserOverlay extends Component {
+	_onPress() {
+		const { user, toLogin } = this.props;
+		if (user) {
+
+		}
+		else {
+			toLogin();
+		}
+	}
+
+
 	_renderOverlayContent() {
 		if (this.props.user) {
 			const uri = parseImgUrl(this.props.user.avatar_url);
@@ -34,7 +45,7 @@ class UserOverlay extends Component {
 	render() {
 		return (
 			<OverlayButton
-				onPress={this.props.onPress}>
+				onPress={this._onPress.bind(this)}>
 				{this._renderOverlayContent()}
 			</OverlayButton>
 		)
@@ -45,7 +56,10 @@ class UserOverlay extends Component {
 const styles = StyleSheet.create({
 	userImg: {
 		borderWidth: 2,
-		borderColor: '#2C3E50'
+		borderColor: '#2C3E50',
+		width: 45,
+		height: 45,
+		borderRadius: 45 / 2
 	}
 });
 

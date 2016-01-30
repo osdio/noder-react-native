@@ -31,7 +31,7 @@ class Home extends Component {
 				</Image>
 
 
-				<UserOverlay onPress={() => router.toLogin() }/>
+				<UserOverlay user={this.props.user.secret} toLogin={() => router.toLogin() }/>
 			</View>
 		);
 	}
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
 export const LayoutComponent = Home;
 export function mapStateToProps(state) {
 	return {
-		home: state.home
+		home: state.home,
+		user: state.user
 	}
 }

@@ -4,6 +4,11 @@ import * as userService from '../services/userService';
 import * as tokenService from '../services/token';
 
 
+const fetchUserPublicInfo = async (loginName)=> {
+	return await userService.req.getUserInfo(loginName);
+};
+
+
 export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
 	const userLoginInfo = await userService.req.checkToken(token);
 	const user = await userService.req
@@ -27,9 +32,7 @@ export const getUserFromStorage = createAction(types.GET_USER_FROM_STORAGE, asyn
 });
 
 
-export const updateUserPublicInfo = createAction(types.UPDATE_USER_PUBLIC_INFO, async (loginName)=> {
-	return await userService.req.getUserInfo(loginName);
-});
+export const updateUserPublicInfo = createAction(types.UPDATE_USER_PUBLIC_INFO, fetchUserPublicInfo);
 
 
 export const logout = createAction(types.LOGOUT, async ()=> {

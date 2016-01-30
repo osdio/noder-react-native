@@ -5,17 +5,25 @@ import { getToken, setToken } from './token';
 
 export const storage = {
 	saveUser: function (user) {
-		return storageService.setItem('user', user);
+		return storageService.setItem('user', user)
+			.then(()=>user);
 	},
 
 
 	clearUser: function () {
-		return storageService.removeItem('user');
+		return storageService.removeItem('user')
+			.then(()=> setToken());
 	},
 
 
 	getUser: function () {
-		return storageService.getItem('user');
+		return storageService.getItem('user')
+			.then(user=> {
+				if (user) {
+					return user;
+				}
+				throw 'UserIsEmpty'
+			});
 	}
 };
 
@@ -43,7 +51,7 @@ export const req = {
 					storageService.setItem('user', userInfo);
 					return userInfo;
 				}
-				throw 'getUserInfo error'
+				throw 'getUserInfoError'
 			})
 	}
 };

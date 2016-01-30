@@ -2,16 +2,17 @@ import React,{
 	Component,
 	PropTypes,
 	Navigator,
-	StyleSheet
+	StyleSheet,
+	View,
+	Text
 } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import * as Home from './Home';
+import * as UtilsComponent from './Utils';
 import Router from '../configs/Router';
-import actions from '../actions';
+import connectComponent from '../utils/connectComponent';
 
+const Utils = connectComponent(UtilsComponent);
 
-console.log(actions);
 
 const initialRoute = {
 	name: 'home',
@@ -26,10 +27,6 @@ class Navigation extends Component {
 			let route = e.data.route;
 			this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus();
 		});
-
-		setTimeout(()=>{
-
-		});
 	}
 
 
@@ -37,18 +34,7 @@ class Navigation extends Component {
 		this.router = this.router || new Router(navigator);
 		let { component } = route;
 		if (component) {
-			let { mapStateToProps, mapDispatchToProps, LayoutComponent } = component;
-			component = connect(
-				mapStateToProps || function (state) {
-					return state;
-				},
-				mapDispatchToProps || function (dispatch) {
-					return {
-						actions: bindActionCreators(actions, dispatch)
-					}
-				}
-			)(LayoutComponent);
-			return React.createElement(component, {
+			return React.createElement(connectComponent(component), {
 				...route.props,
 				ref: view=>this[route.name] = view,
 				router: this.router
@@ -67,23 +53,34 @@ class Navigation extends Component {
 
 	render() {
 		return (
-			<Navigator
-				sceneStyle={styles.scene}
-				ref={view => this.navigator=view}
-				initialRoute={initialRoute}
-				configureScene={this.configureScene.bind(this)}
-				renderScene={this.renderScene.bind(this)}
-			/>
+			<View style={styles.container}>
+				<Navigator
+					sceneStyle={styles.scene}
+					ref={view => this.navigator=view}
+					initialRoute={initialRoute}
+					configureScene={this.configureScene.bind(this)}
+					renderScene={this.renderScene.bind(this)}/>
+				<Utils/>
+			</View>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1
+	},
 	scene: {
 		top: 0,
 		bottom: 0,
-		opacity: 1
+		opacity: 1,
+	},
+	flexCenter: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 });
+
 
 export default Navigation;

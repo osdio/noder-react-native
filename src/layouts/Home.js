@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
 
 export const LayoutComponent = Home;
-export function mapStateTopProps(state) {
+export function mapStateToProps(state) {
 	return {
 		home: state.home
 	}

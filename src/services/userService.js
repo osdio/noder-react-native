@@ -45,13 +45,6 @@ export const req = {
 
 	getUserInfo: function (userLoginName) {
 		return requestService.get('/user/' + userLoginName)
-			.then((data)=>data.data)
-			.then(userInfo=> {
-				if (userInfo) {
-					storageService.setItem('user', userInfo);
-					return userInfo;
-				}
-				throw 'getUserInfoError'
-			})
+			.then((data)=>data.data);
 	}
 };

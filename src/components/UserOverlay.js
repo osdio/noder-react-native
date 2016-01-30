@@ -1,7 +1,8 @@
 import React,{
 	Component,
 	StyleSheet,
-	Image
+	Image,
+	PropTypes
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import OverlayButton from './base/OverlayButton';
@@ -9,10 +10,16 @@ import { parseImgUrl } from '../utils';
 
 
 class UserOverlay extends Component {
-	_onPress() {
-		const { user, toLogin } = this.props;
-		if (user) {
+	static propTypes = {
+		toLogin: PropTypes.func,
+		toUser: PropTypes.func
+	};
 
+
+	_onPress() {
+		const { user, toLogin, toUser } = this.props;
+		if (user) {
+			toUser();
 		}
 		else {
 			toLogin();

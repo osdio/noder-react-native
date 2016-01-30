@@ -18,13 +18,13 @@ const { height, width } = Dimensions.get('window');
 
 class Login extends Component {
 	_onLoginPress() {
-		if (this.props.ui.checkTokenLoading) return;
+		if (this.props.ui.checkTokenPending) return;
 		this.props.router.toQRCode();
 	}
 
 
 	_renderLoginButton() {
-		if (this.props.ui.checkTokenLoading) {
+		if (this.props.ui.checkTokenPending) {
 			return (
 				<ActivityIndicatorIOS
 					hidesWhenStopped={true}
@@ -111,6 +111,6 @@ const styles = StyleSheet.create({
 export const LayoutComponent = Login;
 export function mapStateToProps(state) {
 	return {
-		ui: state.loginUI
+		ui: state.userUI
 	};
 }

@@ -4,6 +4,7 @@ import React,{
 import * as About from '../layouts/About';
 import * as QRCode from '../layouts/QRCode';
 import * as Login from '../layouts/Login';
+import * as User from '../layouts/User';
 
 
 const { SceneConfigs } = Navigator;
@@ -50,6 +51,14 @@ class Router {
 			component: QRCode,
 			name: 'qrcode',
 			sceneConfig: SceneConfigs.FloatFromBottom
+		});
+	}
+
+
+	toUser(props) {
+		this.push(props, {
+			component: User,
+			name: 'user'
 		});
 	}
 }

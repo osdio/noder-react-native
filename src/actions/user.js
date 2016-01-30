@@ -2,11 +2,7 @@ import { createAction } from 'redux-actions';
 import * as types from '../constants/ActionTypes';
 import * as userService from '../services/userService';
 import * as tokenService from '../services/token';
-
-
-const fetchUserPublicInfo = async (loginName)=> {
-	return await userService.req.getUserInfo(loginName);
-};
+import * as storageService from '../services/storage';
 
 
 export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
@@ -16,7 +12,7 @@ export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
 		.then((data)=> {
 			return {
 				secret: userLoginInfo,
-				public: data
+				publicInfo: data
 			};
 		});
 	return await userService.storage.saveUser(user);
@@ -26,13 +22,36 @@ export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
 export const getUserFromStorage = createAction(types.GET_USER_FROM_STORAGE, async ()=> {
 	return await userService.storage.getUser()
 		.then(user=> {
-			tokenService.setToken(user.secret.token);
+			tokenService.setToken(user.token);
 			return user;
 		});
 });
 
 
-export const updateUserPublicInfo = createAction(types.UPDATE_USER_PUBLIC_INFO, fetchUserPublicInfo);
+export const updateClientUserInfo = createAction(types.UPDATE_CLIENT_USER_INFO, async (user)=> {
+	return await userService.req.getUserInfo(user.secret.loginname)
+		.then(userInfo=> {
+			if (userInfo) {
+				storageService.setItem('user', {
+					...user,
+					publicInfo: userInfo
+				});
+				return userInfo;
+			}
+			throw 'getUserInfoError'
+		});
+});
+
+
+export const getUserInfo = createAction(types.GET_USER_INFO, async (loginName)=> {
+	return await userService.req.getUserInfo(loginName)
+		.then(userInfo=> {
+			if (userInfo) {
+				return userInfo;
+			}
+			throw 'getUserInfoError'
+		});
+});
 
 
 export const logout = createAction(types.LOGOUT, async ()=> {

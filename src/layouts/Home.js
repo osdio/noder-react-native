@@ -16,7 +16,7 @@ const { height, width } = Dimensions.get('window');
 
 class Home extends Component {
 	render() {
-		const { home, actions, router } = this.props;
+		const { home, actions, router, user } = this.props;
 		return (
 			<View style={styles.container}>
 				<Image
@@ -31,7 +31,10 @@ class Home extends Component {
 				</Image>
 
 
-				<UserOverlay user={this.props.user.secret} toLogin={() => router.toLogin() }/>
+				<UserOverlay user={user.secret} toLogin={() => router.toLogin() }
+							 toUser={() => router.toUser({
+							 	userName: user.publicInfo.loginname
+							 })}/>
 			</View>
 		);
 	}

@@ -5,7 +5,9 @@ import React,{
 	Text,
 	StyleSheet,
 	Dimensions,
-	Image
+	Image,
+	Animated,
+	Easing
 } from 'react-native';
 import UserOverlay from '../components/UserOverlay';
 import config from '../configs';
@@ -15,12 +17,33 @@ const { height, width } = Dimensions.get('window');
 
 
 class Home extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			fadeAnim: new Animated.Value(0.4)
+		};
+	}
+
+
+	componentDidMount() {
+		Animated.timing(this.state.fadeAnim, {
+			toValue: 1,
+			easing: Easing.quad
+		}).start();
+	}
+
+
+	componentDidFocus() {
+		console.log(2222);
+	}
+
+
 	render() {
 		const { home, actions, router, user } = this.props;
 		return (
 			<View style={styles.container}>
-				<Image
-					style={styles.bgImg}
+				<Animated.Image
+					style={[styles.bgImg,{opacity: this.state.fadeAnim}]}
 					source={{ uri: config.bgImgUri }}>
 
 					<Text onPress={()=>{
@@ -28,7 +51,7 @@ class Home extends Component {
 					}}>
 						toAbout
 					</Text>
-				</Image>
+				</Animated.Image>
 
 
 				<UserOverlay user={user.secret} toLogin={() => router.toLogin() }
@@ -43,16 +66,15 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		width: width,
-		flex: 1,
-		backgroundColor: "transparent"
+		backgroundColor: 'transparent'
 	},
 	bgImg: {
 		width,
 		height,
 		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		backgroundColor: 'transparent'
 	}
 });
 

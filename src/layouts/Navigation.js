@@ -55,7 +55,6 @@ class Navigation extends Component {
 		return (
 			<View style={styles.container}>
 				<Navigator
-					sceneStyle={styles.scene}
 					ref={view => this.navigator=view}
 					initialRoute={initialRoute}
 					configureScene={this.configureScene.bind(this)}
@@ -69,11 +68,6 @@ class Navigation extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
-	},
-	scene: {
-		top: 0,
-		bottom: 0,
-		opacity: 1,
 	},
 	flexCenter: {
 		flex: 1,

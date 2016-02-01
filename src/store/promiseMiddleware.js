@@ -12,12 +12,15 @@ export default function promiseMiddleware({ dispatch }) {
 				? action.then(dispatch)
 				: next(action);
 		}
+		const { meta = {}, payload } = action;
 
-		if (isPromise(action.payload)) {
+
+		if (isPromise(payload)) {
 			dispatch({
 				...action,
 				payload: undefined,
 				meta: {
+					...meta,
 					sequence: {
 						type: 'start',
 						id: _.uniqueId()
@@ -25,11 +28,12 @@ export default function promiseMiddleware({ dispatch }) {
 				}
 			});
 
-			return action.payload.then(
+			return payload.then(
 				result => dispatch({
 					...action,
 					payload: result,
 					meta: {
+						...meta,
 						sequence: {
 							type: 'next',
 							id: _.uniqueId()
@@ -41,6 +45,7 @@ export default function promiseMiddleware({ dispatch }) {
 					payload: error,
 					error: true,
 					meta: {
+						...meta,
 						sequence: {
 							type: 'next',
 							id: _.uniqueId()

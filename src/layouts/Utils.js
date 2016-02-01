@@ -7,7 +7,7 @@ import React,{
 class Utils extends Component {
 	componentDidMount() {
 		const { actions } = this.props;
-		actions.getUserFromStorage();
+		//actions.getUserFromStorage();
 	}
 
 

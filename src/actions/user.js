@@ -16,6 +16,10 @@ export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
 			};
 		});
 	return await userService.storage.saveUser(user);
+}, (token, resolved)=> {
+	return {
+		resolved: resolved
+	}
 });
 
 

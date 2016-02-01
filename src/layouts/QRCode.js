@@ -24,12 +24,15 @@ class QRCode extends Component {
 	}
 
 	_onBarCodeRead(result) {
+		const { router, actions } = this.props;
 		if (this.succesed) return;
 
 		this.succesed = true;
 		VibrationIOS.vibrate();
-		this.props.actions.checkToken(result.data);
-		this.props.router.pop()
+		actions.checkToken(result.data, ()=> {
+			router.pop();
+		});
+		router.pop();
 	}
 
 

@@ -12,6 +12,7 @@ import React,{
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import { BlurView } from 'react-native-blur';
+import Spinner from '../components/base/Spinner';
 
 const { height, width } = Dimensions.get('window');
 
@@ -26,8 +27,7 @@ class Login extends Component {
 	_renderLoginButton() {
 		if (this.props.ui.checkTokenPending) {
 			return (
-				<ActivityIndicatorIOS
-					hidesWhenStopped={true}
+				<Spinner
 					size="small"
 					animating={true}
 					color='white'

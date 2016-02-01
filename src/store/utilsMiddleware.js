@@ -4,8 +4,8 @@ import * as utilsActions from '../actions/utils';
 
 export default function utilsMiddleware({ dispatch }) {
 	return next => action => {
-		const { meta = {}, payload, error, type } = action;
-		const { toast } = meta;
+		const { payload, error, type } = action;
+		const { toast } = action.meta || {};
 
 		const dispatchToast = (...args)=> {
 			dispatch(utilsActions.toast(...args));

@@ -8,11 +8,6 @@ import Toast from '../components/base/Toast';
 
 
 class Utils extends Component {
-	constructor(props) {
-		super(props);
-	}
-
-
 	componentDidMount() {
 		const { actions } = this.props;
 		//actions.getUserFromStorage();

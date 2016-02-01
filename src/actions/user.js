@@ -58,6 +58,4 @@ export const getUserInfo = createAction(types.GET_USER_INFO, async (loginName)=>
 });
 
 
-export const logout = createAction(types.LOGOUT, async ()=> {
-	return userService.storage.clearUser();
-});
+export const logout = createAction(types.LOGOUT, userService.storage.clearUser);

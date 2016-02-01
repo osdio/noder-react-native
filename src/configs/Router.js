@@ -5,7 +5,7 @@ import * as About from '../layouts/About';
 import * as QRCode from '../layouts/QRCode';
 import * as Login from '../layouts/Login';
 import * as User from '../layouts/User';
-
+import * as CustomSceneConfigs from '../configs/sceneConfig';
 
 const { SceneConfigs } = Navigator;
 
@@ -19,6 +19,7 @@ class Router {
 		let nextIndex = routesList[routesList.length - 1].index + 1;
 		route.props = props;
 		route.index = nextIndex;
+		route.sceneConfig = route.sceneConfig ? route.sceneConfig : CustomSceneConfigs.customFloatFromRight;
 		this.navigator.push(route);
 	}
 
@@ -32,7 +33,7 @@ class Router {
 		this.push(props, {
 			component: About,
 			name: 'about',
-			sceneConfig: SceneConfigs.FloatFromBottom
+			sceneConfig: CustomSceneConfigs.customFloatFromBottom
 		});
 	}
 
@@ -41,7 +42,7 @@ class Router {
 		this.push(props, {
 			component: Login,
 			name: 'login',
-			sceneConfig: SceneConfigs.FloatFromBottom
+			sceneConfig: CustomSceneConfigs.customFloatFromBottom
 		})
 	}
 
@@ -50,7 +51,7 @@ class Router {
 		this.push(props, {
 			component: QRCode,
 			name: 'qrcode',
-			sceneConfig: SceneConfigs.FloatFromBottom
+			sceneConfig: CustomSceneConfigs.customFloatFromBottom
 		});
 	}
 

@@ -28,7 +28,9 @@ class Utils extends Component {
 
 	render() {
 		return (
-			<Toast ref={ (view)=> this.toast=view } style={styles.container}/>
+			<View style={styles.container}>
+				<Toast ref={ (view)=> this.toast=view }/>
+			</View>
 		);
 	}
 }
@@ -36,7 +38,9 @@ class Utils extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		position: 'absolute'
+		position: 'absolute',
+		top: 0,
+		left: 0
 	}
 });
 

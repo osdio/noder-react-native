@@ -31,6 +31,7 @@ class QRCode extends Component {
 		VibrationIOS.vibrate();
 		actions.checkToken(result.data, ()=> {
 			router.pop();
+			actions.toast('登陆成功');
 		});
 		router.pop();
 	}

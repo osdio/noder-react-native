@@ -24,7 +24,7 @@ class Home extends Component {
 					source={{ uri: config.bgImgUri }}>
 
 					<Text onPress={()=>{
-						this.props.router.toAbout();
+						this.props.actions.toast('测试');
 					}}>
 						toAbout
 					</Text>

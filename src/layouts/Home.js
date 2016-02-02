@@ -42,8 +42,8 @@ class Home extends Component {
 		const { home, actions, router, user } = this.props;
 		return (
 			<View style={styles.container}>
-				<Animated.Image
-					style={[styles.bgImg,{opacity: this.state.fadeAnim}]}
+				<Image
+					style={[styles.bgImg]}
 					source={{ uri: config.bgImgUri }}>
 
 					<Text onPress={()=>{
@@ -51,8 +51,7 @@ class Home extends Component {
 					}}>
 						toAbout
 					</Text>
-				</Animated.Image>
-
+				</Image>
 
 				<UserOverlay user={user.secret} toLogin={() => router.toLogin() }
 							 toUser={() => router.toUser({
@@ -66,7 +65,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'transparent'
+		backgroundColor: 'transparent',
+		flex: 1
 	},
 	bgImg: {
 		width,

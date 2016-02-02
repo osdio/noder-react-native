@@ -11,7 +11,6 @@ import React,{
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
-import { BlurView } from 'react-native-blur';
 import Spinner from '../components/base/Spinner';
 
 const { height, width } = Dimensions.get('window');

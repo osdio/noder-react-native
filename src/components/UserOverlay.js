@@ -2,7 +2,8 @@ import React,{
 	Component,
 	StyleSheet,
 	Image,
-	PropTypes
+	PropTypes,
+	View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import OverlayButton from './base/OverlayButton';
@@ -41,10 +42,14 @@ class UserOverlay extends Component {
 		}
 
 		return (
-			<Icon
-				name='person'
-				size={28}
-				color='rgba(255,255,255,0.9)'/>
+			<View style={styles.iconWrapper}>
+				<Icon
+					name='person'
+					size={28}
+					color='rgba(255,255,255,0.9)'
+					style={styles.icon}
+				/>
+			</View>
 		)
 	}
 
@@ -67,6 +72,18 @@ const styles = StyleSheet.create({
 		width: 45,
 		height: 45,
 		borderRadius: 45 / 2
+	},
+	iconWrapper: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: 45,
+		width: 45
+	},
+	icon: {
+		flex: 1,
+		textAlign: 'center'
 	}
 });
 

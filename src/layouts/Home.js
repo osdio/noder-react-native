@@ -5,7 +5,6 @@ import React,{
 	Text,
 	StyleSheet,
 	Dimensions,
-	Image,
 	Animated,
 	Easing
 } from 'react-native';
@@ -42,16 +41,16 @@ class Home extends Component {
 		const { home, actions, router, user } = this.props;
 		return (
 			<View style={styles.container}>
-				<Image
-					style={[styles.bgImg]}
-					source={{ uri: config.bgImgUri }}>
+				<Animated.View
+					style={[styles.bg, {opacity: this.state.fadeAnim}]}>
 
 					<Text onPress={()=>{
 						this.props.actions.toast('测试');
 					}}>
 						toAbout
 					</Text>
-				</Image>
+				</Animated.View>
+
 
 				<UserOverlay user={user.secret} toLogin={() => router.toLogin() }
 							 toUser={() => router.toUser({
@@ -68,13 +67,12 @@ const styles = StyleSheet.create({
 		backgroundColor: 'transparent',
 		flex: 1
 	},
-	bgImg: {
+	bg: {
 		width,
 		height,
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'transparent'
 	}
 });
 

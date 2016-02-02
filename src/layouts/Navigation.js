@@ -25,7 +25,7 @@ class Navigation extends Component {
 	componentDidMount() {
 		this.navigator.navigationContext.addListener('didfocus', e => {
 			let route = e.data.route;
-			this[route.name] && this[route.name].componentDidFocus && this[route.name].componentDidFocus();
+			this[route.name] && this[route.name] && this[route.name].getWrappedInstance().componentDidFocus();
 		});
 	}
 

@@ -35,6 +35,11 @@ class User extends Component {
 	}
 
 
+	componentDidFocus(){
+
+	}
+
+
 	componentWillReceiveProps(nextProps) {
 		if (!this.isClientUser && !nextProps.otherUser) {
 			this.props.router.pop();

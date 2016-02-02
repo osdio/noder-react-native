@@ -3,7 +3,12 @@ import { bindActionCreators } from 'redux';
 import actions from '../actions';
 
 
-export default function connectComponent({ mapStateToProps, mapDispatchToProps, LayoutComponent }) {
+const options = {
+	withRef: true
+};
+
+
+export default function connectComponent({ mapStateToProps, mapDispatchToProps, mergeProps, LayoutComponent }) {
 	return connect(
 		mapStateToProps || function (state) {
 			return state;
@@ -12,6 +17,8 @@ export default function connectComponent({ mapStateToProps, mapDispatchToProps, 
 			return {
 				actions: bindActionCreators(actions, dispatch)
 			}
-		}
+		},
+		mergeProps,
+		options
 	)(LayoutComponent);
 }

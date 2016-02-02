@@ -5,7 +5,7 @@
     "start": "react-native start",
     "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
     "postinstall": "npm run clean:babelrc",
-    "android": "react-native run-android && npm run log",
+    "an": "react-native run-android",
     "log": "adb logcat *:S ReactNative:V ReactNativeJS:V"
   },
   "dependencies": {

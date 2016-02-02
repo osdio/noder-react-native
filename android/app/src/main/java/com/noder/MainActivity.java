@@ -1,8 +1,8 @@
 package com.noder;
 
+import com.lwansbrough.RCTCamera.*;
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.lwansbrough.ReactCamera.ReactCamera;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -36,8 +36,8 @@ public class MainActivity extends ReactActivity {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+      	new RCTCameraPackage(),
         new MainReactPackage(),
-        new VectorIconsPackage(),
-        new ReactCamera());
+        new VectorIconsPackage());
     }
 }

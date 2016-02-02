@@ -12,10 +12,9 @@ import React,{
 import moment from 'moment';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { parseImgUrl, link } from '../utils';
+import { parseImgUrl, link, genColor } from '../utils';
 
 
-import { genColor } from '../utils';
 const { height, width } = Dimensions.get('window');
 
 
@@ -36,7 +35,7 @@ class User extends Component {
 
 
 	componentDidFocus(){
-
+		console.log('focus');
 	}
 
 
@@ -50,6 +49,43 @@ class User extends Component {
 	_onGithubPress(name) {
 		if (name == '' || !name) return;
 		link('https://github.com/' + name);
+	}
+
+
+	_renderUserTopics(userInfo) {
+		let recentReplies = userInfo.recent_replies
+		let recentTopics = userInfo.recent_topics
+		if (this.state.didFocus) {
+			return (
+				<View style={styles.list}>
+					<ScrollableTabView
+						edgeHitWidth={(width/3)*2}
+						renderTabBar={()=><TabBar></TabBar>}>
+						<UserTopicPage
+							router={this.props.router}
+							style={styles.userTopicPage}
+							data={recentReplies}
+							tabLabel="最近回复"/>
+						<UserTopicPage
+							router={this.props.router}
+							style={styles.userTopicPage}
+							data={recentTopics}
+							tabLabel="最近发布"/>
+					</ScrollableTabView>
+				</View>
+			)
+		}
+
+		if (this.props.isLoginUser) {
+			return (
+				<ActivityIndicatorIOS
+					hidesWhenStopped={true}
+					size="large"
+					animating={true}
+					style={styles.loading}/>
+			)
+		}
+
 	}
 
 

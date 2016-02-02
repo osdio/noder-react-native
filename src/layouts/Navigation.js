@@ -23,20 +23,18 @@ const initialRoute = {
 
 class Navigation extends Component {
 	componentDidMount() {
-		this.navigator.navigationContext.addListener('didfocus', e => {
-			let route = e.data.route;
-			this[route.name] && this[route.name] && this[route.name].getWrappedInstance().componentDidFocus();
+		this.navigator.navigationContext.addListener('didfocus', ({ data:{ route: { name } }}) => {
+			this[name] && this[name] && this[name].getWrappedInstance().componentDidFocus();
 		});
 	}
 
 
-	renderScene(route, navigator) {
+	renderScene({ component, name, props }, navigator) {
 		this.router = this.router || new Router(navigator);
-		let { component } = route;
 		if (component) {
 			return React.createElement(connectComponent(component), {
-				...route.props,
-				ref: view=>this[route.name] = view,
+				...props,
+				ref: view => this[name] = view,
 				router: this.router
 			});
 		}

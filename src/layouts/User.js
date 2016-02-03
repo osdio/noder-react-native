@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import UserTopicPage from '../components/UserTopicPage';
 import TabBar from '../components/TabBar';
 import Spinner from '../components/base/Spinner';
+import Return from '../components/base/Return';
 import { parseImgUrl, link, genColor } from '../utils';
 
 
@@ -146,6 +147,8 @@ class User extends Component {
 				</View>
 
 				{ this.state.focus ? scrollView : spinnerView }
+
+				<Return router={ this.props.router }/>
 			</View>
 		)
 	}

@@ -12,6 +12,9 @@ import React,{
 import moment from 'moment';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
+import UserTopicPage from '../components/UserTopicPage';
+import TabBar from '../components/TabBar';
+import Spinner from '../components/base/Spinner';
 import { parseImgUrl, link, genColor } from '../utils';
 
 
@@ -25,6 +28,9 @@ class User extends Component {
 		let userInfo = user.publicInfo || {};
 		this.isClientUser = userInfo.loginname === userName;
 		this.wallColor = genColor();
+		this.state = {
+			focus: false
+		};
 	}
 
 
@@ -34,8 +40,10 @@ class User extends Component {
 	}
 
 
-	componentDidFocus(){
-		console.log('focus');
+	componentDidFocus() {
+		this.setState({
+			focus: true
+		});
 	}
 
 
@@ -52,57 +60,21 @@ class User extends Component {
 	}
 
 
-	_renderUserTopics(userInfo) {
-		let recentReplies = userInfo.recent_replies
-		let recentTopics = userInfo.recent_topics
-		if (this.state.didFocus) {
-			return (
-				<View style={styles.list}>
-					<ScrollableTabView
-						edgeHitWidth={(width/3)*2}
-						renderTabBar={()=><TabBar></TabBar>}>
-						<UserTopicPage
-							router={this.props.router}
-							style={styles.userTopicPage}
-							data={recentReplies}
-							tabLabel="最近回复"/>
-						<UserTopicPage
-							router={this.props.router}
-							style={styles.userTopicPage}
-							data={recentTopics}
-							tabLabel="最近发布"/>
-					</ScrollableTabView>
-				</View>
-			)
-		}
-
-		if (this.props.isLoginUser) {
-			return (
-				<ActivityIndicatorIOS
-					hidesWhenStopped={true}
-					size="large"
-					animating={true}
-					style={styles.loading}/>
-			)
-		}
-
-	}
-
-
 	render() {
 		const { user={}, ui } = this.props;
 		const userInfo = this.isClientUser ? user.publicInfo : user.otherUser;
+		const spinnerView = (
+			<Spinner
+				size="large"
+				style={styles.loading}/>
+		);
 
 
 		// 如果访问的不是登陆用户的信息
 		if (!this.isClientUser && ui.otherUserPending) {
 			return (
 				<View style={styles.container}>
-					<ActivityIndicatorIOS
-						hidesWhenStopped={true}
-						size="large"
-						animating={true}
-						style={styles.loading}/>
+					{ spinnerView }
 				</View>
 			);
 		}
@@ -120,6 +92,24 @@ class User extends Component {
 				</View>
 			)
 		}
+
+
+		const scrollView = (
+			<ScrollableTabView
+				edgeHitWidth={(width/3) * 2}
+				renderTabBar={() => <TabBar/> }>
+				<UserTopicPage
+					router={this.props.router}
+					style={styles.userTopicPage}
+					data={userInfo.recent_replies}
+					tabLabel="最近回复"/>
+				<UserTopicPage
+					router={this.props.router}
+					style={styles.userTopicPage}
+					data={userInfo.recent_topics}
+					tabLabel="最近发布"/>
+			</ScrollableTabView>
+		);
 
 
 		return (
@@ -154,6 +144,8 @@ class User extends Component {
 						</Text>
 					</View>
 				</View>
+
+				{ this.state.focus ? scrollView : spinnerView }
 			</View>
 		)
 	}
@@ -217,11 +209,7 @@ const styles = StyleSheet.create({
 	},
 	userTopicPage: {
 		height: height - bgWallHeight - 70
-	},
-	list: {
-		width: width
 	}
-
 });
 
 

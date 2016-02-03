@@ -33,13 +33,18 @@ class Navigation extends Component {
 	}
 
 
-	renderScene({ component, name, props }, navigator) {
+	renderScene({ component, name, props, id, index }, navigator) {
 		this.router = this.router || new Router(navigator);
 		if (component) {
 			return React.createElement(connectComponent(component), {
 				...props,
 				ref: view => this[name] = view,
-				router: this.router
+				router: this.router,
+				route: {
+					name,
+					id,
+					index
+				}
 			});
 		}
 	}

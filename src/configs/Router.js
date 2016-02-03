@@ -1,6 +1,7 @@
 import React,{
 	Navigator
 } from 'react-native';
+import _ from 'lodash';
 import * as About from '../layouts/About';
 import * as QRCode from '../layouts/QRCode';
 import * as Login from '../layouts/Login';
@@ -20,6 +21,7 @@ class Router {
 		route.props = props;
 		route.index = nextIndex;
 		route.sceneConfig = route.sceneConfig ? route.sceneConfig : CustomSceneConfigs.customFloatFromRight;
+		route.id = _.uniqueId();
 		this.navigator.push(route);
 	}
 

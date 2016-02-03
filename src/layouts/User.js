@@ -37,7 +37,7 @@ class User extends Component {
 
 	componentDidMount() {
 		const { actions, user } = this.props;
-		actions.updateClientUserInfo(user.secret.loginname);
+		actions.updateClientUserInfo(user);
 	}
 
 

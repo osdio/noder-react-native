@@ -21,6 +21,7 @@ class Home extends Component {
 		this.state = {
 			fadeAnim: new Animated.Value(0.4)
 		};
+		console.log('home constructor');
 	}
 
 
@@ -33,7 +34,7 @@ class Home extends Component {
 
 
 	componentDidFocus() {
-		console.log(2222);
+		console.log('home focus');
 	}
 
 

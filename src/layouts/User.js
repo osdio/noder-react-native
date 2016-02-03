@@ -16,6 +16,7 @@ import UserTopicPage from '../components/UserTopicPage';
 import TabBar from '../components/TabBar';
 import Spinner from '../components/base/Spinner';
 import Return from '../components/base/Return';
+import Setting from '../components/Setting';
 import { parseImgUrl, link, genColor } from '../utils';
 
 
@@ -32,6 +33,7 @@ class User extends Component {
 		this.state = {
 			focus: false
 		};
+		console.log('999999');
 	}
 
 
@@ -45,6 +47,7 @@ class User extends Component {
 		this.setState({
 			focus: true
 		});
+		console.log('focus');
 	}
 
 
@@ -113,10 +116,38 @@ class User extends Component {
 		);
 
 
+		const pubTopicIcon = (
+			<TouchableOpacity
+				onPress={()=>{
+                    this.props.router.toPublish()
+                }}>
+				<View style={ styles.iconWrapper}>
+					<Icon
+						name='ios-compose'
+						size={34}
+						color='rgba(255,255,255,0.7)'/>
+				</View>
+			</TouchableOpacity>
+		);
+
+		const settingIcon = (
+			<TouchableOpacity
+				onPress={ () => this.setting.show() }>
+				<View style={ styles.iconWrapper}>
+					<Icon
+						name='ios-gear'
+						size={34}
+						color='rgba(255,255,255,0.7)'/>
+				</View>
+			</TouchableOpacity>
+		);
+
 		return (
 			<View style={styles.container}>
 				<View style={[styles.bgWall,{backgroundColor:this.wallColor}]}>
 					<View style={styles.imgRow}>
+						{ this.isClientUser && pubTopicIcon }
+
 						<TouchableOpacity
 							onPress={this._onGithubPress.bind(this, userInfo.githubUsername)}>
 							<Image
@@ -124,6 +155,8 @@ class User extends Component {
 								source={{uri:parseImgUrl(userInfo.avatar_url)}}>
 							</Image>
 						</TouchableOpacity>
+
+						{ this.isClientUser && settingIcon }
 					</View>
 
 
@@ -149,6 +182,9 @@ class User extends Component {
 				{ this.state.focus ? scrollView : spinnerView }
 
 				<Return router={ this.props.router }/>
+
+				<Setting ref={ (view) => this.setting = view } router={ this.props.router }
+						 actions={ this.props.actions }/>
 			</View>
 		)
 	}
@@ -179,19 +215,17 @@ const styles = StyleSheet.create({
 	imgRow: {
 		width: width,
 		flexDirection: 'row',
-		justifyContent: 'space-around'
-	},
-	icon: {
-		width: 30,
+		justifyContent: 'space-around',
 		height: authorImgSize
 	},
-	authorWrapper: {
-		height: authorWrapperHeight,
-		flexDirection: 'column',
+	iconWrapper: {
+		flex: 1,
+		flexDirection: 'row',
 		alignItems: 'center',
-		justifyContent: 'space-between'
+		justifyContent: 'center'
 	},
 	authorImg: {
+		flex: 1,
 		height: authorImgSize,
 		width: authorImgSize,
 		borderRadius: authorImgSize / 2

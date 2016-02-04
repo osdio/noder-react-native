@@ -33,6 +33,11 @@ class Home extends Component {
 	}
 
 
+	componentWillUnmount(){
+		console.log('home unmount');
+	}
+
+
 	componentDidFocus() {
 		console.log('home focus');
 	}

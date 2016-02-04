@@ -31,9 +31,8 @@ class User extends Component {
 		this.isClientUser = userInfo.loginname === userName;
 		this.wallColor = genColor();
 		this.state = {
-			focus: false
+			didFocus: false
 		};
-		console.log('999999');
 	}
 
 
@@ -43,11 +42,12 @@ class User extends Component {
 	}
 
 
-	componentDidFocus() {
-		this.setState({
-			focus: true
-		});
-		console.log('focus');
+	componentDidFocus(haveFocused) {
+		if(!haveFocused){
+			this.setState({
+				didFocus: true
+			});
+		}
 	}
 
 
@@ -141,7 +141,6 @@ class User extends Component {
 				</View>
 			</TouchableOpacity>
 		);
-
 		return (
 			<View style={styles.container}>
 				<View style={[styles.bgWall,{backgroundColor:this.wallColor}]}>
@@ -179,7 +178,7 @@ class User extends Component {
 					</View>
 				</View>
 
-				{ this.state.focus ? scrollView : spinnerView }
+				{ this.state.didFocus ? scrollView : spinnerView }
 
 				<Return router={ this.props.router }/>
 

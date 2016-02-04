@@ -6,7 +6,7 @@ import React,{
 } from 'react-native';
 
 
-class About$ extends Component {
+class About extends Component {
 	render() {
 		return (
 			<View>
@@ -19,7 +19,7 @@ class About$ extends Component {
 }
 
 
-export const LayoutComponent = About$;
+export const LayoutComponent = About;
 export function mapStateTopProps(state) {
 	return state;
 };

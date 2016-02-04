@@ -15,6 +15,7 @@ class Router {
 		this.navigator = navigator;
 	}
 
+
 	push(props = {}, route) {
 		let routesList = this.navigator.getCurrentRoutes();
 		let nextIndex = routesList[routesList.length - 1].index + 1;

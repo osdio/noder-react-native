@@ -20,15 +20,23 @@ const { height, width } = Dimensions.get('window');
 const initialRoute = {
 	name: 'home',
 	index: 0,
-	component: Home
+	component: Home,
+	id: 0
 };
 
 
 class Navigation extends Component {
+	constructor(props) {
+		super(props);
+		this.ids = [];
+	}
+
 	componentDidMount() {
 		this.navigator.navigationContext.addListener('didfocus', e => {
-			let route = e.data.route;
-			this[route.name] && this[route.name] && this[route.name].getWrappedInstance().componentDidFocus && this[route.name].getWrappedInstance().componentDidFocus();
+			const { index, id } = e.data.route;
+			const haveFocused = this.ids.indexOf(id) > -1;
+			this[index] && this[index] && this[index].getWrappedInstance().componentDidFocus && this[index].getWrappedInstance().componentDidFocus(haveFocused);
+			this.ids.push(id);
 		});
 	}
 
@@ -38,7 +46,7 @@ class Navigation extends Component {
 		if (component) {
 			return React.createElement(connectComponent(component), {
 				...props,
-				ref: view => this[name] = view,
+				ref: view => this[index] = view,
 				router: this.router,
 				route: {
 					name,

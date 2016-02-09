@@ -21,7 +21,6 @@ class Home extends Component {
 		this.state = {
 			fadeAnim: new Animated.Value(0.4)
 		};
-		console.log('home constructor');
 	}
 
 
@@ -30,16 +29,6 @@ class Home extends Component {
 			toValue: 1,
 			easing: Easing.quad
 		}).start();
-	}
-
-
-	componentWillUnmount(){
-		console.log('home unmount');
-	}
-
-
-	componentDidFocus() {
-		console.log('home focus');
 	}
 
 

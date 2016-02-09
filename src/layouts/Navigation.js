@@ -20,7 +20,7 @@ const { height, width } = Dimensions.get('window');
 const initialRoute = {
 	name: 'home',
 	index: 0,
-	component: Home,
+	component: connectComponent(Home),
 	id: 0
 };
 
@@ -30,6 +30,7 @@ class Navigation extends Component {
 		super(props);
 		this.ids = [];
 	}
+
 
 	componentDidMount() {
 		this.navigator.navigationContext.addListener('didfocus', e => {
@@ -44,7 +45,7 @@ class Navigation extends Component {
 	renderScene({ component, name, props, id, index }, navigator) {
 		this.router = this.router || new Router(navigator);
 		if (component) {
-			return React.createElement(connectComponent(component), {
+			return React.createElement(component, {
 				...props,
 				ref: view => this[index] = view,
 				router: this.router,

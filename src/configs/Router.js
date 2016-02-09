@@ -7,6 +7,7 @@ import * as QRCode from '../layouts/QRCode';
 import * as Login from '../layouts/Login';
 import * as User from '../layouts/User';
 import * as CustomSceneConfigs from '../configs/sceneConfig';
+import connectComponent from '../utils/connectComponent';
 
 const { SceneConfigs } = Navigator;
 
@@ -23,6 +24,7 @@ class Router {
 		route.index = nextIndex;
 		route.sceneConfig = route.sceneConfig ? route.sceneConfig : CustomSceneConfigs.customFloatFromRight;
 		route.id = _.uniqueId();
+		route.component = connectComponent(route.component);
 		this.navigator.push(route);
 	}
 

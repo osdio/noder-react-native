@@ -9,6 +9,7 @@ import React,{
 	Easing
 } from 'react-native';
 import UserOverlay from '../components/UserOverlay';
+import MessageOverlay from '../components/MessageOverlay';
 import config from '../configs';
 
 
@@ -33,7 +34,7 @@ class Home extends Component {
 
 
 	render() {
-		const { home, actions, router, user } = this.props;
+		const { home, actions, router, user, message } = this.props;
 		return (
 			<View style={styles.container}>
 				<Animated.View
@@ -51,6 +52,9 @@ class Home extends Component {
 							 toUser={() => router.toUser({
 							 	userName: user.publicInfo.loginname
 							 })}/>
+
+
+				<MessageOverlay user={user.secret} count={ message.unreadMessageCount }/>
 			</View>
 		);
 	}
@@ -76,6 +80,7 @@ export const LayoutComponent = Home;
 export function mapStateToProps(state) {
 	return {
 		home: state.home,
-		user: state.user
+		user: state.user,
+		message: state.message
 	}
 }

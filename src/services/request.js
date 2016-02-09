@@ -26,7 +26,7 @@ function filterStatus(res) {
 export function get(url, params) {
 	url = urlPrefix + url;
 	if (params) {
-		url = `?${qs.stringify(params)}`;
+		url += `?${qs.stringify(params)}`;
 	}
 
 	return fetch(url)

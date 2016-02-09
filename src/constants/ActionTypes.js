@@ -18,3 +18,9 @@ export const GET_USER_INFO = 'GET_USER_INFO';
 export const TOAST = 'TOAST';
 export const OPEN_TOAST = 'OPEN_TOAST';
 export const CLOSE_TOAST = 'CLOSE_TOAST';
+
+
+// message
+export const GET_UNREAD_MESSAGE_COUNT = 'GET_UNREAD_MESSAGE_COUNT';
+export const MARK_AS_READ = 'MARK_AS_READ';
+export const GET_MESSAGES_LIST = 'GET_MESSAGES_LIST';

@@ -26,9 +26,13 @@ export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
 export const getUserFromStorage = createAction(types.GET_USER_FROM_STORAGE, async ()=> {
 	return await userService.storage.getUser()
 		.then(user=> {
-			tokenService.setToken(user.token);
+			tokenService.setToken(user.secret.token);
 			return user;
 		});
+}, (resolved)=> {
+	return {
+		resolved
+	}
 });
 
 

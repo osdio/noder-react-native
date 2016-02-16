@@ -81,7 +81,7 @@ class MessageList extends Component {
 
 
 	_renderLoading() {
-		if (this.props.pending) {
+		if (this.props.pending || !this.props.didFocus) {
 			return (
 				<Spinner
 					size="large"
@@ -131,7 +131,7 @@ class MessageList extends Component {
 
 
 	_renderEmptyMessage() {
-		if (this.props.data.length == 0 && this.props.pending == false) {
+		if (this.props.data.length == 0 && this.props.pending == false && this.props.didFocus) {
 			return (
 				<View style={styles.emptyMessage}>
 					<Text style={styles.emptyMessageText}>

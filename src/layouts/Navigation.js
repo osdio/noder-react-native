@@ -37,7 +37,7 @@ class Navigation extends Component {
 			const { index, id } = e.data.route;
 			const haveFocused = this.ids.indexOf(id) > -1;
 			this[index] && this[index] && this[index].getWrappedInstance().componentDidFocus && this[index].getWrappedInstance().componentDidFocus(haveFocused);
-			this.ids.push(id);
+			!haveFocused && this.ids.push(id);
 		});
 	}
 
@@ -82,6 +82,7 @@ class Navigation extends Component {
 		)
 	}
 }
+
 
 const styles = StyleSheet.create({
 	container: {

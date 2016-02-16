@@ -15,6 +15,7 @@ export const checkToken = createAction(types.CHECK_TOKEN, async (token)=> {
 				publicInfo: data
 			};
 		});
+	tokenService.setToken(token);
 	return await userService.storage.saveUser(user);
 }, (token, resolved)=> {
 	return {

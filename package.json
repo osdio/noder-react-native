@@ -1,44 +1,43 @@
 {
-  "name": "noder",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "react-native start",
-    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
-    "postinstall": "npm run clean:babelrc",
-    "an": "react-native run-android",
-    "log": "adb logcat *:S ReactNative:V ReactNativeJS:V"
-  },
-  "dependencies": {
-    "apsl-react-native-button": "^2.4.1",
-    "lodash": "^4.1.0",
-    "markdown": "0.5.0",
-    "moment": "^2.10.6",
-    "query-string": "^3.0.0",
-    "react-native": "^0.19.0",
-    "react-native-blur": "^0.7.10",
-    "react-native-button": "^1.3.1",
-    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
-    "react-native-scrollable-tab-view": "^0.3.5",
-    "react-native-vector-icons": "^1.1.1",
-    "react-redux": "^4.2.0",
-    "rebound": "0.0.13",
-    "redux": "^3.2.0",
-    "redux-actions": "^0.9.1",
-    "redux-logger": "^2.4.0",
-    "redux-promise": "^0.5.1",
-    "redux-thunk": "^1.0.3"
-  },
-  "devDependencies": {
-    "coffee-script": "^1.9.2",
-    "dev-ip": "^1.0.1",
-    "eslint": "^1.1.0",
-    "eslint-plugin-react": "^3.16.1",
-    "gulp": "^3.9.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-util": "^3.0.4",
-    "react-native-cli": "^0.1.10",
-    "redux-devtools": "^3.0.1",
-    "run-sequence": "^1.1.0"
-  },
-  "bundleId": "org.reactjs.native.example.noder"
+	"name": "noder",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "react-native start",
+		"clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
+		"postinstall": "npm run clean:babelrc",
+		"an": "react-native run-android",
+		"log": "adb logcat *:S ReactNative:V ReactNativeJS:V"
+	},
+	"dependencies": {
+		"lodash": "^4.4.0",
+		"markdown": "0.5.0",
+		"moment": "^2.11.2",
+		"query-string": "^3.0.0",
+		"react-native": "^0.19.0",
+		"react-native-blur": "^0.7.10",
+		"react-native-button": "^1.4.2",
+		"react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+		"react-native-scrollable-tab-view": "^0.3.5",
+		"react-native-vector-icons": "^1.2.0",
+		"react-redux": "^4.4.0",
+		"rebound": "0.0.13",
+		"redux": "^3.3.1",
+		"redux-actions": "^0.9.1",
+		"redux-logger": "^2.5.2",
+		"redux-promise": "^0.5.1",
+		"redux-thunk": "^1.0.3"
+	},
+	"devDependencies": {
+		"coffee-script": "^1.9.2",
+		"dev-ip": "^1.0.1",
+		"eslint": "^1.1.0",
+		"eslint-plugin-react": "^3.16.1",
+		"gulp": "^3.9.1",
+		"gulp-replace": "^0.5.4",
+		"gulp-util": "^3.0.4",
+		"react-native-cli": "^0.1.10",
+		"redux-devtools": "^3.1.1",
+		"run-sequence": "^1.1.0"
+	},
+	"bundleId": "org.reactjs.native.example.noder"
 }

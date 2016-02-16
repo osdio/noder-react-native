@@ -6,6 +6,7 @@ import * as About from '../layouts/About';
 import * as QRCode from '../layouts/QRCode';
 import * as Login from '../layouts/Login';
 import * as User from '../layouts/User';
+import * as Message from '../layouts/Message';
 import * as CustomSceneConfigs from '../configs/sceneConfig';
 import connectComponent from '../utils/connectComponent';
 
@@ -66,6 +67,14 @@ class Router {
 			component: User,
 			name: 'user'
 		});
+	}
+
+
+	toMessage(props) {
+		this.push(props, {
+			component: Message,
+			name: 'message'
+		})
 	}
 }
 

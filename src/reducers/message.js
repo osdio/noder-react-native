@@ -19,9 +19,9 @@ export default function (state = initialState, action) {
 		case types.GET_MESSAGES_LIST:
 			return {
 				...state,
-				unreadMessageCount: payload.hasNotRead.length,
-				hasRead: payload.hasRead,
-				hasNotRead: payload.hasNotRead
+				unreadMessageCount: payload.hasnot_read_messages.length,
+				hasRead: payload.has_read_messages,
+				hasNotRead: payload.hasnot_read_messages
 			};
 
 		case types.GET_UNREAD_MESSAGE_COUNT:

@@ -31,7 +31,7 @@
    * on the same Wi-Fi network.
    */
 
-  jsCodeLocation = [NSURL URLWithString:@"http://169.254.78.201:8081/index.ios.bundle?platform=ios&dev=true"];
+  jsCodeLocation = [NSURL URLWithString:@"http://172.28.162.87:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2

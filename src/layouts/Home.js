@@ -54,7 +54,10 @@ class Home extends Component {
 							 })}/>
 
 
-				<MessageOverlay user={user.secret} count={ message.unreadMessageCount }/>
+				<MessageOverlay user={user.secret}
+								count={ message.unreadMessageCount }
+								toMessage={ () => router.toMessage() }
+				/>
 			</View>
 		);
 	}

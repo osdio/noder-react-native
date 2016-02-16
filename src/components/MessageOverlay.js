@@ -12,12 +12,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class MessageOverlay extends Component {
 	static propTypes = {
-		count: PropTypes.number
+		count: PropTypes.number,
+		toMessage: PropTypes.func
 	};
 
 
 	static defaultProps = {
-		count: 0
+		count: 0,
+		toMessage: ()=>null
 	};
 
 
@@ -38,17 +40,12 @@ class MessageOverlay extends Component {
 	}
 
 
-	_onPress() {
-		this.props.router.toMessage()
-	}
-
-
 	render() {
 		if (this.props.user) {
 			return (
 				<OverlayButton
 					position={styles.position}
-					onPress={this._onPress.bind(this)}>
+					onPress={ () => this.props.toMessage() }>
 					<View style={styles.iconWrapper}>
 						<Icon
 							name='ios-email-outline'

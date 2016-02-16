@@ -10,9 +10,9 @@ import Toast from '../components/base/Toast';
 class Utils extends Component {
 	componentDidMount() {
 		const { actions } = this.props;
-		actions.getUserFromStorage(()=> {
-			actions.getUnreadMessageCount();
-		});
+		//actions.getUserFromStorage(()=> {
+		//	actions.getUnreadMessageCount();
+		//});
 	}
 
 

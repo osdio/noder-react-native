@@ -5,6 +5,7 @@ import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.eguma.barcodescanner.BarcodeScanner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,5 +40,6 @@ public class MainActivity extends ReactActivity {
       	new RCTCameraPackage(),
         new MainReactPackage(),
         new VectorIconsPackage());
+        new BarcodeScanner();
     }
 }

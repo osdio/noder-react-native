@@ -44,41 +44,38 @@ class QRCode extends Component {
 
 	render() {
 		return (
-			<View>
-				<Camera
-					ref='camera'
-					style={styles.camera}
-					onBarCodeRead={this._onBarCodeRead.bind(this)}>
+			<Camera
+				ref='camera'
+				style={styles.camera}
+				aspect={Camera.constants.Aspect.Fill}
+				onBarCodeRead={this._onBarCodeRead.bind(this)}>
 
-					<View style={styles.header}>
-						<View style={styles.buttonWrapper}>
-							<Button
-								onPress={this._onClosePress.bind(this)}
-								style={styles.closeButton}>
-								<Icon
-									name='ios-close-empty'
-									size={40}
-									color='rgba(255,255,255,0.7)'/>
-							</Button>
-						</View>
+				<View style={styles.header}>
+					<View style={styles.buttonWrapper}>
+						<Button
+							onPress={this._onClosePress.bind(this)}
+							style={styles.closeButton}>
+							<Icon
+								name='ios-close-empty'
+								size={40}
+								color='rgba(255,255,255,0.7)'/>
+						</Button>
 					</View>
+				</View>
 
-
-					<View style={styles.container}>
-						<View style={styles.cameraViewWrapper}>
-							<View style={styles.cameraView}>
-								<View key="1" style={[styles.borderLeftTop,styles.borderBox]}/>
-								<View key="2" style={[styles.borderRightTop,styles.borderBox]}/>
-								<View key="3" style={[styles.borderLeftBottom,styles.borderBox]}/>
-								<View key="4" style={[styles.borderRightBottom,styles.borderBox]}/>
-							</View>
-							<Text style={styles.infoText}>
-								请将二维码放到框内
-							</Text>
-						</View>
+				<View style={styles.container}>
+					<View style={styles.cameraView}>
+						<View key="1" style={[styles.borderLeftTop,styles.borderBox]}/>
+						<View key="2" style={[styles.borderRightTop,styles.borderBox]}/>
+						<View key="3" style={[styles.borderLeftBottom,styles.borderBox]}/>
+						<View key="4" style={[styles.borderRightBottom,styles.borderBox]}/>
 					</View>
-				</Camera>
-			</View>
+					<Text style={styles.infoText}>
+						请将二维码放到框内
+					</Text>
+				</View>
+
+			</Camera>
 		)
 	}
 }

@@ -111,6 +111,7 @@ android {
 }
 
 dependencies {
+	compile project(':ReactNativeBarcodescanner')
     compile project(':react-native-camera')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])

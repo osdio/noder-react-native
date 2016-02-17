@@ -23,9 +23,16 @@ export const storage = {
 
 
 	getAllTopics: function () {
-		storageService.multiGet(tabs.map(tab=> {
-			return 'tab_' + tab
-		}))
+		return storageService.multiGet(tabs.map(tab=> {
+				return 'tab_' + tab
+			}))
+			.then(arr=> {
+				let ob = {};
+				arr.forEach((item)=> {
+					ob[item[0].replace('tab_', '')] = item[1];
+				});
+				return ob;
+			});
 	},
 
 
@@ -39,7 +46,7 @@ export const storage = {
 
 // 从远程api获取数据
 export const req = {
-	getTopicsByTab: function (tab = 'all', params={}) {
+	getTopicsByTab: function (tab = 'all', params = {}) {
 		return requestService.get('/topics', {
 				tab,
 				page: 1,

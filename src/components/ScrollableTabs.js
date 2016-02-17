@@ -32,19 +32,57 @@ class ScrollableTabs extends Component {
 		super(props);
 		const { tabNavItemWidth, tabs } = props;
 		this.space = (width - tabNavItemWidth * 3) / 2;
-		this.navContentHeight = (tabs.length + 2) * tabNavItemWidth + this.space * (tabs.length + 1);
+		this.navContentWidth = (tabs.length + 2) * tabNavItemWidth + this.space * (tabs.length + 1);
 		this.index = props.index || Math.floor(tabs.length / 2);
+		const offset = this.index * (this.space + tabNavItemWidth);
 		this.state = {
-			scroll: new Animated.Value(0)
+			x: new Animated.Value(-offset)
 		};
+		this._navs = {};
 	}
 
 
-	_onScroll(...args) {
-		console.log(args[0].nativeEvent);
+	_updateNavScale(offset) {
+		const space = this.space + this.props.tabNavItemWidth;
+		this.props.tabs.forEach((item, index)=> {
+				let min = (index - 1) * space;
+				let max = (index + 1) * space;
+				let center = index * space;
+
+				let scale = 0;
+				if (offset > min && offset < center) {
+					scale = (offset - min) / space;
+				}
+				if (offset > center && offset < max) {
+					scale = (max - offset) / space;
+				}
+
+				if (offset == center) {
+					scale = 1;
+				}
+				this._navs[index].setNativeProps({
+					style: this._getActiveNavItemStyle(scale)
+				});
+			}
+		);
+	}
+
+
+	_onScroll(e) {
+		const { x } = e.nativeEvent.contentOffset;
+		const { tabNavItemWidth } = this.props;
+		const navContentOffset = (this.space + tabNavItemWidth) / width * x;
+		if (x % width === 0) {
+			this.index = x / width;
+		}
 		Animated.event(
-			[{nativeEvent: {contentOffset: {x: this.state.scroll}}}]
-		)(...args);
+			[{
+				offset: this.state.x
+			}]
+		)({
+			offset: -navContentOffset
+		});
+		this._updateNavScale(navContentOffset);
 	}
 
 
@@ -57,13 +95,14 @@ class ScrollableTabs extends Component {
 
 	_renderNavs() {
 		return this.props.tabs.map((item, index)=> {
-			let activeStyle = this._getActiveNavItemStyle(0)
-			if (index == this.props.index) {
+			let activeStyle = this._getActiveNavItemStyle(0);
+			if (index === this.index) {
 				activeStyle = this._getActiveNavItemStyle(1)
 			}
 
 			return (
-				<View key={index} style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
+				<View ref={ view => this._navs[index]=view} key={index}
+							   style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
 					<TouchableOpacity>
 						<Text style={styles.itemText}>
 							{ item }
@@ -78,11 +117,11 @@ class ScrollableTabs extends Component {
 	render() {
 		return (
 			<View style={[ styles.container, this.props.style ]}>
-				<View style={[styles.navWrapper, { width: this.navContentHeight }]}>
+				<View style={[styles.navWrapper, { width: this.navContentWidth }]}>
 					<View key="statusBarSpace" style={styles.statusBarSpace}/>
 					<Animated.View key="nav" style={[styles.nav, {
-						width: this.navContentHeight,
-						transform: [{translateX: this.state.scroll}]
+						width: this.navContentWidth,
+						transform: [{translateX: this.state.x}]
 					}]}>
 						<View key='start' style={[styles.navItem, { width: this.props.tabNavItemWidth }]}/>
 
@@ -94,7 +133,6 @@ class ScrollableTabs extends Component {
 
 
 				{/* scroll page */}
-
 				<ScrollView
 					style={styles.scrollView}
 					ref={view=>this.scrollView=view}
@@ -105,7 +143,7 @@ class ScrollableTabs extends Component {
 					bounces={true}
 					horizontal={true}
 					directionalLockEnabled={true}
-					scrollEventThrottle={16}
+					scrollEventThrottle={1}
 					pagingEnabled={true}
 					scrollEnabled={true}
 					onScroll={this._onScroll.bind(this)}

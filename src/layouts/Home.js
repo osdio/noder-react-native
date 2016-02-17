@@ -24,13 +24,6 @@ class Home extends Component {
 	}
 
 
-	componentDidMount(){
-		['good', 'ask', 'all', 'share', 'job'].forEach((item)=>{
-			this.props.actions.getTopicsByTab(item);
-		});
-	}
-
-
 	_renderTopicList() {
 		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
 			return <TopicList key={item} nav={item} data={this.props.topic[item]}/>

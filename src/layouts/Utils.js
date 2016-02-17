@@ -13,6 +13,7 @@ class Utils extends Component {
 		actions.getUserFromStorage(()=> {
 			actions.getUnreadMessageCount();
 		});
+		actions.getAllTopicsFromStorage();
 	}
 
 

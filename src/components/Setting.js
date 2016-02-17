@@ -5,7 +5,8 @@ import React, {
 	Text,
 	TouchableOpacity,
 	Dimensions,
-	PropTypes
+	PropTypes,
+	Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Modal from './base/Modal';
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'rgba(0,0,0,0.3)',
+		backgroundColor: Platform.OS === 'ios' ? 'rgba(0,0,0,0.3)' : '#292829',
 		borderRadius: 3,
 		margin: 30
 	},

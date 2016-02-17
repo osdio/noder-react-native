@@ -6,6 +6,7 @@ import React,{
 	StyleSheet,
 	Animated,
 	Easing,
+	Platform
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
 
@@ -45,11 +46,19 @@ class Modal extends Component {
 
 	_renderChildren() {
 		if (this.props.blur) {
+			if (Platform.OS === 'ios') {
+				return (
+					<BlurView blurType="dark" style={[ styles.blur, this.props.blurStyle]}>
+						{ this.props.children }
+					</BlurView>
+				)
+			}
 			return (
-				<BlurView blurType="dark" style={[ styles.blur, this.props.blurStyle]}>
+				<View style={[ styles.blur, this.props.blurStyle, styles.opacity]}>
 					{ this.props.children }
-				</BlurView>
-			)
+				</View>
+			);
+
 		}
 		return this.props.children;
 	}
@@ -77,6 +86,9 @@ const styles = StyleSheet.create({
 	blur: {
 		height,
 		width
+	},
+	opacity: {
+		backgroundColor: 'rgba(0,0,0,0.4)'
 	}
 });
 

@@ -39,12 +39,17 @@ export const storage = {
 
 // 从远程api获取数据
 export const req = {
-	getTopicsByTab: function (params) {
-		return requestService.get('/topics', params)
+	getTopicsByTab: function (tab = 'all', params={}) {
+		return requestService.get('/topics', {
+				tab,
+				page: 1,
+				limit: 10,
+				...params
+			})
 			.then(filterData)
 			.then(topics => {
-				if (params.page == 1 && topics) {
-					storageService.setItem('tab_' + params.tab, topics)
+				if ((params.page == 1 || !params.page) && topics) {
+					storageService.setItem('tab_' + tab, topics)
 				}
 				return topics
 			})

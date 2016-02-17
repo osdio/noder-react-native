@@ -10,6 +10,8 @@ import React,{
 } from 'react-native';
 import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
+import ScrollableTabs from '../components/ScrollableTabs';
+import TopicList from '../components/TopicList';
 import config from '../configs';
 
 
@@ -19,33 +21,30 @@ const { height, width } = Dimensions.get('window');
 class Home extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			fadeAnim: new Animated.Value(0.4)
-		};
 	}
 
 
-	componentDidMount() {
-		Animated.timing(this.state.fadeAnim, {
-			toValue: 1,
-			easing: Easing.quad
-		}).start();
+	componentDidMount(){
+		['good', 'ask', 'all', 'share', 'job'].forEach((item)=>{
+			this.props.actions.getTopicsByTab(item);
+		});
+	}
+
+
+	_renderTopicList() {
+		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
+			return <TopicList key={item} nav={item} data={this.props.topic[item]}/>
+		});
 	}
 
 
 	render() {
-		const { home, actions, router, user, message } = this.props;
+		const { router, user, message } = this.props;
 		return (
 			<View style={styles.container}>
-				<Animated.View
-					style={[styles.bg, {opacity: this.state.fadeAnim}]}>
-
-					<Text onPress={()=>{
-						this.props.actions.toast('测试');
-					}}>
-						toAbout
-					</Text>
-				</Animated.View>
+				<ScrollableTabs index={0} tabs={['精华', '问答', '主页', '分享', '招聘']}>
+					{ this._renderTopicList() }
+				</ScrollableTabs>
 
 
 				<UserOverlay user={user.secret} toLogin={() => router.toLogin() }
@@ -56,8 +55,7 @@ class Home extends Component {
 
 				<MessageOverlay user={user.secret}
 								count={ message.unreadMessageCount }
-								toMessage={ () => router.toMessage() }
-				/>
+								toMessage={ () => router.toMessage() }/>
 			</View>
 		);
 	}
@@ -82,8 +80,8 @@ const styles = StyleSheet.create({
 export const LayoutComponent = Home;
 export function mapStateToProps(state) {
 	return {
-		home: state.home,
 		user: state.user,
-		message: state.message
+		message: state.message,
+		topic: state.topic
 	}
 }

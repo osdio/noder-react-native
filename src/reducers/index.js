@@ -5,6 +5,7 @@ import userUI from './userUI';
 import utils from './utils';
 import message from './message';
 import messageUI from './messageUI';
+import topic from './topic';
 
 export default combineReducers({
 	home,
@@ -12,5 +13,6 @@ export default combineReducers({
 	userUI,
 	utils,
 	message,
-	messageUI
+	messageUI,
+	topic
 });

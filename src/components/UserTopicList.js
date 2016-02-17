@@ -13,7 +13,7 @@ import TopicRow from './TopicRow';
 const { width } = Dimensions.get('window');
 
 
-class UserTopicPage extends Component {
+class UserTopicList extends Component {
 	constructor(props) {
 		super(props);
 		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -112,4 +112,4 @@ var styles = StyleSheet.create({
 });
 
 
-export default UserTopicPage;
+export default UserTopicList;

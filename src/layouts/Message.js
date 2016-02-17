@@ -2,7 +2,8 @@ import React, {
 	View,
 	Component,
 	StyleSheet,
-	Dimensions
+	Dimensions,
+	Platform
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from '../components/TabBar';
@@ -12,7 +13,7 @@ import MessageList from '../components/MessageList';
 
 
 const { height, width } = Dimensions.get('window');
-
+const STATUS_BAR_HEIGHT = 20;
 
 class Message extends Component {
 	constructor(props) {
@@ -44,6 +45,7 @@ class Message extends Component {
 		return (
 			<View style={styles.container}>
 				<ScrollableTabView
+					style={styles.scrollableTabView}
 					edgeHitWidth={(width/3)*2}
 					renderTabBar={()=><TabBar/>}>
 					<MessageList
@@ -75,9 +77,14 @@ class Message extends Component {
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
 		backgroundColor: 'white',
-		height: height,
-		paddingTop: 20
+		paddingTop: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0,
+		height,
+		width
+	},
+	scrollableTabView: {
+		flex: 1
 	}
 });
 

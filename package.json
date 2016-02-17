@@ -20,6 +20,7 @@
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-scrollable-tab-view": "^0.3.5",
     "react-native-vector-icons": "^1.2.0",
+    "react-native-vibration": "^0.2.0",
     "react-redux": "^4.4.0",
     "rebound": "0.0.13",
     "redux": "^3.3.1",

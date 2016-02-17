@@ -6,6 +6,7 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.eguma.barcodescanner.BarcodeScanner;
+import com.eguma.vibration.Vibration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +40,8 @@ public class MainActivity extends ReactActivity {
       return Arrays.<ReactPackage>asList(
       	new RCTCameraPackage(),
         new MainReactPackage(),
-        new VectorIconsPackage());
+        new Vibration(),
+        new VectorIconsPackage(),
         new BarcodeScanner());
     }
 }

@@ -3,12 +3,16 @@ import React,{
 	View,
 	Text,
 	Component,
-	VibrationIOS,
-	Dimensions
+	Dimensions,
+	Platform,
+	TouchableOpacity
 } from 'react-native';
 import Camera from 'react-native-camera';
+import BarcodeScanner from 'react-native-barcodescanner';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Button from 'react-native-button';
+import Vibration from 'react-native-vibration';
+import OverlayButton from '../components/base/OverlayButton';
+
 
 
 const { height, width } = Dimensions.get('window');
@@ -20,7 +24,7 @@ const borderBoxSize = 35;
 class QRCode extends Component {
 	constructor(props) {
 		super(props);
-		this.succesed = false
+		this.succesed = false;
 	}
 
 	_onBarCodeRead(result) {
@@ -28,7 +32,7 @@ class QRCode extends Component {
 		if (this.succesed) return;
 
 		this.succesed = true;
-		VibrationIOS.vibrate();
+		Vibration.vibrate();
 		actions.checkToken(result.data, ()=> {
 			router.pop();
 			actions.toast('登陆成功');
@@ -43,26 +47,41 @@ class QRCode extends Component {
 
 
 	render() {
+		const closeIcon = (
+			<OverlayButton
+				position={{ right: 60, top: 60 }}
+				onPress={this._onClosePress.bind(this)}>
+				<View style={styles.iconWrapper}>
+					<Icon
+						name='ios-close-empty'
+						size={35}
+						color='rgba(255,255,255,0.7)'
+						style={styles.closeIcon}/>
+				</View>
+			</OverlayButton>
+		);
+
+
+		// for android
+		if (Platform.OS === 'android') {
+			return (
+				<View style={styles.cameraWrapper}>
+					<BarcodeScanner
+						onBarCodeRead={this._onBarCodeRead.bind(this)}
+						style={styles.camera}/>
+					{ closeIcon }
+				</View>
+			)
+		}
+
+
+		// for ios
 		return (
 			<Camera
 				ref='camera'
 				style={styles.camera}
 				aspect={Camera.constants.Aspect.Fill}
 				onBarCodeRead={this._onBarCodeRead.bind(this)}>
-
-				<View style={styles.header}>
-					<View style={styles.buttonWrapper}>
-						<Button
-							onPress={this._onClosePress.bind(this)}
-							style={styles.closeButton}>
-							<Icon
-								name='ios-close-empty'
-								size={40}
-								color='rgba(255,255,255,0.7)'/>
-						</Button>
-					</View>
-				</View>
-
 				<View style={styles.container}>
 					<View style={styles.cameraView}>
 						<View key="1" style={[styles.borderLeftTop,styles.borderBox]}/>
@@ -74,7 +93,7 @@ class QRCode extends Component {
 						请将二维码放到框内
 					</Text>
 				</View>
-
+				{ closeIcon }
 			</Camera>
 		)
 	}
@@ -82,18 +101,15 @@ class QRCode extends Component {
 
 
 const styles = StyleSheet.create({
+	cameraWrapper: {
+		width,
+		height
+	},
 	camera: {
 		width: width,
 		height: height,
 		flexDirection: 'column',
 		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	header: {
-		height: 80,
-		width: 350,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
 		alignItems: 'center'
 	},
 	cameraView: {
@@ -143,14 +159,16 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		fontSize: 24
 	},
-	closeButton: {
-		width: 35,
-		height: 35,
-		backgroundColor: 'red',
-		borderRadius: 35 / 2,
+	iconWrapper: {
+		flex: 1,
 		flexDirection: 'row',
-		alignItems: 'center',
 		justifyContent: 'center',
+		alignItems: 'center',
+		height: 45,
+		width: 45
+	},
+	closeIcon: {
+		flex: 1,
 		textAlign: 'center'
 	},
 	buttonWrapper: {
@@ -164,8 +182,3 @@ const styles = StyleSheet.create({
 
 
 export const LayoutComponent = QRCode;
-export function mapStateToProps(state) {
-	return {
-		home: state.home
-	}
-}

@@ -262,7 +262,6 @@ export const LayoutComponent = Topic;
 export function mapStateToProps(state, props) {
 	const { id = '0' } = props;
 	const topic = state.topic.topics[id];
-	console.log(props.topic);
 	return {
 		topic: topic || props.topic
 	}

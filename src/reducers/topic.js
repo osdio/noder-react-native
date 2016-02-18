@@ -45,7 +45,13 @@ export default function (state = initialState, action) {
 			};
 		case types.REMOVE_TOPIC_CACHE_BY_ID:
 			delete state.topics[id];
-			return state;
+			return {
+				...state,
+				topics: {
+					...state.topics,
+					[id]: undefined
+				}
+			};
 		default:
 			return state;
 	}

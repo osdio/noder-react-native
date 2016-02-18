@@ -2,7 +2,8 @@ import React,{
 	Component,
 	View,
 	StyleSheet,
-	Text
+	Text,
+	StatusBar
 } from 'react-native';
 import Toast from '../components/base/Toast';
 
@@ -27,6 +28,7 @@ class Utils extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<StatusBar barStyle="light-content"/>
 				<Toast ref={ (view)=> this.toast=view }/>
 			</View>
 		);

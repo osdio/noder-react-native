@@ -16,7 +16,7 @@ var middlewares = [
 
 
 if (__DEV__) {
-	//middlewares.push(logger());
+	middlewares.push(logger());
 }
 
 

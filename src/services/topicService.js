@@ -68,7 +68,7 @@ export const req = {
 
 	getTopicById: function (id) {
 		return requestService.get('/topic/' + id)
-			.then(data=>data.data)
+			.then(filterData)
 			.then(topic=> {
 				if (topic && topic.id) {
 					return topic

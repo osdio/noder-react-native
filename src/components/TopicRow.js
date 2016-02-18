@@ -17,7 +17,13 @@ const { width } = Dimensions.get('window');
 class TopicRow extends Component {
 	static propTypes = {
 		topic: PropTypes.object,
-		footer: PropTypes.node
+		footer: PropTypes.node,
+		onPross: PropTypes.func
+	};
+
+
+	static defaultProps = {
+		onPross: ()=>null
 	};
 
 

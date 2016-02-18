@@ -6,7 +6,8 @@ const initialState = {
 	share: [],
 	job: [],
 	good: [],
-	all: []
+	all: [],
+	topics: {}
 };
 
 
@@ -33,6 +34,18 @@ export default function (state = initialState, action) {
 				...state,
 				[tab]: payload
 			};
+		case types.GET_TOPIC_BY_ID:
+			let { id = '' } = meta;
+			return {
+				...state,
+				topics: {
+					...state.topics,
+					[id]: payload
+				}
+			};
+		case types.REMOVE_TOPIC_CACHE_BY_ID:
+			delete state.topics[id];
+			return state;
 		default:
 			return state;
 	}

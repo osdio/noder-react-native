@@ -16,7 +16,8 @@ const { height, width } = Dimensions.get('window');
 
 class TopicList extends Component {
 	static propTypes = {
-		data: PropTypes.array
+		data: PropTypes.array,
+		router: PropTypes.object
 	};
 
 
@@ -31,11 +32,6 @@ class TopicList extends Component {
 		this.state = {
 			ds: ds.cloneWithRows(props.data)
 		}
-	}
-
-
-	componentDidMount() {
-
 	}
 
 
@@ -114,6 +110,12 @@ class TopicList extends Component {
 			<TopicRow
 				key={topic.id}
 				topic={topic}
+				onPress={(topic)=>{
+					this.props.router.toTopic({
+						id: topic.id,
+						topic
+					});
+				}}
 				footer={this._renderTopicFooter(topic)}/>
 		)
 	}
@@ -123,26 +125,15 @@ class TopicList extends Component {
 		return (
 			<View style={styles.container}>
 				<ListView
+					showsVerticalScrollIndicator
+					removeClippedSubviews
 					ref={view => {this._listView = view}}
-					showsVerticalScrollIndicator={true}
 					initialListSize={10}
 					pagingEnabled={false}
-					removeClippedSubviews={true}
+					scrollRenderAheadDistance={90}
 					dataSource={this.state.ds}
 					renderRow={this.renderRow.bind(this)}
-					scrollRenderAheadDistance={90}
 					onScroll={this._onScroll.bind(this)}
-					onResponderReject={(e)=>{
-						console.log('onResponderReject');
-						return false;
-					}}
-					onResponderRelease={(e)=>{
-						console.log('release');
-					}}
-					onResponderTerminationRequest={(e)=>{
-						console.log('onResponderTerminationRequest');
-						return false
-					}}
 				/>
 			</View>
 		)

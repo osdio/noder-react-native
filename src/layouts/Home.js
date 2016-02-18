@@ -34,7 +34,7 @@ class Home extends Component {
 
 	_renderTopicList() {
 		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
-			return <TopicList key={item} nav={item} data={this.props.topic[item]}/>
+			return <TopicList router={this.props.router} key={item} nav={item} data={this.props.topic[item]}/>
 		});
 	}
 

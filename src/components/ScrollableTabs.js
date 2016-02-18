@@ -179,7 +179,7 @@ class ScrollableTabs extends Component {
 		return (
 			<ViewPagerAndroid
 				initialPage={this.index}
-				style={styles.scrollView}
+				style={styles.scrollableContentAndroid}
 				ref={(scrollView) => { this.scrollView = scrollView; }}
 				onPageScroll={ this._onAndroidPageScroll.bind(this)}>
 
@@ -247,10 +247,9 @@ const styles = StyleSheet.create({
 	page: {
 		width
 	},
-	scrollView: {
-		backgroundColor: 'white',
+	scrollableContentAndroid: {
 		flex: 1,
-		flexDirection: 'column'
+		backgroundColor: 'white'
 	},
 	scrollableContentContainerIOS: {
 		flex: 1,

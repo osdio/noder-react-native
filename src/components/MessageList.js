@@ -41,7 +41,7 @@ class MessageList extends Component {
 
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.data != this.props.data) {
+		if (nextProps.didFocus && nextProps.data != this.props.data) {
 			this.setState({
 				ds: this.ds.cloneWithRows(nextProps.data)
 			})
@@ -147,7 +147,6 @@ class MessageList extends Component {
 		if (this.props.didFocus) {
 			return (
 				<ListView
-					style={{backgroundColor:'rgba(255,255,255,1)'}}
 					showsVerticalScrollIndicator={true}
 					initialListSize={10}
 					pagingEnabled={false}

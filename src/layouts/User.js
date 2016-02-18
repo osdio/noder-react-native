@@ -12,7 +12,7 @@ import React,{
 import moment from 'moment';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
-import UserTopicPage from '../components/UserTopicList';
+import UserTopicList from '../components/UserTopicList';
 import TabBar from '../components/TabBar';
 import Spinner from '../components/base/Spinner';
 import Return from '../components/base/Return';
@@ -102,12 +102,12 @@ class User extends Component {
 			<ScrollableTabView
 				edgeHitWidth={(width/3) * 2}
 				renderTabBar={() => <TabBar/> }>
-				<UserTopicPage
+				<UserTopicList
 					router={this.props.router}
 					style={styles.userTopicPage}
 					data={userInfo.recent_replies}
 					tabLabel="最近回复"/>
-				<UserTopicPage
+				<UserTopicList
 					router={this.props.router}
 					style={styles.userTopicPage}
 					data={userInfo.recent_topics}
@@ -190,7 +190,6 @@ class User extends Component {
 }
 
 const bgWallHeight = 160;
-const authorWrapperHeight = 100;
 const authorImgSize = 60;
 const fontColor = 'rgba(255,255,255,0.7)';
 

@@ -68,7 +68,7 @@ class UserOverlay extends Component {
 const styles = StyleSheet.create({
 	userImg: {
 		borderWidth: 2,
-		borderColor: '#2C3E50',
+		borderColor: 'rgba(241,196,15,0.9)',
 		width: 45,
 		height: 45,
 		borderRadius: 45 / 2

@@ -143,39 +143,33 @@ class ScrollableTabs extends Component {
 
 
 	_renderPageScroll() {
+		const initContentOffset = {
+			x: this.index * width,
+			y: 0
+		};
+
 		if (Platform.OS === 'ios') {
 			return (
 				<ScrollView
-					style={styles.scrollView}
+					horizontal
+					pagingEnabled
+					directionalLockEnabled
+					removeClippedSubviews
+					scrollEnabled
+					style={styles.scrollableContentIOS}
+					contentContainerStyle={styles.scrollableContentContainerIOS}
 					ref={view=>this.scrollView=view}
-					contentOffset={{
-								x: this.index * width,
-								y: 0
-							}}
-					alwaysBounceHorizontal={false}
-					alwaysBounceVertical={true}
-					horizontal={true}
-					directionalLockEnabled={true}
-					scrollEventThrottle={16}
-					pagingEnabled={true}
-					scrollEnabled={true}
-					onScroll={this._onScroll.bind(this)}
-					onScrollBeginDrag={this._onScroll.bind(this)}
+					contentOffset={ initContentOffset }
+					alwaysBounceVertical={false}
 					automaticallyAdjustContentInsets={false}
-					removeClippedSubviews={true}
 					showsHorizontalScrollIndicator={false}
 					showsVerticalScrollIndicator={false}
-					onResponderReject={(e)=>{
-						console.log('onResponderReject');
-						return false;
-					}}
-					onResponderRelease={(e)=>{
-						console.log('release');
-					}}
-					onResponderTerminationRequest={(e)=>{
-						console.log('onResponderTerminationRequest');
-						return false
-					}}>
+					scrollEventThrottle={16}
+					onScroll={this._onScroll.bind(this)}
+					onScrollBeginDrag={this._onScroll.bind(this)}
+					onMomentumScrollBegin={this._onScroll.bind(this)}
+					onMomentumScrollEnd={this._onScroll.bind(this)}
+				>
 
 					{ this._renderChildren() }
 
@@ -257,6 +251,16 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		flex: 1,
 		flexDirection: 'column'
+	},
+	scrollableContentContainerIOS: {
+		flex: 1,
+		backgroundColor: 'white'
+	},
+	scrollableContentIOS: {
+		flexDirection: 'column',
+	},
+	container: {
+		flex: 1
 	}
 });
 

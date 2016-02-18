@@ -31,6 +31,7 @@ class ScrollableTabs extends Component {
 	constructor(props) {
 		super(props);
 		const { tabNavItemWidth, tabs } = props;
+		this.tabCount = tabs.length;
 		this.space = (width - tabNavItemWidth * 3) / 2;
 		this.navContentWidth = (tabs.length + 2) * tabNavItemWidth + this.space * (tabs.length + 1);
 		this.index = props.index || Math.floor(tabs.length / 2);
@@ -86,6 +87,53 @@ class ScrollableTabs extends Component {
 	}
 
 
+	_onTouchStart(e) {
+		console.log('start');
+		this.touchstart = e.nativeEvent.pageX;
+		this.touchstartTimestamp = e.nativeEvent.timeStamp;
+	}
+
+
+	_onTouchMove(e) {
+		console.log('move');
+	}
+
+
+	_onTouchEnd(e) {
+		console.log('end');
+		const { pageX, timeStamp } = e.nativeEvent;
+		const distance = pageX - this.touchstart;
+		const time = timeStamp - this.touchstartTimestamp;
+		const v = distance / time;
+		let x;
+		if (Math.abs(distance) > this.space) {
+			// swipe to right
+			if (v < 0) {
+				if (this.index > 0 || this.index < this.tabCount - 1) {
+					this.index++;
+				}
+				x = this.index * width;
+			}
+			else {
+				if (this.index > 0 || this.index < this.tabCount - 1) {
+					this.index--;
+				}
+				this.index--;
+				x = this.index * width;
+			}
+		}
+		else {
+			x = this.index * width;
+		}
+
+		this.scrollView.scrollTo({
+			x,
+			y: 0,
+			animated: true
+		});
+	}
+
+
 	_getActiveNavItemStyle(opacity) {
 		return {
 			borderTopColor: 'rgba(241,196,15,' + opacity + ')'
@@ -102,7 +150,7 @@ class ScrollableTabs extends Component {
 
 			return (
 				<View ref={ view => this._navs[index]=view} key={index}
-							   style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
+					  style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
 					<TouchableOpacity>
 						<Text style={styles.itemText}>
 							{ item }
@@ -115,6 +163,13 @@ class ScrollableTabs extends Component {
 
 
 	render() {
+		const androidProps = Platform.OS === 'android' ? {
+			onTouchStart: this._onTouchStart.bind(this),
+			onTouchEnd: this._onTouchEnd.bind(this),
+			onTouchMove: this._onTouchMove.bind(this)
+		} : {};
+
+
 		return (
 			<View style={[ styles.container, this.props.style ]}>
 				<View style={[styles.navWrapper, { width: this.navContentWidth }]}>
@@ -143,14 +198,15 @@ class ScrollableTabs extends Component {
 					bounces={true}
 					horizontal={true}
 					directionalLockEnabled={true}
-					scrollEventThrottle={1}
+					scrollEventThrottle={16}
 					pagingEnabled={true}
 					scrollEnabled={true}
 					onScroll={this._onScroll.bind(this)}
 					automaticallyAdjustContentInsets={false}
 					removeClippedSubviews={true}
 					showsHorizontalScrollIndicator={false}
-					showsVerticalScrollIndicator={false}>
+					showsVerticalScrollIndicator={false}
+					{...androidProps}>
 
 					{this.props.children.map((pageContent, index)=> {
 						return (

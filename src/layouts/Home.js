@@ -6,7 +6,8 @@ import React,{
 	StyleSheet,
 	Dimensions,
 	Animated,
-	Easing
+	Easing,
+	StatusBar
 } from 'react-native';
 import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
@@ -24,6 +25,13 @@ class Home extends Component {
 	}
 
 
+	componentDidMount() {
+		['good', 'ask', 'all', 'share', 'job'].map((item)=> {
+			this.props.actions.getTopicsByTab(item);
+		});
+	}
+
+
 	_renderTopicList() {
 		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
 			return <TopicList key={item} nav={item} data={this.props.topic[item]}/>
@@ -35,6 +43,7 @@ class Home extends Component {
 		const { router, user, message } = this.props;
 		return (
 			<View style={styles.container}>
+				<StatusBar barStyle="light-content"/>
 				<ScrollableTabs index={0} tabs={['精华', '问答', '主页', '分享', '招聘']}>
 					{ this._renderTopicList() }
 				</ScrollableTabs>

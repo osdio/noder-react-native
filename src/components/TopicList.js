@@ -47,6 +47,10 @@ class TopicList extends Component {
 		}
 	}
 
+	_onScroll(e) {
+
+	}
+
 
 	_renderTopicFooter(topic) {
 		var renderArr = [];
@@ -118,6 +122,7 @@ class TopicList extends Component {
 	render() {
 		return (
 			<ListView
+				style={styles.container}
 				ref={view => {this._listView = view}}
 				showsVerticalScrollIndicator={true}
 				initialListSize={10}
@@ -125,13 +130,19 @@ class TopicList extends Component {
 				removeClippedSubviews={true}
 				dataSource={this.state.ds}
 				renderRow={this.renderRow.bind(this)}
-				scrollRenderAheadDistance={90}/>
+				scrollRenderAheadDistance={90}
+				onScroll={this._onScroll.bind(this)}
+			/>
 		)
 	}
 }
 
 
 const styles = StyleSheet.create({
+	container: {
+		width,
+		height: height
+	},
 	"row": {
 		"height": 90,
 		"flexDirection": "row",

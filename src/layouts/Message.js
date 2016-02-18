@@ -3,13 +3,15 @@ import React, {
 	Component,
 	StyleSheet,
 	Dimensions,
-	Platform
+	Platform,
+	StatusBar
 } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from '../components/TabBar';
 import Return from '../components/base/Return';
 import MarkAsReadOverlay from '../components/MarkAsReadOverlay';
 import MessageList from '../components/MessageList';
+import { genColor } from '../utils';
 
 
 const { height, width } = Dimensions.get('window');
@@ -20,7 +22,7 @@ class Message extends Component {
 		super(props);
 		this.state = {
 			didFocus: false
-		}
+		};
 	}
 
 
@@ -38,6 +40,26 @@ class Message extends Component {
 	}
 
 
+	_renderTabBar() {
+		const statusBarHeight = Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0;
+		const props = {
+			style: {
+				backgroundColor: '#292829',
+				height: 50 + 4 + statusBarHeight,
+				paddingTop: statusBarHeight
+			},
+			activeTabTextColor: 'white',
+			normalTabTextColor: 'rgba(255,255,255,0.7)',
+			tabUnderlineStyle: {
+				backgroundColor: 'rgba(241,196,15,1)'
+			}
+		};
+		return (
+			<TabBar {...props}/>
+		)
+	}
+
+
 	render() {
 		const { fetchMessagesPending, hasNotRead, hasRead, isMarkAsReadLoading } = this.props;
 
@@ -47,7 +69,7 @@ class Message extends Component {
 				<ScrollableTabView
 					style={styles.scrollableTabView}
 					edgeHitWidth={(width/3)*2}
-					renderTabBar={()=><TabBar/>}>
+					renderTabBar={this._renderTabBar.bind(this)}>
 					<MessageList
 						router={this.props.router}
 						didFocus={ this.state.didFocus }
@@ -79,7 +101,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: 'white',
-		paddingTop: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0,
 		height,
 		width
 	},

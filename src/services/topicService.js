@@ -29,6 +29,9 @@ export const storage = {
 			.then(arr=> {
 				let ob = {};
 				arr.forEach((item)=> {
+					if (!item[1]) {
+						throw 'topicsIsEmpty';
+					}
 					ob[item[0].replace('tab_', '')] = item[1];
 				});
 				return ob;

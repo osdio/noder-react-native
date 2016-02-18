@@ -8,7 +8,8 @@ import React, {
 	Text,
 	Platform,
 	ScrollView,
-	Animated
+	Animated,
+	ViewPagerAndroid
 } from 'react-native';
 
 
@@ -87,49 +88,15 @@ class ScrollableTabs extends Component {
 	}
 
 
-	_onTouchStart(e) {
-		console.log('start');
-		this.touchstart = e.nativeEvent.pageX;
-		this.touchstartTimestamp = e.nativeEvent.timeStamp;
-	}
-
-
-	_onTouchMove(e) {
-		console.log('move');
-	}
-
-
-	_onTouchEnd(e) {
-		console.log('end');
-		const { pageX, timeStamp } = e.nativeEvent;
-		const distance = pageX - this.touchstart;
-		const time = timeStamp - this.touchstartTimestamp;
-		const v = distance / time;
-		let x;
-		if (Math.abs(distance) > this.space) {
-			// swipe to right
-			if (v < 0) {
-				if (this.index > 0 || this.index < this.tabCount - 1) {
-					this.index++;
+	_onAndroidPageScroll(e) {
+		const { offset, position } = e.nativeEvent;
+		let x = (position + offset) * width;
+		this._onScroll({
+			nativeEvent: {
+				contentOffset: {
+					x
 				}
-				x = this.index * width;
 			}
-			else {
-				if (this.index > 0 || this.index < this.tabCount - 1) {
-					this.index--;
-				}
-				this.index--;
-				x = this.index * width;
-			}
-		}
-		else {
-			x = this.index * width;
-		}
-
-		this.scrollView.scrollTo({
-			x,
-			y: 0,
-			animated: true
 		});
 	}
 
@@ -162,14 +129,74 @@ class ScrollableTabs extends Component {
 	}
 
 
+	_renderChildren() {
+		return this.props.children.map((pageContent, index)=> {
+			return (
+				<View
+					key={'pageScrollView'+index}
+					style={ styles.page }>
+					{ pageContent }
+				</View>
+			)
+		})
+	}
+
+
+	_renderPageScroll() {
+		if (Platform.OS === 'ios') {
+			return (
+				<ScrollView
+					style={styles.scrollView}
+					ref={view=>this.scrollView=view}
+					contentOffset={{
+								x: this.index * width,
+								y: 0
+							}}
+					alwaysBounceHorizontal={false}
+					alwaysBounceVertical={true}
+					horizontal={true}
+					directionalLockEnabled={true}
+					scrollEventThrottle={16}
+					pagingEnabled={true}
+					scrollEnabled={true}
+					onScroll={this._onScroll.bind(this)}
+					onScrollBeginDrag={this._onScroll.bind(this)}
+					automaticallyAdjustContentInsets={false}
+					removeClippedSubviews={true}
+					showsHorizontalScrollIndicator={false}
+					showsVerticalScrollIndicator={false}
+					onResponderReject={(e)=>{
+						console.log('onResponderReject');
+						return false;
+					}}
+					onResponderRelease={(e)=>{
+						console.log('release');
+					}}
+					onResponderTerminationRequest={(e)=>{
+						console.log('onResponderTerminationRequest');
+						return false
+					}}>
+
+					{ this._renderChildren() }
+
+				</ScrollView>
+			)
+		}
+		return (
+			<ViewPagerAndroid
+				initialPage={this.index}
+				style={styles.scrollView}
+				ref={(scrollView) => { this.scrollView = scrollView; }}
+				onPageScroll={ this._onAndroidPageScroll.bind(this)}>
+
+				{ this.props.children }
+
+			</ViewPagerAndroid>
+		)
+	}
+
+
 	render() {
-		const androidProps = Platform.OS === 'android' ? {
-			onTouchStart: this._onTouchStart.bind(this),
-			onTouchEnd: this._onTouchEnd.bind(this),
-			onTouchMove: this._onTouchMove.bind(this)
-		} : {};
-
-
 		return (
 			<View style={[ styles.container, this.props.style ]}>
 				<View style={[styles.navWrapper, { width: this.navContentWidth }]}>
@@ -186,38 +213,8 @@ class ScrollableTabs extends Component {
 					</Animated.View>
 				</View>
 
+				{ this._renderPageScroll() }
 
-				{/* scroll page */}
-				<ScrollView
-					style={styles.scrollView}
-					ref={view=>this.scrollView=view}
-					contentOffset={{
-								x: this.index * width,
-								y: 0
-							}}
-					bounces={true}
-					horizontal={true}
-					directionalLockEnabled={true}
-					scrollEventThrottle={16}
-					pagingEnabled={true}
-					scrollEnabled={true}
-					onScroll={this._onScroll.bind(this)}
-					automaticallyAdjustContentInsets={false}
-					removeClippedSubviews={true}
-					showsHorizontalScrollIndicator={false}
-					showsVerticalScrollIndicator={false}
-					{...androidProps}>
-
-					{this.props.children.map((pageContent, index)=> {
-						return (
-							<View
-								key={'pageScrollView'+index}
-								style={[styles.page, this.props.pageStyle]}>
-								{pageContent}
-							</View>
-						)
-					})}
-				</ScrollView>
 			</View>
 		)
 	}
@@ -228,9 +225,6 @@ const statusBarSpace = Platform.OS === 'ios' ? 20 : 0;
 
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1
-	},
 	navWrapper: {
 		height: 40 + statusBarSpace,
 		backgroundColor: 'rgba(0,0,0,0.8)'
@@ -261,7 +255,8 @@ const styles = StyleSheet.create({
 	},
 	scrollView: {
 		backgroundColor: 'white',
-		width
+		flex: 1,
+		flexDirection: 'column'
 	}
 });
 

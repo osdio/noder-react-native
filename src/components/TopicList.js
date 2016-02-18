@@ -121,18 +121,30 @@ class TopicList extends Component {
 
 	render() {
 		return (
-			<ListView
-				style={styles.container}
-				ref={view => {this._listView = view}}
-				showsVerticalScrollIndicator={true}
-				initialListSize={10}
-				pagingEnabled={false}
-				removeClippedSubviews={true}
-				dataSource={this.state.ds}
-				renderRow={this.renderRow.bind(this)}
-				scrollRenderAheadDistance={90}
-				onScroll={this._onScroll.bind(this)}
-			/>
+			<View style={styles.container}>
+				<ListView
+					ref={view => {this._listView = view}}
+					showsVerticalScrollIndicator={true}
+					initialListSize={10}
+					pagingEnabled={false}
+					removeClippedSubviews={true}
+					dataSource={this.state.ds}
+					renderRow={this.renderRow.bind(this)}
+					scrollRenderAheadDistance={90}
+					onScroll={this._onScroll.bind(this)}
+					onResponderReject={(e)=>{
+						console.log('onResponderReject');
+						return false;
+					}}
+					onResponderRelease={(e)=>{
+						console.log('release');
+					}}
+					onResponderTerminationRequest={(e)=>{
+						console.log('onResponderTerminationRequest');
+						return false
+					}}
+				/>
+			</View>
 		)
 	}
 }
@@ -141,7 +153,7 @@ class TopicList extends Component {
 const styles = StyleSheet.create({
 	container: {
 		width,
-		height: height
+		height: height - 40
 	},
 	"row": {
 		"height": 90,

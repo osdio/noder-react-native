@@ -43,7 +43,6 @@ class Home extends Component {
 		const { router, user, message } = this.props;
 		return (
 			<View style={styles.container}>
-				<StatusBar barStyle="light-content"/>
 				<ScrollableTabs index={0} tabs={['精华', '问答', '主页', '分享', '招聘']}>
 					{ this._renderTopicList() }
 				</ScrollableTabs>

@@ -70,8 +70,27 @@ class Topic extends Component {
 	}
 
 
+	_renderTopicHtml(topic) {
+		if (this.state.didFocus && topic && topic.content) {
+			return (
+				<View style={styles.content}>
+					<Html
+						router={this.props.router}
+						content={topic.content}/>
+				</View>
+			)
+		}
+		return (
+			<Spinner
+				size="large"
+				animating={true}
+				style={{marginTop:20}}/>
+		)
+	}
+
+
 	_renderContent(topic) {
-		if (this.state.didFocus && topic) {
+		if (topic) {
 			const imgUri = parseImgUrl(topic.author.avatar_url);
 			const authorName = topic.author.loginname;
 			const date = moment(topic.create_at).startOf('minute').fromNow();
@@ -115,11 +134,7 @@ class Topic extends Component {
 						</View>
 					</View>
 
-					<View style={styles.content}>
-						<Html
-							router={this.props.router}
-							content={topic.content}/>
-					</View>
+					{ this._renderTopicHtml(topic) }
 				</ScrollView>
 			)
 		}
@@ -246,7 +261,9 @@ const styles = StyleSheet.create({
 export const LayoutComponent = Topic;
 export function mapStateToProps(state, props) {
 	const { id = '0' } = props;
+	const topic = state.topic.topics[id];
+	console.log(props.topic);
 	return {
-		topic: state.topic.topics[id]
+		topic: topic || props.topic
 	}
 }

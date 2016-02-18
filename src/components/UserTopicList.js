@@ -34,10 +34,10 @@ class UserTopicList extends Component {
 
 
 	_onRowPress(topic) {
-		//this.props.router.toTopic({
-		//	topic: topic,
-		//	from: 'user'
-		//})
+		this.props.router.toTopic({
+			topic: topic,
+			id: topic.id
+		})
 	}
 
 

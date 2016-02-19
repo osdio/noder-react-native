@@ -13,24 +13,20 @@ import React, {
 	Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import moment from 'moment';
 import { markdown } from 'markdown'
 import Return from '../components/base/Return';
-import CommentHtml from '../components/CommentHtml';
-import CommentUp from '../components/CommentUp';
 import Nav from '../components/Nav';
 import Spinner from '../components/base/Spinner';
+import CommentList from '../components/CommentList';
 import animations from '../configs/animations';
 import { genColor, parseImgUrl } from '../utils';
 
 
 const { width, height } = Dimensions.get('window');
-const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+//const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
 const authorImgSize = 35;
-const commentContentOffset = 15 * 2 + authorImgSize;
-const commentIconSize = 12;
 const replyFormHeight = 55;
-const commentsHeight = height - 40 - 20 - replyFormHeight - statusBarHeight;
+const commentsHeight = height - 40 - 20 - replyFormHeight - 20;
 const submitButtonWidth = 55;
 
 
@@ -141,122 +137,6 @@ class Comment extends Component {
 	}
 
 
-	_onAuthorImgPress(authorName) {
-		this.props.router.toUser({
-			userName: authorName
-		})
-	}
-
-
-	renderRow(comment, sectionID, rowID, highlightRow) {
-		var authorName = comment.author.loginname;
-		var date = moment(comment.create_at).startOf('minute').fromNow();
-		var commentNum = this.props.replies.length - parseInt(rowID);
-		var focusStyle = {};
-		if (this.props.reply) {
-			let replyId = this.props.reply.id;
-			if (replyId == comment.id) {
-				focusStyle = {
-					backgroundColor: 'rgba(0,2,125,0.07)'
-				}
-			}
-		}
-
-		var footer = (
-			<View style={styles.commentFooter}>
-				<CommentUp
-					replyId={comment.id}
-					authorName={authorName}
-					ups={comment.ups}
-					user={this.props.user}
-					style={styles.up}
-				/>
-				<TouchableOpacity
-					onPress={this._onReplyPress.bind(this, comment.id, authorName)}>
-					<Icon
-						name={'reply'}
-						size={22}
-						color='rgba(0,0,0,0.35)'
-						style={styles.replyIcon}
-					/>
-				</TouchableOpacity>
-			</View>
-		);
-
-
-		return (
-			<View
-				ref={view=>this[comment.id]=view}
-				key={comment.id}
-				style={[styles.commentWrapper,focusStyle]}>
-				<View style={[styles.imageWrapper]}>
-					<TouchableOpacity onPress={this._onAuthorImgPress.bind(this,authorName)}>
-						<Image
-							style={styles.authorImg}
-							source={{uri:parseImgUrl(comment.author.avatar_url)}}
-						>
-						</Image>
-					</TouchableOpacity>
-
-					<Text style={styles.commentNumText}>
-						{commentNum} 楼
-					</Text>
-				</View>
-
-				<View style={styles.commentContentWrapper}>
-					<View style={styles.commentHeader}>
-						<View style={styles.author}>
-							<TouchableOpacity onPress={this._onAuthorTextPress.bind(this,authorName)}>
-								<Text style={styles.authorText}>
-									{authorName}
-								</Text>
-							</TouchableOpacity>
-						</View>
-
-						<View style={styles.date}>
-							<Text style={styles.dateText}>
-								{date}
-							</Text>
-						</View>
-					</View>
-
-					<CommentHtml
-						router={this.props.router}
-						style={commentHtmlStyle}
-						content={comment.content}/>
-
-					{!this.props.user || footer}
-				</View>
-			</View>
-		)
-	}
-
-
-	_renderComments(topic) {
-		if (this.state.didFocus && topic) {
-			return (
-				<ListView
-					ref={view=>this._listView=view}
-					style={{backgroundColor:'rgba(255,255,255,1)'}}
-					showsVerticalScrollIndicator={true}
-					initialListSize={10}
-					pagingEnabled={false}
-					removeClippedSubviews={true}
-					dataSource={this.state.ds}
-					renderRow={this.renderRow.bind(this)}
-				/>
-			)
-		}
-
-		return (
-			<Spinner
-				size="large"
-				animating={true}
-				style={{marginTop:20,width:width}}/>
-		)
-	}
-
-
 	_renderReplySubmiteIcon() {
 		if (this.props.replyPending) {
 			return (
@@ -323,6 +203,29 @@ class Comment extends Component {
 	}
 
 
+	_renderCommentList() {
+		if (this.state.didFocus && this.props.topic) {
+			return (
+				<CommentList
+					data={this.props.replies}
+					focusedReply={this.props.reply}
+					router={this.props.router}
+					user={this.props.user}
+					onReplyPress={this._onReplyPress.bind(this)}
+					onAuthorNamePress={this._onAuthorTextPress.bind(this)}
+				/>
+			)
+		}
+
+		return (
+			<Spinner
+				size="large"
+				animating={true}
+				style={{marginTop:20,width:width}}/>
+		)
+	}
+
+
 	render() {
 		const { topic, router, id, count } = this.props;
 		let navs = {
@@ -363,6 +266,7 @@ class Comment extends Component {
 			}
 		}
 
+
 		return (
 			<View style={styles.container}>
 				<Nav navs={navs}/>
@@ -371,7 +275,9 @@ class Comment extends Component {
 					  style={[styles.comments,{
 					  	height: this.props.user ? commentsHeight : commentsHeight + replyFormHeight
 					  }]}>
-					{this._renderComments(topic)}
+
+					{ this._renderCommentList() }
+
 				</View>
 
 				{this._renderReplyForm()}
@@ -379,15 +285,6 @@ class Comment extends Component {
 		)
 	}
 }
-
-
-const commentHtmlStyle = StyleSheet.create({
-	img: {
-		width: width - commentContentOffset - 15,
-		height: width - commentContentOffset - 15,
-		resizeMode: Image.resizeMode.contain
-	}
-});
 
 
 const styles = StyleSheet.create({
@@ -402,91 +299,8 @@ const styles = StyleSheet.create({
 	},
 
 	comments: {
-		//marginTop: 20,
 		width: width,
 		height: commentsHeight
-	},
-
-	commentWrapper: {
-		borderBottomColor: 'rgba(0,0,0,0.02)',
-		borderBottomWidth: 1,
-		padding: 15,
-		flexDirection: 'row',
-	},
-
-	commentHeader: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-
-	date: {
-		flexDirection: 'row',
-		flex: 1
-	},
-
-	author: {
-		flex: 1
-	},
-	authorText: {
-		color: 'rgba(0,0,0,0.3)',
-		fontSize: 12
-	},
-
-	dateIcon: {
-		height: commentIconSize,
-		width: commentIconSize,
-		flexDirection: 'row'
-	},
-
-	dateText: {
-		color: 'rgba(0,0,0,0.3)',
-		fontSize: 12,
-		textAlign: 'right',
-		flex: 1
-	},
-
-	commentIcon: {
-		height: commentIconSize,
-		width: commentIconSize
-	},
-
-
-	imageWrapper: {
-		width: authorImgSize + 15
-	},
-
-	commentNumText: {
-		marginTop: 15,
-		fontSize: 12,
-		color: 'rgba(0,0,0,0.3)',
-		textAlign: 'center',
-		width: authorImgSize
-
-	},
-
-	commentContentWrapper: {
-		width: width - commentContentOffset - 15,
-	},
-
-	authorImg: {
-		height: authorImgSize,
-		width: authorImgSize,
-		borderRadius: authorImgSize / 2
-
-	},
-	commentFooter: {
-		flexDirection: 'row',
-		flex: 1,
-		justifyContent: 'space-between',
-		alignItems: 'flex-end'
-	},
-	replyIcon: {
-		width: 15,
-		flex: 1
-	},
-	upIcon: {
-		flex: 1,
-		width: 15
 	},
 	replyFormWrapper: {
 		height: replyFormHeight + 4,
@@ -519,7 +333,7 @@ const styles = StyleSheet.create({
 	replyInput: {
 		flex: 1,
 		fontSize: 14,
-		height: 14 * 2,
+		height: Platform.OS === 'ios' ? 14 * 2 : 55,
 		//lineHeight: 14 * 1.4
 	},
 	submitIcon: {

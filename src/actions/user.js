@@ -60,6 +60,10 @@ export const getUserInfo = createAction(types.GET_USER_INFO, async (loginName)=>
 			}
 			throw 'getUserInfoError'
 		});
+}, (userName)=> {
+	return {
+		userName
+	}
 });
 
 

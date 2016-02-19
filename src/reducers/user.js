@@ -5,7 +5,7 @@ const initialState = {
 	secret: null,
 	publicInfo: null,
 	updatePending: false,
-	otherUser: null
+	users: {}
 };
 
 
@@ -34,9 +34,13 @@ export default function (state = initialState, action) {
 				publicInfo: payload
 			};
 		case types.GET_USER_INFO:
+			let { userName = "soliury" } = meta;
 			return {
 				...state,
-				otherUser: payload
+				users: {
+					...state.users,
+					[userName]: payload
+				}
 			};
 		default:
 			return state;

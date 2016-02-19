@@ -43,8 +43,7 @@ class Html extends Component {
 				let topicId = url.replace(/^https?:\/\/cnodejs\.org\/topic\//, '');
 
 				return router.toTopic({
-					topicId: topicId,
-					from: 'html'
+					id: topicId
 				})
 			}
 

@@ -17,6 +17,7 @@ import TabBar from '../components/TabBar';
 import Spinner from '../components/base/Spinner';
 import Return from '../components/base/Return';
 import Setting from '../components/Setting';
+import ErrorHandle from '../components/base/ErrorHandle';
 import { parseImgUrl, link, genColor } from '../utils';
 
 
@@ -26,9 +27,7 @@ const { height, width } = Dimensions.get('window');
 class User extends Component {
 	constructor(props) {
 		super(props);
-		const { user={}, userName } = this.props;
-		let userInfo = user.publicInfo || {};
-		this.isClientUser = userInfo.loginname === userName;
+		this.isClientUser = props.isClientUser;
 		this.wallColor = genColor();
 		this.state = {
 			didFocus: false
@@ -37,13 +36,12 @@ class User extends Component {
 
 
 	componentDidMount() {
-		const { actions, user } = this.props;
-		actions.updateClientUserInfo(user);
+		this._getUserInfo();
 	}
 
 
 	componentDidFocus(haveFocused) {
-		if(!haveFocused){
+		if (!haveFocused) {
 			this.setState({
 				didFocus: true
 			});
@@ -52,8 +50,19 @@ class User extends Component {
 
 
 	componentWillReceiveProps(nextProps) {
-		if (!this.isClientUser && !nextProps.otherUser) {
-			this.props.router.pop();
+		//if (!this.isClientUser && !nextProps.otherUser) {
+		//	this.props.router.pop();
+		//}
+	}
+
+
+	_getUserInfo() {
+		const { actions, user, userName } = this.props;
+		if (this.isClientUser) {
+			actions.updateClientUserInfo(user);
+		}
+		else {
+			actions.getUserInfo(userName)
 		}
 	}
 
@@ -65,8 +74,7 @@ class User extends Component {
 
 
 	render() {
-		const { user={}, ui } = this.props;
-		const userInfo = this.isClientUser ? user.publicInfo : user.otherUser;
+		const { userInfo={}, ui } = this.props;
 		const spinnerView = (
 			<Spinner
 				size="large"
@@ -88,11 +96,7 @@ class User extends Component {
 		if (!userInfo) {
 			return (
 				<View style={styles.container}>
-					<View>
-						<Text>
-							网络出错啦, 请点击按钮重新加载
-						</Text>
-					</View>
+					<ErrorHandle onPress={()=>this._getUserInfo()}/>
 				</View>
 			)
 		}
@@ -249,9 +253,14 @@ const styles = StyleSheet.create({
 
 
 export const LayoutComponent = User;
-export function mapStateToProps(state) {
+export function mapStateToProps(state, props) {
+	const { userName } = props;
+	let userInfo = state.user.publicInfo || {};
+	const isClientUser = userInfo.loginname === userName;
 	return {
 		user: state.user,
-		ui: state.userUI
+		ui: state.userUI,
+		isClientUser,
+		userInfo: isClientUser ? userInfo : state.user.users[userName]
 	}
 }

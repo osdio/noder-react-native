@@ -1,5 +1,5 @@
 import React,{
-	LinkingIOS
+	Linking
 } from 'react-native';
 
 
@@ -31,13 +31,14 @@ export function genColor() {
 
 
 export function link(url) {
-	LinkingIOS.canOpenURL(url, (supported) => {
-		if (!supported) {
-			console.warn("Can't support the url")
-		} else {
-			LinkingIOS.openURL(url)
-		}
-	});
+	Linking.canOpenURL(url).then(supported=> {
+			if (supported) {
+				return Linking.openURL(url)
+			}
+		})
+		.catch(err=> {
+			console.error('An error occurred', err);
+		})
 }
 
 export function substring(str, start, end) {

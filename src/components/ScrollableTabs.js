@@ -183,7 +183,7 @@ class ScrollableTabs extends Component {
 				ref={(scrollView) => { this.scrollView = scrollView; }}
 				onPageScroll={ this._onAndroidPageScroll.bind(this)}>
 
-				{ this.props.children }
+				{ this._renderChildren() }
 
 			</ViewPagerAndroid>
 		)

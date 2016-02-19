@@ -8,6 +8,7 @@ import * as Login from '../layouts/Login';
 import * as User from '../layouts/User';
 import * as Message from '../layouts/Message';
 import * as Topic from '../layouts/Topic';
+import * as Comment from '../layouts/Comment';
 import * as CustomSceneConfigs from '../configs/sceneConfig';
 import connectComponent from '../utils/connectComponent';
 
@@ -83,6 +84,14 @@ class Router {
 		this.push(props, {
 			component: Topic,
 			name: 'topic'
+		})
+	}
+
+
+	toComment(props) {
+		this.push(props, {
+			component: Comment,
+			name: 'comment'
 		})
 	}
 }

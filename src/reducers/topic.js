@@ -14,6 +14,8 @@ const initialState = {
 export default function (state = initialState, action) {
 	const { payload, error, meta = {}, type } = action;
 	const { sequence = {}, tab } = meta;
+	const { id = '0' } = meta;
+
 	if (sequence.type === 'start' || error) {
 		return state;
 	}
@@ -35,7 +37,6 @@ export default function (state = initialState, action) {
 				[tab]: payload
 			};
 		case types.GET_TOPIC_BY_ID:
-			let { id = '' } = meta;
 			return {
 				...state,
 				topics: {

@@ -55,14 +55,6 @@ class Topic extends Component {
 	}
 
 
-	_onCommentOverlayPress() {
-		this.props.router.toComments({
-			topic: this.props.topic,
-			from: 'topic'
-		})
-	}
-
-
 	_onAuthorImgPress(authorName) {
 		this.props.router.toUser({
 			userName: authorName
@@ -152,7 +144,12 @@ class Topic extends Component {
 	_renderCommentOverlay(topic) {
 		return (
 			<CommentOverlay
-				onPress={this._onCommentOverlayPress.bind(this)}
+				onPress={()=>{
+					this.props.router.toComment({
+						topic: topic,
+						id:topic.id
+					})
+				}}
 				replyCount={topic.reply_count}
 			/>
 		)

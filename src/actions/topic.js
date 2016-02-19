@@ -3,6 +3,13 @@ import * as types from '../constants/ActionTypes';
 import * as topicService from '../services/topicService';
 
 
+function setMetaId(id) {
+	return {
+		id
+	}
+}
+
+
 export const getAllTopicsFromStorage = createAction(types.GET_TOPICS_FROM_STORAGE, topicService.storage.getAllTopics);
 
 
@@ -22,11 +29,7 @@ export const updateTopicsByTab = createAction(types.UPDATE_TOPICS_BY_TAB, async 
 });
 
 
-export const getTopicById = createAction(types.GET_TOPIC_BY_ID, topicService.req.getTopicById, (id)=> {
-	return {
-		id
-	}
-});
+export const getTopicById = createAction(types.GET_TOPIC_BY_ID, topicService.req.getTopicById, setMetaId);
 
 
 export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID, (id)=> {
@@ -34,3 +37,9 @@ export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID,
 		id
 	}
 });
+
+
+export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, setMetaId);
+
+
+export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, setMetaId);

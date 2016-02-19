@@ -39,7 +39,13 @@ export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID,
 });
 
 
-export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, setMetaId);
+export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, ({topicId}, resolved, rejected)=> {
+	return {
+		id: topicId,
+		resolved,
+		rejected
+	}
+});
 
 
 export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, setMetaId);

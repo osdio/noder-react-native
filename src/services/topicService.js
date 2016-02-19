@@ -78,7 +78,7 @@ export const req = {
 	},
 
 
-	reply: function (topicId, content, replyId) {
+	reply: function ({topicId, content, replyId}) {
 		let body = {
 			accesstoken: getToken(),
 			content: content

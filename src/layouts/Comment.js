@@ -20,6 +20,7 @@ import Spinner from '../components/base/Spinner';
 import CommentList from '../components/CommentList';
 import animations from '../configs/animations';
 import { genColor, parseImgUrl } from '../utils';
+import config from '../configs';
 
 
 const { width, height } = Dimensions.get('window');
@@ -111,6 +112,36 @@ class Comment extends Component {
 				});
 			}
 		}
+	}
+
+
+	_resetReplyForm() {
+		this.replyId = null;
+		this.textInput.setNativeProps({
+			text: ''
+		});
+		this.textInputValue = '';
+		this.textInput.blur();
+	}
+
+
+	_doReply() {
+		var content = this.textInputValue;
+		if (this.props.replyPending || content == '' || content == null) {
+			return
+		}
+		let topic = this.props.topic;
+		content = content + config.replySuffix;
+		this.props.actions.replyTopicById({
+			topicId: topic.id,
+			content,
+			replyId: this.replyId
+		}, ()=> {
+			// resolved
+			this._resetReplyForm();
+		}, ()=> {
+			// rejected
+		});
 	}
 
 

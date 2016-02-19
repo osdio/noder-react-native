@@ -56,26 +56,28 @@ class CommentList extends Component {
 
 
 	_renderFooter(comment, authorName) {
-		return (
-			<View style={styles.commentFooter}>
-				<CommentUp
-					replyId={comment.id}
-					authorName={authorName}
-					ups={comment.ups}
-					user={this.props.user}
-					style={styles.up}
-				/>
-				<TouchableOpacity
-					onPress={ ()=> this.props.onReplyPress(comment.id, authorName) }>
-					<Icon
-						name={'reply'}
-						size={22}
-						color='rgba(0,0,0,0.35)'
-						style={styles.replyIcon}
+		if (this.props.user) {
+			return (
+				<View style={styles.commentFooter}>
+					<CommentUp
+						replyId={comment.id}
+						authorName={authorName}
+						ups={comment.ups}
+						user={this.props.user}
+						style={styles.up}
 					/>
-				</TouchableOpacity>
-			</View>
-		)
+					<TouchableOpacity
+						onPress={ ()=> this.props.onReplyPress(comment.id, authorName) }>
+						<Icon
+							name={'reply'}
+							size={22}
+							color='rgba(0,0,0,0.35)'
+							style={styles.replyIcon}
+						/>
+					</TouchableOpacity>
+				</View>
+			)
+		}
 	}
 
 

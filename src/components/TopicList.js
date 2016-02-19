@@ -143,8 +143,8 @@ class TopicList extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		width,
-		height: height - 40
+		flex: 1,
+		width
 	},
 	"row": {
 		"height": 90,

@@ -18,12 +18,12 @@ class TopicRow extends Component {
 	static propTypes = {
 		topic: PropTypes.object,
 		footer: PropTypes.node,
-		onPross: PropTypes.func
+		onPress: PropTypes.func
 	};
 
 
 	static defaultProps = {
-		onPross: ()=>null
+		onPress: ()=>null
 	};
 
 

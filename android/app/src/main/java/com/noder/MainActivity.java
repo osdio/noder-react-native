@@ -1,12 +1,12 @@
 package com.noder;
 
-import com.lwansbrough.RCTCamera.*;
 import com.facebook.react.ReactActivity;
+import com.eguma.vibration.Vibration;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import com.eguma.barcodescanner.BarcodeScanner;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.eguma.barcodescanner.BarcodeScanner;
-import com.eguma.vibration.Vibration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,17 +31,18 @@ public class MainActivity extends ReactActivity {
         return BuildConfig.DEBUG;
     }
 
-   /**
-   * A list of packages used by the app. If the app uses additional views
-   * or modules besides the default ones, add more packages here.
-   */
+    /**
+     * A list of packages used by the app. If the app uses additional views
+     * or modules besides the default ones, add more packages here.
+     */
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-      	new RCTCameraPackage(),
-        new MainReactPackage(),
-        new Vibration(),
-        new VectorIconsPackage(),
-        new BarcodeScanner());
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new Vibration(),
+            new VectorIconsPackage(),
+            new RCTCameraPackage(),
+            new BarcodeScanner()
+        );
     }
 }

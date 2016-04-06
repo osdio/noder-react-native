@@ -26,9 +26,9 @@ class Home extends Component {
 
 
 	componentDidMount() {
-		//['good', 'ask', 'all', 'share', 'job'].map((item)=> {
-		//	this.props.actions.getTopicsByTab(item);
-		//});
+		['good', 'ask', 'all', 'share', 'job'].map((item)=> {
+			this.props.actions.getTopicsByTab(item);
+		});
 	}
 
 

@@ -16,10 +16,8 @@ var {
     View,
     Component,
     PropTypes,
-    Text,
     StyleSheet,
     Image,
-    ActivityIndicatorIOS
     } = React
 
 class Home extends Component {

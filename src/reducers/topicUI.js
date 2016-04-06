@@ -8,9 +8,9 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-	const { type, meta={} } = action;
-	const { sequence={} } = meta;
-	const { id } = meta;
+	const {type, meta={}} = action;
+	const {sequence={}} = meta;
+	const {id} = meta;
 	const status = sequence.type;
 
 	switch (type) {

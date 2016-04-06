@@ -1,13 +1,23 @@
 import * as types from '../constants/ActionTypes';
 
+const tabs = ['good', 'ask', 'all', 'share', 'job'];
 
-const initialState = {
-	loginModalVisible: false
+let initialState = {
+	tabStatus: {}
 };
+
+tabs.forEach((item)=> {
+	initialState.tabStatus[item] = {
+		pullRefreshPending: false,
+		reachedEndPending: false,
+		page: 0,
+		limit: 10
+	}
+});
 
 
 export default function (state = initialState, action) {
-	const { payload, error, meta, type } = action;
+	const {payload, error, meta, type} = action;
 
 	switch (type) {
 		case types.OPEN_LOGIN_MODAL:

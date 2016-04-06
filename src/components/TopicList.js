@@ -5,13 +5,14 @@ import React, {
 	Text,
 	ListView,
 	Dimensions,
-	PropTypes
+	PropTypes,
+	RefreshControl
 } from 'react-native';
 import TopicRow from './TopicRow';
 import moment from 'moment';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class TopicList extends Component {
@@ -43,8 +44,9 @@ class TopicList extends Component {
 		}
 	}
 
-	_onScroll(e) {
 
+	_onRefresh() {
+		
 	}
 
 
@@ -133,7 +135,16 @@ class TopicList extends Component {
 					scrollRenderAheadDistance={90}
 					dataSource={this.state.ds}
 					renderRow={this.renderRow.bind(this)}
-					onScroll={this._onScroll.bind(this)}
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.isRefreshing}
+							onRefresh={this._onRefresh.bind(this)}
+							tintColor="rgba(241,196,15, 1)"
+							title="Loading..."
+							colors={['#ff0000', '#00ff00', '#0000ff']}
+							progressBackgroundColor="#ffff00"
+						  />
+					}
 				/>
 			</View>
 		)

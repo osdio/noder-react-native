@@ -13,7 +13,6 @@ import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
 import ScrollableTabs from '../components/ScrollableTabs';
 import TopicList from '../components/TopicList';
-import config from '../configs';
 
 
 const { height, width } = Dimensions.get('window');

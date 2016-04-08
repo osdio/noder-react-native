@@ -8,7 +8,8 @@ import React, {
 	PropTypes,
 	RefreshControl
 } from 'react-native';
-import TopicRow from './TopicRow';
+import TopicRow from './../components/TopicRow';
+import Spinner from './../components/base/Spinner';
 import moment from 'moment';
 
 
@@ -16,22 +17,6 @@ const {height, width} = Dimensions.get('window');
 
 
 class TopicList extends Component {
-	static propTypes = {
-		data: PropTypes.array,
-		router: PropTypes.object,
-		onRefresh: PropTypes.func,
-		pullRefreshPending: PropTypes.bool,
-		reachedEndPending: PropTypes.bool
-	};
-
-
-	static defaultProps = {
-		data: [],
-		pullRefreshPending: false,
-		reachedEndPending: false
-	};
-
-
 	constructor(props) {
 		super(props);
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -107,6 +92,19 @@ class TopicList extends Component {
 	}
 
 
+	_renderFooter() {
+		const {reachedEndPending} = this.props;
+		if (reachedEndPending) {
+			return (
+				<View style={styles.reachedEndLoading}>
+					<Spinner/>
+				</View>
+			)
+		}
+		return null;
+	}
+
+
 	renderRow(topic) {
 		return (
 			<TopicRow
@@ -124,7 +122,7 @@ class TopicList extends Component {
 
 
 	render() {
-		const { reachedEndPending, pullRefreshPending, onRefresh } = this.props;
+		const {pullRefreshPending, tab, page, limit, actions} = this.props;
 		return (
 			<View style={styles.container}>
 				<ListView
@@ -137,10 +135,20 @@ class TopicList extends Component {
 					dataSource={this.state.ds}
 					renderRow={this.renderRow.bind(this)}
 					enableEmptySections={true}
+					onEndReachedThreshold={30}
+					onEndReached={()=>{
+						actions.getTopicsByTab(tab, {
+										page: page + 1,
+										limit
+									});
+					}}
+					renderFooter={this._renderFooter.bind(this)}
 					refreshControl={
 						<RefreshControl
 							refreshing={pullRefreshPending}
-							onRefresh={onRefresh}
+							onRefresh={()=>{
+								actions.updateTopicsByTab(tab);
+							}}
 							tintColor="rgba(241,196,15, 1)"
 							title="正在加载..."
 							colors={['#ff0000', '#00ff00', '#0000ff']}
@@ -238,7 +246,20 @@ const styles = StyleSheet.create({
 		height: 76,
 		width: width,
 		flexDirection: 'column'
+	},
+	reachedEndLoading: {
+		paddingTop: 20,
+		paddingBottom: 20
 	}
 });
 
-export default TopicList;
+export const LayoutComponent = TopicList;
+export function mapStateToProps(state, props) {
+	const {tab} = props;
+	const tabStatus = state.home[tab];
+	const topics = state.topic[tab];
+	return {
+		data: topics,
+		...tabStatus
+	}
+}

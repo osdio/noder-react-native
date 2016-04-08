@@ -12,10 +12,12 @@ import React, {
 import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
 import ScrollableTabs from '../components/ScrollableTabs';
-import TopicList from '../components/TopicList';
+import * as TopicListComponent from './TopicList';
 import * as Tabs from '../constants/Tabs';
+import connectComponent from '../utils/connectComponent';
 
 
+const TopicList = connectComponent(TopicListComponent);
 const {height, width} = Dimensions.get('window');
 
 
@@ -31,7 +33,7 @@ class Home extends Component {
 
 
 	_onPageChanged(page) {
-		const {actions, home, topic} = this.props;
+		const {actions, topic} = this.props;
 		const tab = Tabs.tabs[page];
 		if (topic[tab] && !topic[tab].length) {
 			actions.updateTopicsByTab(tab);
@@ -41,18 +43,10 @@ class Home extends Component {
 
 	_renderTopicList() {
 		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
-			const {actions, home = {}, topic} = this.props;
-			const tabStatus = home[item] || {};
 			return (
 				<TopicList router={this.props.router}
 						   key={item}
-						   nav={item}
-						   data={this.props.topic[item]}
-						   onRefresh={()=>{
-						   		this.props.actions.updateTopicsByTab(item);
-						   }}
-					{...tabStatus}
-				/>
+						   tab={item}/>
 			);
 		});
 	}
@@ -106,7 +100,6 @@ export function mapStateToProps(state) {
 	return {
 		user: state.user,
 		message: state.message,
-		topic: state.topic,
-		home: state.home
+		topic: state.topic
 	}
 }

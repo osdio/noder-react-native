@@ -235,15 +235,17 @@ class Comment extends Component {
 
 
 	_renderCommentList() {
-		if (this.state.didFocus && this.props.topic) {
+		const { replies, reply, router, user, actions, topic } = this.props;
+		if (this.state.didFocus && topic) {
 			return (
 				<CommentList
-					data={this.props.replies}
-					focusedReply={this.props.reply}
-					router={this.props.router}
-					user={this.props.user}
+					data={replies}
+					focusedReply={reply}
+					router={router}
+					user={user}
 					onReplyPress={this._onReplyPress.bind(this)}
 					onAuthorNamePress={this._onAuthorTextPress.bind(this)}
+					actions={actions}
 				/>
 			)
 		}

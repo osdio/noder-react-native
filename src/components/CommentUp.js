@@ -4,63 +4,49 @@ import React, {
 	TouchableOpacity,
 	StyleSheet,
 	Text,
-	ActivityIndicatorIOS
+	PropTypes
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Spinner from './base/Spinner';
-import * as topicService from '../services/topicService';
 
 
 class CommentUp extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isUped: this._isUped(this.props.user.id, this.props.ups),
-			isLoading: false,
-			count: this.props.ups.length
-		}
-	}
+	static propTypes = {
+		pending: PropTypes.bool,
+		disabled: PropTypes.bool,
+		replyId: PropTypes.string,
+		ups: PropTypes.array,
+		userId: PropTypes.string
+	};
+
+
+	static defaultProps = {
+		pending: false,
+		disabled: false,
+		ups: []
+	};
 
 
 	_onUpPress() {
-		if (this.props.user.loginname == this.props.authorName) {
+		const {disabled, pending, upReply, replyId} = this.props;
+		if (disabled) {
 			return window.alert('不能给自己点赞哦!')
 		}
-		if (this.state.isLoading) return;
+		if (pending) return;
 
-		this.setState({
-			isLoading: true
-		});
-
-		topicService.req.upComment(this.props.replyId)
-			.then(isUped=> {
-				let count = this.state.count;
-				isUped ? count++ : count--;
-				this.setState({
-					isUped: isUped,
-					isLoading: false,
-					count: count < 0 ? 0 : count
-				})
-			})
-			.catch(err=> {
-				console.warn(err);
-				this.setState({
-					isLoading: false
-				})
-			})
-			.done()
+		upReply(replyId);
 	}
 
 
-	_isUped(id, ups) {
-		return ups.some(item=> {
-			return item == id
+	_isUped() {
+		return this.props.ups.some(item=> {
+			return item == this.props.userId
 		})
 	}
 
 
 	_renderUpIcon() {
-		if (this.state.isLoading) {
+		if (this.props.pending) {
 			return (
 				<Spinner
 					size='small'
@@ -72,7 +58,7 @@ class CommentUp extends Component {
 			<Icon
 				name={'thumbsup'}
 				size={16}
-				color={this.state.isUped ? '#3498DB':'rgba(0,0,0,0.2)'}
+				color={this._isUped() ? '#3498DB':'rgba(0,0,0,0.2)'}
 				style={styles.upIcon}
 			/>
 		)
@@ -80,7 +66,8 @@ class CommentUp extends Component {
 
 
 	render() {
-		let count = this.state.count || 0;
+		const {ups} = this.props;
+		let count = ups.length;
 		return (
 			<TouchableOpacity
 				onPress={this._onUpPress.bind(this)}>

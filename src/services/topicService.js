@@ -113,7 +113,7 @@ export const req = {
 					return data.action == 'up'
 				}
 				else {
-					throw 'do reply failed'
+					throw 'up reply failed'
 				}
 			})
 	},

@@ -61,10 +61,10 @@ class CommentList extends Component {
 				<View style={styles.commentFooter}>
 					<CommentUp
 						replyId={comment.id}
-						authorName={authorName}
 						ups={comment.ups}
-						user={this.props.user}
+						userId={this.props.user.id}
 						style={styles.up}
+						upReply={this.props.actions.upReply}
 					/>
 					<TouchableOpacity
 						onPress={ ()=> this.props.onReplyPress(comment.id, authorName) }>

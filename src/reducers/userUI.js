@@ -27,6 +27,8 @@ export default function (state = initialState, action) {
 				...state,
 				otherUserPending: sequence.type === 'start'
 			};
+		case types.LOGOUT:
+			return initialState;
 		default:
 			return state;
 	}

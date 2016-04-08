@@ -40,8 +40,8 @@ class Setting extends Component {
 
 
 	onLogoutPress() {
+		this.props.router.pop();
 		this.props.actions.logout();
-		this.props.router.replaceWithHome()
 	}
 
 

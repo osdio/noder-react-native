@@ -74,7 +74,7 @@ class User extends Component {
 
 
 	render() {
-		const { userInfo={}, ui } = this.props;
+		const { userInfo, ui } = this.props;
 		const spinnerView = (
 			<Spinner
 				size="large"
@@ -255,8 +255,8 @@ const styles = StyleSheet.create({
 export const LayoutComponent = User;
 export function mapStateToProps(state, props) {
 	const { userName } = props;
-	let userInfo = state.user.publicInfo || {};
-	const isClientUser = userInfo.loginname === userName;
+	let userInfo = state.user.publicInfo || null;
+	const isClientUser = userInfo && userInfo.loginname === userName;
 	return {
 		user: state.user,
 		ui: state.userUI,

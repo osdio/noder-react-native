@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Navigator
 } from 'react-native';
 import _ from 'lodash';
@@ -9,10 +9,13 @@ import * as User from '../layouts/User';
 import * as Message from '../layouts/Message';
 import * as Topic from '../layouts/Topic';
 import * as Comment from '../layouts/Comment';
+import * as HomeComponent from '../layouts/Home';
 import * as CustomSceneConfigs from '../configs/sceneConfig';
 import connectComponent from '../utils/connectComponent';
 
-const { SceneConfigs } = Navigator;
+
+const Home = connectComponent(HomeComponent);
+const {SceneConfigs} = Navigator;
 
 class Router {
 	constructor(navigator) {

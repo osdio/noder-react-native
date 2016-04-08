@@ -37,7 +37,8 @@ export default function (state = initialState, action) {
 				hasRead: state.hasNotRead.concat(state.hasRead),
 				unreadMessageCount: 0
 			};
-
+		case types.LOGOUT:
+			return initialState;
 		default :
 			return state;
 	}

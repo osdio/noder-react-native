@@ -42,6 +42,8 @@ export default function (state = initialState, action) {
 					[userName]: payload
 				}
 			};
+		case types.LOGOUT:
+			return initialState;
 		default:
 			return state;
 	}

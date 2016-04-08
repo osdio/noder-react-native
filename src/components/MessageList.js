@@ -147,6 +147,7 @@ class MessageList extends Component {
 		if (this.props.didFocus) {
 			return (
 				<ListView
+					enableEmptySections
 					showsVerticalScrollIndicator={true}
 					initialListSize={10}
 					pagingEnabled={false}

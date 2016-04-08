@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Component,
 	View,
 	Dimensions,
@@ -18,10 +18,10 @@ import Spinner from '../components/base/Spinner';
 import Return from '../components/base/Return';
 import Setting from '../components/Setting';
 import ErrorHandle from '../components/base/ErrorHandle';
-import { parseImgUrl, link, genColor } from '../utils';
+import {parseImgUrl, link, genColor} from '../utils';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class User extends Component {
@@ -49,15 +49,8 @@ class User extends Component {
 	}
 
 
-	componentWillReceiveProps(nextProps) {
-		//if (!this.isClientUser && !nextProps.otherUser) {
-		//	this.props.router.pop();
-		//}
-	}
-
-
 	_getUserInfo() {
-		const { actions, user, userName } = this.props;
+		const {actions, user, userName} = this.props;
 		if (this.isClientUser) {
 			actions.updateClientUserInfo(user);
 		}
@@ -74,11 +67,13 @@ class User extends Component {
 
 
 	render() {
-		const { userInfo, ui } = this.props;
+		const {userInfo, ui} = this.props;
 		const spinnerView = (
-			<Spinner
-				size="large"
-				style={styles.loading}/>
+			<View style={styles.loadingWrapper}>
+				<Spinner
+					size="large"
+					style={styles.loading}/>
+			</View>
 		);
 
 
@@ -204,7 +199,13 @@ const styles = StyleSheet.create({
 	},
 	loading: {
 		flex: 1,
-		width: width
+		width: 50
+	},
+	loadingWrapper: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	bgWall: {
 		height: bgWallHeight,
@@ -254,7 +255,7 @@ const styles = StyleSheet.create({
 
 export const LayoutComponent = User;
 export function mapStateToProps(state, props) {
-	const { userName } = props;
+	const {userName} = props;
 	let userInfo = state.user.publicInfo || null;
 	const isClientUser = userInfo && userInfo.loginname === userName;
 	return {

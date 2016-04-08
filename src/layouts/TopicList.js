@@ -128,13 +128,13 @@ class TopicList extends Component {
 				<ListView
 					showsVerticalScrollIndicator
 					removeClippedSubviews
+					enableEmptySections
 					ref={view => {this._listView = view}}
 					initialListSize={10}
 					pagingEnabled={false}
 					scrollRenderAheadDistance={90}
 					dataSource={this.state.ds}
 					renderRow={this.renderRow.bind(this)}
-					enableEmptySections={true}
 					onEndReachedThreshold={30}
 					onEndReached={()=>{
 						actions.getTopicsByTab(tab, {

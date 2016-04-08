@@ -136,6 +136,7 @@ class TopicList extends Component {
 					scrollRenderAheadDistance={90}
 					dataSource={this.state.ds}
 					renderRow={this.renderRow.bind(this)}
+					enableEmptySections={true}
 					refreshControl={
 						<RefreshControl
 							refreshing={pullRefreshPending}

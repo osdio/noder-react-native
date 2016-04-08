@@ -14,6 +14,7 @@ import MessageOverlay from '../components/MessageOverlay';
 import ScrollableTabs from '../components/ScrollableTabs';
 import * as TopicListComponent from './TopicList';
 import * as Tabs from '../constants/Tabs';
+import secretKey from '../testKey';
 import connectComponent from '../utils/connectComponent';
 
 
@@ -28,7 +29,14 @@ class Home extends Component {
 
 
 	componentDidMount() {
-		this.props.actions.updateTopicsByTab('all');
+		const { actions } = this.props;
+		actions.updateTopicsByTab('all');
+
+		if(__DEV__){
+			actions.checkToken(secretKey, ()=> {
+				actions.toast('登陆成功');
+			});
+		}
 	}
 
 

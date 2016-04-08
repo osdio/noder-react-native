@@ -13,14 +13,15 @@ import React, {
 } from 'react-native';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class ScrollableTabs extends Component {
 	static propTypes = {
 		tabs: PropTypes.array,
 		tabNavItemWidth: PropTypes.number,
-		index: PropTypes.number
+		index: PropTypes.number,
+		onPageChanged: PropTypes.func
 	};
 
 	static defaultProps = {
@@ -31,8 +32,7 @@ class ScrollableTabs extends Component {
 
 	constructor(props) {
 		super(props);
-		const { tabNavItemWidth, tabs } = props;
-		this.tabCount = tabs.length;
+		const {tabNavItemWidth, tabs} = props;
 		this.space = (width - tabNavItemWidth * 3) / 2;
 		this.navContentWidth = (tabs.length + 2) * tabNavItemWidth + this.space * (tabs.length + 1);
 		this.index = props.index || Math.floor(tabs.length / 2);
@@ -70,13 +70,9 @@ class ScrollableTabs extends Component {
 	}
 
 
-	_onScroll(e) {
-		const { x } = e.nativeEvent.contentOffset;
-		const { tabNavItemWidth } = this.props;
+	_animateScroll(x) {
+		const {tabNavItemWidth} = this.props;
 		const navContentOffset = (this.space + tabNavItemWidth) / width * x;
-		if (x % width === 0) {
-			this.index = x / width;
-		}
 		Animated.event(
 			[{
 				offset: this.state.x
@@ -88,8 +84,23 @@ class ScrollableTabs extends Component {
 	}
 
 
+	_onScroll(e) {
+		const {x} = e.nativeEvent.contentOffset;
+		this._animateScroll(x);
+	}
+
+
+	_onMomentumScrollBegin(e) {
+		const offsetX = e.nativeEvent.contentOffset.x;
+		const page = parseInt(offsetX / width, 10);
+		this.index = page;
+		this._animateScroll(offsetX);
+		typeof this.props.onPageChanged == 'function' && this.props.onPageChanged(page);
+	}
+
+
 	_onAndroidPageScroll(e) {
-		const { offset, position } = e.nativeEvent;
+		const {offset, position} = e.nativeEvent;
 		let x = (position + offset) * width;
 		this._onScroll({
 			nativeEvent: {
@@ -167,8 +178,9 @@ class ScrollableTabs extends Component {
 					scrollEventThrottle={16}
 					onScroll={this._onScroll.bind(this)}
 					onScrollBeginDrag={this._onScroll.bind(this)}
-					onMomentumScrollBegin={this._onScroll.bind(this)}
-					onMomentumScrollEnd={this._onScroll.bind(this)}
+					onMomentumScrollBegin={this._onMomentumScrollBegin.bind(this)}
+					onMomentumScrollEnd={this._onMomentumScrollBegin.bind(this)}
+					keyboardDismissMode="on-drag"
 				>
 
 					{ this._renderChildren() }

@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Component,
 	PropTypes,
 	View,
@@ -13,9 +13,10 @@ import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
 import ScrollableTabs from '../components/ScrollableTabs';
 import TopicList from '../components/TopicList';
+import * as Tabs from '../constants/Tabs';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class Home extends Component {
@@ -25,24 +26,47 @@ class Home extends Component {
 
 
 	componentDidMount() {
-		['good', 'ask', 'all', 'share', 'job'].map((item)=> {
-			this.props.actions.getTopicsByTab(item);
-		});
+		this.props.actions.updateTopicsByTab('all');
+	}
+
+
+	_onPageChanged(page) {
+		const {actions, home, topic} = this.props;
+		const tab = Tabs.tabs[page];
+		if (topic[tab] && !topic[tab].length) {
+			actions.updateTopicsByTab(tab);
+		}
 	}
 
 
 	_renderTopicList() {
 		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
-			return <TopicList router={this.props.router} key={item} nav={item} data={this.props.topic[item]}/>
+			const {actions, home = {}, topic} = this.props;
+			const tabStatus = home[item] || {};
+			return (
+				<TopicList router={this.props.router}
+						   key={item}
+						   nav={item}
+						   data={this.props.topic[item]}
+						   onRefresh={()=>{
+						   		this.props.actions.updateTopicsByTab(item);
+						   }}
+					{...tabStatus}
+				/>
+			);
 		});
 	}
 
 
 	render() {
-		const { router, user, message } = this.props;
+		const {router, user, message} = this.props;
 		return (
 			<View style={styles.container}>
-				<ScrollableTabs index={0} tabs={['精华', '问答', '主页', '分享', '招聘']}>
+				<ScrollableTabs
+					index={0}
+					tabs={['精华', '问答', '主页', '分享', '招聘']}
+					onPageChanged={this._onPageChanged.bind(this)}
+				>
 					{ this._renderTopicList() }
 				</ScrollableTabs>
 
@@ -82,6 +106,7 @@ export function mapStateToProps(state) {
 	return {
 		user: state.user,
 		message: state.message,
-		topic: state.topic
+		topic: state.topic,
+		home: state.home
 	}
 }

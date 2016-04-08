@@ -18,12 +18,17 @@ const {height, width} = Dimensions.get('window');
 class TopicList extends Component {
 	static propTypes = {
 		data: PropTypes.array,
-		router: PropTypes.object
+		router: PropTypes.object,
+		onRefresh: PropTypes.func,
+		pullRefreshPending: PropTypes.bool,
+		reachedEndPending: PropTypes.bool
 	};
 
 
 	static defaultProps = {
-		data: []
+		data: [],
+		pullRefreshPending: false,
+		reachedEndPending: false
 	};
 
 
@@ -42,11 +47,6 @@ class TopicList extends Component {
 				ds: this.state.ds.cloneWithRows(nextProps.data)
 			})
 		}
-	}
-
-
-	_onRefresh() {
-		
 	}
 
 
@@ -124,6 +124,7 @@ class TopicList extends Component {
 
 
 	render() {
+		const { reachedEndPending, pullRefreshPending, onRefresh } = this.props;
 		return (
 			<View style={styles.container}>
 				<ListView
@@ -137,10 +138,10 @@ class TopicList extends Component {
 					renderRow={this.renderRow.bind(this)}
 					refreshControl={
 						<RefreshControl
-							refreshing={this.state.isRefreshing}
-							onRefresh={this._onRefresh.bind(this)}
+							refreshing={pullRefreshPending}
+							onRefresh={onRefresh}
 							tintColor="rgba(241,196,15, 1)"
-							title="Loading..."
+							title="正在加载..."
 							colors={['#ff0000', '#00ff00', '#0000ff']}
 							progressBackgroundColor="#ffff00"
 						  />

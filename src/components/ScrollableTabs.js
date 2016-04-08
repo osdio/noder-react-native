@@ -127,14 +127,22 @@ class ScrollableTabs extends Component {
 			}
 
 			return (
-				<View ref={ view => this._navs[index]=view} key={index}
-					  style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
-					<TouchableOpacity>
+				<TouchableOpacity key={index} onPress={()=>{
+						this.scrollView && this.scrollView.scrollTo({
+							x: width * index,
+							y: 0,
+							animated: true
+						});
+					}}>
+					<View ref={ view => this._navs[index]=view} key={index}
+						  style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
+
 						<Text style={styles.itemText}>
 							{ item }
 						</Text>
-					</TouchableOpacity>
-				</View>
+
+					</View>
+				</TouchableOpacity>
 			)
 		});
 	}
@@ -254,7 +262,8 @@ const styles = StyleSheet.create({
 	},
 	itemText: {
 		textAlign: 'center',
-		color: 'rgba(255,255,255,0.7)'
+		color: 'rgba(255,255,255,0.7)',
+		flex: 1
 	},
 	page: {
 		width

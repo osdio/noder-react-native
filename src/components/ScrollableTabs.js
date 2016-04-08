@@ -112,6 +112,20 @@ class ScrollableTabs extends Component {
 	}
 
 
+	_onNavItemPress(index) {
+		if (Platform.OS === 'ios') {
+			this.scrollView.scrollTo({
+				x: width * index,
+				y: 0,
+				animated: true
+			});
+		}
+		else {
+			this.viewPager.setPage(index);
+		}
+	}
+
+
 	_getActiveNavItemStyle(opacity) {
 		return {
 			borderTopColor: 'rgba(241,196,15,' + opacity + ')'
@@ -127,13 +141,7 @@ class ScrollableTabs extends Component {
 			}
 
 			return (
-				<TouchableOpacity key={index} onPress={()=>{
-						this.scrollView && this.scrollView.scrollTo({
-							x: width * index,
-							y: 0,
-							animated: true
-						});
-					}}>
+				<TouchableOpacity key={index} onPress={this._onNavItemPress.bind(this, index)}>
 					<View ref={ view => this._navs[index]=view} key={index}
 						  style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
 
@@ -198,9 +206,9 @@ class ScrollableTabs extends Component {
 		}
 		return (
 			<ViewPagerAndroid
+				ref={(view)=>this.viewPager=view}
 				initialPage={this.index}
 				style={styles.scrollableContentAndroid}
-				ref={(scrollView) => { this.scrollView = scrollView; }}
 				onPageScroll={ this._onAndroidPageScroll.bind(this)}>
 
 				{ this._renderChildren() }

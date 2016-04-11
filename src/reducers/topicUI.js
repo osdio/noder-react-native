@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
 	const {type, meta={}} = action;
 	const {sequence={}} = meta;
 	const {id} = meta;
-	const status = sequence.type;
+	const status = sequence.type == 'start';
 
 	switch (type) {
 		case types.GET_TOPIC_BY_ID:

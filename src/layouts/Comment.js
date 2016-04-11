@@ -72,7 +72,6 @@ class Comment extends Component {
 	}
 
 
-
 	componentDidUpdate() {
 		setTimeout(() => this._scrollToReply());
 	}
@@ -121,7 +120,7 @@ class Comment extends Component {
 		content = content + config.replySuffix;
 		this.props.actions.replyTopicById({
 			topicId: topic.id,
-			content,
+			content: content,
 			replyId: this.replyId
 		}, ()=> {
 			// resolved
@@ -222,7 +221,7 @@ class Comment extends Component {
 
 
 	_renderCommentList() {
-		const { replies, reply, router, user, actions, topic } = this.props;
+		const {replies, reply, router, user, actions, topic, loadPending} = this.props;
 		if (this.state.didFocus && topic) {
 			return (
 				<CommentList
@@ -232,8 +231,12 @@ class Comment extends Component {
 					user={user}
 					onReplyPress={this._onReplyPress.bind(this)}
 					onAuthorNamePress={this._onAuthorTextPress.bind(this)}
+					onPullRefresh={()=>{
+						actions.getTopicById(topic.id);
+					}}
 					actions={actions}
 					topicId={topic.id}
+					pending={loadPending}
 				/>
 			)
 		}

@@ -7,7 +7,8 @@ import React, {
 	ListView,
 	StyleSheet,
 	Image,
-	TouchableOpacity
+	TouchableOpacity,
+	RefreshControl
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
@@ -27,7 +28,9 @@ class CommentList extends Component {
 		router: PropTypes.object,
 		user: PropTypes.object,
 		onReplyPress: PropTypes.func,
-		onAuthorNamePress: PropTypes.func
+		onAuthorNamePress: PropTypes.func,
+		onPullRefresh: PropTypes.func,
+		pending: PropTypes.bool
 	};
 
 
@@ -41,7 +44,7 @@ class CommentList extends Component {
 		super(props);
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
-			ds: ds.cloneWithRows(props.data.reverse())
+			ds: ds.cloneWithRows(props.data.concat([]).reverse())
 		};
 	}
 
@@ -49,7 +52,7 @@ class CommentList extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.data !== this.props.data) {
 			this.setState({
-				ds: this.state.ds.cloneWithRows(nextProps.data)
+				ds: this.state.ds.cloneWithRows(nextProps.data.concat([]).reverse())
 			})
 		}
 	}
@@ -160,6 +163,16 @@ class CommentList extends Component {
 				removeClippedSubviews={true}
 				dataSource={this.state.ds}
 				renderRow={this._renderRow.bind(this)}
+				refreshControl={
+						<RefreshControl
+							refreshing={this.props.pending}
+							onRefresh={this.props.onPullRefresh}
+							tintColor="rgba(241,196,15, 1)"
+							title="正在加载..."
+							colors={['#ff0000', '#00ff00', '#0000ff']}
+							progressBackgroundColor="#ffff00"
+						  />
+					}
 			/>
 		)
 	}

@@ -1,4 +1,5 @@
 import {createAction} from 'redux-actions';
+import * as markdown from 'markdown';
 import * as types from '../constants/ActionTypes';
 import * as topicService from '../services/topicService';
 
@@ -43,9 +44,11 @@ export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID,
 });
 
 
-export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, ({topicId}, resolved, rejected)=> {
+export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, ({topicId, content, replyId}, resolved, rejected)=> {
 	return {
 		id: topicId,
+		content: markdown.parse(content),
+		replyId,
 		resolved,
 		rejected
 	}

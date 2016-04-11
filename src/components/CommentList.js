@@ -257,10 +257,12 @@ const styles = StyleSheet.create({
 		width: 15,
 		flex: 1
 	},
-	upIcon: {
-		flex: 1,
-		width: 15
-	},
+	up: {
+		width: 40,
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center'
+	}
 });
 
 

@@ -100,7 +100,7 @@ export const req = {
 	},
 
 
-	upReply: function (replyId) {
+	upReply: function ({replyId}) {
 		let body = {
 			accesstoken: getToken()
 		};

@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Component,
 	Dimensions,
 	View,
@@ -14,10 +14,10 @@ import moment from 'moment';
 import CommentHtml from './CommentHtml';
 import CommentUp from './CommentUp';
 
-import { parseImgUrl } from '../utils';
+import {parseImgUrl} from '../utils';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class CommentList extends Component {
@@ -65,6 +65,7 @@ class CommentList extends Component {
 						userId={this.props.user.id}
 						style={styles.up}
 						upReply={this.props.actions.upReply}
+						topicId={this.props.topicId}
 					/>
 					<TouchableOpacity
 						onPress={ ()=> this.props.onReplyPress(comment.id, authorName) }>

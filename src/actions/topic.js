@@ -26,7 +26,7 @@ export const updateTopicsByTab = createAction(types.UPDATE_TOPICS_BY_TAB, async(
 	return await topicService.req.getTopicsByTab(tab, {
 		page: 1
 	});
-}, (tab)=>{
+}, (tab)=> {
 	return {
 		tab
 	}
@@ -52,4 +52,12 @@ export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService
 });
 
 
-export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, setMetaId);
+export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, ({topicId, replyId, userId, resolved, rejected})=> {
+	return {
+		id: topicId,
+		replyId,
+		userId,
+		resolved,
+		rejected
+	}
+});

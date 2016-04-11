@@ -13,18 +13,15 @@ import React, {
 	Platform
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { markdown } from 'markdown'
-import Return from '../components/base/Return';
 import Nav from '../components/Nav';
 import Spinner from '../components/base/Spinner';
-import CommentList from '../components/CommentList';
+import CommentList from './../components/CommentList';
 import animations from '../configs/animations';
-import { genColor, parseImgUrl } from '../utils';
+import {genColor, parseImgUrl} from '../utils';
 import config from '../configs';
 
 
-const { width, height } = Dimensions.get('window');
-//const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+const {width, height} = Dimensions.get('window');
 const authorImgSize = 35;
 const replyFormHeight = 55;
 const commentsHeight = height - 40 - 20 - replyFormHeight - 20;
@@ -34,9 +31,7 @@ const submitButtonWidth = 55;
 class Comment extends Component {
 	constructor(props) {
 		super(props);
-		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
-			ds: ds.cloneWithRows(props.replies),
 			didFocus: false
 		};
 		this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this);
@@ -76,14 +71,6 @@ class Comment extends Component {
 		}
 	}
 
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.replies !== this.props.replies) {
-			this.setState({
-				ds: this.state.ds.cloneWithRows(nextProps.replies)
-			})
-		}
-	}
 
 
 	componentDidUpdate() {
@@ -190,7 +177,7 @@ class Comment extends Component {
 
 
 	_renderReplyForm() {
-		const { user } = this.props;
+		const {user} = this.props;
 		if (!user) return null;
 
 		const userImg = parseImgUrl(user.avatar_url);
@@ -246,6 +233,7 @@ class Comment extends Component {
 					onReplyPress={this._onReplyPress.bind(this)}
 					onAuthorNamePress={this._onAuthorTextPress.bind(this)}
 					actions={actions}
+					topicId={topic.id}
 				/>
 			)
 		}
@@ -260,7 +248,7 @@ class Comment extends Component {
 
 
 	render() {
-		const { topic, router, id, count } = this.props;
+		const {topic, router, id, count} = this.props;
 		let navs = {
 			Left: {
 				text: '返回',
@@ -377,8 +365,8 @@ const styles = StyleSheet.create({
 
 
 export const LayoutComponent = Comment;
-export function mapStateToProps({ user, topic, topicUI }, props) {
-	const { id = '0' } = props;
+export function mapStateToProps({user, topic, topicUI}, props) {
+	const {id = '0'} = props;
 	const topicInfo = topic.topics[id] || props.topic;
 	const count = topicInfo && topicInfo.replies && topicInfo.replies.length || 0;
 	return {

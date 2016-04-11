@@ -28,13 +28,17 @@ class CommentUp extends Component {
 
 
 	_onUpPress() {
-		const {disabled, pending, upReply, replyId} = this.props;
+		const {disabled, pending, upReply, replyId, userId, topicId} = this.props;
 		if (disabled) {
 			return window.alert('不能给自己点赞哦!')
 		}
 		if (pending) return;
 
-		upReply(replyId);
+		upReply({
+			replyId,
+			userId,
+			topicId
+		});
 	}
 
 

@@ -59,7 +59,7 @@ class CommentList extends Component {
 
 
 	componentDidMount() {
-		setTimeout(() => this._scrollToReply());
+		setTimeout(() => this._scrollToReply(), 0);
 	}
 
 

@@ -44,13 +44,14 @@ export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID,
 });
 
 
-export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, ({topicId, content, replyId}, resolved, rejected)=> {
+export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, ({topicId, content, replyId, user}, resolved, rejected)=> {
 	return {
 		id: topicId,
 		content: markdown.parse(content),
 		replyId,
 		resolved,
-		rejected
+		rejected,
+		user
 	}
 });
 

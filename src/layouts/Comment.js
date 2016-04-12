@@ -116,12 +116,16 @@ class Comment extends Component {
 		if (this.props.replyPending || content == '' || content == null) {
 			return
 		}
-		let topic = this.props.topic;
+		let {topic, user} = this.props;
 		content = content + config.replySuffix;
 		this.props.actions.replyTopicById({
 			topicId: topic.id,
 			content: content,
-			replyId: this.replyId
+			replyId: this.replyId,
+			user: {
+				loginname: user.loginname,
+				avatar_url: user.avatar_url
+			}
 		}, ()=> {
 			// resolved
 			this._resetReplyForm();

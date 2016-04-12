@@ -63,7 +63,7 @@ function upReply(topicId, replyId, userId, state, isUp) {
 }
 
 
-function reply(topicId, replyId, content, state, id) {
+function reply(topicId, replyId, content, user, state, id) {
 	let topic = state.topics[topicId];
 	if (!topic) return state;
 	let replies = topic.replies.concat([{
@@ -72,10 +72,7 @@ function reply(topicId, replyId, content, state, id) {
 		reply_id: replyId,
 		create_at: new Date(),
 		ups: [],
-		author: {
-			avatar_url: '',
-			loginname: ''
-		}
+		author: user
 	}]);
 	return {
 		...state,
@@ -92,7 +89,7 @@ function reply(topicId, replyId, content, state, id) {
 
 export default function (state = initialState, action) {
 	const {payload, error, meta = {}, type} = action;
-	const {sequence = {}, tab, id = '0', replyId = '0', userId = '0', content = ''} = meta;
+	const {sequence = {}, tab, id = '0', replyId = '0', userId = '0', content = '', user = {}} = meta;
 
 	if (sequence.type === 'start' || error) {
 		return state;
@@ -134,7 +131,7 @@ export default function (state = initialState, action) {
 		case types.UP_REPLY:
 			return upReply(id, replyId, userId, state, payload);
 		case types.REPLY_TOPIC_BY_ID:
-			return reply(id, replyId, content, state, payload);
+			return reply(id, replyId, content, user, state, payload);
 		default:
 			return state;
 	}

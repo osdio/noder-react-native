@@ -34,3 +34,4 @@ node_modules/
 npm-debug.log
 src/testKey.js
 *.keystore
+main.jsbundle

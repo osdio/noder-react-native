@@ -18,11 +18,11 @@ class Utils extends Component {
 		actions.getAllTopicsFromStorage();
 
 
-		if (__DEV__) {
-			actions.checkToken(secretKey, ()=> {
-				actions.toast('登陆成功');
-			});
-		}
+		// if (__DEV__) {
+		// 	actions.checkToken(secretKey, ()=> {
+		// 		actions.toast('登陆成功');
+		// 	});
+		// }
 	}
 
 

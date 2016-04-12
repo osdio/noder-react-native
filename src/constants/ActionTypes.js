@@ -32,3 +32,4 @@ export const GET_TOPIC_BY_ID = 'GET_TOPIC_BY_ID';
 export const REMOVE_TOPIC_CACHE_BY_ID = 'REMOVE_TOPIC_CACHE_BY_ID';
 export const REPLY_TOPIC_BY_ID = 'REPLY_TOPIC_BY_ID';
 export const UP_REPLY = 'UP_REPLY';
+export const PUBLISH = 'PUBLISH';

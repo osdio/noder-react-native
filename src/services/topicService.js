@@ -119,7 +119,7 @@ export const req = {
 	},
 
 
-	publish: function (title, tab, content) {
+	publish: function ({title, tab, content}) {
 		const body = {
 			title: title,
 			tab: tab,

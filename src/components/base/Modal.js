@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Component,
 	PropTypes,
 	Dimensions,
@@ -6,18 +6,21 @@ import React,{
 	StyleSheet,
 	Animated,
 	Easing,
-	Platform
+	Platform,
+	TouchableWithoutFeedback,
+	findNodeHandle
 } from 'react-native';
-import { BlurView } from 'react-native-blur';
+import {BlurView} from 'react-native-blur';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class Modal extends Component {
 	static propTypes = {
 		blur: PropTypes.bool,
-		blurType: PropTypes.string
+		blurType: PropTypes.string,
+		onPressBackdrop: PropTypes.func
 	};
 
 
@@ -44,6 +47,15 @@ class Modal extends Component {
 	}
 
 
+	_onPress(e) {
+		const {pageY} = e.nativeEvent;
+		const {onPressBackdrop} = this.props;
+		if (height - pageY > 200) {
+			typeof onPressBackdrop == 'function' && onPressBackdrop();
+		}
+	}
+
+
 	_renderChildren() {
 		if (this.props.blur) {
 			if (Platform.OS === 'ios') {
@@ -66,9 +78,11 @@ class Modal extends Component {
 
 	render() {
 		return (
-			<Animated.View style={[styles.container, this.props.style, {opacity: this.state.fadeAnim}]}>
-				{ this._renderChildren() }
-			</Animated.View>
+			<TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
+				<Animated.View style={[styles.container, this.props.style, {opacity: this.state.fadeAnim}]}>
+					{ this._renderChildren() }
+				</Animated.View>
+			</TouchableWithoutFeedback>
 		)
 	}
 }

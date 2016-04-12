@@ -65,3 +65,11 @@ export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, ({
 		rejected
 	}
 });
+
+
+export const publish = createAction(types.PUBLISH, topicService.req.publish, ({resolved, rejected})=> {
+	return {
+		resolved,
+		rejected
+	}
+});

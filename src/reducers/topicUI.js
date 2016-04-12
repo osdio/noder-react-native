@@ -4,7 +4,8 @@ import * as types from '../constants/ActionTypes';
 const initialState = {
 	loadPending: {},
 	replyPending: {},
-	upPending: {}
+	upPending: {},
+	publishPending: false
 };
 
 export default function (state = initialState, action) {
@@ -37,6 +38,11 @@ export default function (state = initialState, action) {
 					...state.upPending,
 					[id]: status
 				}
+			};
+		case types.PUBLISH:
+			return {
+				...state,
+				publishPending: status
 			};
 		default:
 			return state;

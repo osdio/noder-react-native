@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Component,
 	View,
 	StyleSheet,
@@ -6,15 +6,23 @@ import React,{
 	StatusBar
 } from 'react-native';
 import Toast from '../components/base/Toast';
+import secretKey from '../testKey';
 
 
 class Utils extends Component {
 	componentDidMount() {
-		const { actions } = this.props;
+		const {actions} = this.props;
 		actions.getUserFromStorage(()=> {
 			actions.getUnreadMessageCount();
 		});
 		actions.getAllTopicsFromStorage();
+
+
+		if (__DEV__) {
+			actions.checkToken(secretKey, ()=> {
+				actions.toast('登陆成功');
+			});
+		}
 	}
 
 
@@ -47,7 +55,7 @@ const styles = StyleSheet.create({
 
 export const LayoutComponent = Utils;
 export function mapStateToProps(state) {
-	const { utils = {} } = state;
+	const {utils = {}} = state;
 	return {
 		...utils
 	}

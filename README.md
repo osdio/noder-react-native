@@ -3,6 +3,10 @@
 > A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/) and [Redux](https://github.com/gaearon/redux). 
 
 
+## Install
+
+* android(v1.0.0-alpha2): https://www.pgyer.com/pEFf
+
 ## Develop
 
 For local development you need to follow the below commands:

@@ -11,10 +11,10 @@ import React, {
 } from 'react-native';
 import moment from 'moment';
 import Spinner from './base/Spinner';
-import { parseImgUrl } from '../utils';
+import {parseImgUrl} from '../utils';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class MessageList extends Component {
@@ -50,11 +50,12 @@ class MessageList extends Component {
 
 
 	_onRowPress(message) {
-		this.props.router.toComments({
+		this.props.router.toComment({
 			topic: message.topic,
 			from: 'message',
-			reply: message.reply
-		})
+			reply: message.reply,
+			id: message.topic.id
+		});
 	}
 
 

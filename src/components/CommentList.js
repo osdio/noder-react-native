@@ -58,6 +58,34 @@ class CommentList extends Component {
 	}
 
 
+	componentDidMount() {
+		setTimeout(() => this._scrollToReply());
+	}
+
+
+	_scrollToReply() {
+		const {focusedReply} = this.props;
+		if (focusedReply) {
+			let row = this[focusedReply];
+			if (row && row.measure) {
+				row.measure((x, y, width, height, pageX, pageY) => {
+					this._listView.setNativeProps({
+						contentOffset: {
+							x: 0,
+							y: y
+						}
+					})
+				});
+
+				row.setNativeProps({
+					styles: {
+						backgroundColor: 'red'
+					}
+				});
+			}
+		}
+	}
+
 	_renderFooter(comment, authorName) {
 		if (this.props.user) {
 			return (
@@ -91,7 +119,7 @@ class CommentList extends Component {
 		const commentNum = this.props.data.length - parseInt(rowID);
 		let focusStyle = {};
 		if (this.props.focusedReply) {
-			let replyId = this.props.focusedReply.id;
+			let replyId = this.props.focusedReply;
 			if (replyId == comment.id) {
 				focusStyle = {
 					backgroundColor: 'rgba(0,2,125,0.07)'
@@ -155,6 +183,7 @@ class CommentList extends Component {
 	render() {
 		return (
 			<ListView
+				enableEmptySections
 				ref={view=>this._listView=view}
 				style={{backgroundColor:'rgba(255,255,255,1)'}}
 				showsVerticalScrollIndicator={true}

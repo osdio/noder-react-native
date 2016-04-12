@@ -17,7 +17,7 @@ import Nav from '../components/Nav';
 import Spinner from '../components/base/Spinner';
 import CommentList from './../components/CommentList';
 import animations from '../configs/animations';
-import {genColor, parseImgUrl} from '../utils';
+import {parseImgUrl} from '../utils';
 import config from '../configs';
 
 
@@ -58,8 +58,10 @@ class Comment extends Component {
 
 
 	componentDidMount() {
+		const {topic, actions} = this.props;
 		DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace);
-		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace)
+		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace);
+		actions.getTopicById(topic.id);
 	}
 
 
@@ -68,35 +70,6 @@ class Comment extends Component {
 			this.setState({
 				didFocus: true
 			})
-		}
-	}
-
-
-	componentDidUpdate() {
-		setTimeout(() => this._scrollToReply());
-	}
-
-
-	_scrollToReply() {
-		let reply = this.props.reply;
-		if (reply) {
-			let row = this[reply.id];
-			if (row && row.measure) {
-				row.measure((x, y, width, height, pageX, pageY) => {
-					this._listView.setNativeProps({
-						contentOffset: {
-							x: 0,
-							y: y
-						}
-					})
-				});
-
-				row.setNativeProps({
-					styles: {
-						backgroundColor: 'red'
-					}
-				});
-			}
 		}
 	}
 
@@ -225,12 +198,12 @@ class Comment extends Component {
 
 
 	_renderCommentList() {
-		const {replies, reply, router, user, actions, topic, loadPending} = this.props;
+		const {replies, reply={}, router, user, actions, topic, loadPending} = this.props;
 		if (this.state.didFocus && topic) {
 			return (
 				<CommentList
 					data={replies}
-					focusedReply={reply}
+					focusedReply={reply.id}
 					router={router}
 					user={user}
 					onReplyPress={this._onReplyPress.bind(this)}

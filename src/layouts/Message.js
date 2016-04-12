@@ -11,7 +11,6 @@ import TabBar from '../components/TabBar';
 import Return from '../components/base/Return';
 import MarkAsReadOverlay from '../components/MarkAsReadOverlay';
 import MessageList from '../components/MessageList';
-import { genColor } from '../utils';
 
 
 const { height, width } = Dimensions.get('window');

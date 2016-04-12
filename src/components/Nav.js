@@ -9,7 +9,7 @@ import React, {
 } from 'react-native';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class Nav extends Component {
@@ -65,7 +65,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-		paddingTop: statusBarHeight
+		paddingTop: statusBarHeight,
+		paddingLeft: 15,
+		paddingRight: 15
 	},
 	navItem: {
 		color: 'rgba(255,255,255,0.7)',
@@ -73,12 +75,10 @@ const styles = StyleSheet.create({
 	},
 	navLeft: {
 		textAlign: 'left',
-		paddingLeft: 15,
 		flex: 1
 	},
 	navRight: {
 		textAlign: 'right',
-		paddingRight: 15,
 		flex: 1
 	},
 	navCenter: {

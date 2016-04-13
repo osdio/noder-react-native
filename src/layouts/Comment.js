@@ -34,8 +34,13 @@ class Comment extends Component {
 		this.state = {
 			didFocus: false
 		};
-		this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this);
-		this.resetKeyboardSpace = this.resetKeyboardSpace.bind(this)
+		DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this));
+		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this));
+
+		if (Platform.OS === 'android') {
+			DeviceEventEmitter.addListener('keyboardDidShow', this.updateKeyboardSpace.bind(this));
+			DeviceEventEmitter.addListener('keyboardDidHide', this.resetKeyboardSpace.bind(this));
+		}
 	}
 
 	updateKeyboardSpace(e) {
@@ -59,8 +64,6 @@ class Comment extends Component {
 
 	componentDidMount() {
 		const {topic, actions} = this.props;
-		DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace);
-		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace);
 		actions.getTopicById(topic.id);
 	}
 

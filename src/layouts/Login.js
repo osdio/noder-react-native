@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	View,
 	Component,
 	Text,
@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import Spinner from '../components/base/Spinner';
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class Login extends Component {
@@ -47,7 +47,7 @@ class Login extends Component {
 
 
 	render() {
-		const { router } = this.props;
+		const {router} = this.props;
 
 		return (
 			<View style={styles.wrapper}>
@@ -58,7 +58,7 @@ class Login extends Component {
 
 				<View style={styles.content}>
 					<View style={styles.info}>
-						<Image source={require('../images/noderIcon.png')}/>
+						<Image style={styles.img} source={require('../images/noderIcon.png')}/>
 						<Text style={styles.infoText}>
 							国内最专业的 Node.js 开源技术社区
 						</Text>
@@ -103,6 +103,10 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: 40,
 		right: 40
+	},
+	img: {
+		width: 100,
+		height: 100
 	}
 });
 

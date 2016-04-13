@@ -10,6 +10,7 @@ import React, {
 } from 'react-native';
 import TopicRow from './../components/TopicRow';
 import Spinner from './../components/base/Spinner';
+import * as Constants from '../constants';
 import moment from 'moment';
 
 
@@ -149,10 +150,7 @@ class TopicList extends Component {
 							onRefresh={()=>{
 								actions.updateTopicsByTab(tab);
 							}}
-							tintColor="rgba(241,196,15, 1)"
-							title="正在加载..."
-							colors={['#ff0000', '#00ff00', '#0000ff']}
-							progressBackgroundColor="#ffff00"
+							{...Constants.refreshControl}
 						  />
 					}
 				/>

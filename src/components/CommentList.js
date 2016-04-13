@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import CommentHtml from './CommentHtml';
 import CommentUp from './CommentUp';
+import * as Constants from '../constants';
 
 import {parseImgUrl} from '../utils';
 
@@ -196,10 +197,7 @@ class CommentList extends Component {
 						<RefreshControl
 							refreshing={this.props.pending}
 							onRefresh={this.props.onPullRefresh}
-							tintColor="rgba(241,196,15, 1)"
-							title="正在加载..."
-							colors={['#ff0000', '#00ff00', '#0000ff']}
-							progressBackgroundColor="#ffff00"
+							{...Constants.refreshControl}
 						  />
 					}
 			/>

@@ -236,11 +236,11 @@ const styles = StyleSheet.create({
 	bgWallFooter: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		width: width
+		width: width,
+		paddingLeft: 10,
+		paddingRight: 10
 	},
 	bgWallFooterText: {
-		paddingLeft: 10,
-		paddingRight: 10,
 		fontSize: 12,
 		color: 'rgba(255,255,255,0.6)'
 	},

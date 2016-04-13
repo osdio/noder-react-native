@@ -7,7 +7,8 @@
     "postinstall": "npm run clean:babelrc",
     "an": "react-native run-android",
     "log": "adb logcat *:S ReactNative:V ReactNativeJS:V",
-    "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false"
+    "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false",
+	"build-an": "cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "lodash": "^4.8.2",

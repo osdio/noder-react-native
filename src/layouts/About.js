@@ -24,8 +24,7 @@ class About extends Component {
 
 	render() {
 		return (
-			<ScrollView
-				contentContainerStyle={styles.container}>
+			<View style={styles.container}>
 				<Image
 					style={styles.noderLogo}
 					source={require('../images/noderIcon.png')}
@@ -69,7 +68,7 @@ class About extends Component {
 							React-Native {'v' + config.package.dependencies['react-native']}</Text>
 					</TouchableOpacity>
 				</View>
-			</ScrollView>
+			</View>
 		)
 	}
 }
@@ -120,13 +119,9 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		width: width,
 		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	arrow: {
-		marginTop: 40,
-		height: 50,
-		width: 50
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		height: 100
 	},
 	blog: {
 		height: 20,
@@ -135,8 +130,7 @@ const styles = StyleSheet.create({
 	},
 	reactNative: {
 		fontSize: 16,
-		color: 'rgba(255,255,255,0.3)',
-		marginBottom: 10
+		color: 'rgba(255,255,255,0.3)'
 	}
 });
 

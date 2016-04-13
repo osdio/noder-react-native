@@ -14,7 +14,7 @@ import Button from 'react-native-button';
 import Row from './base/Row';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 const iconSize = 17;
 const rowHeight = 50;
 
@@ -69,9 +69,11 @@ class Setting extends Component {
 								size={iconSize}
 								color='rgba(255,255,255,0.5)'
 								style={styles.Icon}/>
-							<Text style={styles.rowText}>
-								设置
-							</Text>
+							<View style={styles.rowTextWrapper}>
+								<Text style={styles.rowText}>
+									设置
+								</Text>
+							</View>
 						</View>
 
 
@@ -81,9 +83,11 @@ class Setting extends Component {
 								size={iconSize}
 								color='rgba(255,255,255,0.5)'
 								style={styles.Icon}/>
-							<Text style={styles.rowText}>
-								关于
-							</Text>
+							<View style={styles.rowTextWrapper}>
+								<Text style={styles.rowText}>
+									关于
+								</Text>
+							</View>
 						</Row>
 
 						<Row key="clean" style={styles.row} onPress={this.onClearPress.bind(this)}>
@@ -92,9 +96,11 @@ class Setting extends Component {
 								size={iconSize}
 								color='rgba(255,255,255,0.5)'
 								style={styles.Icon}/>
-							<Text style={styles.rowText}>
-								清除缓存
-							</Text>
+							<View style={styles.rowTextWrapper}>
+								<Text style={styles.rowText}>
+									清除缓存
+								</Text>
+							</View>
 						</Row>
 
 
@@ -104,9 +110,11 @@ class Setting extends Component {
 								size={iconSize}
 								color='#E74C3C'
 								style={styles.Icon}/>
-							<Text style={[styles.rowText,styles.logoutText]}>
-								退出
-							</Text>
+							<View style={styles.rowTextWrapper}>
+								<Text style={[styles.rowText,styles.logoutText]}>
+									退出
+								</Text>
+							</View>
 						</Row>
 					</View>
 
@@ -170,8 +178,10 @@ const styles = StyleSheet.create({
 		width: width - 30 * 2
 	},
 	rowText: {
-		paddingLeft: 20,
 		color: 'rgba(255,255,255,0.7)'
+	},
+	rowTextWrapper: {
+		paddingLeft: 20
 	},
 	logoutText: {
 		color: '#E74C3C'

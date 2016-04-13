@@ -33,8 +33,7 @@ export default function (state = initialState, action) {
 				[tab]: {
 					...state[tab],
 					reachedEndPending: pending,
-					page: (!error && !pending) ? state[tab].page : state[tab].page + 1,
-					flag: !error && !pending ? state[tab].flag : state[tab].flag + 1
+					page: (!error && !pending) ? state[tab].page + 1: state[tab].page
 				}
 			};
 		case types.UPDATE_TOPICS_BY_TAB:
@@ -43,7 +42,8 @@ export default function (state = initialState, action) {
 				[tab]: {
 					...state[tab],
 					pullRefreshPending: pending,
-					page: initialState[tab].page
+					page: initialState[tab].page,
+					flag: (!error && !pending) ? state[tab].flag + 1 : state[tab].flag
 				}
 			};
 		default:

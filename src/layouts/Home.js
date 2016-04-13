@@ -32,7 +32,9 @@ class Home extends Component {
 		const {actions, topic, ui} = this.props;
 		const tab = Tabs.tabs[page];
 		if (topic[tab] && ui[tab] && !ui[tab].flag) {
-			actions.updateTopicsByTab(tab);
+			setTimeout(()=>{
+				actions.updateTopicsByTab(tab);
+			}, 400);
 		}
 	}
 

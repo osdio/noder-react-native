@@ -22,11 +22,6 @@ const {height, width} = Dimensions.get('window');
 
 
 class Home extends Component {
-	constructor(props) {
-		super(props);
-	}
-
-
 	componentDidMount() {
 		const { actions } = this.props;
 		actions.updateTopicsByTab('all');
@@ -34,9 +29,9 @@ class Home extends Component {
 
 
 	_onPageChanged(page) {
-		const {actions, topic} = this.props;
+		const {actions, topic, ui} = this.props;
 		const tab = Tabs.tabs[page];
-		if (topic[tab] && !topic[tab].length) {
+		if (topic[tab] && ui[tab] && !ui[tab].flag) {
 			actions.updateTopicsByTab(tab);
 		}
 	}
@@ -101,6 +96,7 @@ export function mapStateToProps(state) {
 	return {
 		user: state.user,
 		message: state.message,
-		topic: state.topic
+		topic: state.topic,
+		ui: state.home
 	}
 }

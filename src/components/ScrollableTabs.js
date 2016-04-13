@@ -99,16 +99,19 @@ class ScrollableTabs extends Component {
 	}
 
 
+	_onPageSelected(e) {
+		const {position} = e.nativeEvent;
+		if (position == undefined) {
+			return
+		}
+		typeof this.props.onPageChanged == 'function' && this.props.onPageChanged(position);
+	}
+
+
 	_onAndroidPageScroll(e) {
 		const {offset, position} = e.nativeEvent;
 		let x = (position + offset) * width;
-		this._onScroll({
-			nativeEvent: {
-				contentOffset: {
-					x
-				}
-			}
-		});
+		this._animateScroll(x);
 	}
 
 
@@ -209,6 +212,7 @@ class ScrollableTabs extends Component {
 				ref={(view)=>this.viewPager=view}
 				initialPage={this.index}
 				style={styles.scrollableContentAndroid}
+				onPageSelected={this._onPageSelected.bind(this)}
 				onPageScroll={ this._onAndroidPageScroll.bind(this)}>
 
 				{ this._renderChildren() }

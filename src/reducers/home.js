@@ -10,7 +10,8 @@ tabs.forEach((item)=> {
 		pullRefreshPending: false,
 		reachedEndPending: false,
 		page: 1,
-		limit: 10
+		limit: 10,
+		flag: 0
 	}
 });
 
@@ -32,7 +33,8 @@ export default function (state = initialState, action) {
 				[tab]: {
 					...state[tab],
 					reachedEndPending: pending,
-					page: (!error && !pending) ? state[tab].page : state[tab].page + 1
+					page: (!error && !pending) ? state[tab].page : state[tab].page + 1,
+					flag: !error && !pending ? state[tab].flag : state[tab].flag + 1
 				}
 			};
 		case types.UPDATE_TOPICS_BY_TAB:

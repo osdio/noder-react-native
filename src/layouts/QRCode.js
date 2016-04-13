@@ -1,21 +1,20 @@
-import React,{
+import React, {
 	StyleSheet,
 	View,
 	Text,
 	Component,
 	Dimensions,
 	Platform,
-	TouchableOpacity
+	TouchableOpacity,
+	Vibration
 } from 'react-native';
 import Camera from 'react-native-camera';
 import BarcodeScanner from 'react-native-barcodescanner';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Vibration from 'react-native-vibration';
 import OverlayButton from '../components/base/OverlayButton';
 
 
-
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 const cameraSize = 250;
 const borderColor = 'rgba(255,255,255,0.6)';
 const borderBoxSize = 35;
@@ -27,8 +26,9 @@ class QRCode extends Component {
 		this.succesed = false;
 	}
 
+
 	_onBarCodeRead(result) {
-		const { router, actions } = this.props;
+		const {router, actions} = this.props;
 		if (this.succesed) return;
 
 		this.succesed = true;

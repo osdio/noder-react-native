@@ -22,11 +22,6 @@ export default function (state = initialState, action) {
 	const pending = sequence.type === 'start';
 
 	switch (type) {
-		case types.OPEN_LOGIN_MODAL:
-		case types.CLOSE_LOGIN_MODAL:
-			return {
-				loginModalVisible: payload.show
-			};
 		case types.GET_TOPICS_BY_TAB:
 			return {
 				...state,

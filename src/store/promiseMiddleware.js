@@ -14,6 +14,7 @@ export default function promiseMiddleware({ dispatch }) {
 		}
 		const { meta = {}, payload } = action;
 
+		const id = _.uniqueId();
 
 		if (isPromise(payload)) {
 			dispatch({
@@ -23,7 +24,7 @@ export default function promiseMiddleware({ dispatch }) {
 					...meta,
 					sequence: {
 						type: 'start',
-						id: _.uniqueId()
+						id
 					}
 				}
 			});
@@ -36,7 +37,7 @@ export default function promiseMiddleware({ dispatch }) {
 						...meta,
 						sequence: {
 							type: 'next',
-							id: _.uniqueId()
+							id
 						}
 					}
 				}),
@@ -48,7 +49,7 @@ export default function promiseMiddleware({ dispatch }) {
 						...meta,
 						sequence: {
 							type: 'next',
-							id: _.uniqueId()
+							id
 						}
 					}
 				})

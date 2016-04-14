@@ -31,7 +31,7 @@ class TopicList extends Component {
 		if (nextProps.data !== this.props.data) {
 			this.setState({
 				ds: this.state.ds.cloneWithRows(nextProps.data)
-			})
+			});
 		}
 	}
 
@@ -125,27 +125,27 @@ class TopicList extends Component {
 	render() {
 		const {pullRefreshPending, tab, page, limit, actions} = this.props;
 		return (
-			<View style={styles.container}>
-				<ListView
-					showsVerticalScrollIndicator
-					removeClippedSubviews
-					enableEmptySections
-					ref={view => {this._listView = view}}
-					initialListSize={10}
-					pagingEnabled={false}
-					scrollRenderAheadDistance={90}
-					dataSource={this.state.ds}
-					renderRow={this.renderRow.bind(this)}
-					onEndReachedThreshold={30}
-					onEndReached={()=>{
+			<ListView
+				showsVerticalScrollIndicator
+				removeClippedSubviews
+				enableEmptySections
+				ref={view => {this._listView = view}}
+				initialListSize={10}
+				pagingEnabled={false}
+				scrollRenderAheadDistance={90}
+				dataSource={this.state.ds}
+				renderRow={this.renderRow.bind(this)}
+				onEndReachedThreshold={30}
+				onEndReached={()=>{
 						actions.getTopicsByTab(tab, {
 										page: page + 1,
 										limit
 									});
 					}}
-					renderFooter={this._renderFooter.bind(this)}
-					refreshControl={
+				renderFooter={this._renderFooter.bind(this)}
+				refreshControl={
 						<RefreshControl
+							ref={(view)=> this.refreshControl=view}
 							refreshing={pullRefreshPending}
 							onRefresh={()=>{
 								actions.updateTopicsByTab(tab);
@@ -153,8 +153,7 @@ class TopicList extends Component {
 							{...Constants.refreshControl}
 						  />
 					}
-				/>
-			</View>
+			/>
 		)
 	}
 }

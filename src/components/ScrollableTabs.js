@@ -11,6 +11,7 @@ import React, {
 	Animated,
 	ViewPagerAndroid
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 
 const {height, width} = Dimensions.get('window');
@@ -41,6 +42,7 @@ class ScrollableTabs extends Component {
 			x: new Animated.Value(-offset)
 		};
 		this._navs = {};
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
 
 
@@ -93,9 +95,11 @@ class ScrollableTabs extends Component {
 	_onMomentumScrollBegin(e) {
 		const offsetX = e.nativeEvent.contentOffset.x;
 		const page = parseInt(offsetX / width, 10);
-		this.index = page;
 		this._animateScroll(offsetX);
-		typeof this.props.onPageChanged == 'function' && this.props.onPageChanged(page);
+		if (page !== this.index) {
+			typeof this.props.onPageChanged == 'function' && this.props.onPageChanged(page);
+		}
+		this.index = page;
 	}
 
 
@@ -196,7 +200,6 @@ class ScrollableTabs extends Component {
 					showsVerticalScrollIndicator={false}
 					scrollEventThrottle={16}
 					onScroll={this._onScroll.bind(this)}
-					onScrollBeginDrag={this._onScroll.bind(this)}
 					onMomentumScrollBegin={this._onMomentumScrollBegin.bind(this)}
 					onMomentumScrollEnd={this._onMomentumScrollBegin.bind(this)}
 					keyboardDismissMode="on-drag"

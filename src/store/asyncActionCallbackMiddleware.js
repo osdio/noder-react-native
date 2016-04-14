@@ -5,7 +5,7 @@ export default function asyncActionCallbackMiddleware() {
 		if (sequence.type !== 'next') return next(action);
 
 
-		// 执行回调
+		// do callback
 		error ? (rejected && rejected(payload)) : (resolved && resolved(payload));
 
 		next(action);

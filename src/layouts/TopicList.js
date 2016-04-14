@@ -98,7 +98,7 @@ class TopicList extends Component {
 		if (reachedEndPending) {
 			return (
 				<View style={styles.reachedEndLoading}>
-					<Spinner/>
+					<Spinner size="large"/>
 				</View>
 			)
 		}

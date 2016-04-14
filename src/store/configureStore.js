@@ -23,9 +23,18 @@ if (__DEV__) {
 
 
 export default function configureStore(initialState) {
-	return applyMiddleware(
+	const store = applyMiddleware(
 		...middlewares
 	)(createStore)(reducers, initialState);
+
+	if (module.hot) {
+		module.hot.accept(() => {
+			const nextRootReducer = require('../reducers/index').default;
+			store.replaceReducer(nextRootReducer);
+		});
+	}
+
+	return store;
 }
 
 

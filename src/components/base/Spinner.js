@@ -16,6 +16,7 @@ class Spinner extends Component {
 		}
 		return (
 			<ActivityIndicatorIOS
+				color="rgba(241,196,15, 1)"
 				animating={true}
 				{...this.props}/>
 		)

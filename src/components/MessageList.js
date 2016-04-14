@@ -7,11 +7,12 @@ import React, {
 	ListView,
 	TouchableHighlight,
 	Dimensions,
-	PropTypes
+	PropTypes,
+	RefreshControl
 } from 'react-native';
 import moment from 'moment';
-import Spinner from './base/Spinner';
 import {parseImgUrl} from '../utils';
+import * as Constants from '../constants';
 
 
 const {height, width} = Dimensions.get('window');
@@ -21,13 +22,15 @@ class MessageList extends Component {
 	static propTypes = {
 		data: PropTypes.array,
 		pending: PropTypes.bool,
+		getMessageList: PropTypes.func,
 		didFocus: PropTypes.bool
 	};
 
 
 	static defaultProps = {
 		pending: false,
-		didFocus: false
+		didFocus: false,
+		data: []
 	};
 
 
@@ -35,16 +38,18 @@ class MessageList extends Component {
 		super(props);
 		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
-			ds: this.ds.cloneWithRows(this.props.data)
+			ds: this.ds.cloneWithRows(props.data)
 		}
 	}
 
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.didFocus && nextProps.data != this.props.data) {
+		console.log(nextProps.data);
+		if (nextProps.data !== this.props.data) {
+			console.log('update');
 			this.setState({
-				ds: this.ds.cloneWithRows(nextProps.data)
-			})
+				ds: this.state.ds.cloneWithRows(nextProps.data)
+			});
 		}
 	}
 
@@ -81,24 +86,12 @@ class MessageList extends Component {
 	}
 
 
-	_renderLoading() {
-		if (this.props.pending || !this.props.didFocus) {
-			return (
-				<Spinner
-					size="large"
-					style={{marginTop:20,width:width}}/>
-			)
-		}
-		return null;
-	}
-
-
 	_renderRow(message) {
 		var topic = message.topic;
 		var title = topic.title;
 		var titleLength = Math.floor((width - 100) / 15) + 2;
 		if (title.length > titleLength) {
-			title = title.substring(0, titleLength - 3) + '...'
+			title = title.substring(0, titleLength - 3) + '...';
 		}
 
 
@@ -131,8 +124,9 @@ class MessageList extends Component {
 	}
 
 
-	_renderEmptyMessage() {
-		if (this.props.data.length == 0 && this.props.pending == false && this.props.didFocus) {
+	_renderHeader() {
+		const {data, didFocus} = this.props;
+		if (!data.length && didFocus) {
 			return (
 				<View style={styles.emptyMessage}>
 					<Text style={styles.emptyMessageText}>
@@ -141,12 +135,14 @@ class MessageList extends Component {
 				</View>
 			)
 		}
+		return null;
 	}
 
 
-	_renderListView() {
-		if (this.props.didFocus) {
-			return (
+	render() {
+		const {pending, didFocus, getMessageList} = this.props;
+		return (
+			<View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
 				<ListView
 					enableEmptySections
 					showsVerticalScrollIndicator={true}
@@ -155,20 +151,15 @@ class MessageList extends Component {
 					removeClippedSubviews={true}
 					dataSource={this.state.ds}
 					renderRow={this._renderRow.bind(this)}
-					onEndReachedThreshold={100}
+					renderHeader={this._renderHeader.bind(this)}
+					refreshControl={
+						<RefreshControl
+							refreshing={pending || !didFocus}
+							onRefresh={()=>{getMessageList()}}
+							{...Constants.refreshControl}
+						  />
+					}
 				/>
-			)
-		}
-		return null
-	}
-
-
-	render() {
-		return (
-			<View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
-				{this._renderLoading()}
-				{this._renderEmptyMessage()}
-				{this._renderListView()}
 			</View>
 		)
 	}

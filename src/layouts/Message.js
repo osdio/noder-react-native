@@ -13,7 +13,7 @@ import MarkAsReadOverlay from '../components/MarkAsReadOverlay';
 import MessageList from '../components/MessageList';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 const STATUS_BAR_HEIGHT = 20;
 
 class Message extends Component {
@@ -60,7 +60,7 @@ class Message extends Component {
 
 
 	render() {
-		const { fetchMessagesPending, hasNotRead, hasRead, isMarkAsReadLoading } = this.props;
+		const {fetchMessagesPending, hasNotRead, hasRead, isMarkAsReadLoading, actions, router} = this.props;
 
 
 		return (
@@ -70,25 +70,29 @@ class Message extends Component {
 					edgeHitWidth={(width/3)*2}
 					renderTabBar={this._renderTabBar.bind(this)}>
 					<MessageList
-						router={this.props.router}
+						router={router}
 						didFocus={ this.state.didFocus }
 						pending={ fetchMessagesPending }
-						data={ hasNotRead }
+						data={ this.state.didFocus ? hasNotRead : [] }
 						style={styles.userTopicPage}
-						tabLabel={ "未读消息 " + hasNotRead.length }/>
+						tabLabel={ "未读消息 " + hasNotRead.length }
+						getMessageList={actions.getMessageList}
+					/>
 					<MessageList
-						router={this.props.router}
+						router={router}
 						didFocus={ this.state.didFocus }
 						pending={ fetchMessagesPending }
-						data={ hasRead }
+						data={ this.state.didFocus ? hasRead : [] }
 						style={styles.userTopicPage}
-						tabLabel={"已读消息 " + hasRead.length}/>
+						tabLabel={"已读消息 " + hasRead.length}
+						getMessageList={actions.getMessageList}
+					/>
 				</ScrollableTabView>
 
-				<Return router={this.props.router}/>
+				<Return router={router}/>
 				<MarkAsReadOverlay
 					pending={isMarkAsReadLoading}
-					markAsRead={this.props.actions.markAsRead}
+					markAsRead={actions.markAsRead}
 					hasNotRead={hasNotRead}/>
 			</View>
 		)

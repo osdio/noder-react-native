@@ -1,5 +1,7 @@
 import React, {
-	Navigator
+	Navigator,
+	Platform,
+	BackAndroid
 } from 'react-native';
 import _ from 'lodash';
 import * as About from '../layouts/About';
@@ -21,6 +23,17 @@ const {SceneConfigs} = Navigator;
 class Router {
 	constructor(navigator) {
 		this.navigator = navigator;
+		if (Platform.OS === 'android') {
+			BackAndroid.addEventListener('hardwareBackPress', ()=> {
+				const routesList = this.navigator.getCurrentRoutes();
+				const currentRoute = routesList[routesList.length - 1];
+				if (currentRoute !== 'home') {
+					navigator.pop();
+					return true;
+				}
+				return false;
+			});
+		}
 	}
 
 

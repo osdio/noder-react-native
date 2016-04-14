@@ -160,9 +160,16 @@ class Comment extends Component {
 		if (!user) return null;
 
 		const userImg = parseImgUrl(user.avatar_url);
+		let replyFormBorder = {};
+		if (Platform.OS === 'android') {
+			replyFormBorder = {
+				borderTopWidth: 1,
+				borderTopColor: 'rgba(0,0,0,0.08)'
+			};
+		}
 
 		return (
-			<View style={styles.replyFormWrapper}>
+			<View style={[styles.replyFormWrapper, replyFormBorder]}>
 				<View style={styles.replyUserImgWrapper}>
 					<TouchableOpacity onPress={()=>this.props.router.toUser({
 						userName: user.loginname

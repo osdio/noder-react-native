@@ -10,22 +10,23 @@ const initialState = {
 export default function (state = initialState, action) {
 	const { type, meta={} } = action;
 	const { sequence={} } = meta;
+	const status = sequence.type === 'start';
 
 	switch (type) {
 		case types.GET_MESSAGES_LIST:
 			return {
 				...state,
-				fetchMessagesPending: sequence.type === 'start'
+				fetchMessagesPending: status
 			};
 		case types.MARK_AS_READ:
 			return {
 				...state,
-				markAsReadPending: sequence.type === 'start'
+				markAsReadPending: status
 			};
 		case types.GET_UNREAD_MESSAGE_COUNT:
 			return {
 				...state,
-				fetchUnreadMessageCountPending: sequence.type === 'start'
+				fetchUnreadMessageCountPending: status
 			};
 		case types.LOGOUT:
 			return initialState;

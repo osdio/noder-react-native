@@ -79,7 +79,11 @@ class CommentUp extends Component {
 
 					{this._renderUpIcon()}
 
-					{count == 0 ? null : (<Text style={styles.text}>{count}</Text>)}
+					{count == 0 ? null : (
+						<View style={styles.textWrapper}>
+							<Text style={styles.text}>{count}</Text>
+						</View>
+					)}
 				</View>
 			</TouchableOpacity>
 		)
@@ -88,8 +92,10 @@ class CommentUp extends Component {
 
 
 const styles = StyleSheet.create({
+	textWrapper: {
+		paddingLeft: 7
+	},
 	text: {
-		paddingLeft: 7,
 		fontSize: 12,
 		color: 'rgba(0,0,0,0.2)',
 		height: 12

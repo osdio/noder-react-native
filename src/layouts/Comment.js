@@ -221,12 +221,7 @@ class Comment extends Component {
 				text: '评论 ' + count,
 				onPress: ()=> {
 					if (count > 0) {
-						this._listView.setNativeProps({
-							contentOffset: {
-								x: 0,
-								y: 0
-							}
-						})
+						this.commentList.scrollToTop();
 					}
 				}
 			}
@@ -259,6 +254,7 @@ class Comment extends Component {
 					  }]}>
 
 					<CommentList
+						ref={(view)=>this.commentList=view}
 						data={this.state.didFocus ? replies : []}
 						focusedReply={reply.id}
 						router={router}

@@ -65,6 +65,14 @@ class CommentList extends Component {
 	}
 
 
+	scrollToTop() {
+		this._listView.scrollTo({
+			x: 0,
+			y: 0
+		});
+	}
+
+
 	_scrollToReply() {
 		const {focusedReply} = this.props;
 		if (focusedReply) {

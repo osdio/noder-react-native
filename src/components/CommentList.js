@@ -37,7 +37,8 @@ class CommentList extends Component {
 
 	static defaultProps = {
 		onReplyPress: ()=>null,
-		onAuthorNamePress: ()=>null
+		onAuthorNamePress: ()=>null,
+		pending: false
 	};
 
 

@@ -9,7 +9,7 @@ import React,{
 
 class Spinner extends Component {
 	static defaultProps={
-		color: 'rgba(241,196,15, 1)'
+		color: 'rgba(241,196,15, 1.0)'
 	};
 
 	render() {

@@ -74,7 +74,6 @@ class Topic extends Component {
 		}
 		return (
 			<Spinner
-				size="large"
 				animating={true}
 				style={{marginTop:20}}/>
 		)

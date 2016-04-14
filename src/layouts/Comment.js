@@ -200,38 +200,9 @@ class Comment extends Component {
 	}
 
 
-	_renderCommentList() {
-		const {replies, reply={}, router, user, actions, topic, loadPending} = this.props;
-		if (this.state.didFocus && topic) {
-			return (
-				<CommentList
-					data={replies}
-					focusedReply={reply.id}
-					router={router}
-					user={user}
-					onReplyPress={this._onReplyPress.bind(this)}
-					onAuthorNamePress={this._onAuthorTextPress.bind(this)}
-					onPullRefresh={()=>{
-						actions.getTopicById(topic.id);
-					}}
-					actions={actions}
-					topicId={topic.id}
-					pending={loadPending}
-				/>
-			)
-		}
-
-		return (
-			<Spinner
-				size="large"
-				animating={true}
-				style={{marginTop:20,width:width}}/>
-		)
-	}
-
-
 	render() {
-		const {topic, router, id, count} = this.props;
+		const {replies, reply={}, router, user, actions, topic, loadPending, count} = this.props;
+
 		let navs = {
 			Left: {
 				text: '返回',
@@ -280,7 +251,18 @@ class Comment extends Component {
 					  	height: this.props.user ? commentsHeight : commentsHeight + replyFormHeight
 					  }]}>
 
-					{ this._renderCommentList() }
+					<CommentList
+						data={this.state.didFocus ? replies : []}
+						focusedReply={reply.id}
+						router={router}
+						user={user}
+						onReplyPress={this._onReplyPress.bind(this)}
+						onAuthorNamePress={this._onAuthorTextPress.bind(this)}
+						onPullRefresh={()=>{actions.getTopicById(topic.id)}}
+						actions={actions}
+						topicId={topic.id}
+						pending={ !this.state.didFocus || loadPending}
+					/>
 
 				</View>
 

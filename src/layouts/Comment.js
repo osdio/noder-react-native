@@ -70,7 +70,7 @@ class Comment extends Component {
 
 	componentDidFocus(haveFocus) {
 		if (!haveFocus) {
-			setTimeout(()=>{
+			setTimeout(()=> {
 				this.setState({
 					didFocus: true
 				});
@@ -238,7 +238,8 @@ class Comment extends Component {
 					onPress: ()=> {
 						router.toTopic({
 							topic: topic,
-							id: topic.id
+							id: topic.id,
+							from: 'comment'
 						})
 					}
 				}

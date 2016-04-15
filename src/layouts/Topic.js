@@ -37,13 +37,16 @@ class Topic extends Component {
 
 
 	componentDidMount() {
-		this.props.actions.getTopicById(this.props.id);
+		const {from, actions, id, topic} = this.props;
+		if (from !== 'comment' && topic) {
+			actions.getTopicById(id);
+		}
 	}
 
 
 	componentDidFocus(haveFocus) {
 		if (!haveFocus) {
-			setTimeout(()=>{
+			setTimeout(()=> {
 				this.setState({
 					didFocus: true
 				});
@@ -166,7 +169,7 @@ class Topic extends Component {
 				{ this._renderContent(topic) }
 
 				<Return router={this.props.router}/>
-				{ this.props.topic && this.state.didFocus && this._renderCommentOverlay(topic) }
+				{ this.props.topic && this.state.didFocus && this.props.from !== 'comment' && this._renderCommentOverlay(topic) }
 			</View>
 		)
 	}

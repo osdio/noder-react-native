@@ -22,7 +22,8 @@ class ScrollableTabs extends Component {
 		tabs: PropTypes.array,
 		tabNavItemWidth: PropTypes.number,
 		index: PropTypes.number,
-		onPageChanged: PropTypes.func
+		onPageChanged: PropTypes.func,
+		onPageChangedAndAnimateEnd: PropTypes.func
 	};
 
 	static defaultProps = {
@@ -41,6 +42,12 @@ class ScrollableTabs extends Component {
 		this.state = {
 			x: new Animated.Value(-offset)
 		};
+		this.state.x.addListener((e)=> {
+			if (e.value % (this.space + tabNavItemWidth) == 0) {
+				let index = Math.abs(e.value / (this.space + tabNavItemWidth));
+				typeof this.props.onPageChangedAndAnimateEnd == 'function' && this.props.onPageChangedAndAnimateEnd(index);
+			}
+		});
 		this._navs = {};
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
@@ -105,6 +112,7 @@ class ScrollableTabs extends Component {
 
 	_onPageSelected(e) {
 		const {position} = e.nativeEvent;
+		this.index = position;
 		if (position == undefined) {
 			return
 		}

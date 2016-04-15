@@ -23,7 +23,7 @@ const {height, width} = Dimensions.get('window');
 
 class Home extends Component {
 	componentDidMount() {
-		const { actions } = this.props;
+		const {actions} = this.props;
 		actions.updateTopicsByTab('all');
 	}
 
@@ -32,9 +32,7 @@ class Home extends Component {
 		const {actions, topic, ui} = this.props;
 		const tab = Tabs.tabs[page];
 		if (topic[tab] && ui[tab] && !ui[tab].flag) {
-			setTimeout(()=>{
-				actions.updateTopicsByTab(tab);
-			}, 400);
+			actions.updateTopicsByTab(tab);
 		}
 	}
 
@@ -57,7 +55,7 @@ class Home extends Component {
 				<ScrollableTabs
 					index={0}
 					tabs={['精华', '问答', '主页', '分享', '招聘']}
-					onPageChanged={this._onPageChanged.bind(this)}
+					onPageChangedAndAnimateEnd={this._onPageChanged.bind(this)}
 				>
 					{ this._renderTopicList() }
 				</ScrollableTabs>

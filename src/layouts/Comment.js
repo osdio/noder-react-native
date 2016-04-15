@@ -70,9 +70,11 @@ class Comment extends Component {
 
 	componentDidFocus(haveFocus) {
 		if (!haveFocus) {
-			this.setState({
-				didFocus: true
-			})
+			setTimeout(()=>{
+				this.setState({
+					didFocus: true
+				});
+			});
 		}
 	}
 

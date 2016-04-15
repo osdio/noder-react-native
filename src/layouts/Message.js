@@ -32,8 +32,10 @@ class Message extends Component {
 
 	componentDidFocus(haveFocused) {
 		if (!haveFocused) {
-			this.setState({
-				didFocus: true
+			setTimeout(()=>{
+				this.setState({
+					didFocus: true
+				});
 			});
 		}
 	}

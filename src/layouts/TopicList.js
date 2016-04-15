@@ -8,6 +8,7 @@ import React, {
 	PropTypes,
 	RefreshControl
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TopicRow from './../components/TopicRow';
 import Spinner from './../components/base/Spinner';
 import * as Constants from '../constants';
@@ -23,7 +24,8 @@ class TopicList extends Component {
 		var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
 			ds: ds.cloneWithRows(props.data)
-		}
+		};
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
 
 

@@ -6,6 +6,7 @@ import React, {
 	Text,
 	PropTypes
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Spinner from './base/Spinner';
 
@@ -25,6 +26,12 @@ class CommentUp extends Component {
 		disabled: false,
 		ups: []
 	};
+
+
+	constructor(props){
+		super(props);
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+	}
 
 
 	_onUpPress() {

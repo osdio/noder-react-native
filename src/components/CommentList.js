@@ -10,6 +10,7 @@ import React, {
 	TouchableOpacity,
 	RefreshControl
 } from 'react-native';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import CommentHtml from './CommentHtml';
@@ -48,6 +49,7 @@ class CommentList extends Component {
 		this.state = {
 			ds: ds.cloneWithRows(props.data.concat([]).reverse())
 		};
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
 
 

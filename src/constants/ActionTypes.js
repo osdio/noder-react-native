@@ -10,7 +10,7 @@ export const GET_USER_FROM_STORAGE = 'GET_USER_FROM_STORAGE';
 export const UPDATE_CLIENT_USER_INFO = 'UPDATE_CLIENT_USER_INFO';
 export const LOGOUT = 'LOGOUT';
 export const GET_USER_INFO = 'GET_USER_INFO';
-
+export const CLEAR = "CLEAR";
 
 // utils
 export const TOAST = 'TOAST';

@@ -15,7 +15,7 @@ export const storage = {
 
 
 	clear: function () {
-		return Storage.removeItem('messages');
+		return storageService.removeItem('messages');
 	}
 };
 

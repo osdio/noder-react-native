@@ -3,7 +3,8 @@ import * as types from '../constants/ActionTypes';
 import * as userService from '../services/userService';
 import * as tokenService from '../services/token';
 import * as storageService from '../services/storage';
-
+import * as topicService from '../services/topicService';
+import * as messageService from '../services/messageService';
 
 export const checkToken = createAction(types.CHECK_TOKEN, async(token)=> {
 	const userLoginInfo = await userService.req.checkToken(token);
@@ -71,5 +72,13 @@ export const logout = function () {
 	userService.storage.clearUser();
 	return {
 		type: types.LOGOUT
+	}
+};
+
+export const clear = function () {
+	topicService.storage.removeAllTopics();
+	messageService.storage.clear();
+	return {
+		type: types.CLEAR
 	}
 };

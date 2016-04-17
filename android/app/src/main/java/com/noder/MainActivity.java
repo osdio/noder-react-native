@@ -1,7 +1,6 @@
 package com.noder;
 
 import com.facebook.react.ReactActivity;
-import com.eguma.vibration.Vibration;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.eguma.barcodescanner.BarcodeScanner;
@@ -39,7 +38,6 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new Vibration(),
             new VectorIconsPackage(),
             new RCTCameraPackage(),
             new BarcodeScanner()

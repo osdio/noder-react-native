@@ -131,7 +131,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-vibration')
     compile project(':react-native-vector-icons')
     compile project(':react-native-camera')
     compile project(':react-native-barcodescanner')

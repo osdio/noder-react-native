@@ -46,8 +46,9 @@ class Setting extends Component {
 
 
 	onClearPress() {
-		this.props.actions.clear();
-		window.alert('缓存清除成功!');
+		const {actions} = this.props;
+		actions.clear();
+		actions.toast('缓存清除成功');
 	}
 
 

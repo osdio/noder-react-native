@@ -38,6 +38,17 @@ class TopicList extends Component {
 	}
 
 
+	_onEndReached() {
+		const {tab, limit, page, actions, data} = this.props;
+		if (data.length) {
+			actions.getTopicsByTab(tab, {
+				page: page + 1,
+				limit
+			});
+		}
+	}
+
+
 	_renderTopicFooter(topic) {
 		var renderArr = [];
 		var navs = {
@@ -125,7 +136,7 @@ class TopicList extends Component {
 
 
 	render() {
-		const {pullRefreshPending, tab, page, limit, actions} = this.props;
+		const {pullRefreshPending, tab, actions} = this.props;
 		return (
 			<ListView
 				showsVerticalScrollIndicator
@@ -138,12 +149,7 @@ class TopicList extends Component {
 				dataSource={this.state.ds}
 				renderRow={this.renderRow.bind(this)}
 				onEndReachedThreshold={30}
-				onEndReached={()=>{
-						actions.getTopicsByTab(tab, {
-										page: page + 1,
-										limit
-									});
-					}}
+				onEndReached={this._onEndReached.bind(this)}
 				renderFooter={this._renderFooter.bind(this)}
 				refreshControl={
 						<RefreshControl

@@ -57,12 +57,6 @@ export const req = {
 				...params
 			})
 			.then(filterData)
-			.then(topics => {
-				if ((params.page == 1 || !params.page) && topics) {
-					storageService.setItem('tab_' + tab, topics)
-				}
-				return topics
-			})
 	},
 
 

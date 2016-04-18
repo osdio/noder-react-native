@@ -10,8 +10,8 @@ const initialState = {
 
 
 export default function (state = initialState, action) {
-	const { payload, error, meta = {}, type } = action;
-	const { sequence = {} } = meta;
+	const {payload, error, meta = {}, type} = action;
+	const {sequence = {}} = meta;
 	if (sequence.type === 'start' || error) {
 		return state;
 	}
@@ -23,10 +23,10 @@ export default function (state = initialState, action) {
 				...state,
 				...payload
 			};
-		case types.GET_USER_FROM_STORAGE:
+		case types.GET_REDUCER_FROM_ASYNC_STORAGE:
 			return {
 				...state,
-				...payload
+				...payload.user || initialState
 			};
 		case types.UPDATE_CLIENT_USER_INFO:
 			return {
@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
 				publicInfo: payload
 			};
 		case types.GET_USER_INFO:
-			let { userName = "soliury" } = meta;
+			let {userName = "soliury"} = meta;
 			return {
 				...state,
 				users: {

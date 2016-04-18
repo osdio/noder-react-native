@@ -12,17 +12,12 @@ import secretKey from '../testKey';
 class Utils extends Component {
 	componentDidMount() {
 		const {actions} = this.props;
-		actions.getUserFromStorage(()=> {
-			actions.getUnreadMessageCount();
-		});
-		actions.getAllTopicsFromStorage();
-
-
-		if (__DEV__) {
-			actions.checkToken(secretKey, ()=> {
-				actions.toast('登陆成功');
-			});
-		}
+		actions.getReducerFromAsyncStorage();
+		// if (__DEV__) {
+		// 	actions.checkToken(secretKey, ()=> {
+		// 		actions.toast('登陆成功');
+		// 	});
+		// }
 	}
 
 

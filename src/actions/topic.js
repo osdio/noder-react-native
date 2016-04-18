@@ -29,12 +29,18 @@ export const updateTopicsByTab = createAction(types.UPDATE_TOPICS_BY_TAB, async(
 	});
 }, (tab)=> {
 	return {
-		tab
+		tab,
+		sync: 'topic'
 	}
 });
 
 
-export const getTopicById = createAction(types.GET_TOPIC_BY_ID, topicService.req.getTopicById, setMetaId);
+export const getTopicById = createAction(types.GET_TOPIC_BY_ID, topicService.req.getTopicById, (id)=> {
+	return {
+		id,
+		sync: 'topic'
+	}
+});
 
 
 export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID, (id)=> {

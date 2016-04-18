@@ -1,5 +1,9 @@
-import { createAction } from 'redux-actions';
+import {createAction} from 'redux-actions';
 import * as types from '../constants/ActionTypes';
+import * as storageService from '../services/storage';
+
+
+const syncReducer = ['user', 'message', 'topic'];
 
 
 export const toast = createAction(types.TOAST, (text, timeout)=> {
@@ -8,4 +12,19 @@ export const toast = createAction(types.TOAST, (text, timeout)=> {
 		timeout,
 		id: new Date().getTime()
 	}
+});
+
+
+export const getReducerFromAsyncStorage = createAction(types.GET_REDUCER_FROM_ASYNC_STORAGE, async()=> {
+	return storageService.multiGet(syncReducer)
+		.then(arr=> {
+			let ob = {};
+			arr.forEach(item=> {
+				ob[item[0]] = item[1];
+			});
+			return ob;
+		})
+		.catch(err=> {
+			console.warn(err);
+		});
 });

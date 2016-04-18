@@ -23,7 +23,11 @@ export default function (state = initialState, action) {
 				hasRead: payload.has_read_messages,
 				hasNotRead: payload.hasnot_read_messages
 			};
-
+		case types.GET_REDUCER_FROM_ASYNC_STORAGE:
+			return {
+				...state,
+				...payload.message || initialState
+			};
 		case types.GET_UNREAD_MESSAGE_COUNT:
 			return {
 				...state,

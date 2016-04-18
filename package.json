@@ -2,9 +2,7 @@
   "name": "noder",
   "version": "1.0.0",
   "scripts": {
-    "start": "react-native start",
-    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
-    "postinstall": "npm run clean:babelrc",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
     "an": "react-native run-android",
     "log": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false",

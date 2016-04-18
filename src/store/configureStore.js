@@ -4,22 +4,25 @@ import promiseMiddleware from './promiseMiddleware';
 import asyncActionCallbackMiddleware from './asyncActionCallbackMiddleware';
 import utilsMiddleware from './utilsMiddleware';
 import minPendingTimeMiddleware from './minPendingTime';
-import logger from 'redux-logger';
+import createLogger from 'redux-logger';
 import reducers from '../reducers';
 
 
-var middlewares = [
+const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
+const logger = createLogger({
+	predicate: (getState, action) => isDebuggingInChrome,
+	collapsed: true,
+	duration: true
+});
+
+const middlewares = [
 	thunkMiddleware,
 	promiseMiddleware,
 	asyncActionCallbackMiddleware,
 	minPendingTimeMiddleware,
-	utilsMiddleware
+	utilsMiddleware,
+	logger
 ];
-
-
-if (__DEV__) {
-	middlewares.push(logger());
-}
 
 
 export default function configureStore(initialState) {
@@ -32,6 +35,10 @@ export default function configureStore(initialState) {
 			const nextRootReducer = require('../reducers/index').default;
 			store.replaceReducer(nextRootReducer);
 		});
+	}
+
+	if (isDebuggingInChrome) {
+		window.store = store;
 	}
 
 	return store;

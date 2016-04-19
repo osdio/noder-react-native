@@ -70,9 +70,11 @@ export const getUserInfo = createAction(types.GET_USER_INFO, async(loginName)=> 
 
 
 export const logout = function () {
-	userService.storage.clearUser();
 	return {
-		type: types.LOGOUT
+		type: types.LOGOUT,
+		meta: {
+			sync: 'user'
+		}
 	}
 };
 

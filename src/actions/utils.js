@@ -22,6 +22,9 @@ export const getReducerFromAsyncStorage = createAction(types.GET_REDUCER_FROM_AS
 			arr.forEach(item=> {
 				ob[item[0]] = item[1];
 			});
+			if (ob.user && ob.user.secret) {
+				global.token = ob.user.secret.token;
+			}
 			return ob;
 		})
 		.catch(err=> {

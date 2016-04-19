@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "an": "react-native run-android",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
     "log": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false",
-    "build-an": "cd android && ./gradlew assembleRelease && cd .."
+    "build-android": "cd android && ./gradlew assembleRelease && cd ..",
+    "checkversion": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
+    "postinstall": "npm run checkversion"
   },
   "dependencies": {
     "flux-standard-action": "^0.6.1",
@@ -42,6 +45,10 @@
     "react-native-cli": "^0.2.0",
     "redux-devtools": "^3.2.0",
     "run-sequence": "^1.1.0"
+  },
+  "devEngines": {
+    "node": ">= 4.x",
+    "npm": ">= 3.x"
   },
   "bundleId": "org.reactjs.native.example.noder"
 }

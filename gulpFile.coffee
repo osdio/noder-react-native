@@ -25,8 +25,8 @@ gulp.task 'replace', ->
 
 
 gulp.task 'package', (cb)->
-  cmd = "react-native"
-  start = child_process.spawn cmd, ['start', '--port', port]
+  cmd = "node"
+  start = child_process.spawn cmd, ['node_modules/react-native/local-cli/cli.js', 'start', '--port', port]
   start.stdout.on 'data', (data)->
     gutil.log data.toString()
   start.stderr.on 'data', (data)->

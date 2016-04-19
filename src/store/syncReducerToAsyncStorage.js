@@ -34,5 +34,5 @@ export default ({dispatch, getState}) => next => action => {
 			type: types.SYNC_REDUCER_TO_ASYNC_STORAGE,
 			payload: sync
 		});
-	})
+	}, 16);
 }

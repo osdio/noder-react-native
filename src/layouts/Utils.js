@@ -3,9 +3,11 @@ import React, {
 	View,
 	StyleSheet,
 	Text,
-	StatusBar
+	StatusBar,
+	AppState
 } from 'react-native';
 import Toast from '../components/base/Toast';
+import codePush from "react-native-code-push";
 import secretKey from '../testKey';
 
 
@@ -18,6 +20,10 @@ class Utils extends Component {
 		// 		actions.toast('登陆成功');
 		// 	});
 		// }
+		codePush.sync();
+		AppState.addEventListener("change", (newState) => {
+			newState === "active" && codePush.sync();
+		});
 	}
 
 

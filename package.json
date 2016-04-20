@@ -9,7 +9,10 @@
     "build-ios": "react-native unbundle --entry-file index.ios.js --platform ios --dev false",
     "build-android": "cd android && ./gradlew assembleRelease && cd ..",
     "checkversion": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
-    "postinstall": "npm run checkversion"
+    "postinstall": "npm run checkversion",
+	"push-android": "code-push release-react Noder android",
+	"push-ios": "code-push release-react Noder ios",
+	"push-key": "code-push deployment ls Noder -k"
   },
   "dependencies": {
     "flux-standard-action": "^0.6.1",

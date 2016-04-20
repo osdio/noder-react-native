@@ -20,10 +20,10 @@ class Utils extends Component {
 		// 		actions.toast('登陆成功');
 		// 	});
 		// }
-		// codePush.sync();
-		// AppState.addEventListener("change", (newState) => {
-		// 	newState === "active" && codePush.sync();
-		// });
+		codePush.sync();
+		AppState.addEventListener("change", (newState) => {
+			newState === "active" && codePush.sync();
+		});
 	}
 
 

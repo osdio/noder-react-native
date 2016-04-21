@@ -10,8 +10,10 @@
     "build-android": "cd android && ./gradlew assembleRelease && cd ..",
     "checkversion": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
     "postinstall": "npm run checkversion",
-	"push-android": "code-push release-react Noder android",
-	"push-ios": "code-push release-react Noder ios",
+	"push-android": "code-push release-react Noder android --deploymentName Staging",
+	"push-ios": "code-push release-react Noder ios --deploymentName Staging",
+	"push-android-prod": "code-push release-react Noder android --deploymentName Production",
+	"push-ios-prod": "code-push release-react Noder ios --deploymentName Production",
 	"push-key": "code-push deployment ls Noder -k"
   },
   "dependencies": {

@@ -9,7 +9,6 @@ import React, {
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TabBar from '../components/TabBar';
 import Return from '../components/base/Return';
-import MarkAsReadOverlay from '../components/MarkAsReadOverlay';
 import MessageList from '../components/MessageList';
 
 
@@ -27,6 +26,11 @@ class Message extends Component {
 
 	componentDidMount() {
 		this.props.actions.getMessageList();
+	}
+
+
+	componentWillUnmount(){
+		this.props.actions.markAsRead();
 	}
 
 
@@ -92,10 +96,6 @@ class Message extends Component {
 				</ScrollableTabView>
 
 				<Return router={router}/>
-				<MarkAsReadOverlay
-					pending={isMarkAsReadLoading}
-					markAsRead={actions.markAsRead}
-					hasNotRead={hasNotRead}/>
 			</View>
 		)
 	}

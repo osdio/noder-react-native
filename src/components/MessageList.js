@@ -44,9 +44,7 @@ class MessageList extends Component {
 
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps.data);
 		if (nextProps.data !== this.props.data) {
-			console.log('update');
 			this.setState({
 				ds: this.state.ds.cloneWithRows(nextProps.data)
 			});

@@ -4,10 +4,9 @@ import React, {
 	StyleSheet,
 	Text,
 	StatusBar,
-	AppState
 } from 'react-native';
 import Toast from '../components/base/Toast';
-import codePush from "react-native-code-push";
+import * as codePushUtils from '../utils/codePushSync';
 import secretKey from '../testKey';
 
 
@@ -20,12 +19,7 @@ class Utils extends Component {
 		// 		actions.toast('登陆成功');
 		// 	});
 		// }
-		if (!__DEV__) {
-			codePush.sync();
-			AppState.addEventListener("change", (newState) => {
-				newState === "active" && codePush.sync();
-			});
-		}
+		codePushUtils.init();
 	}
 
 

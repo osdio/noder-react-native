@@ -16,15 +16,19 @@ const logger = createLogger({
 	duration: true
 });
 
-const middlewares = [
+let middlewares = [
 	thunkMiddleware,
 	promiseMiddleware,
 	asyncActionCallbackMiddleware,
 	minPendingTimeMiddleware,
 	utilsMiddleware,
-	syncReducerToAsyncStorage,
-	logger
+	syncReducerToAsyncStorage
 ];
+
+
+if (isDebuggingInChrome) {
+	middlewares.push(logger);
+}
 
 
 export default function configureStore(initialState) {

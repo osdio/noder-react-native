@@ -7,7 +7,6 @@ import React, {
 } from 'react-native';
 import Toast from '../components/base/Toast';
 import * as codePushUtils from '../utils/codePushSync';
-import secretKey from '../testKey';
 
 
 class Utils extends Component {
@@ -15,7 +14,7 @@ class Utils extends Component {
 		const {actions} = this.props;
 		actions.getReducerFromAsyncStorage();
 		// if (__DEV__) {
-		// 	actions.checkToken(secretKey, ()=> {
+		// 	actions.checkToken('your secretKey', ()=> {
 		// 		actions.toast('登陆成功');
 		// 	});
 		// }

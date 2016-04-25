@@ -35,3 +35,4 @@ npm-debug.log
 src/testKey.js
 *.keystore
 main.jsbundle
+ios/noder/build

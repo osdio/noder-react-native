@@ -19,6 +19,11 @@ npm install
 
 Before you start run app, you should create a clone of  the `/src/testKey_example.js`, and rename to `/src/testKey.js` to put your secret key. You can go to http://cnodejs.org/setting to get your secret key.
 
+Use offline bundle as defualt, you need run command below in project directory to package the script and resource.
+
+```
+react-native bundle --entry-file ./index.ios.js --bundle-output ./ios/noder/main.jsbundle --platform ios --assets-dest ./ios/bundle --dev false
+```
 
 Click the run button in Xcode, if something went wrong, you need to rebuild all packages that be used in this project with Xcode (Just select the package and press **command+B** to run compile).
 

@@ -64,7 +64,7 @@ This project is heavily influenced by the above modules.
 
 ## Change log
 
-Please read [CHANGELOG]()
+Please read [CHANGELOG](https://github.com/soliury/noder-react-native/releases)
 
 ## Contribute
 

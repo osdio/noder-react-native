@@ -2,7 +2,6 @@
  
 > A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/) and [Redux](https://github.com/gaearon/redux). 
 
-***Now it support android and ios, but it have many bugs.***
 
 ## Install
 
@@ -16,8 +15,6 @@ For local development you need to follow the below commands:
 git clone https://github.com/soliury/noder-react-native.git
 npm install
 ```
-
-Before you start run app, you should create a clone of  the `/src/testKey_example.js`, and rename to `/src/testKey.js` to put your secret key. You can go to http://cnodejs.org/setting to get your secret key.
 
 
 Click the run button in Xcode, if something went wrong, you need to rebuild all packages that be used in this project with Xcode (Just select the package and press **command+B** to run compile).
@@ -59,12 +56,10 @@ This project is heavily influenced by the above modules.
 ## ToDo List
 
 * Push Notification
-* Refactor the code
 * Fix the below bugs
   * In ListView, sometime items on the bottom can't be refreshed
   * ListView **take too much memory**
   * HTML to native View render take too much **memory and CPU time**
-* Submit to App Store  
 * Add Unit testing 
 
 ## Change log

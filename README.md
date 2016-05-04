@@ -6,7 +6,7 @@
 ## Install
 
 * iOS: https://itunes.apple.com/cn/app/noder/id1106775857
-* android(v1.0.0-alpha2): https://www.pgyer.com/pEFf
+* android(v1.0.0-alpha2): https://www.pgyer.com/noder
 
 ## Develop
 

@@ -9,11 +9,6 @@ export const storage = {
 	},
 
 
-	save: function (value) {
-		return storageService.setItem('messages', value);
-	},
-
-
 	clear: function () {
 		return storageService.removeItem('messages');
 	}

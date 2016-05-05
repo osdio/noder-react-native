@@ -5,6 +5,8 @@
 
 ## Install
 
+**微信浏览器中若无法打开安装链接，请复制链接到系统浏览器中打开**
+
 * iOS: https://itunes.apple.com/cn/app/noder/id1106775857
 * android(v1.0.0-alpha2): https://www.pgyer.com/noder
 

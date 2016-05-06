@@ -1,4 +1,4 @@
-package com.noder;
+package com.lingyong.me.noder;
 
 import com.facebook.react.ReactActivity;
 import com.microsoft.codepush.react.CodePush;

@@ -8,7 +8,7 @@ import React, {
 	Dimensions,
 	PropTypes
 } from 'react-native';
-import { parseImgUrl, strlen, substring } from '../utils';
+import { parseImgUrl } from '../utils';
 
 
 const { width } = Dimensions.get('window');
@@ -25,15 +25,6 @@ class TopicRow extends Component {
 	static defaultProps = {
 		onPress: ()=>null
 	};
-
-
-	subStr(title) {
-		const titleLength = Math.floor((width - 100) / 15) * 2;
-		if (strlen(title) > titleLength) {
-			return substring(title, 0, titleLength - 3) + '...';
-		}
-		return title
-	}
 
 
 	render() {
@@ -58,8 +49,9 @@ class TopicRow extends Component {
 					<View style={[styles.topic]}>
 						<Text
 							ref={view => this.titleText=view}
+							numberOfLines={1}
 							style={[styles.title]}>
-							{ this.subStr(topic.title) }
+							{ topic.title }
 						</Text>
 
 						<View style={[styles.topicFooter]}>

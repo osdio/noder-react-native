@@ -86,11 +86,6 @@ class MessageList extends Component {
 
 	_renderRow(message) {
 		var topic = message.topic;
-		var title = topic.title;
-		var titleLength = Math.floor((width - 100) / 15) + 2;
-		if (title.length > titleLength) {
-			title = title.substring(0, titleLength - 3) + '...';
-		}
 
 
 		return (
@@ -99,17 +94,14 @@ class MessageList extends Component {
 				underlayColor='#3498DB'
 				key={message.id}>
 				<View style={styles.row}>
-					<View style={styles.imgWrapper}>
-						<Image
-							style={styles.img}
-							source={{uri: parseImgUrl(message.author.avatar_url)}}
-						>
-						</Image>
-					</View>
+					<Image
+						style={styles.img}
+						source={{uri: parseImgUrl(message.author.avatar_url)}}
+					/>
 
-					<View style={[styles.topic]}>
-						<Text style={[styles.title]}>
-							{title}
+					<View style={styles.topic}>
+						<Text numberOfLines={1} style={[styles.title]}>
+							{topic.title}
 						</Text>
 
 						<View style={[styles.topicFooter]}>
@@ -171,24 +163,20 @@ const styles = StyleSheet.create({
 		"borderBottomColor": "rgba(0, 0, 0, 0.02)",
 		"borderBottomWidth": 1,
 		"paddingTop": 25,
-		"paddingRight": 0,
+		"paddingRight": 20,
 		"paddingBottom": 25,
-		"paddingLeft": 20
-	},
-	"imgWrapper": {
-		"width": 90,
-		"position": "absolute",
-		"left": 20,
-		"top": 25,
-		"height": 65
+		"paddingLeft": 20,
+		alignItems: 'center'
 	},
 	"img": {
 		"height": 40,
 		"width": 40,
-		"borderRadius": 20
+		"borderRadius": 20,
+		marginRight: 20
 	},
 	"topic": {
-		"marginLeft": 60
+		flexDirection: 'column',
+		width: width - 20 * 3 - 40
 	},
 	"title": {
 		"fontSize": 15

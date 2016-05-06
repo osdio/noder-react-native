@@ -1,11 +1,11 @@
-import React,{
+import React, {
 	AsyncStorage
 } from 'react-native';
 
 
-export function setItem(key, value) {
+export async function setItem(key, value) {
 	if (value == null) return Promise.reject('StorageService Error: value should not be null or undefined');
-	return AsyncStorage.setItem(key, JSON.stringify(value));
+	return await AsyncStorage.setItem(key, JSON.stringify(value));
 }
 
 
@@ -20,7 +20,9 @@ export function getItem(key) {
 export const clear = AsyncStorage.clear;
 
 
-export const removeItem = AsyncStorage.removeItem;
+export async function removeItem(...args) {
+	return await AsyncStorage.removeItem(...args);
+}
 
 
 export function multiGet(keys) {

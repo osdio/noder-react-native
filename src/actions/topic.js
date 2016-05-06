@@ -11,11 +11,8 @@ function setMetaId(id) {
 }
 
 
-export const getAllTopicsFromStorage = createAction(types.GET_TOPICS_FROM_STORAGE, topicService.storage.getAllTopics);
-
-
 export const getTopicsByTab = createAction(types.GET_TOPICS_BY_TAB, async(tab, params)=> {
-	return await topicService.req.getTopicsByTab(tab, params);
+	return await topicService.getTopicsByTab(tab, params);
 }, (tab)=> {
 	return {
 		tab
@@ -24,7 +21,7 @@ export const getTopicsByTab = createAction(types.GET_TOPICS_BY_TAB, async(tab, p
 
 
 export const updateTopicsByTab = createAction(types.UPDATE_TOPICS_BY_TAB, async(tab)=> {
-	return await topicService.req.getTopicsByTab(tab, {
+	return await topicService.getTopicsByTab(tab, {
 		page: 1
 	});
 }, (tab)=> {
@@ -35,7 +32,7 @@ export const updateTopicsByTab = createAction(types.UPDATE_TOPICS_BY_TAB, async(
 });
 
 
-export const getTopicById = createAction(types.GET_TOPIC_BY_ID, topicService.req.getTopicById, (id)=> {
+export const getTopicById = createAction(types.GET_TOPIC_BY_ID, topicService.getTopicById, (id)=> {
 	return {
 		id,
 		sync: 'topic'
@@ -50,7 +47,7 @@ export const removeTopicCacheById = createAction(types.REMOVE_TOPIC_CACHE_BY_ID,
 });
 
 
-export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.req.reply, ({topicId, content, replyId, user}, resolved, rejected)=> {
+export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService.reply, ({topicId, content, replyId, user}, resolved, rejected)=> {
 	return {
 		id: topicId,
 		content: markdown.parse(content),
@@ -62,7 +59,7 @@ export const replyTopicById = createAction(types.REPLY_TOPIC_BY_ID, topicService
 });
 
 
-export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, ({topicId, replyId, userId, resolved, rejected})=> {
+export const upReply = createAction(types.UP_REPLY, topicService.upReply, ({topicId, replyId, userId, resolved, rejected})=> {
 	return {
 		id: topicId,
 		replyId,
@@ -73,7 +70,7 @@ export const upReply = createAction(types.UP_REPLY, topicService.req.upReply, ({
 });
 
 
-export const publish = createAction(types.PUBLISH, topicService.req.publish, ({resolved, rejected})=> {
+export const publish = createAction(types.PUBLISH, topicService.publish, ({resolved, rejected})=> {
 	return {
 		resolved,
 		rejected

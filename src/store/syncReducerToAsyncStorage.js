@@ -14,9 +14,14 @@ export default ({dispatch, getState}) => next => action => {
 
 	if (action.type === types.SYNC_REDUCER_TO_ASYNC_STORAGE) {
 		let state = getState();
-		switch (payload) {
-			default:
-				storageService.setItem(payload, state[payload]);
+		try {
+			switch (payload) {
+				default:
+					storageService.setItem(payload, state[payload]);
+			}
+		}
+		catch (err) {
+			console.warn(err);
 		}
 	}
 

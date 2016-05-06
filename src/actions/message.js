@@ -4,12 +4,12 @@ import * as messageService from '../services/messageService';
 
 
 export const getUnreadMessageCount = createAction(types.GET_UNREAD_MESSAGE_COUNT, async()=> {
-	return await messageService.req.getUnreadMessageCount();
+	return await messageService.getUnreadMessageCount();
 });
 
 
 export const markAsRead = createAction(types.MARK_AS_READ, async()=> {
-	return await messageService.req.markAsRead();
+	return await messageService.markAsRead();
 }, function (resolved, rejected) {
 	return {
 		resolved,
@@ -20,7 +20,7 @@ export const markAsRead = createAction(types.MARK_AS_READ, async()=> {
 
 
 export const getMessageList = createAction(types.GET_MESSAGES_LIST, async()=> {
-	return await messageService.req.getMessages();
+	return await messageService.getMessages();
 }, ()=> {
 	return {
 		sync: 'message'

@@ -7,7 +7,7 @@ import React, {
 import Html from './base/Html';
 
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 
 class CommentHtml extends Component {
@@ -24,6 +24,7 @@ class CommentHtml extends Component {
 				content={this.props.content}
 				style={this.styles}
 				router={this.props.router}
+				maxImageWidth={width - 80 - 20}
 			/>
 		)
 	}
@@ -172,9 +173,10 @@ const styles = StyleSheet.create({
 		borderLeftWidth: 3
 	},
 	img: {
-		width: width - 80,
-		height: width - 80,
-		resizeMode: Image.resizeMode.contain
+		width: width - 80 - 20,
+		height: width - 80 - 20,
+		resizeMode: Image.resizeMode.contain,
+		margin: 10
 	}
 });
 

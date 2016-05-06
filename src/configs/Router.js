@@ -27,7 +27,7 @@ class Router {
 			BackAndroid.addEventListener('hardwareBackPress', ()=> {
 				const routesList = this.navigator.getCurrentRoutes();
 				const currentRoute = routesList[routesList.length - 1];
-				if (currentRoute !== 'home') {
+				if (currentRoute.name !== 'home') {
 					navigator.pop();
 					return true;
 				}

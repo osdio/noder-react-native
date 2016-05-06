@@ -1,6 +1,6 @@
 {
   "name": "noder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "node node_modules/react-native/local-cli/cli.js run-android",

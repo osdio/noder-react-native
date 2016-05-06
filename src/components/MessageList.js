@@ -132,25 +132,23 @@ class MessageList extends Component {
 	render() {
 		const {pending, didFocus, getMessageList} = this.props;
 		return (
-			<View style={[{width:width,height:height - 40},{backgroundColor:'white'}]}>
-				<ListView
-					enableEmptySections
-					showsVerticalScrollIndicator={true}
-					initialListSize={10}
-					pagingEnabled={false}
-					removeClippedSubviews={true}
-					dataSource={this.state.ds}
-					renderRow={this._renderRow.bind(this)}
-					renderHeader={this._renderHeader.bind(this)}
-					refreshControl={
+			<ListView
+				enableEmptySections
+				showsVerticalScrollIndicator={true}
+				initialListSize={10}
+				pagingEnabled={false}
+				removeClippedSubviews={true}
+				dataSource={this.state.ds}
+				renderRow={this._renderRow.bind(this)}
+				renderHeader={this._renderHeader.bind(this)}
+				refreshControl={
 						<RefreshControl
 							refreshing={pending || !didFocus}
 							onRefresh={()=>{getMessageList()}}
 							{...Constants.refreshControl}
 						  />
 					}
-				/>
-			</View>
+			/>
 		)
 	}
 }

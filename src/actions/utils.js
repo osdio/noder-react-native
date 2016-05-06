@@ -30,4 +30,9 @@ export const getReducerFromAsyncStorage = createAction(types.GET_REDUCER_FROM_AS
 		.catch(err=> {
 			console.warn(err);
 		});
+}, (resolved, rejected)=> {
+	return {
+		resolved,
+		rejected
+	}
 });

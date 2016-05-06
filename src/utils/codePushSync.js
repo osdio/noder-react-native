@@ -21,11 +21,6 @@ export function shouldSync() {
 }
 
 
-export function init() {
+export function sync() {
 	shouldSync().done((shouldSync)=>shouldSync && codePush.sync());
-	AppState.addEventListener("change", (newState) => {
-		if (newState === "active") {
-			shouldSync().done((shouldSync)=>shouldSync && codePush.sync());
-		}
-	});
 }

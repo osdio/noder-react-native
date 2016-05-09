@@ -78,7 +78,7 @@ class Html extends Component {
 
 	_onImageLoadEnd(uri, imageId) {
 		const {maxImageWidth} = this.props;
-		Image.getSize(uri, (w, h)=> {
+		Image.getSize && Image.getSize(uri, (w, h)=> {
 			if (w >= maxImageWidth) {
 				h = (maxImageWidth / w) * h;
 				w = maxImageWidth;

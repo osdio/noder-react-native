@@ -18,8 +18,20 @@ const {height, width} = Dimensions.get('window');
 
 class Login extends Component {
 	_onLoginPress() {
-		if (this.props.ui.checkTokenPending) return;
-		this.props.router.toQRCode();
+		const {ui, router, actions} = this.props;
+		if (ui.checkTokenPending) return;
+		Camera.checkDeviceAuthorizationStatus()
+			.then((isAuth)=> {
+				if (isAuth) {
+					router.toQRCode();
+				}
+				else {
+					actions.toast('请在设置中开启Noder对相机的访问');
+				}
+			})
+			.catch((err)=> {
+				actions.toast('获取相机访问权错误');
+			});
 	}
 
 

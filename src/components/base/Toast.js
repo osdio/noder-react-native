@@ -1,4 +1,4 @@
-import React,{
+import React, {
 	Component,
 	PropTypes,
 	View,
@@ -8,7 +8,7 @@ import React,{
 	Animated
 } from 'react-native';
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 const toastWidth = width * 0.7;
 const defaultText = 'Toast';
 const defaultTimeout = 2000;
@@ -42,7 +42,7 @@ class Toast extends Component {
 
 
 	show(text = defaultText, timeout = defaultTimeout) {
-		const { duration } = this.props;
+		const {duration} = this.props;
 		Animated.timing(this.state.fadeAnim, {
 			toValue: 1,
 			duration: duration
@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: 'white',
 		fontSize: 16,
-		textAlign: 'center'
+		textAlign: 'center',
+		lineHeight: 16 * 1.5
 	}
 });
 

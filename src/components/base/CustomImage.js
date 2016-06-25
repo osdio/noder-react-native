@@ -43,18 +43,24 @@ export default class CustomImage extends Component {
 
 	_loadImg(uri, maxImageWidth) {
 		if (!uri) return;
+		const startTime = new Date().getTime();
 		Image.getSize(uri, (w, h)=> {
 			if (w >= maxImageWidth) {
 				h = (maxImageWidth / w) * h;
 				w = maxImageWidth;
 			}
-			this.setState({
-				size: {
-					width: w,
-					height: h
-				},
-				isLoaded: true
-			});
+			let leftTime = 500 - (new Date().getTime() - startTime);
+			if (leftTime > 0) {
+				setTimeout(()=> {
+					this.setState({
+						size: {
+							width: w,
+							height: h
+						},
+						isLoaded: true
+					});
+				}, leftTime);
+			}
 		}, ()=> {
 			this.setState({
 				error: true
@@ -110,7 +116,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'rgba(0,0,0,0.09)',
+		backgroundColor: 'rgba(0,0,0,0.05)',
 		borderRadius: 5,
 		margin: 10
 	},

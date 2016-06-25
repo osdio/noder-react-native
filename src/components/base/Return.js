@@ -19,8 +19,8 @@ class Return extends Component {
 				onPress={this._onPress.bind(this)}>
 				<View style={styles.iconWrapper}>
 					<Icon
-						name='ios-arrow-thin-left'
-						size={ 30 }
+						name='ios-arrow-round-back-outline'
+						size={ 40 }
 						color='rgba(255,255,255,1)'
 						style={ styles.returnIcon }/>
 				</View>

@@ -1,5 +1,15 @@
 import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, ScrollView, Text, Image, TouchableHighlight, TouchableOpacity, Dimensions, Platform} from 'react-native';
+import {
+	View,
+	StyleSheet,
+	ScrollView,
+	Text,
+	Image,
+	TouchableHighlight,
+	TouchableOpacity,
+	Dimensions,
+	Platform
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import CommentOverlay from '../components/CommentOverlay';
@@ -200,15 +210,12 @@ const styles = StyleSheet.create({
 	titleWrapper: {
 		width: width - topicAuthorWidth - 20,
 		flexDirection: 'column',
-		paddingTop: 20,
-		paddingBottom: 20
+		paddingTop: 10,
+		paddingBottom: 10
 	},
 	title: {
 		color: 'rgba(255,255,255,0.9)',
-		width: width - topicAuthorWidth - 20,
-		justifyContent: 'flex-end',
-		flex: 1,
-		//lineHeight: 1.2 * 16
+		justifyContent: 'flex-end'
 	},
 	titleFooter: {
 		flex: 1,

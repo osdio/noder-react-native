@@ -1,10 +1,5 @@
-import React,{
-	Component,
-	StyleSheet,
-	Image,
-	PropTypes,
-	View
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {StyleSheet, Image, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import OverlayButton from './base/OverlayButton';
 import { parseImgUrl } from '../utils';
@@ -44,7 +39,7 @@ class UserOverlay extends Component {
 		return (
 			<View style={styles.iconWrapper}>
 				<Icon
-					name='person'
+					name='ios-person'
 					size={28}
 					color='rgba(255,255,255,0.9)'
 					style={styles.icon}

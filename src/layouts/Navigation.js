@@ -1,13 +1,5 @@
-import React,{
-	Component,
-	PropTypes,
-	Navigator,
-	StyleSheet,
-	View,
-	Text,
-	Image,
-	Dimensions
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Navigator, StyleSheet, View, Text, Image, Dimensions} from 'react-native';
 import * as Home from './Home';
 import * as UtilsComponent from './Utils';
 import Router from '../configs/Router';

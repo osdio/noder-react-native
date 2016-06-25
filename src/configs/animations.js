@@ -1,6 +1,5 @@
-import React, {
-	LayoutAnimation
-} from 'react-native';
+import React from 'react';
+import {LayoutAnimation} from 'react-native';
 
 var animations = {};
 

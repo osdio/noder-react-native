@@ -1,18 +1,5 @@
-import React, {
-	Component,
-	View,
-	Text,
-	StyleSheet,
-	PickerIOS,
-	TouchableOpacity,
-	TextInput,
-	ScrollView,
-	Dimensions,
-	DeviceEventEmitter,
-	LayoutAnimation,
-	Picker,
-	Platform
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, PickerIOS, TouchableOpacity, TextInput, ScrollView, Dimensions, DeviceEventEmitter, LayoutAnimation, Picker, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Nav from '../components/Nav';
 import Modal from '../components/base/Modal';

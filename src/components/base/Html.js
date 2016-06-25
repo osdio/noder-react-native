@@ -1,10 +1,5 @@
-import React, {
-	Component,
-	StyleSheet,
-	Image,
-	Dimensions,
-	PropTypes
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {StyleSheet, Image, Dimensions} from 'react-native';
 import _ from 'lodash';
 import HtmlRender from 'react-native-html-render';
 import {parseImgUrl, link} from '../../utils';

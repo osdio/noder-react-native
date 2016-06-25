@@ -1,12 +1,5 @@
-import React,{
-	Component,
-	PropTypes,
-	View,
-	StyleSheet,
-	Text,
-	Dimensions,
-	Animated
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, Text, Dimensions, Animated} from 'react-native';
 import Spinner from './Spinner';
 
 

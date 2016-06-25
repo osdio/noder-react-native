@@ -1,15 +1,5 @@
-import React, {
-	Component,
-	PropTypes,
-	Dimensions,
-	View,
-	StyleSheet,
-	Animated,
-	Easing,
-	Platform,
-	TouchableWithoutFeedback,
-	findNodeHandle
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Dimensions, View, StyleSheet, Animated, Easing, Platform, TouchableWithoutFeedback, findNodeHandle} from 'react-native';
 import {BlurView} from 'react-native-blur';
 
 

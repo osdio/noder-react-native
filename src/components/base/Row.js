@@ -1,10 +1,5 @@
-import React,{
-	Component,
-	PropTypes,
-	View,
-	StyleSheet,
-	TouchableHighlight
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, TouchableHighlight} from 'react-native';
 
 
 class Row extends Component {

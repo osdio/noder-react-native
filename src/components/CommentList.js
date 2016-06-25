@@ -1,15 +1,5 @@
-import React, {
-	Component,
-	Dimensions,
-	View,
-	Text,
-	PropTypes,
-	ListView,
-	StyleSheet,
-	Image,
-	TouchableOpacity,
-	RefreshControl
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {Dimensions, View, Text, ListView, StyleSheet, Image, TouchableOpacity, RefreshControl} from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
@@ -113,7 +103,7 @@ class CommentList extends Component {
 					<TouchableOpacity
 						onPress={ ()=> this.props.onReplyPress(comment.id, authorName) }>
 						<Icon
-							name={'reply'}
+							name={'ios-reply'}
 							size={22}
 							color='rgba(0,0,0,0.35)'
 							style={styles.replyIcon}

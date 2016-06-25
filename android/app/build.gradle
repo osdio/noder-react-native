@@ -131,6 +131,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-blur')
     compile project(':react-native-code-push')
     compile project(':react-native-vector-icons')
     compile project(':react-native-camera')

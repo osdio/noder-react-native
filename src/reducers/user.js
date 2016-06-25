@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
 		case types.GET_REDUCER_FROM_ASYNC_STORAGE:
 			return {
 				...state,
-				...payload.user || initialState
+				...(payload.user || initialState)
 			};
 		case types.UPDATE_CLIENT_USER_INFO:
 			return {

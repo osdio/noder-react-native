@@ -1,11 +1,5 @@
-import React, {
-	View,
-	Text,
-	Component,
-	StyleSheet,
-	Dimensions,
-	PropTypes
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import OverlayButton from './base/OverlayButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 

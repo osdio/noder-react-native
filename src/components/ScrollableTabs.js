@@ -1,16 +1,5 @@
-import React, {
-	View,
-	Component,
-	Dimensions,
-	PropTypes,
-	StyleSheet,
-	TouchableOpacity,
-	Text,
-	Platform,
-	ScrollView,
-	Animated,
-	ViewPagerAndroid
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, Dimensions, StyleSheet, TouchableOpacity, Text, Platform, ScrollView, Animated, ViewPagerAndroid} from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 
@@ -198,14 +187,13 @@ class ScrollableTabs extends Component {
 					directionalLockEnabled
 					removeClippedSubviews
 					scrollEnabled
-					style={styles.scrollableContentIOS}
-					contentContainerStyle={styles.scrollableContentContainerIOS}
 					ref={view=>this.scrollView=view}
 					contentOffset={ initContentOffset }
 					alwaysBounceVertical={false}
 					automaticallyAdjustContentInsets={false}
 					showsHorizontalScrollIndicator={false}
 					showsVerticalScrollIndicator={false}
+					scrollsToTop={false}
 					scrollEventThrottle={16}
 					onScroll={this._onScroll.bind(this)}
 					onMomentumScrollBegin={this._onMomentumScrollBegin.bind(this)}
@@ -289,18 +277,12 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	page: {
-		width
+		width,
+		backgroundColor: 'white'
 	},
 	scrollableContentAndroid: {
 		flex: 1,
 		backgroundColor: 'white'
-	},
-	scrollableContentContainerIOS: {
-		flex: 1,
-		backgroundColor: 'white'
-	},
-	scrollableContentIOS: {
-		flexDirection: 'column',
 	},
 	container: {
 		flex: 1

@@ -1,14 +1,5 @@
-import React, {
-	View,
-	Component,
-	PropTypes,
-	Text,
-	StyleSheet,
-	Image,
-	TouchableOpacity,
-	Dimensions,
-	ScrollView
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import config from '../configs';
 import * as utils from '../utils';
@@ -41,7 +32,7 @@ class About extends Component {
 
 				<TouchableOpacity onPress={this._onSourceInGithubPress.bind(this)}>
 					<Icon
-						name='social-github'
+						name='ios-social-github'
 						size={40}
 						color='rgba(255,204,0,1)'
 						style={[styles.rowIcon,{marginTop:20}]}/>

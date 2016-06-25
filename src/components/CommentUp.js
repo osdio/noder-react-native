@@ -1,11 +1,5 @@
-import React, {
-	Component,
-	View,
-	TouchableOpacity,
-	StyleSheet,
-	Text,
-	PropTypes
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Spinner from './base/Spinner';
@@ -67,7 +61,7 @@ class CommentUp extends Component {
 		}
 		return (
 			<Icon
-				name={'thumbsup'}
+				name={'ios-thumbsup'}
 				size={16}
 				color={this._isUped() ? '#3498DB':'rgba(0,0,0,0.2)'}
 				style={styles.upIcon}

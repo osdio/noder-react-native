@@ -1,13 +1,13 @@
-import React, {
+import React, {Component, PropTypes} from 'react';
+import {
 	View,
-	Component,
 	Text,
 	TouchableHighlight,
 	ActivityIndicatorIOS,
 	StyleSheet,
 	Dimensions,
 	Image,
-	PropTypes
+	TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
@@ -49,7 +49,7 @@ class Login extends Component {
 			<Icon.Button
 				onPress={this._onLoginPress.bind(this)}
 				backgroundColor="#3498DB"
-				name='camera'
+				name='ios-camera'
 				size={28}
 				style={styles.iconButton}>
 				<Text style={styles.iconButtonText}>扫码登陆</Text>
@@ -63,9 +63,9 @@ class Login extends Component {
 
 		return (
 			<View style={styles.wrapper}>
-				<TouchableHighlight onPress={()=> router.pop()} style={styles.closeIcon}>
-					<Icon size={25} color="rgba(255,255,255,0.5)" name="close"/>
-				</TouchableHighlight>
+				<TouchableOpacity onPress={()=> router.pop()} style={styles.closeIcon}>
+					<Icon size={40} color="rgba(255,255,255,0.5)" name="ios-close"/>
+				</TouchableOpacity>
 
 
 				<View style={styles.content}>

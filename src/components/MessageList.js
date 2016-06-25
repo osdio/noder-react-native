@@ -1,15 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	Image,
-	ListView,
-	TouchableHighlight,
-	Dimensions,
-	PropTypes,
-	RefreshControl
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, Text, Image, ListView, TouchableHighlight, Dimensions, RefreshControl} from 'react-native';
 import moment from 'moment';
 import {parseImgUrl} from '../utils';
 import * as Constants from '../constants';

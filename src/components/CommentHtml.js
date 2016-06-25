@@ -1,9 +1,5 @@
-import React, {
-	Component,
-	StyleSheet,
-	Image,
-	Dimensions
-} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, Image, Dimensions} from 'react-native';
 import Html from './base/Html';
 
 

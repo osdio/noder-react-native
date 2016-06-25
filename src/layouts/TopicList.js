@@ -1,13 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	ListView,
-	Dimensions,
-	PropTypes,
-	RefreshControl
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, Text, ListView, Dimensions, RefreshControl} from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TopicRow from './../components/TopicRow';
 import Spinner from './../components/base/Spinner';

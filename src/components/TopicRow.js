@@ -1,13 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	Image,
-	TouchableHighlight,
-	Dimensions,
-	PropTypes
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, Text, Image, TouchableHighlight, Dimensions} from 'react-native';
 import { parseImgUrl } from '../utils';
 
 

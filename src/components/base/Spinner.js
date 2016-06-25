@@ -1,10 +1,5 @@
-import React,{
-	ActivityIndicatorIOS,
-	ProgressBarAndroid,
-	Component,
-	PropTypes,
-	Platform
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {ActivityIndicatorIOS, ProgressBarAndroid, Platform} from 'react-native';
 
 
 class Spinner extends Component {

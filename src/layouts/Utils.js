@@ -1,11 +1,5 @@
-import React, {
-	Component,
-	View,
-	StyleSheet,
-	Text,
-	StatusBar,
-	AppState
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, StyleSheet, Text, StatusBar, AppState} from 'react-native';
 import Toast from '../components/base/Toast';
 import * as codePushUtils from '../utils/codePushSync';
 

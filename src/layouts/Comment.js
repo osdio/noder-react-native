@@ -1,17 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	Image,
-	ListView,
-	TouchableOpacity,
-	TextInput,
-	LayoutAnimation,
-	Dimensions,
-	DeviceEventEmitter,
-	Platform
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, StyleSheet, Text, Image, ListView, TouchableOpacity, TextInput, LayoutAnimation, Dimensions, DeviceEventEmitter, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Nav from '../components/Nav';
 import Spinner from '../components/base/Spinner';
@@ -148,7 +136,7 @@ class Comment extends Component {
 		}
 		return (
 			<Icon
-				name={'reply'}
+				name={'ios-reply'}
 				size={28}
 				color='rgba(0,0,0,0.35)'
 				style={styles.submitIcon}

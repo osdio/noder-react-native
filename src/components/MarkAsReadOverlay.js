@@ -1,10 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	PropTypes
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import OverlayButton from './base/OverlayButton';
 import Spinner from './base/Spinner';
 

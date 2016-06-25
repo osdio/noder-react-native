@@ -1,7 +1,5 @@
-import React, {
-	Dimensions,
-	Navigator
-} from 'react-native';
+import React from 'react';
+import {Dimensions, Navigator} from 'react-native';
 
 const { width } = Dimensions.get('window');
 

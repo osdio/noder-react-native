@@ -1,14 +1,5 @@
-import React, {
-	Component,
-	PropTypes,
-	View,
-	Text,
-	StyleSheet,
-	Dimensions,
-	Animated,
-	Easing,
-	StatusBar
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, Text, StyleSheet, Dimensions, Animated, Easing, StatusBar} from 'react-native';
 import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
 import ScrollableTabs from '../components/ScrollableTabs';

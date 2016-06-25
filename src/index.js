@@ -1,6 +1,6 @@
 import React,{
 	Component
-} from 'react-native';
+} from 'react';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import Navigation from './layouts/Navigation';

@@ -1,8 +1,6 @@
-import React, {
-	Navigator,
-	Platform,
-	BackAndroid
-} from 'react-native';
+import React from 'react';
+import ReactNative from 'react-native';
+import {Navigator, Platform, BackAndroid} from 'react-native';
 import _ from 'lodash';
 import * as About from '../layouts/About';
 import * as QRCode from '../layouts/QRCode';
@@ -18,7 +16,11 @@ import connectComponent from '../utils/connectComponent';
 
 
 const Home = connectComponent(HomeComponent);
-const {SceneConfigs} = Navigator;
+const {} = Navigator;
+
+const {
+    SceneConfigs,
+} = ReactNative;
 
 class Router {
 	constructor(navigator) {

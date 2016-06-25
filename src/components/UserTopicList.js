@@ -1,11 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	ListView,
-	Dimensions
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, StyleSheet, Text, ListView, Dimensions} from 'react-native';
 import moment from 'moment';
 import TopicRow from './TopicRow';
 

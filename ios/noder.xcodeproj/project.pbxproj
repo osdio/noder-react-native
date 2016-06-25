@@ -810,7 +810,10 @@
 				INFOPLIST_FILE = noder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lingyong.me.noder;
 				PRODUCT_NAME = noder;
 				PROVISIONING_PROFILE = "";
@@ -837,7 +840,10 @@
 				INFOPLIST_FILE = noder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lingyong.me.noder;
 				PRODUCT_NAME = noder;
 				PROVISIONING_PROFILE = "";

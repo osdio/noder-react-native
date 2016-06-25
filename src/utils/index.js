@@ -1,6 +1,5 @@
-import React,{
-	Linking
-} from 'react-native';
+import React from 'react';
+import {Linking} from 'react-native';
 
 
 const colors = ['#E74C3C', '#C0392B', '#1ABC9C',

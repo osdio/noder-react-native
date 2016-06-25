@@ -99,7 +99,7 @@ export default function (state = initialState, action) {
 		case types.GET_REDUCER_FROM_ASYNC_STORAGE:
 			return {
 				...state,
-				...payload.topic || initialState
+				...(payload.topic || initialState)
 			};
 		case types.GET_TOPICS_BY_TAB:
 			return {

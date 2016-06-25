@@ -1,10 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	Component,
-	Text,
-	PropTypes
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import OverlayButton from './base/OverlayButton';
 
@@ -39,7 +34,7 @@ class CommentOverlay extends Component {
 				onPress={this.props.onPress}>
 				<View style={styles.content}>
 					<Icon
-						name='chatbox'
+						name='ios-chatbox'
 						size={13}
 						color='white'
 						style={styles.commentIcon}

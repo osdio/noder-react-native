@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
 		case types.GET_REDUCER_FROM_ASYNC_STORAGE:
 			return {
 				...state,
-				...payload.message || initialState
+				...(payload.message || initialState)
 			};
 		case types.GET_UNREAD_MESSAGE_COUNT:
 			return {

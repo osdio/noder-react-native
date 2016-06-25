@@ -1,16 +1,5 @@
-import React, {
-	View,
-	StyleSheet,
-	ScrollView,
-	Component,
-	Text,
-	Image,
-	TouchableHighlight,
-	TouchableOpacity,
-	Dimensions,
-	PropTypes,
-	Platform
-} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {View, StyleSheet, ScrollView, Text, Image, TouchableHighlight, TouchableOpacity, Dimensions, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import CommentOverlay from '../components/CommentOverlay';
@@ -117,7 +106,7 @@ class Topic extends Component {
 							<View style={styles.titleFooter}>
 								<View style={styles.date}>
 									<Icon
-										name='clock'
+										name='ios-clock'
 										size={12}
 										color='rgba(255,255,255,0.5)'
 										style={styles.dateIcon}

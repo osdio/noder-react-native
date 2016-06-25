@@ -1,9 +1,5 @@
-import React,{
-	View,
-	Component,
-	StyleSheet,
-	TouchableOpacity
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 
 const overlayButtonSize = 45;
 

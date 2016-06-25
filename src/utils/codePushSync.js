@@ -1,8 +1,5 @@
-import React, {
-	NetInfo,
-	AppState,
-	Platform
-} from 'react-native';
+import React from 'react';
+import {NetInfo, AppState, Platform} from 'react-native';
 import codePush from 'react-native-code-push';
 
 

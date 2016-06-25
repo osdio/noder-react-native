@@ -1,13 +1,5 @@
-import React, {
-	StyleSheet,
-	View,
-	Text,
-	Component,
-	Dimensions,
-	Platform,
-	TouchableOpacity,
-	Vibration
-} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet, View, Text, Dimensions, Platform, TouchableOpacity, Vibration} from 'react-native';
 import Camera from 'react-native-camera';
 import BarcodeScanner from 'react-native-barcodescanner';
 import Icon from 'react-native-vector-icons/Ionicons';

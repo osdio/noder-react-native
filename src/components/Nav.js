@@ -17,14 +17,18 @@ class Nav extends Component {
 						key={position}
 						onPress={nav.onPress}
 						style={{flex: position=='Center'?2:1}}>
-						<Text style={[styles.navItem,styles['nav'+position]]}>
-							{nav.text}
-						</Text>
+						<View style={[styles.textWrapper, styles['textWrapper'+position]]}>
+							<Text style={[styles.navItem,styles['nav'+position]]}>
+								{nav.text}
+							</Text>
+						</View>
 					</TouchableOpacity>
 				)
 			}
 			return (
-				<Text key={position} style={[styles.navItem,styles['nav'+position]]}/>
+				<View style={[styles.textWrapper, styles['textWrapper'+position]]}>
+					<Text key={position} style={[styles.navItem,styles['nav'+position]]}/>
+				</View>
 			)
 		})
 	}
@@ -66,18 +70,26 @@ const styles = StyleSheet.create({
 		color: 'rgba(255,255,255,0.7)',
 		fontSize: 16
 	},
-	navLeft: {
-		textAlign: 'left',
-		flex: 1
+	textWrapper: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
-	navRight: {
-		textAlign: 'right',
-		flex: 1
+	textWrapperRight: {
+		flex: 1,
+		alignItems: 'flex-end'
 	},
+	textWrapperLeft: {
+		flex: 1,
+		alignItems: 'flex-start'
+	},
+	textWrapperCenter: {
+		flex: 2,
+	},
+	navLeft: {},
+	navRight: {},
 	navCenter: {
-		textAlign: 'center',
 		color: 'rgba(241,196,15,0.9)',
-		flex: 2
 	}
 });
 

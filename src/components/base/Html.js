@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {StyleSheet, Image, Dimensions} from 'react-native';
 import _ from 'lodash';
 import HtmlRender from 'react-native-html-render';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CustomImage from './CustomImage';
 import {parseImgUrl, link} from '../../utils';
 
 
@@ -17,6 +19,17 @@ const regs = {
 };
 
 
+const styles = StyleSheet.create({
+	defaultImg: {
+		height: defaultMaxImageWidth,
+		width: defaultMaxImageWidth,
+		resizeMode: Image.resizeMode.cover,
+		borderRadius: 5,
+		margin: 10
+	}
+});
+
+
 class Html extends Component {
 	static propTypes = {
 		router: PropTypes.object,
@@ -30,7 +43,7 @@ class Html extends Component {
 
 	constructor(props) {
 		super(props);
-		this._images = {};
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
 
 
@@ -42,7 +55,7 @@ class Html extends Component {
 
 			router.toUser({
 				userName: authorName
-			})
+			});
 		}
 
 		if (/^https?:\/\/.*/.test(url)) {
@@ -51,7 +64,7 @@ class Html extends Component {
 
 				return router.toTopic({
 					id: topicId
-				})
+				});
 			}
 
 			if (regs.http.user.test(url)) {
@@ -59,38 +72,21 @@ class Html extends Component {
 
 				return router.toUser({
 					userName: userName
-				})
+				});
 			}
 
-			link(url)
+			link(url);
 		}
 
 		if (/^mailto:\w*/.test(url)) {
-			link(url)
+			link(url);
 		}
-	}
-
-
-	_onImageLoadEnd(uri, imageId) {
-		const {maxImageWidth} = this.props;
-		Image.getSize && Image.getSize(uri, (w, h)=> {
-			if (w >= maxImageWidth) {
-				h = (maxImageWidth / w) * h;
-				w = maxImageWidth;
-			}
-			this._images[imageId] && this._images[imageId].setNativeProps({
-				style: {
-					width: w,
-					height: h
-				}
-			});
-		});
 	}
 
 
 	_renderNode(node, index, parent, type) {
 		const name = node.name;
-		const imgStyle = this.props.imgStyle || styles.img;
+		const {imgStyle=styles.defaultImg, maxImageWidth} = this.props;
 
 
 		if (node.type == 'block' && type == 'block') {
@@ -99,14 +95,17 @@ class Html extends Component {
 				if (regs.gif.test(uri)) return null;
 				const imageId = _.uniqueId('image_');
 				return (
-					<Image
+					<CustomImage
 						key={imageId}
-						ref={view=>this._images[imageId]=view}
-						source={{uri:uri}}
+						uri={uri}
 						style={imgStyle}
-						onLoadEnd={this._onImageLoadEnd.bind(this, uri, imageId)}
+						defaultSize={{
+							height: 300,
+							width: defaultMaxImageWidth
+						}}
+						maxImageWidth={maxImageWidth}
 					/>
-				)
+				);
 			}
 		}
 	}
@@ -120,19 +119,8 @@ class Html extends Component {
 				onLinkPress={this._onLinkPress.bind(this)}
 				renderNode={this._renderNode.bind(this)}
 			/>
-		)
+		);
 	}
 }
-
-
-const styles = StyleSheet.create({
-	img: {
-		width: defaultMaxImageWidth,
-		height: defaultMaxImageWidth,
-		resizeMode: Image.resizeMode.cover,
-		borderRadius: 5,
-		margin: 10
-	}
-});
 
 export default Html;

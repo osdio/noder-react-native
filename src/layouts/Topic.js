@@ -31,7 +31,7 @@ class Topic extends Component {
 		this.headerColor = genColor();
 		this.state = {
 			didFocus: false
-		}
+		};
 	}
 
 
@@ -74,14 +74,14 @@ class Topic extends Component {
 						router={this.props.router}
 						content={topic.content}/>
 				</View>
-			)
+			);
 		}
 		return (
 			<Spinner
 				size="large"
 				animating={true}
 				style={{marginTop:20}}/>
-		)
+		);
 	}
 
 
@@ -152,7 +152,7 @@ class Topic extends Component {
 					this.props.router.toComment({
 						topic: topic,
 						id:topic.id
-					})
+					});
 				}}
 				replyCount={topic.reply_count}
 			/>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Image, ListView, TouchableOpacity, TextInput, LayoutAnimation, Dimensions, DeviceEventEmitter, Platform} from 'react-native';
+import {View, StyleSheet, Text, Image, ListView, TouchableOpacity, TextInput, LayoutAnimation, Dimensions, Keyboard, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Nav from '../components/Nav';
 import Spinner from '../components/base/Spinner';
@@ -22,12 +22,12 @@ class Comment extends Component {
 		this.state = {
 			didFocus: false
 		};
-		DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this));
-		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this));
+		Keyboard.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this));
+		Keyboard.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this));
 
 		if (Platform.OS === 'android') {
-			DeviceEventEmitter.addListener('keyboardDidShow', this.updateKeyboardSpace.bind(this));
-			DeviceEventEmitter.addListener('keyboardDidHide', this.resetKeyboardSpace.bind(this));
+			Keyboard.addListener('keyboardDidShow', this.updateKeyboardSpace.bind(this));
+			Keyboard.addListener('keyboardDidHide', this.resetKeyboardSpace.bind(this));
 		}
 	}
 

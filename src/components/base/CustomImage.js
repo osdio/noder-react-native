@@ -61,6 +61,15 @@ export default class CustomImage extends Component {
 					});
 				}, leftTime);
 			}
+			else {
+				this.setState({
+					size: {
+						width: w,
+						height: h
+					},
+					isLoaded: true
+				});
+			}
 		}, ()=> {
 			this.setState({
 				error: true

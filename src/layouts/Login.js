@@ -12,6 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import Spinner from '../components/base/Spinner';
+import packageObj from '../../package.json';
 
 const {height, width} = Dimensions.get('window');
 
@@ -74,6 +75,9 @@ class Login extends Component {
 						<Text style={styles.infoText}>
 							国内最专业的 Node.js 开源技术社区
 						</Text>
+						<Text style={styles.versionText}>
+							Version: {packageObj.version}
+						</Text>
 					</View>
 				</View>
 				{this._renderLoginButton()}
@@ -102,6 +106,10 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	infoText: {
+		color: 'rgba(255,255,255,0.5)'
+	},
+	versionText:{
+		marginTop: 20,
 		color: 'rgba(255,255,255,0.5)'
 	},
 	iconButton: {

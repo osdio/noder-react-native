@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {ActivityIndicatorIOS, ProgressBarAndroid, Platform} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 
 
 class Spinner extends Component {
@@ -8,14 +8,8 @@ class Spinner extends Component {
 	};
 
 	render() {
-		if (Platform.OS === 'android') {
-			return (
-				<ProgressBarAndroid
-					{...this.props}/>
-			)
-		}
 		return (
-			<ActivityIndicatorIOS
+			<ActivityIndicator
 				animating={true}
 				{...this.props}/>
 		)

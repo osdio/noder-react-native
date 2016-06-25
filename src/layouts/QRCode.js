@@ -45,8 +45,8 @@ class QRCode extends Component {
 				onPress={this._onClosePress.bind(this)}>
 				<View style={styles.iconWrapper}>
 					<Icon
-						name='ios-close-empty'
-						size={35}
+						name='ios-close'
+						size={40}
 						color='rgba(255,255,255,0.7)'
 						style={styles.closeIcon}/>
 				</View>

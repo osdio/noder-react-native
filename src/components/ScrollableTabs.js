@@ -99,7 +99,12 @@ class ScrollableTabs extends Component {
 
 
 	_onScroll(e) {
-		if (!this._scrolling) return;
+		const {contentSize={}} = e.nativeEvent;
+
+		// 一下一行代码为解决一个奇葩的bug
+		if (contentSize.height === 0 && contentSize.width === 0) return;
+
+
 		const {x} = e.nativeEvent.contentOffset;
 		this._scrolling = true;
 		this._animateScroll(x);

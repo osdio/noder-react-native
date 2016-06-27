@@ -23,9 +23,7 @@ class Home extends Component {
 		const {actions, topic, ui} = this.props;
 		const tab = Tabs.tabs[page];
 		if (topic[tab] && ui[tab] && !ui[tab].flag) {
-			setTimeout(()=> {
-				!isScrolling() && actions.updateTopicsByTab(tab);
-			}, 16);
+			actions.updateTopicsByTab(tab);
 		}
 	}
 

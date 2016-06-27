@@ -132,7 +132,7 @@ class Comment extends Component {
 						style={styles.submitIcon}
 					/>
 				</View>
-			)
+			);
 		}
 		return (
 			<Icon
@@ -141,7 +141,7 @@ class Comment extends Component {
 				color='rgba(0,0,0,0.35)'
 				style={styles.submitIcon}
 			/>
-		)
+		);
 	}
 
 

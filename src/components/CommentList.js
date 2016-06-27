@@ -76,7 +76,7 @@ class CommentList extends Component {
 							x: 0,
 							y: y
 						}
-					})
+					});
 				});
 
 				row.setNativeProps({
@@ -91,7 +91,7 @@ class CommentList extends Component {
 	_renderFooter(comment, authorName) {
 		if (this.props.user) {
 			return (
-				<View style={styles.commentFooter}>
+				<View key="commentFooter" style={styles.commentFooter}>
 					<CommentUp
 						replyId={comment.id}
 						ups={comment.ups}
@@ -110,7 +110,7 @@ class CommentList extends Component {
 						/>
 					</TouchableOpacity>
 				</View>
-			)
+			);
 		}
 	}
 
@@ -135,7 +135,7 @@ class CommentList extends Component {
 				ref={view=>this[comment.id]=view}
 				key={comment.id}
 				style={[styles.commentWrapper,focusStyle]}>
-				<View style={[styles.imageWrapper]}>
+				<View key="imageWrapper" style={[styles.imageWrapper]}>
 					<TouchableOpacity onPress={()=>{
 						this.props.router.toUser({
 							userName: authorName
@@ -153,7 +153,7 @@ class CommentList extends Component {
 					</Text>
 				</View>
 
-				<View style={styles.commentContentWrapper}>
+				<View key="commentContentWrapper" style={styles.commentContentWrapper}>
 					<View style={styles.commentHeader}>
 						<View style={styles.author}>
 							<TouchableOpacity onPress={()=> this.props.onAuthorNamePress(authorName)}>

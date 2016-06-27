@@ -23,10 +23,25 @@ class TopicList extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.data !== this.props.data) {
-			this.setState({
-				ds: this.state.ds.cloneWithRows(nextProps.data)
-			});
+			this._updateData(nextProps.data);
 		}
+	}
+
+
+	_updateData(data) {
+		this.setState({
+			ds: this.state.ds.cloneWithRows(data)
+		});
+		// if (!this.props.isTabScrolling()) {
+		// 	this.setState({
+		// 		ds: this.state.ds.cloneWithRows(data)
+		// 	});
+		// }
+		// else {
+		// 	setTimeout(()=> {
+		// 		this._updateData(data);
+		// 	}, 16);
+		// }
 	}
 
 

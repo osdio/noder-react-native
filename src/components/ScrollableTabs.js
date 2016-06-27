@@ -44,11 +44,16 @@ class ScrollableTabs extends Component {
 		this.state.x.addListener((e)=> {
 			if (e.value % (this.space + tabNavItemWidth) === 0) {
 				let index = Math.abs(e.value / (this.space + tabNavItemWidth));
-				typeof this.props.onPageChangedAndAnimateEnd === 'function' && this.props.onPageChangedAndAnimateEnd(index, this._isScrolling());
+				typeof this.props.onPageChangedAndAnimateEnd === 'function' && this.props.onPageChangedAndAnimateEnd(index, this.isScrolling());
 			}
 		});
 		this._navs = {};
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+	}
+
+
+	isScrolling() {
+		return ()=> this._scrolling;
 	}
 
 
@@ -67,7 +72,7 @@ class ScrollableTabs extends Component {
 					scale = (max - offset) / space;
 				}
 
-				if (offset == center) {
+				if (offset === center) {
 					scale = 1;
 				}
 				this._navs[index].setNativeProps({
@@ -92,12 +97,9 @@ class ScrollableTabs extends Component {
 	}
 
 
-	_isScrolling() {
-		return ()=> this._scrolling;
-	}
-
 	_onScroll(e) {
 		const {x} = e.nativeEvent.contentOffset;
+		this._scrolling = true;
 		this._animateScroll(x);
 	}
 
@@ -116,7 +118,7 @@ class ScrollableTabs extends Component {
 		this._animateScroll(offsetX);
 		if (page !== this.index) {
 			this._scrolling = false;
-			typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(page, this._isScrolling());
+			typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(page, this.isScrolling());
 		}
 		this.index = page;
 	}
@@ -128,7 +130,7 @@ class ScrollableTabs extends Component {
 		if (position === undefined) {
 			return;
 		}
-		typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(position, this._isScrolling());
+		typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(position, this.isScrolling());
 	}
 
 
@@ -220,7 +222,7 @@ class ScrollableTabs extends Component {
 					scrollEventThrottle={16}
 					onScroll={this._onScroll.bind(this)}
 					onMomentumScrollBegin={this._onMomentumScrollBegin.bind(this)}
-					onMomentumScrollEnd={this._onMomentumScrollBegin.bind(this)}
+					onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}
 					keyboardDismissMode="on-drag"
 				>
 

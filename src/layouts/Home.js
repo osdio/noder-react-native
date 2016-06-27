@@ -35,7 +35,9 @@ class Home extends Component {
 			return (
 				<TopicList router={this.props.router}
 						   key={item}
-						   tab={item}/>
+						   tab={item}
+						   isTabScrolling={()=> this._scrollableTabs.isScrolling()()}
+				/>
 			);
 		});
 	}
@@ -46,6 +48,7 @@ class Home extends Component {
 		return (
 			<View style={styles.container}>
 				<ScrollableTabs
+					ref={view=> this._scrollableTabs=view}
 					index={0}
 					tabs={['精华', '问答', '主页', '分享', '招聘']}
 					onPageChangedAndAnimateEnd={this._onPageChanged.bind(this)}

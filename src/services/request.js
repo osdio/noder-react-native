@@ -3,6 +3,7 @@ import config from '../configs';
 
 
 const urlPrefix = config.domain + config.apiPath;
+const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
 
 function filterJSON(res) {
@@ -12,7 +13,7 @@ function filterJSON(res) {
 
 function filterStatus(res) {
 	if (res.status >= 200 && res.status < 300) {
-		return res
+		return res;
 	}
 	else {
 		let error = new Error(res.statusText);
@@ -29,7 +30,7 @@ export function get(url, params) {
 		url += `?${qs.stringify(params)}`;
 	}
 
-	if (__DEV__) {
+	if (isDebuggingInChrome) {
 		console.info(`GET: `, url);
 		console.info(`Params: `, params)
 	}
@@ -43,9 +44,9 @@ export function get(url, params) {
 export function post(url, body) {
 	url = urlPrefix + url;
 
-	if (__DEV__) {
+	if (isDebuggingInChrome) {
 		console.info(`POST: `, url);
-		console.info(`Body: `, body)
+		console.info(`Body: `, body);
 	}
 
 	return fetch(url, {

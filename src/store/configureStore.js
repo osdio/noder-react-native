@@ -27,7 +27,7 @@ let middlewares = [
 
 
 if (isDebuggingInChrome) {
-	middlewares.push(logger);
+	// middlewares.push(logger);
 }
 
 

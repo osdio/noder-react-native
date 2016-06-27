@@ -19,11 +19,13 @@ class Home extends Component {
 	}
 
 
-	_onPageChanged(page) {
+	_onPageChanged(page, isScrolling) {
 		const {actions, topic, ui} = this.props;
 		const tab = Tabs.tabs[page];
 		if (topic[tab] && ui[tab] && !ui[tab].flag) {
-			actions.updateTopicsByTab(tab);
+			setTimeout(()=> {
+				isScrolling() && actions.updateTopicsByTab(tab);
+			}, 16);
 		}
 	}
 
@@ -89,5 +91,5 @@ export function mapStateToProps(state) {
 		message: state.message,
 		topic: state.topic,
 		ui: state.home
-	}
+	};
 }

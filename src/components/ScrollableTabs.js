@@ -1,5 +1,15 @@
 import React, {Component, PropTypes} from 'react';
-import {View, Dimensions, StyleSheet, TouchableOpacity, Text, Platform, ScrollView, Animated, ViewPagerAndroid} from 'react-native';
+import {
+	View,
+	Dimensions,
+	StyleSheet,
+	TouchableOpacity,
+	Text,
+	Platform,
+	ScrollView,
+	Animated,
+	ViewPagerAndroid
+} from 'react-native';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 
@@ -32,9 +42,9 @@ class ScrollableTabs extends Component {
 			x: new Animated.Value(-offset)
 		};
 		this.state.x.addListener((e)=> {
-			if (e.value % (this.space + tabNavItemWidth) == 0) {
+			if (e.value % (this.space + tabNavItemWidth) === 0) {
 				let index = Math.abs(e.value / (this.space + tabNavItemWidth));
-				typeof this.props.onPageChangedAndAnimateEnd == 'function' && this.props.onPageChangedAndAnimateEnd(index);
+				typeof this.props.onPageChangedAndAnimateEnd === 'function' && this.props.onPageChangedAndAnimateEnd(index, this._isScrolling());
 			}
 		});
 		this._navs = {};
@@ -82,6 +92,10 @@ class ScrollableTabs extends Component {
 	}
 
 
+	_isScrolling() {
+		return ()=> this._scrolling;
+	}
+
 	_onScroll(e) {
 		const {x} = e.nativeEvent.contentOffset;
 		this._animateScroll(x);
@@ -89,11 +103,20 @@ class ScrollableTabs extends Component {
 
 
 	_onMomentumScrollBegin(e) {
+		this._scrolling = true;
+		const offsetX = e.nativeEvent.contentOffset.x;
+		this._animateScroll(offsetX);
+	}
+
+
+	_onMomentumScrollEnd(e) {
+		this._scrolling = true;
 		const offsetX = e.nativeEvent.contentOffset.x;
 		const page = parseInt(offsetX / width, 10);
 		this._animateScroll(offsetX);
 		if (page !== this.index) {
-			typeof this.props.onPageChanged == 'function' && this.props.onPageChanged(page);
+			this._scrolling = false;
+			typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(page, this._isScrolling());
 		}
 		this.index = page;
 	}
@@ -102,10 +125,10 @@ class ScrollableTabs extends Component {
 	_onPageSelected(e) {
 		const {position} = e.nativeEvent;
 		this.index = position;
-		if (position == undefined) {
-			return
+		if (position === undefined) {
+			return;
 		}
-		typeof this.props.onPageChanged == 'function' && this.props.onPageChanged(position);
+		typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(position, this._isScrolling());
 	}
 
 
@@ -133,7 +156,7 @@ class ScrollableTabs extends Component {
 	_getActiveNavItemStyle(opacity) {
 		return {
 			borderTopColor: 'rgba(241,196,15,' + opacity + ')'
-		}
+		};
 	}
 
 
@@ -155,7 +178,7 @@ class ScrollableTabs extends Component {
 
 					</View>
 				</TouchableOpacity>
-			)
+			);
 		});
 	}
 
@@ -168,8 +191,8 @@ class ScrollableTabs extends Component {
 					style={ styles.page }>
 					{ pageContent }
 				</View>
-			)
-		})
+			);
+		});
 	}
 
 
@@ -204,7 +227,7 @@ class ScrollableTabs extends Component {
 					{ this._renderChildren() }
 
 				</ScrollView>
-			)
+			);
 		}
 		return (
 			<ViewPagerAndroid
@@ -217,7 +240,7 @@ class ScrollableTabs extends Component {
 				{ this._renderChildren() }
 
 			</ViewPagerAndroid>
-		)
+		);
 	}
 
 
@@ -241,7 +264,7 @@ class ScrollableTabs extends Component {
 				{ this._renderPageScroll() }
 
 			</View>
-		)
+		);
 	}
 }
 

@@ -29,19 +29,16 @@ class TopicList extends Component {
 
 
 	_updateData(data) {
-		this.setState({
-			ds: this.state.ds.cloneWithRows(data)
-		});
-		// if (!this.props.isTabScrolling()) {
-		// 	this.setState({
-		// 		ds: this.state.ds.cloneWithRows(data)
-		// 	});
-		// }
-		// else {
-		// 	setTimeout(()=> {
-		// 		this._updateData(data);
-		// 	}, 16);
-		// }
+		if (!this.props.isTabScrolling()) {
+			this.setState({
+				ds: this.state.ds.cloneWithRows(data)
+			});
+		}
+		else {
+			setTimeout(()=> {
+				this._updateData(data);
+			}, 16);
+		}
 	}
 
 

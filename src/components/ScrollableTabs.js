@@ -44,6 +44,7 @@ class ScrollableTabs extends Component {
 		this.state.x.addListener((e)=> {
 			if (e.value % (this.space + tabNavItemWidth) === 0) {
 				let index = Math.abs(e.value / (this.space + tabNavItemWidth));
+				this._scrolling = false;
 				typeof this.props.onPageChangedAndAnimateEnd === 'function' && this.props.onPageChangedAndAnimateEnd(index, this.isScrolling());
 			}
 		});
@@ -98,6 +99,7 @@ class ScrollableTabs extends Component {
 
 
 	_onScroll(e) {
+		if (!this._scrolling) return;
 		const {x} = e.nativeEvent.contentOffset;
 		this._scrolling = true;
 		this._animateScroll(x);
@@ -117,7 +119,6 @@ class ScrollableTabs extends Component {
 		const page = parseInt(offsetX / width, 10);
 		this._animateScroll(offsetX);
 		if (page !== this.index) {
-			this._scrolling = false;
 			typeof this.props.onPageChanged === 'function' && this.props.onPageChanged(page, this.isScrolling());
 		}
 		this.index = page;

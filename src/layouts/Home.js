@@ -24,7 +24,7 @@ class Home extends Component {
 		const tab = Tabs.tabs[page];
 		if (topic[tab] && ui[tab] && !ui[tab].flag) {
 			setTimeout(()=> {
-				isScrolling() && actions.updateTopicsByTab(tab);
+				!isScrolling() && actions.updateTopicsByTab(tab);
 			}, 16);
 		}
 	}
@@ -49,7 +49,6 @@ class Home extends Component {
 			<View style={styles.container}>
 				<ScrollableTabs
 					ref={view=> this._scrollableTabs=view}
-					index={0}
 					tabs={['精华', '问答', '主页', '分享', '招聘']}
 					onPageChangedAndAnimateEnd={this._onPageChanged.bind(this)}
 				>

@@ -14,15 +14,17 @@ const {height, width} = Dimensions.get('window');
 
 class Home extends Component {
 	componentDidMount() {
-		const {actions} = this.props;
-		actions.updateTopicsByTab('all');
+		const {actions, topic} = this.props;
+		if (!topic.all || !topic.all.length) {
+			actions.updateTopicsByTab('all');
+		}
 	}
 
 
 	_onPageChanged(page, isScrolling) {
 		const {actions, topic, ui} = this.props;
 		const tab = Tabs.tabs[page];
-		if (topic[tab] && ui[tab] && !ui[tab].flag) {
+		if (!topic[tab] || !topic[tab].length) {
 			actions.updateTopicsByTab(tab);
 		}
 	}

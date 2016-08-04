@@ -51,7 +51,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(isProd? PROD: DEV),
-      }
+      },
+      '__DEV__': !isProd
     }),
     isProd? new webpack.ProvidePlugin({
       React: "react"

@@ -16,7 +16,7 @@ let isProd = NODE_ENV === 'production';
 var config = {
   paths: {
     src: path.join(ROOT_PATH, '.'),
-    index: path.join(ROOT_PATH, 'index.ios'),
+    index: path.join(ROOT_PATH, 'index.web'),
   },
 };
 
@@ -73,7 +73,10 @@ module.exports = {
         presets: ['es2015', 'react', 'stage-1']
       },
       include: [config.paths.src],
-      exclude: [/node_modules/]
+      exclude: [/(node_modules\/(?!react))/, path.join(ROOT_PATH, 'post_npm_install')]
+    }, {
+      test : /\.(png|gif|svg|jpg)$/,
+      loader : 'url-loader?limit=8192'
     }]
   }
 };

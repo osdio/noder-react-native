@@ -17,6 +17,7 @@ For local development you need to follow the below commands:
 ```
 git clone https://github.com/soliury/noder-react-native.git
 npm install
+./post_npm_install.sh
 ```
 
 

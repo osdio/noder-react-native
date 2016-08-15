@@ -1,4 +1,4 @@
-import React from 'react';
+import 'babel-polyfill';
 import {AppRegistry} from 'react-native';
 import Noder from './src';
 

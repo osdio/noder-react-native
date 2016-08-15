@@ -31,8 +31,10 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
   entry: isProd? [
+    'babel-polyfill',
     config.paths.index
   ]: [
+    'babel-polyfill',
     'webpack-dev-server/client?http://' + IP + ':' + PORT,
     'webpack/hot/only-dev-server',
     config.paths.index,

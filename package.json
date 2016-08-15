@@ -24,6 +24,7 @@
     "query-string": "^4.2.2",
     "react": "15.1.0",
     "react-addons-pure-render-mixin": "15.1.0",
+    "react-dom": "15.1.0",
     "react-native": "^0.28.0",
     "react-native-barcodescanner": "^3.0.0",
     "react-native-blur": "^1.0.0",

@@ -23,7 +23,7 @@ var config = {
 module.exports = {
   ip: IP,
   port: PORT,
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   resolve: {
     alias: {
       'react-native': 'ReactWeb',

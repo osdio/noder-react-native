@@ -16,7 +16,6 @@ import connectComponent from '../utils/connectComponent';
 
 
 const Home = connectComponent(HomeComponent);
-const {} = Navigator;
 
 const {
     SceneConfigs,

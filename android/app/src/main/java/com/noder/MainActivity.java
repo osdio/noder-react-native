@@ -4,7 +4,7 @@ import com.facebook.react.ReactActivity;
 import com.microsoft.codepush.react.CodePush;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
-import com.eguma.barcodescanner.BarcodeScanner;
+import com.eguma.barcodescanner.BarcodeScannerPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
@@ -51,7 +51,7 @@ public class MainActivity extends ReactActivity {
             new CodePush("Q2A8khx6JV4mXXcS0usR0LipDz0Y410YoZxlZ", this, BuildConfig.DEBUG),
             new VectorIconsPackage(),
             new RCTCameraPackage(),
-            new BarcodeScanner()
+            new BarcodeScannerPackage()
         );
     }
 }

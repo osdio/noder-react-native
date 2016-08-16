@@ -11,3 +11,4 @@ cp post_npm_install/react-native-scrollable-tab-view/Button.js node_modules/reac
 
 # looks like a BUG
 sed -i "s/export default parseHtml = function (html, done) {/export default function (html, done) {/" node_modules/react-native-html-render/lib/htmlParse.js
+sed -i "s/                uri = node.attribs.href;/                let uri = node.attribs.href;/" node_modules/react-native-html-render/lib/htmlRender.js

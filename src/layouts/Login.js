@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {
+	Platform,
 	View,
 	Text,
 	TouchableHighlight,
@@ -10,7 +11,11 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Camera from 'react-native-camera';
+
+if (Platform.OS !== 'web') {
+    var Camera = require('react-native-camera');
+}
+
 import Spinner from '../components/base/Spinner';
 import packageObj from '../../package.json';
 
@@ -21,18 +26,19 @@ class Login extends Component {
 	_onLoginPress() {
 		const {ui, router, actions} = this.props;
 		if (ui.checkTokenPending) return;
-		Camera.checkDeviceAuthorizationStatus()
-			.then((isAuth)=> {
-				if (isAuth) {
-					router.toQRCode();
-				}
-				else {
-					actions.toast('请在设置中开启Noder对相机的访问');
-				}
-			})
-			.catch((err)=> {
-				actions.toast('获取相机访问权错误');
-			});
+		if (Platform.OS !== 'web') {
+			Camera.checkDeviceAuthorizationStatus()
+				.then((isAuth) => {
+					if (isAuth) {
+						router.toQRCode();
+					} else {
+						actions.toast('请在设置中开启Noder对相机的访问');
+					}
+				})
+				.catch((err) => {
+					actions.toast('获取相机访问权错误');
+				});
+		}
 	}
 
 

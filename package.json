@@ -36,7 +36,7 @@
     "react-native-scrollable-tab-view": "^0.5.1",
     "react-native-vector-icons": "^2.0.3",
     "react-redux": "^4.4.5",
-    "react-web": "0.3.2",
+    "react-web": "git+https://github.com/flyskywhy/react-web.git",
     "redux": "^3.5.2",
     "redux-actions": "^0.10.0",
     "redux-logger": "^2.6.1",

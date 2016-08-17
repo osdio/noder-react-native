@@ -17,12 +17,13 @@ For local development you need to follow the below commands:
 ```
 git clone https://github.com/soliury/noder-react-native.git
 npm install
+./post_npm_install.sh
 ```
 
 
 Click the run button in Xcode, if something went wrong, you need to rebuild all packages that be used in this project with Xcode (Just select the package and press **command+B** to run compile).
 
-If you want to run it on you iPhone, please follow the [Offical Doc](http://facebook.github.io/react-native/docs/runningondevice.html#content).
+If you want to run it on your iPhone, please follow the [Offical Doc](http://facebook.github.io/react-native/docs/runningondevice.html#content).
 
 If you don't want to update the ip manually, please run:
 
@@ -37,6 +38,11 @@ npm start
 ```
 
 The ip will be replaced automatically.
+
+If you want to run it on your Browser (localhost:3000), please run:
+```
+react-web start
+```
 
 
 ## Screenshots

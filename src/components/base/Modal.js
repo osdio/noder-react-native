@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {Dimensions, View, StyleSheet, Animated, Easing, Platform, TouchableWithoutFeedback, findNodeHandle} from 'react-native';
-import {BlurView} from 'react-native-blur';
+if (Platform.OS !== 'web') {
+    var BlurView = require('react-native-blur').BlurView;
+}
 
 
 const {height, width} = Dimensions.get('window');

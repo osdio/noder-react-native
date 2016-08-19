@@ -22,8 +22,10 @@ class Comment extends Component {
 		this.state = {
 			didFocus: false
 		};
-		Keyboard.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this));
-		Keyboard.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this));
+		if (Platform.OS !== 'web') {
+			Keyboard.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this));
+			Keyboard.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this));
+		}
 
 		if (Platform.OS === 'android') {
 			Keyboard.addListener('keyboardDidShow', this.updateKeyboardSpace.bind(this));

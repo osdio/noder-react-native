@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, StatusBar, AppState} from 'react-native';
+import {Platform, View, StyleSheet, Text, StatusBar, AppState} from 'react-native';
 import Toast from '../components/base/Toast';
 import * as codePushUtils from '../utils/codePushSync';
 
@@ -12,13 +12,15 @@ class Utils extends Component {
 				actions.getUnreadMessageCount();
 			}
 		});
-		codePushUtils.sync();
-		AppState.addEventListener("change", (newState) => {
-			if (newState === "active") {
-				codePushUtils.sync();
-				this.props.user.secret && actions.getUnreadMessageCount();
-			}
-		});
+		if (Platform.OS !== 'web') {
+			codePushUtils.sync();
+			AppState.addEventListener("change", (newState) => {
+				if (newState === "active") {
+					codePushUtils.sync();
+					this.props.user.secret && actions.getUnreadMessageCount();
+				}
+			});
+		}
 
 		// if (__DEV__) {
 		// 	actions.checkToken('your secretKey', ()=> {
@@ -36,12 +38,20 @@ class Utils extends Component {
 
 
 	render() {
-		return (
-			<View style={styles.container}>
-				<StatusBar barStyle="light-content"/>
-				<Toast ref={ (view)=> this.toast=view }/>
-			</View>
-		);
+		if (Platform.OS === 'web') {
+			return (
+				<View style={styles.container}>
+					<Toast ref={ (view)=> this.toast=view }/>
+				</View>
+			);
+		} else {
+			return (
+				<View style={styles.container}>
+					<StatusBar barStyle="light-content"/>
+					<Toast ref={ (view)=> this.toast=view }/>
+				</View>
+			);
+		}
 	}
 }
 

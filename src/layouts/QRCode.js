@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Dimensions, Platform, TouchableOpacity, Vibration} from 'react-native';
-import Camera from 'react-native-camera';
-import BarcodeScanner from 'react-native-barcodescanner';
+
+if (Platform.OS !== 'web') {
+	var Camera = require('react-native-camera');
+	var BarcodeScanner = require('react-native-barcodescanner');
+}
+
 import Icon from 'react-native-vector-icons/Ionicons';
 import OverlayButton from '../components/base/OverlayButton';
 
@@ -53,6 +57,17 @@ class QRCode extends Component {
 			</OverlayButton>
 		);
 
+
+		// for web
+		if (Platform.OS === 'web') {
+			return (
+				<View style={styles.camera}>
+					<Text style={styles.infoText}>
+						只有原生 APP 才支持二维码
+					</Text>
+				</View>
+			);
+		}
 
 		// for android
 		if (Platform.OS === 'android') {

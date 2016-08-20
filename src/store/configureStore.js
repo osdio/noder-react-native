@@ -34,7 +34,7 @@ if (isDebuggingInChrome) {
 export default function configureStore(initialState) {
 	const store = applyMiddleware(
 		...middlewares
-	)(createStore)(reducers, initialState);
+	)(createStore)(reducers, initialState, window.devToolsExtension && window.devToolsExtension());
 
 	if (module.hot) {
 		module.hot.accept(() => {

@@ -28,7 +28,7 @@ module.exports = {
     alias: {
       'react-native': 'ReactWeb',
     },
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.web.js', '.ios.js', '.android.js', '.jsx'],
   },
   entry: isProd? [
     'babel-polyfill',
@@ -78,7 +78,6 @@ module.exports = {
       include: [config.paths.src],
       exclude: [
         /(node_modules\/(?!react))/,
-        path.join(ROOT_PATH, 'post_npm_install'),
         path.join(ROOT_PATH, 'node_modules/react-native-html-render/lib/htmlparser2.js')
       ]
     }, {

@@ -76,7 +76,11 @@ module.exports = {
         presets: ['es2015', 'react', 'stage-1']
       },
       include: [config.paths.src],
-      exclude: [/(node_modules\/(?!react))/, path.join(ROOT_PATH, 'post_npm_install')]
+      exclude: [
+        /(node_modules\/(?!react))/,
+        path.join(ROOT_PATH, 'post_npm_install'),
+        path.join(ROOT_PATH, 'node_modules/react-native-html-render/lib/htmlparser2.js')
+      ]
     }, {
       test : /\.(png|gif|svg|jpg)$/,
       loader : 'url-loader?limit=8192'

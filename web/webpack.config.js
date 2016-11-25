@@ -30,16 +30,17 @@ module.exports = {
     },
     extensions: ['', '.js', '.web.js', '.ios.js', '.android.js', '.jsx'],
   },
-  entry: isProd? [
+  entry: isProd ? [
     'babel-polyfill',
     config.paths.index
-  ]: [
+  ] : [
     'babel-polyfill',
     'webpack-dev-server/client?http://' + IP + ':' + PORT,
     'webpack/hot/only-dev-server',
     config.paths.index,
   ],
   output: {
+    publicPath: '',
     path: path.join(__dirname, 'output'),
     filename: 'bundle.js'
   },
@@ -50,13 +51,13 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify(isProd? PROD: DEV),
+        'NODE_ENV': JSON.stringify(isProd ? PROD : DEV),
       },
       '__DEV__': !isProd
     }),
-    isProd? new webpack.ProvidePlugin({
-      React: "react"
-    }): new webpack.HotModuleReplacementPlugin(),
+    isProd ? new webpack.ProvidePlugin({
+      React: 'react'
+    }) : new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlPlugin(),
   ],

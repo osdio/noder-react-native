@@ -33,10 +33,7 @@ class Home extends Component {
 	_renderTopicList() {
 		return ['good', 'ask', 'all', 'share', 'job'].map((item)=> {
 			return (
-				<TopicList router={this.props.router}
-						   key={item}
-						   tab={item}
-						   isTabScrolling={()=> this._scrollableTabs.isScrolling()()}
+				<TopicList router={this.props.router} key={item} tab={item} isTabScrolling={()=> this._scrollableTabs && this._scrollableTabs.isScrolling()()}
 				/>
 			)
 		})
@@ -56,10 +53,9 @@ class Home extends Component {
 				</ScrollableTabs>
 
 
-				<UserOverlay user={user.secret} toLogin={() => router.toLogin() }
-							 toUser={() => router.toUser({
-							 	userName: user.publicInfo.loginname
-							 })}/>
+				<UserOverlay user={user.secret}
+							 toLogin={() => router.toLogin() }
+							 toUser={() => router.toUser({ userName: user.publicInfo.loginname })}/>
 
 
 				<MessageOverlay user={user.secret}

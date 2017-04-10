@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Dimensions, StyleSheet, Text, Image, TouchableOpacity, ActivityIndicatorIOS, LayoutAnimation} from 'react-native'
+import {View, Dimensions, StyleSheet, Text, Image, TouchableOpacity, LayoutAnimation} from 'react-native'
 import moment from 'moment'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import Icon from 'react-native-vector-icons/Ionicons'

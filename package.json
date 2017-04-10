@@ -25,7 +25,7 @@
     "markdown": "0.5.0",
     "moment": "^2.14.1",
     "query-string": "^4.2.3",
-    "react": "^15.5.3",
+    "react": "16.0.0-alpha.6",
     "react-addons-pure-render-mixin": "^15.5.2",
     "react-dom": "^15.5.3",
     "react-native": "^0.43.2",

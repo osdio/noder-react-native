@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import OverlayButton from './base/OverlayButton';
-import Spinner from './base/Spinner';
+import React, {Component, PropTypes} from 'react'
+import {View, StyleSheet, Text} from 'react-native'
+import OverlayButton from './base/OverlayButton'
+import Spinner from './base/Spinner'
 
 
-const overlaySize = 45;
+const overlaySize = 45
 
 
 class MarkAsReadOverlay extends Component {
@@ -16,7 +16,7 @@ class MarkAsReadOverlay extends Component {
 
 
 	_onPress() {
-		if (this.props.hasNotRead.length == 0) {
+		if (this.props.hasNotRead.length === 0) {
 			window.alert('暂无未读消息!')
 		}
 		else {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center'
 	}
-});
+})
 
 
-export default MarkAsReadOverlay;
+export default MarkAsReadOverlay

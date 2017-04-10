@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {StyleSheet, Image, Dimensions} from 'react-native';
-import Html from './base/Html';
+import React, {Component} from 'react'
+import {StyleSheet, Image, Dimensions} from 'react-native'
+import Html from './base/Html'
 
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 
 class CommentHtml extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		if (this.props.style) {
 			this.styles = Object.assign({}, styles, this.props.style)
 		}
@@ -27,8 +27,8 @@ class CommentHtml extends Component {
 }
 
 
-const fontSize = 14;
-const titleMargin = 5;
+const fontSize = 14
+const titleMargin = 5
 
 const styles = StyleSheet.create({
 	p: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 	},
 	h1: {
 		fontSize: fontSize * 1.6,
-		fontWeight: "bold",
+		fontWeight: 'bold',
 		color: 'rgba(0,0,0,0.8)'
 	},
 	h1wrapper: {
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
 		resizeMode: Image.resizeMode.contain,
 		margin: 10
 	}
-});
+})
 
 
-export default CommentHtml;
+export default CommentHtml

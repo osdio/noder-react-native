@@ -1,38 +1,38 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Text, Image, ListView, TouchableOpacity, TextInput, LayoutAnimation, Dimensions, Keyboard, Platform} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Nav from '../components/Nav';
-import Spinner from '../components/base/Spinner';
-import CommentList from './../components/CommentList';
-import animations from '../configs/animations';
-import {parseImgUrl} from '../utils';
-import config from '../configs';
+import React, {Component} from 'react'
+import {View, StyleSheet, Text, Image, ListView, TouchableOpacity, TextInput, LayoutAnimation, Dimensions, Keyboard, Platform} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import Nav from '../components/Nav'
+import Spinner from '../components/base/Spinner'
+import CommentList from './../components/CommentList'
+import animations from '../configs/animations'
+import {parseImgUrl} from '../utils'
+import config from '../configs'
 
 
-const {width, height} = Dimensions.get('window');
-const authorImgSize = 35;
-const replyFormHeight = 55;
-const commentsHeight = height - 40 - 20 - replyFormHeight - 20;
-const submitButtonWidth = 55;
+const {width, height} = Dimensions.get('window')
+const authorImgSize = 35
+const replyFormHeight = 55
+const commentsHeight = height - 40 - 20 - replyFormHeight - 20
+const submitButtonWidth = 55
 
 
 class Comment extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			didFocus: false
-		};
-		Keyboard.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this));
-		Keyboard.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this));
+		}
+		Keyboard.addListener('keyboardWillShow', this.updateKeyboardSpace.bind(this))
+		Keyboard.addListener('keyboardWillHide', this.resetKeyboardSpace.bind(this))
 
 		if (Platform.OS === 'android') {
-			Keyboard.addListener('keyboardDidShow', this.updateKeyboardSpace.bind(this));
-			Keyboard.addListener('keyboardDidHide', this.resetKeyboardSpace.bind(this));
+			Keyboard.addListener('keyboardDidShow', this.updateKeyboardSpace.bind(this))
+			Keyboard.addListener('keyboardDidHide', this.resetKeyboardSpace.bind(this))
 		}
 	}
 
 	updateKeyboardSpace(e) {
-		LayoutAnimation.configureNext(animations.keyboard.layout.spring);
+		LayoutAnimation.configureNext(animations.keyboard.layout.spring)
 		this.commentsView && this.commentsView.setNativeProps({
 			style: {
 				height: commentsHeight - e.endCoordinates.height
@@ -41,7 +41,7 @@ class Comment extends Component {
 	}
 
 	resetKeyboardSpace() {
-		LayoutAnimation.configureNext(animations.keyboard.layout.spring);
+		LayoutAnimation.configureNext(animations.keyboard.layout.spring)
 		this.commentsView && this.commentsView.setNativeProps({
 			style: {
 				height: commentsHeight
@@ -51,8 +51,8 @@ class Comment extends Component {
 
 
 	componentDidMount() {
-		const {topic, actions} = this.props;
-		actions.getTopicById(topic.id);
+		const {topic, actions} = this.props
+		actions.getTopicById(topic.id)
 	}
 
 
@@ -61,29 +61,29 @@ class Comment extends Component {
 			setTimeout(()=> {
 				this.setState({
 					didFocus: true
-				});
-			});
+				})
+			})
 		}
 	}
 
 
 	_resetReplyForm() {
-		this.replyId = null;
+		this.replyId = null
 		this.textInput.setNativeProps({
 			text: ''
-		});
-		this.textInputValue = '';
-		this.textInput.blur();
+		})
+		this.textInputValue = ''
+		this.textInput.blur()
 	}
 
 
 	_doReply() {
-		var content = this.textInputValue;
+		var content = this.textInputValue
 		if (this.props.replyPending || content == '' || content == null) {
 			return
 		}
-		let {topic, user} = this.props;
-		content = content + config.replySuffix;
+		let {topic, user} = this.props
+		content = content + config.replySuffix
 		this.props.actions.replyTopicById({
 			topicId: topic.id,
 			content: content,
@@ -94,33 +94,33 @@ class Comment extends Component {
 			}
 		}, ()=> {
 			// resolved
-			this._resetReplyForm();
+			this._resetReplyForm()
 		}, ()=> {
 			// rejected
-		});
+		})
 	}
 
 
 	_onReplyPress(id, authorName) {
-		if (!this.props.user) return;
-		this.textInput.focus();
-		let text = `@${authorName} `;
+		if (!this.props.user) {return}
+		this.textInput.focus()
+		let text = `@${authorName} `
 		this.textInput.setNativeProps({
 			text: text
-		});
-		this.replyId = id;
+		})
+		this.replyId = id
 		this.textInputValue = text
 	}
 
 
 	_onAuthorTextPress(authorName) {
-		if (!this.props.user) return;
-		let text = (this.textInputValue || '') + ` @${authorName} `;
+		if (!this.props.user) {return}
+		let text = (this.textInputValue || '') + ` @${authorName} `
 
 		this.textInput.setNativeProps({
 			text: text
-		});
-		this.textInputValue = text;
+		})
+		this.textInputValue = text
 	}
 
 
@@ -132,30 +132,30 @@ class Comment extends Component {
 						style={styles.submitIcon}
 					/>
 				</View>
-			);
+			)
 		}
 		return (
 			<Icon
 				name={'ios-reply'}
 				size={28}
-				color='rgba(0,0,0,0.35)'
+				color="rgba(0,0,0,0.35)"
 				style={styles.submitIcon}
 			/>
-		);
+		)
 	}
 
 
 	_renderReplyForm() {
-		const {user} = this.props;
-		if (!user) return null;
+		const {user} = this.props
+		if (!user) {return null}
 
-		const userImg = parseImgUrl(user.avatar_url);
-		let replyFormBorder = {};
+		const userImg = parseImgUrl(user.avatar_url)
+		let replyFormBorder = {}
 		if (Platform.OS === 'android') {
 			replyFormBorder = {
 				borderTopWidth: 1,
 				borderTopColor: 'rgba(0,0,0,0.08)'
-			};
+			}
 		}
 
 		return (
@@ -172,15 +172,15 @@ class Comment extends Component {
 
 				<View style={styles.replyInputWrapper}>
 					<TextInput
-						ref={view=>this.textInput=view}
+						ref={view=>this.textInput = view}
 						value={this.state.textInput}
 						multiline={true}
-						placeholder='嘿，说点啥吧'
+						placeholder="嘿，说点啥吧"
 						style={styles.replyInput}
 						onChangeText={(text) => {
                             this.textInput.setNativeProps({
                                 text: text
-                            });
+                            })
                             this.textInputValue = text
                         }}
 					/>
@@ -198,7 +198,7 @@ class Comment extends Component {
 
 
 	render() {
-		const {replies, reply={}, router, user, actions, topic, loadPending, count} = this.props;
+		const {replies, reply = {}, router, user, actions, topic, loadPending, count} = this.props
 
 		let navs = {
 			Left: {
@@ -211,11 +211,11 @@ class Comment extends Component {
 				text: '评论 ' + count,
 				onPress: ()=> {
 					if (count > 0) {
-						this.commentList.scrollToTop();
+						this.commentList.scrollToTop()
 					}
 				}
 			}
-		};
+		}
 
 
 		if (this.state.didFocus && this.props.reply && topic) {
@@ -239,13 +239,13 @@ class Comment extends Component {
 			<View style={styles.container}>
 				<Nav navs={navs}/>
 
-				<View ref={view=>this.commentsView=view}
+				<View ref={view=>this.commentsView = view}
 					  style={[styles.comments,{
 					  	height: this.props.user ? commentsHeight : commentsHeight + replyFormHeight
 					  }]}>
 
 					<CommentList
-						ref={(view)=>this.commentList=view}
+						ref={(view)=>this.commentList = view}
 						data={this.state.didFocus ? replies : []}
 						focusedReply={reply.id}
 						router={router}
@@ -320,14 +320,14 @@ const styles = StyleSheet.create({
 		width: authorImgSize,
 		height: authorImgSize
 	}
-});
+})
 
 
-export const LayoutComponent = Comment;
+export const LayoutComponent = Comment
 export function mapStateToProps({user, topic, topicUI}, props) {
-	const {id = '0'} = props;
-	const topicInfo = topic.topics[id] || props.topic;
-	const count = topicInfo && topicInfo.replies && topicInfo.replies.length || 0;
+	const {id = '0'} = props
+	const topicInfo = topic.topics[id] || props.topic
+	const count = topicInfo && topicInfo.replies && topicInfo.replies.length || 0
 	return {
 		count,
 		user: user.secret,

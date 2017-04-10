@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react'
 import {
 	Platform,
 	View,
@@ -9,35 +9,35 @@ import {
 	Dimensions,
 	Image,
 	TouchableOpacity
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 if (Platform.OS !== 'web') {
-    var Camera = require('react-native-camera');
+    var Camera = require('react-native-camera')
 }
 
-import Spinner from '../components/base/Spinner';
-import packageObj from '../../package.json';
+import Spinner from '../components/base/Spinner'
+import packageObj from '../../package.json'
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 
 class Login extends Component {
 	_onLoginPress() {
-		const {ui, router, actions} = this.props;
-		if (ui.checkTokenPending) return;
+		const {ui, router, actions} = this.props
+		if (ui.checkTokenPending) {return}
 		if (Platform.OS !== 'web') {
 			Camera.checkDeviceAuthorizationStatus()
 				.then((isAuth) => {
 					if (isAuth) {
-						router.toQRCode();
+						router.toQRCode()
 					} else {
-						actions.toast('请在设置中开启Noder对相机的访问');
+						actions.toast('请在设置中开启Noder对相机的访问')
 					}
 				})
 				.catch((err) => {
-					actions.toast('获取相机访问权错误');
-				});
+					actions.toast('获取相机访问权错误')
+				})
 		}
 	}
 
@@ -48,7 +48,7 @@ class Login extends Component {
 				<Spinner
 					size="small"
 					animating={true}
-					color='white'
+					color="white"
 					style={styles.loading}/>
 			)
 		}
@@ -56,7 +56,7 @@ class Login extends Component {
 			<Icon.Button
 				onPress={this._onLoginPress.bind(this)}
 				backgroundColor="#3498DB"
-				name='ios-camera'
+				name="ios-camera"
 				size={28}
 				style={styles.iconButton}>
 				<Text style={styles.iconButtonText}>扫码登陆</Text>
@@ -66,7 +66,7 @@ class Login extends Component {
 
 
 	render() {
-		const {router} = this.props;
+		const {router} = this.props
 
 		return (
 			<View style={styles.wrapper}>
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
 		width: 100,
 		height: 100
 	}
-});
+})
 
 
-export const LayoutComponent = Login;
+export const LayoutComponent = Login
 export function mapStateToProps(state) {
 	return {
 		ui: state.userUI
-	};
+	}
 }

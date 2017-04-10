@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import React, {Component, PropTypes} from 'react'
+import {View, StyleSheet, TouchableOpacity, Text} from 'react-native'
 
 
 class ErrorHandle extends Component {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: 'white'
 	}
-});
+})
 
 
-export default ErrorHandle;
+export default ErrorHandle

@@ -1,12 +1,12 @@
 import React,{
 	Component
-} from 'react';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-import Navigation from './layouts/Navigation';
+} from 'react'
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import Navigation from './layouts/Navigation'
 
 
-const store = configureStore();
+const store = configureStore()
 
 
 class App extends Component {
@@ -15,9 +15,9 @@ class App extends Component {
 			<Provider store={store}>
 				<Navigation/>
 			</Provider>
-		);
+		)
 	}
 }
 
 
-export default App;
+export default App

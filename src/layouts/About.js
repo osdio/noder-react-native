@@ -1,15 +1,15 @@
-import React, {Component, PropTypes} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import config from '../configs';
-import * as utils from '../utils';
+import React, {Component, PropTypes} from 'react'
+import {View, Text, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import config from '../configs'
+import * as utils from '../utils'
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 
 class About extends Component {
 	_onSourceInGithubPress() {
-		utils.link(config.sourceInGithub);
+		utils.link(config.sourceInGithub)
 	}
 
 
@@ -32,9 +32,9 @@ class About extends Component {
 
 				<TouchableOpacity onPress={this._onSourceInGithubPress.bind(this)}>
 					<Icon
-						name='ios-social-github'
+						name="ios-social-github"
 						size={40}
-						color='rgba(255,204,0,1)'
+						color="rgba(255,204,0,1)"
 						style={[styles.rowIcon,{marginTop:20}]}/>
 				</TouchableOpacity>
 
@@ -123,10 +123,10 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		color: 'rgba(255,255,255,0.3)'
 	}
-});
+})
 
 
-export const LayoutComponent = About;
+export const LayoutComponent = About
 export function mapStateToProps(state) {
-	return {};
+	return {}
 }

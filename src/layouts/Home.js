@@ -1,31 +1,31 @@
-import React, {Component, PropTypes} from 'react';
-import {View, Text, StyleSheet, Dimensions, Animated, Easing, StatusBar} from 'react-native';
-import UserOverlay from '../components/UserOverlay';
-import MessageOverlay from '../components/MessageOverlay';
-import ScrollableTabs from '../components/ScrollableTabs';
-import * as TopicListComponent from './TopicList';
-import * as Tabs from '../constants/Tabs';
-import connectComponent from '../utils/connectComponent';
+import React, {Component, PropTypes} from 'react'
+import {View, Text, StyleSheet, Dimensions, Animated, Easing, StatusBar} from 'react-native'
+import UserOverlay from '../components/UserOverlay'
+import MessageOverlay from '../components/MessageOverlay'
+import ScrollableTabs from '../components/ScrollableTabs'
+import * as TopicListComponent from './TopicList'
+import * as Tabs from '../constants/Tabs'
+import connectComponent from '../utils/connectComponent'
 
 
-const TopicList = connectComponent(TopicListComponent);
-const {height, width} = Dimensions.get('window');
+const TopicList = connectComponent(TopicListComponent)
+const {height, width} = Dimensions.get('window')
 
 
 class Home extends Component {
 	componentDidMount() {
-		const {actions, topic} = this.props;
+		const {actions, topic} = this.props
 		if (!topic.all || !topic.all.length) {
-			actions.updateTopicsByTab('all');
+			actions.updateTopicsByTab('all')
 		}
 	}
 
 
 	_onPageChanged(page, isScrolling) {
-		const {actions, topic, ui} = this.props;
-		const tab = Tabs.tabs[page];
+		const {actions, topic, ui} = this.props
+		const tab = Tabs.tabs[page]
 		if (!topic[tab] || !topic[tab].length) {
-			actions.updateTopicsByTab(tab);
+			actions.updateTopicsByTab(tab)
 		}
 	}
 
@@ -38,17 +38,17 @@ class Home extends Component {
 						   tab={item}
 						   isTabScrolling={()=> this._scrollableTabs.isScrolling()()}
 				/>
-			);
-		});
+			)
+		})
 	}
 
 
 	render() {
-		const {router, user, message} = this.props;
+		const {router, user, message} = this.props
 		return (
 			<View style={styles.container}>
 				<ScrollableTabs
-					ref={view=> this._scrollableTabs=view}
+					ref={view=> this._scrollableTabs = view}
 					tabs={['精华', '问答', '主页', '分享', '招聘']}
 					onPageChangedAndAnimateEnd={this._onPageChanged.bind(this)}
 				>
@@ -66,7 +66,7 @@ class Home extends Component {
 								count={ message.unreadMessageCount }
 								toMessage={ () => router.toMessage() }/>
 			</View>
-		);
+		)
 	}
 }
 
@@ -83,15 +83,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	}
-});
+})
 
 
-export const LayoutComponent = Home;
+export const LayoutComponent = Home
 export function mapStateToProps(state) {
 	return {
 		user: state.user,
 		message: state.message,
 		topic: state.topic,
 		ui: state.home
-	};
+	}
 }

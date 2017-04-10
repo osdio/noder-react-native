@@ -1,5 +1,5 @@
-import * as requestService from './request';
-import {getToken, setToken} from './token';
+import * as requestService from './request'
+import {getToken, setToken} from './token'
 
 
 export function getMessages() {
@@ -9,7 +9,7 @@ export function getMessages() {
 		.then((data)=>data.data)
 		.then((messages)=> {
 			if (messages) {
-				return messages;
+				return messages
 			}
 			else {
 				throw 'getMessagesFailed'

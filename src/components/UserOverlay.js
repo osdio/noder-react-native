@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {StyleSheet, Image, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons.js';
-import OverlayButton from './base/OverlayButton';
-import { parseImgUrl } from '../utils';
+import React, {Component, PropTypes} from 'react'
+import {StyleSheet, Image, View} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons.js'
+import OverlayButton from './base/OverlayButton'
+import { parseImgUrl } from '../utils'
 
 
 class UserOverlay extends Component {
@@ -13,35 +13,34 @@ class UserOverlay extends Component {
 
 
 	_onPress() {
-		const { user, toLogin, toUser } = this.props;
+		const { user, toLogin, toUser } = this.props
 		if (user) {
-			toUser();
+			toUser()
 		}
 		else {
-			toLogin();
+			toLogin()
 		}
 	}
 
 
 	_renderOverlayContent() {
 		if (this.props.user) {
-			const uri = parseImgUrl(this.props.user.avatar_url);
+			const uri = parseImgUrl(this.props.user.avatar_url)
 			return (
 				<Image
 					style={styles.userImg}
 					source={{
 						uri
-					}}>
-				</Image>
+					}} />
 			)
 		}
 
 		return (
 			<View style={styles.iconWrapper}>
 				<Icon
-					name='ios-person'
+					name="ios-person"
 					size={28}
-					color='rgba(255,255,255,0.9)'
+					color="rgba(255,255,255,0.9)"
 					style={styles.icon}
 				/>
 			</View>
@@ -80,6 +79,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		textAlign: 'center'
 	}
-});
+})
 
-export default UserOverlay;
+export default UserOverlay

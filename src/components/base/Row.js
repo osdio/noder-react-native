@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, TouchableHighlight} from 'react-native';
+import React, {Component} from 'react'
+import {View, StyleSheet, TouchableHighlight} from 'react-native'
 
 
 class Row extends Component {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row'
 	}
-});
+})
 
 
-export default Row;
+export default Row

@@ -1,8 +1,8 @@
-import { isFSA } from 'flux-standard-action';
-import _ from 'lodash';
+import { isFSA } from 'flux-standard-action'
+import _ from 'lodash'
 
 function isPromise(val) {
-	return val && typeof val.then === 'function';
+	return val && typeof val.then === 'function'
 }
 
 export default function promiseMiddleware({ dispatch }) {
@@ -10,11 +10,11 @@ export default function promiseMiddleware({ dispatch }) {
 		if (!isFSA(action)) {
 			return isPromise(action)
 				? action.then(dispatch)
-				: next(action);
+				: next(action)
 		}
-		const { meta = {}, payload } = action;
+		const { meta = {}, payload } = action
 
-		const id = _.uniqueId();
+		const id = _.uniqueId()
 
 		if (isPromise(payload)) {
 			dispatch({
@@ -27,7 +27,7 @@ export default function promiseMiddleware({ dispatch }) {
 						id
 					}
 				}
-			});
+			})
 
 			return payload.then(
 				result => dispatch({
@@ -53,9 +53,9 @@ export default function promiseMiddleware({ dispatch }) {
 						}
 					}
 				})
-			);
+			)
 		}
 
-		return next(action);
-	};
+		return next(action)
+	}
 }

@@ -1,33 +1,33 @@
-import React, {Component} from 'react';
-import {View, Dimensions, StyleSheet, Text, Image, TouchableOpacity, ActivityIndicatorIOS, LayoutAnimation} from 'react-native';
-import moment from 'moment';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import Icon from 'react-native-vector-icons/Ionicons';
-import UserTopicList from '../components/UserTopicList';
-import TabBar from '../components/TabBar';
-import Spinner from '../components/base/Spinner';
-import Return from '../components/base/Return';
-import Setting from '../components/Setting';
-import ErrorHandle from '../components/base/ErrorHandle';
-import {parseImgUrl, link, genColor} from '../utils';
+import React, {Component} from 'react'
+import {View, Dimensions, StyleSheet, Text, Image, TouchableOpacity, ActivityIndicatorIOS, LayoutAnimation} from 'react-native'
+import moment from 'moment'
+import ScrollableTabView from 'react-native-scrollable-tab-view'
+import Icon from 'react-native-vector-icons/Ionicons'
+import UserTopicList from '../components/UserTopicList'
+import TabBar from '../components/TabBar'
+import Spinner from '../components/base/Spinner'
+import Return from '../components/base/Return'
+import Setting from '../components/Setting'
+import ErrorHandle from '../components/base/ErrorHandle'
+import {parseImgUrl, link, genColor} from '../utils'
 
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 
 class User extends Component {
 	constructor(props) {
-		super(props);
-		this.isClientUser = props.isClientUser;
-		this.wallColor = genColor();
+		super(props)
+		this.isClientUser = props.isClientUser
+		this.wallColor = genColor()
 		this.state = {
 			didFocus: false
-		};
+		}
 	}
 
 
 	componentDidMount() {
-		this._getUserInfo();
+		this._getUserInfo()
 	}
 
 
@@ -36,16 +36,16 @@ class User extends Component {
 			setTimeout(()=>{
 				this.setState({
 					didFocus: true
-				});
-			});
+				})
+			})
 		}
 	}
 
 
 	_getUserInfo() {
-		const {actions, user, userName} = this.props;
+		const {actions, user, userName} = this.props
 		if (this.isClientUser) {
-			actions.updateClientUserInfo(user);
+			actions.updateClientUserInfo(user)
 		}
 		else {
 			actions.getUserInfo(userName)
@@ -54,20 +54,20 @@ class User extends Component {
 
 
 	_onGithubPress(name) {
-		if (name == '' || !name) return;
-		link('https://github.com/' + name);
+		if (name == '' || !name) {return}
+		link('https://github.com/' + name)
 	}
 
 
 	render() {
-		const {userInfo, ui} = this.props;
+		const {userInfo, ui} = this.props
 		const spinnerView = (
 			<View style={styles.loadingWrapper}>
 				<Spinner
 					size="large"
 					style={styles.loading}/>
 			</View>
-		);
+		)
 
 
 		// 如果访问的不是登陆用户的信息
@@ -76,7 +76,7 @@ class User extends Component {
 				<View style={styles.container}>
 					{ spinnerView }
 				</View>
-			);
+			)
 		}
 
 
@@ -92,7 +92,7 @@ class User extends Component {
 
 		const scrollView = (
 			<ScrollableTabView
-				edgeHitWidth={(width/3) * 2}
+				edgeHitWidth={(width / 3) * 2}
 				renderTabBar={() => <TabBar/> }>
 				<UserTopicList
 					router={this.props.router}
@@ -105,7 +105,7 @@ class User extends Component {
 					data={userInfo.recent_topics}
 					tabLabel="最近发布"/>
 			</ScrollableTabView>
-		);
+		)
 
 
 		const pubTopicIcon = (
@@ -115,24 +115,24 @@ class User extends Component {
                 }}>
 				<View style={ styles.iconWrapper}>
 					<Icon
-						name='ios-compose'
+						name="ios-compose"
 						size={34}
-						color='rgba(255,255,255,0.7)'/>
+						color="rgba(255,255,255,0.7)"/>
 				</View>
 			</TouchableOpacity>
-		);
+		)
 
 		const settingIcon = (
 			<TouchableOpacity
 				onPress={ () => this.setting.show() }>
 				<View style={ styles.iconWrapper}>
 					<Icon
-						name='ios-gear'
+						name="ios-gear"
 						size={34}
-						color='rgba(255,255,255,0.7)'/>
+						color="rgba(255,255,255,0.7)"/>
 				</View>
 			</TouchableOpacity>
-		);
+		)
 		return (
 			<View style={styles.container}>
 				<View style={[styles.bgWall,{backgroundColor:this.wallColor}]}>
@@ -143,8 +143,7 @@ class User extends Component {
 							onPress={this._onGithubPress.bind(this, userInfo.githubUsername)}>
 							<Image
 								style={styles.authorImg}
-								source={{uri:parseImgUrl(userInfo.avatar_url)}}>
-							</Image>
+								source={{uri:parseImgUrl(userInfo.avatar_url)}} />
 						</TouchableOpacity>
 
 						{ this.isClientUser && settingIcon }
@@ -181,9 +180,9 @@ class User extends Component {
 	}
 }
 
-const bgWallHeight = 160;
-const authorImgSize = 60;
-const fontColor = 'rgba(255,255,255,0.7)';
+const bgWallHeight = 160
+const authorImgSize = 60
+const fontColor = 'rgba(255,255,255,0.7)'
 
 const styles = StyleSheet.create({
 	container: {
@@ -243,14 +242,14 @@ const styles = StyleSheet.create({
 	userTopicPage: {
 		height: height - bgWallHeight - 70
 	}
-});
+})
 
 
-export const LayoutComponent = User;
+export const LayoutComponent = User
 export function mapStateToProps(state, props) {
-	const {userName} = props;
-	let userInfo = state.user.publicInfo || null;
-	const isClientUser = userInfo && userInfo.loginname === userName;
+	const {userName} = props
+	let userInfo = state.user.publicInfo || null
+	const isClientUser = userInfo && userInfo.loginname === userName
 	return {
 		user: state.user,
 		ui: state.userUI,

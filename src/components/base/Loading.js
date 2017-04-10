@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text, Dimensions, Animated} from 'react-native';
-import Spinner from './Spinner';
+import React, {Component, PropTypes} from 'react'
+import {StyleSheet, Dimensions, Animated} from 'react-native'
+import Spinner from './Spinner'
 
 
-const { height, width } = Dimensions.get('window');
-const toastWidth = width * 0.7;
+const { height, width } = Dimensions.get('window')
+const toastWidth = width * 0.7
 
 class Loading extends Component {
 	static propTypes = {
@@ -18,18 +18,18 @@ class Loading extends Component {
 
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			fadeAnim: new Animated.Value(0.4)
-		};
+		}
 	}
 
 
 	render() {
 		const opacity = {
 			opacity: this.state.fadeAnim
-		};
-		if (!this.props.show) return null;
+		}
+		if (!this.props.show) {return null}
 		return (
 			<Animated.View style={[styles.container, this.props.style, opacity]}>
 				<Spinner/>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		textAlign: 'center'
 	}
-});
+})
 
 
-export default Loading;
+export default Loading

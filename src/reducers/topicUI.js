@@ -1,4 +1,4 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes'
 
 
 const initialState = {
@@ -6,13 +6,13 @@ const initialState = {
 	replyPending: {},
 	upPending: {},
 	publishPending: false
-};
+}
 
 export default function (state = initialState, action) {
-	const {type, meta={}} = action;
-	const {sequence={}} = meta;
-	const {id} = meta;
-	const status = sequence.type == 'start';
+	const {type, meta = {}} = action
+	const {sequence = {}} = meta
+	const {id} = meta
+	const status = sequence.type == 'start'
 
 	switch (type) {
 		case types.GET_TOPIC_BY_ID:
@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
 					...state.loadPending,
 					[id]: status
 				}
-			};
+			}
 		case types.REPLY_TOPIC_BY_ID:
 			return {
 				...state,
@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
 					...state.replyPending,
 					[id]: status
 				}
-			};
+			}
 		case types.UP_REPLY:
 			return {
 				...state,
@@ -38,13 +38,13 @@ export default function (state = initialState, action) {
 					...state.upPending,
 					[id]: status
 				}
-			};
+			}
 		case types.PUBLISH:
 			return {
 				...state,
 				publishPending: status
-			};
+			}
 		default:
-			return state;
+			return state
 	}
 }

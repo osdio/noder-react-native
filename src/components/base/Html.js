@@ -1,14 +1,14 @@
-import React, {Component, PropTypes} from 'react';
-import {StyleSheet, Image, Dimensions} from 'react-native';
-import _ from 'lodash';
-import HtmlRender from 'react-native-html-render';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CustomImage from './CustomImage';
-import {parseImgUrl, link} from '../../utils';
+import React, {Component, PropTypes} from 'react'
+import {StyleSheet, Image, Dimensions} from 'react-native'
+import _ from 'lodash'
+import HtmlRender from 'react-native-html-render'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import CustomImage from './CustomImage'
+import {parseImgUrl, link} from '../../utils'
 
 
-const {width, height} = Dimensions.get('window');
-const defaultMaxImageWidth = width - 30 - 20;
+const {width} = Dimensions.get('window')
+const defaultMaxImageWidth = width - 30 - 20
 
 const regs = {
 	http: {
@@ -16,7 +16,7 @@ const regs = {
 		user: /^https?:\/\/cnodejs\.org\/user\/\w*/
 	},
 	gif: /.*\.gif$/
-};
+}
 
 
 const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		margin: 10
 	}
-});
+})
 
 
 class Html extends Component {
@@ -42,58 +42,58 @@ class Html extends Component {
 	};
 
 	constructor(props) {
-		super(props);
-		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+		super(props)
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
 	}
 
 
 	_onLinkPress(url) {
-		let router = this.props.router;
+		let router = this.props.router
 
 		if (/^\/user\/\w*/.test(url)) {
-			let authorName = url.replace(/^\/user\//, '');
+			let authorName = url.replace(/^\/user\//, '')
 
 			router.toUser({
 				userName: authorName
-			});
+			})
 		}
 
 		if (/^https?:\/\/.*/.test(url)) {
 			if (regs.http.topic.test(url)) {
-				let topicId = url.replace(/^https?:\/\/cnodejs\.org\/topic\//, '');
+				let topicId = url.replace(/^https?:\/\/cnodejs\.org\/topic\//, '')
 
 				return router.toTopic({
 					id: topicId
-				});
+				})
 			}
 
 			if (regs.http.user.test(url)) {
-				let userName = url.replace(/^https?:\/\/cnodejs\.org\/user\//, '');
+				let userName = url.replace(/^https?:\/\/cnodejs\.org\/user\//, '')
 
 				return router.toUser({
 					userName: userName
-				});
+				})
 			}
 
-			link(url);
+			link(url)
 		}
 
 		if (/^mailto:\w*/.test(url)) {
-			link(url);
+			link(url)
 		}
 	}
 
 
 	_renderNode(node, index, parent, type) {
-		const name = node.name;
-		const {imgStyle=styles.defaultImg, maxImageWidth} = this.props;
+		const name = node.name
+		const {imgStyle = styles.defaultImg, maxImageWidth} = this.props
 
 
-		if (node.type == 'block' && type == 'block') {
-			if (name == 'img') {
-				const uri = parseImgUrl(node.attribs.src);
-				if (regs.gif.test(uri)) return null;
-				const imageId = _.uniqueId('image_');
+		if (node.type === 'block' && type === 'block') {
+			if (name === 'img') {
+				const uri = parseImgUrl(node.attribs.src)
+				if (regs.gif.test(uri)) {return null}
+				const imageId = _.uniqueId('image_')
 				return (
 					<CustomImage
 						key={imageId}
@@ -105,7 +105,7 @@ class Html extends Component {
 						}}
 						maxImageWidth={maxImageWidth}
 					/>
-				);
+				)
 			}
 		}
 	}
@@ -119,8 +119,8 @@ class Html extends Component {
 				onLinkPress={this._onLinkPress.bind(this)}
 				renderNode={this._renderNode.bind(this)}
 			/>
-		);
+		)
 	}
 }
 
-export default Html;
+export default Html

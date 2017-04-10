@@ -1,24 +1,24 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Dimensions, Platform} from 'react-native';
+import React, {Component} from 'react'
+import {View, Text, StyleSheet, TouchableOpacity, Dimensions, Platform} from 'react-native'
 
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 
 class Nav extends Component {
 	_renderNavContent() {
-		let navs = this.props.navs || {};
+		let navs = this.props.navs || {}
 
 		return ['Left', 'Center', 'Right'].map((position)=> {
-			let nav = navs[position];
+			let nav = navs[position]
 			if (nav) {
 				return (
 					<TouchableOpacity
 						key={position}
 						onPress={nav.onPress}
-						style={{flex: position=='Center'?2:1}}>
-						<View style={[styles.textWrapper, styles['textWrapper'+position]]}>
-							<Text style={[styles.navItem,styles['nav'+position]]}>
+						style={{flex: position == 'Center' ? 2 : 1}}>
+						<View style={[styles.textWrapper, styles['textWrapper' + position]]}>
+							<Text style={[styles.navItem,styles['nav' + position]]}>
 								{nav.text}
 							</Text>
 						</View>
@@ -26,8 +26,8 @@ class Nav extends Component {
 				)
 			}
 			return (
-				<View style={[styles.textWrapper, styles['textWrapper'+position]]}>
-					<Text key={position} style={[styles.navItem,styles['nav'+position]]}/>
+				<View style={[styles.textWrapper, styles['textWrapper' + position]]}>
+					<Text key={position} style={[styles.navItem,styles['nav' + position]]}/>
 				</View>
 			)
 		})
@@ -37,7 +37,7 @@ class Nav extends Component {
 	render() {
 		return (
 			<View
-				ref={view=>this.nav=view}
+				ref={view=>this.nav = view}
 				style={styles.nav}>
 
 				{this._renderNavContent()}
@@ -48,8 +48,8 @@ class Nav extends Component {
 }
 
 
-const navHeight = 55;
-const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+const navHeight = 55
+const statusBarHeight = Platform.OS === 'ios' ? 20 : 0
 
 
 const styles = StyleSheet.create({
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
 	navCenter: {
 		color: 'rgba(241,196,15,0.9)',
 	}
-});
+})
 
-Nav.navHeight = navHeight;
+Nav.navHeight = navHeight
 
-export default Nav;
+export default Nav

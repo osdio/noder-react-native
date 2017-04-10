@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Spinner from './base/Spinner';
+import React, {Component, PropTypes} from 'react'
+import {View, TouchableOpacity, StyleSheet, Text} from 'react-native'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import Icon from 'react-native-vector-icons/Ionicons'
+import Spinner from './base/Spinner'
 
 
 class CommentUp extends Component {
@@ -23,29 +23,29 @@ class CommentUp extends Component {
 
 
 	constructor(props){
-		super(props);
-		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+		super(props)
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
 	}
 
 
 	_onUpPress() {
-		const {disabled, pending, upReply, replyId, userId, topicId} = this.props;
+		const {disabled, pending, upReply, replyId, userId, topicId} = this.props
 		if (disabled) {
 			return window.alert('不能给自己点赞哦!')
 		}
-		if (pending) return;
+		if (pending) {return}
 
 		upReply({
 			replyId,
 			userId,
 			topicId
-		});
+		})
 	}
 
 
 	_isUped() {
 		return this.props.ups.some(item=> {
-			return item == this.props.userId
+			return item === this.props.userId
 		})
 	}
 
@@ -54,7 +54,7 @@ class CommentUp extends Component {
 		if (this.props.pending) {
 			return (
 				<Spinner
-					size='small'
+					size="small"
 					style={styles.loading}
 				/>
 			)
@@ -63,7 +63,7 @@ class CommentUp extends Component {
 			<Icon
 				name={'ios-thumbsup'}
 				size={16}
-				color={this._isUped() ? '#3498DB':'rgba(0,0,0,0.2)'}
+				color={this._isUped() ? '#3498DB' : 'rgba(0,0,0,0.2)'}
 				style={styles.upIcon}
 			/>
 		)
@@ -71,8 +71,8 @@ class CommentUp extends Component {
 
 
 	render() {
-		const {ups} = this.props;
-		let count = ups.length;
+		const {ups} = this.props
+		let count = ups.length
 		return (
 			<TouchableOpacity
 				onPress={this._onUpPress.bind(this)}>
@@ -80,7 +80,7 @@ class CommentUp extends Component {
 
 					{this._renderUpIcon()}
 
-					{count == 0 ? null : (
+					{count === 0 ? null : (
 						<View style={styles.textWrapper}>
 							<Text style={styles.text}>{count}</Text>
 						</View>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 		height: 12,
 		width: 16
 	}
-});
+})
 
 
-export default CommentUp;
+export default CommentUp

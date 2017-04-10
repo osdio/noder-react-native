@@ -1,9 +1,9 @@
-import * as requestService from './request';
-import {getToken, setToken} from './token';
+import * as requestService from './request'
+import {getToken, setToken} from './token'
 
 
 function filterData(data) {
-	return data.data;
+	return data.data
 }
 
 
@@ -34,11 +34,11 @@ export function reply({topicId, content, replyId}) {
 	let body = {
 		accesstoken: getToken(),
 		content: content
-	};
+	}
 	if (replyId) {
 		body.reply_id = replyId
 	}
-	let url = `/topic/${topicId}/replies`;
+	let url = `/topic/${topicId}/replies`
 
 	return requestService.post(url, body)
 		.then(data=> {
@@ -55,9 +55,9 @@ export function reply({topicId, content, replyId}) {
 export function upReply({replyId}) {
 	let body = {
 		accesstoken: getToken()
-	};
+	}
 
-	let url = `/reply/${replyId}/ups`;
+	let url = `/reply/${replyId}/ups`
 
 	return requestService.post(url, body)
 		.then(data=> {
@@ -77,7 +77,7 @@ export function publish({title, tab, content}) {
 		tab: tab,
 		content: content,
 		accesstoken: getToken()
-	};
+	}
 	return requestService.post('/topics', body)
 		.then(data=> {
 			if (data.success) {

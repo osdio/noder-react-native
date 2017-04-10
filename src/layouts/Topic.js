@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react'
 import {
 	View,
 	StyleSheet,
@@ -9,36 +9,36 @@ import {
 	TouchableOpacity,
 	Dimensions,
 	Platform
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import moment from 'moment';
-import CommentOverlay from '../components/CommentOverlay';
-import Return from '../components/base/Return';
-import Html from '../components/base/Html';
-import Spinner from '../components/base/Spinner';
-import {genColor, parseImgUrl} from '../utils';
+} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import moment from 'moment'
+import CommentOverlay from '../components/CommentOverlay'
+import Return from '../components/base/Return'
+import Html from '../components/base/Html'
+import Spinner from '../components/base/Spinner'
+import {genColor, parseImgUrl} from '../utils'
 
 
-const {height, width} = Dimensions.get('window');
-const topicAuthorWidth = 100;
-const authorImgHeight = 40;
-const contentPadding = 15;
+const {height, width} = Dimensions.get('window')
+const topicAuthorWidth = 100
+const authorImgHeight = 40
+const contentPadding = 15
 
 
 class Topic extends Component {
 	constructor(props) {
-		super(props);
-		this.headerColor = genColor();
+		super(props)
+		this.headerColor = genColor()
 		this.state = {
 			didFocus: false
-		};
+		}
 	}
 
 
 	componentDidMount() {
-		const {from, actions, id, topic} = this.props;
+		const {from, actions, id, topic} = this.props
 		if (from !== 'comment' && topic) {
-			actions.getTopicById(id);
+			actions.getTopicById(id)
 		}
 	}
 
@@ -48,14 +48,14 @@ class Topic extends Component {
 			setTimeout(()=> {
 				this.setState({
 					didFocus: true
-				});
-			});
+				})
+			})
 		}
 	}
 
 
 	componentWillUnmount() {
-		this.props.actions.removeTopicCacheById(this.props.id);
+		this.props.actions.removeTopicCacheById(this.props.id)
 	}
 
 
@@ -74,22 +74,22 @@ class Topic extends Component {
 						router={this.props.router}
 						content={topic.content}/>
 				</View>
-			);
+			)
 		}
 		return (
 			<Spinner
 				size="large"
 				animating={true}
 				style={{marginTop:20}}/>
-		);
+		)
 	}
 
 
 	_renderContent(topic) {
 		if (topic) {
-			const imgUri = parseImgUrl(topic.author.avatar_url);
-			const authorName = topic.author.loginname;
-			const date = moment(topic.create_at).startOf('minute').fromNow();
+			const imgUri = parseImgUrl(topic.author.avatar_url)
+			const authorName = topic.author.loginname
+			const date = moment(topic.create_at).startOf('minute').fromNow()
 
 
 			return (
@@ -101,8 +101,7 @@ class Topic extends Component {
 									onPress={this._onAuthorImgPress.bind(this, authorName)}>
 									<Image
 										source={{uri:imgUri}}
-										style={styles.authorImg}>
-									</Image>
+										style={styles.authorImg} />
 								</TouchableOpacity>
 							</View>
 						</View>
@@ -116,9 +115,9 @@ class Topic extends Component {
 							<View style={styles.titleFooter}>
 								<View style={styles.date}>
 									<Icon
-										name='ios-clock'
+										name="ios-clock"
 										size={12}
-										color='rgba(255,255,255,0.5)'
+										color="rgba(255,255,255,0.5)"
 										style={styles.dateIcon}
 									/>
 									<Text style={styles.dateText}>
@@ -152,7 +151,7 @@ class Topic extends Component {
 					this.props.router.toComment({
 						topic: topic,
 						id:topic.id
-					});
+					})
 				}}
 				replyCount={topic.reply_count}
 			/>
@@ -161,7 +160,7 @@ class Topic extends Component {
 
 
 	render() {
-		const {topic} = this.props;
+		const {topic} = this.props
 
 		return (
 			<View style={[styles.container]}>
@@ -253,13 +252,13 @@ const styles = StyleSheet.create({
 		paddingBottom: contentPadding,
 		backgroundColor: 'white'
 	}
-});
+})
 
 
-export const LayoutComponent = Topic;
+export const LayoutComponent = Topic
 export function mapStateToProps(state, props) {
-	const {id = '0'} = props;
-	const topic = state.topic.topics[id];
+	const {id = '0'} = props
+	const topic = state.topic.topics[id]
 	return {
 		topic: topic || props.topic
 	}

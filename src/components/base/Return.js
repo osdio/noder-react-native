@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {StyleSheet, Dimensions, View} from 'react-native';
-import OverlayButton from './OverlayButton';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, {Component} from 'react'
+import {StyleSheet, View} from 'react-native'
+import OverlayButton from './OverlayButton'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 
-const returnSize = 45;
+const returnSize = 45
 
 
 class Return extends Component {
@@ -19,9 +19,9 @@ class Return extends Component {
 				onPress={this._onPress.bind(this)}>
 				<View style={styles.iconWrapper}>
 					<Icon
-						name='ios-arrow-round-back-outline'
+						name="ios-arrow-round-back-outline"
 						size={ 40 }
-						color='rgba(255,255,255,1)'
+						color="rgba(255,255,255,1)"
 						style={ styles.returnIcon }/>
 				</View>
 			</OverlayButton>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 		height: returnSize,
 		width: returnSize
 	}
-});
+})
 
 
-export default Return;
+export default Return

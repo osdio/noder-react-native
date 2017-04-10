@@ -9,12 +9,12 @@ import topic from './topic'
 import topicUI from './topicUI'
 
 export default combineReducers({
-	home,
-	user,
-	userUI,
-	utils,
-	message,
-	messageUI,
-	topic,
-	topicUI
+  home,
+  user,
+  userUI,
+  utils,
+  message,
+  messageUI,
+  topic,
+  topicUI
 })

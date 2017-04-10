@@ -8,50 +8,39 @@ import syncReducerToAsyncStorage from './syncReducerToAsyncStorage'
 import {createLogger} from 'redux-logger'
 import reducers from '../reducers'
 
-
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent
 const logger = createLogger({
-	predicate: (getState, action) => isDebuggingInChrome,
-	collapsed: true,
-	duration: true
+  predicate: (getState, action) => isDebuggingInChrome,
+  collapsed: true,
+  duration: true
 })
 
 let middlewares = [
-	thunkMiddleware,
-	promiseMiddleware,
-	asyncActionCallbackMiddleware,
-	minPendingTimeMiddleware,
-	utilsMiddleware,
-	syncReducerToAsyncStorage
+  thunkMiddleware,
+  promiseMiddleware,
+  asyncActionCallbackMiddleware,
+  minPendingTimeMiddleware,
+  utilsMiddleware,
+  syncReducerToAsyncStorage
 ]
 
-
 if (isDebuggingInChrome) {
-	// middlewares.push(logger);
+  middlewares.push(logger)
 }
 
+export default function configureStore (initialState) {
+  const store = applyMiddleware(...middlewares)(createStore)(reducers, initialState, window.devToolsExtension && window.devToolsExtension())
 
-export default function configureStore(initialState) {
-	const store = applyMiddleware(
-		...middlewares
-	)(createStore)(reducers, initialState, window.devToolsExtension && window.devToolsExtension())
+  if (module.hot) {
+    module.hot.accept(() => {
+      const nextRootReducer = require('../reducers/index').default
+      store.replaceReducer(nextRootReducer)
+    })
+  }
 
-	if (module.hot) {
-		module.hot.accept(() => {
-			const nextRootReducer = require('../reducers/index').default
-			store.replaceReducer(nextRootReducer)
-		})
-	}
+  if (isDebuggingInChrome) {
+    window.store = store
+  }
 
-	if (isDebuggingInChrome) {
-		window.store = store
-	}
-
-	return store
+  return store
 }
-
-
-
-
-
-

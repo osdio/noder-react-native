@@ -336,6 +336,9 @@
 		"no-plusplus": 0,
 		// disallow use of unary operators, ++ and -- (off by default)
 
+        "prefer-rest-params": 1,
+        "no-param-reassign": "error",
+
 		"react/display-name": 0,
 		"react/jsx-boolean-value": 0,
 		"jsx-quotes": [

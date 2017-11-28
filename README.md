@@ -1,6 +1,6 @@
 # Noder - A React-Native Client for [cnodejs.org](http://cnodejs.org)
- 
-> A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/) and [Redux](https://github.com/gaearon/redux). 
+
+> A new [cnodejs.org](http://cnodejs.org) mobile app powered by [React-Native](http://facebook.github.io/react-native/) and [Redux](https://github.com/gaearon/redux).
 
 
 ## Install
@@ -15,7 +15,8 @@
 For local development you need to follow the below commands:
 
 ```
-git clone https://github.com/soliury/noder-react-native.git
+git clone https://github.com/soliury/noder-react-native.git noder
+cd noder
 npm install
 ```
 
@@ -24,23 +25,15 @@ Click the run button in Xcode, if something went wrong, you need to rebuild all 
 
 If you want to run it on your iPhone, please follow the [Offical Doc](http://facebook.github.io/react-native/docs/runningondevice.html#content).
 
-If you don't want to update the ip manually, please run:
-
+If you want to run it on your Android, please run:
 ```
-gulp replace
-```
-
-BTW, here is a prettier command, just run:
-
-```
+npm run android
 npm start
 ```
 
-The ip will be replaced automatically.
-
 If you want to run it on your Browser (localhost:3000), please run:
 ```
-react-web start
+npm run web
 ```
 
 
@@ -58,6 +51,7 @@ react-web start
 * [react-native-html-render](https://github.com/soliury/react-native-html-render)
 * [react-native-scrollable-tab-view](https://github.com/brentvatne/react-native-scrollable-tab-view)
 * [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
+* [react-web](https://github.com/flyskywhy/react-web)
 
 This project is heavily influenced by the above modules.
 
@@ -68,7 +62,7 @@ This project is heavily influenced by the above modules.
   * In ListView, sometime items on the bottom can't be refreshed
   * ListView **take too much memory**
   * HTML to native View render take too much **memory and CPU time**
-* Add Unit testing 
+* Add Unit testing
 
 ## Change log
 

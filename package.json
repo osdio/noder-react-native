@@ -36,7 +36,7 @@
     "react-native-button": "^1.6.0",
     "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-cli": "^1.0.0",
-    "react-native-code-push": "^1.12.2-beta",
+    "react-native-code-push": "^2.1.1-beta",
     "react-native-html-render": "^1.0.5",
     "react-native-scrollable-tab-view": "^0.5.1",
     "react-native-vector-icons": "^2.0.3",

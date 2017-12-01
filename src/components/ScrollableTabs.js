@@ -180,7 +180,7 @@ class ScrollableTabs extends Component {
 					<View ref={ view => this._navs[index]=view} key={index}
 						  style={[styles.navItem, { width: this.props.tabNavItemWidth }, activeStyle]}>
 
-						<Text style={styles.itemText}>
+						<Text accessibilityLabel={item} style={styles.itemText}>
 							{ item }
 						</Text>
 

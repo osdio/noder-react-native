@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {View, Text, StyleSheet, Dimensions, Animated, Easing, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Alert, Easing, Platform} from 'react-native';
 import UserOverlay from '../components/UserOverlay';
 import MessageOverlay from '../components/MessageOverlay';
 import ScrollableTabs from '../components/ScrollableTabs';
@@ -18,6 +18,17 @@ class Home extends Component {
 		if (!topic.all || !topic.all.length) {
 			actions.updateTopicsByTab('all');
 		}
+
+        // Just for test on Android, see workaroundOfStartNative() in e2e/steps/init.js
+        if (Platform.OS === 'android') {
+            Alert.alert(
+                'Welcome',
+                'Welcome to Noder', [{
+                    text: 'OK',
+                    onPress: () => {}
+                }]
+            );
+        }
 	}
 
 

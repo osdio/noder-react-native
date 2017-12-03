@@ -47,7 +47,7 @@
     "react-native-html-render": "^1.0.5",
     "react-native-scrollable-tab-view": "^0.7.4",
     "react-native-vector-icons": "^4.0.1",
-    "react-redux": "^5.0.3",
+    "react-redux": "4.4.8",
     "react-web": "git+https://github.com/flyskywhy/react-web.git",
     "redux": "^3.5.2",
     "redux-actions": "^2.0.1",

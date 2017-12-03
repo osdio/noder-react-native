@@ -1,11 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {Dimensions, View, StyleSheet, Animated, Easing, Platform, TouchableWithoutFeedback, findNodeHandle} from 'react-native';
+import React, {Component, PropTypes} from 'react'
+import {Dimensions, View, StyleSheet, Animated, Easing, Platform, TouchableWithoutFeedback} from 'react-native'
+
+
 if (Platform.OS !== 'web') {
-    var BlurView = require('react-native-blur').BlurView;
+    var BlurView = require('react-native-blur').BlurView
 }
 
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 
 class Modal extends Component {
@@ -23,10 +25,10 @@ class Modal extends Component {
 
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			fadeAnim: new Animated.Value(0.2)
-		};
+		}
 	}
 
 
@@ -35,15 +37,15 @@ class Modal extends Component {
 			toValue: 1,
 			easing: Easing.quad,
 			duration: 100
-		}).start();
+		}).start()
 	}
 
 
 	_onPress(e) {
-		const {pageY} = e.nativeEvent;
-		const {onPressBackdrop} = this.props;
+		const {pageY} = e.nativeEvent
+		const {onPressBackdrop} = this.props
 		if (height - pageY > 200) {
-			typeof onPressBackdrop == 'function' && onPressBackdrop();
+			typeof onPressBackdrop === 'function' && onPressBackdrop()
 		}
 	}
 
@@ -61,10 +63,10 @@ class Modal extends Component {
 				<View style={[ styles.blur, this.props.blurStyle, styles.opacity]}>
 					{ this.props.children }
 				</View>
-			);
+			)
 
 		}
-		return this.props.children;
+		return this.props.children
 	}
 
 
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
 	opacity: {
 		backgroundColor: 'rgba(0,0,0,0.4)'
 	}
-});
+})
 
 
-export default Modal;
+export default Modal

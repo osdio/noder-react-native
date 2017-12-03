@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Text, ListView, Dimensions} from 'react-native';
-import moment from 'moment';
-import TopicRow from './TopicRow';
+import React, {Component} from 'react'
+import {View, StyleSheet, Text, ListView, Dimensions} from 'react-native'
+import moment from 'moment'
+import TopicRow from './TopicRow'
 
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window')
 
 
 class UserTopicList extends Component {
 	constructor(props) {
-		super(props);
-		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-		this.data = this.props.data || [];
+		super(props)
+		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+		this.data = this.props.data || []
 		this.state = {
 			ds: this.ds.cloneWithRows(this.data)
 		}
@@ -36,22 +36,22 @@ class UserTopicList extends Component {
 
 
 	_renderRowFooter(topic) {
-		var date = moment(topic.last_reply_at).startOf('minute').fromNow();
+		var date = moment(topic.last_reply_at).startOf('minute').fromNow()
 		let dateItem = (
 			<Text
-				key='dateText'
+				key="dateText"
 				style={[styles['topicFooter text'],styles['topicFooter date']]}>
 				{date}
 			</Text>
-		);
+		)
 
 		let authorItem = (
 			<Text
-				key='authorText'
+				key="authorText"
 				style={[styles['topicFooter text'],styles['topicFooter author']]}>
 				{topic.author.loginname}
 			</Text>
-		);
+		)
 
 
 		return [dateItem, authorItem]
@@ -89,21 +89,21 @@ var styles = StyleSheet.create({
 	container: {
 		width: width
 	},
-	"topicFooter text": {
-		"fontSize": 11,
-		"color": "rgba(0, 0, 0, 0.3)"
+	'topicFooter text': {
+		'fontSize': 11,
+		'color': 'rgba(0, 0, 0, 0.3)'
 	},
-	"topicFooter date": {
-		"position": "absolute",
-		"right": 0,
-		"top": 0
+	'topicFooter date': {
+		'position': 'absolute',
+		'right': 0,
+		'top': 0
 	},
-	"topicFooter author": {
+	'topicFooter author': {
 		position: 'absolute',
 		left: 0,
 		top: 0
 	}
-});
+})
 
 
-export default UserTopicList;
+export default UserTopicList

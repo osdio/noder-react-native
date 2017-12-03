@@ -1,14 +1,14 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Dimensions, Platform} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Modal from './base/Modal';
-import Button from 'react-native-button';
-import Row from './base/Row';
+import React, {Component, PropTypes} from 'react'
+import {View, StyleSheet, Text, TouchableOpacity, Dimensions, Platform} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import Modal from './base/Modal'
+import Button from 'react-native-button'
+import Row from './base/Row'
 
 
-const {height, width} = Dimensions.get('window');
-const iconSize = 17;
-const rowHeight = 50;
+const {height, width} = Dimensions.get('window')
+const iconSize = 17
+const rowHeight = 50
 
 
 class Setting extends Component {
@@ -19,10 +19,10 @@ class Setting extends Component {
 
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			visible: false
-		};
+		}
 	}
 
 
@@ -32,36 +32,36 @@ class Setting extends Component {
 
 
 	onLogoutPress() {
-		this.props.router.pop();
-		this.props.actions.logout();
+		this.props.router.pop()
+		this.props.actions.logout()
 	}
 
 
 	onClearPress() {
-		const {actions} = this.props;
-		actions.clear();
-		actions.toast('缓存清除成功');
+		const {actions} = this.props
+		actions.clear()
+		actions.toast('缓存清除成功')
 	}
 
 
 	show() {
 		this.setState({
 			visible: true
-		});
+		})
 	}
 
 
 	render() {
-		if (!this.state.visible) return null;
+		if (!this.state.visible) {return null}
 		return (
 			<Modal blur={true} blurStyle={styles.modalStyle} style={styles.container}>
 				<View style={styles.body}>
 					<View style={styles.contentWrapper}>
 						<View style={[styles.row, styles.header]}>
 							<Icon
-								name='ios-gear'
+								name="ios-gear"
 								size={iconSize}
-								color='rgba(255,255,255,0.5)'
+								color="rgba(255,255,255,0.5)"
 								style={styles.Icon}/>
 							<View style={styles.rowTextWrapper}>
 								<Text style={styles.rowText}>
@@ -73,9 +73,9 @@ class Setting extends Component {
 
 						<Row key="about" style={styles.row} onPress={this.onAboutPress.bind(this)}>
 							<Icon
-								name='ios-eye'
+								name="ios-eye"
 								size={iconSize}
-								color='rgba(255,255,255,0.5)'
+								color="rgba(255,255,255,0.5)"
 								style={styles.Icon}/>
 							<View style={styles.rowTextWrapper}>
 								<Text style={styles.rowText}>
@@ -86,9 +86,9 @@ class Setting extends Component {
 
 						<Row key="clean" style={styles.row} onPress={this.onClearPress.bind(this)}>
 							<Icon
-								name='ios-trash'
+								name="ios-trash"
 								size={iconSize}
-								color='rgba(255,255,255,0.5)'
+								color="rgba(255,255,255,0.5)"
 								style={styles.Icon}/>
 							<View style={styles.rowTextWrapper}>
 								<Text style={styles.rowText}>
@@ -100,9 +100,9 @@ class Setting extends Component {
 
 						<Row key="power" style={styles.row} onPress={this.onLogoutPress.bind(this)}>
 							<Icon
-								name='power'
+								name="power"
 								size={iconSize}
-								color='#E74C3C'
+								color="#E74C3C"
 								style={styles.Icon}/>
 							<View style={styles.rowTextWrapper}>
 								<Text style={[styles.rowText,styles.logoutText]}>
@@ -114,9 +114,9 @@ class Setting extends Component {
 
 					<Row style={styles.closeButton} onPress={() => this.setState({ visible : false })}>
 						<Icon
-							name='ios-close-outline'
+							name="ios-close-outline"
 							size={30}
-							color='rgba(255,255,255,0.9)'
+							color="rgba(255,255,255,0.9)"
 							style={styles.closeIcon}/>
 					</Row>
 				</View>
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
 		borderColor: 'rgba(255,255,255,0.2)',
 		textAlign: 'center'
 	}
-});
+})
 
 
-export default Setting;
+export default Setting

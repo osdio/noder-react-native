@@ -1,39 +1,39 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Text, Dimensions, Platform, TouchableOpacity, Vibration} from 'react-native';
+import React, {Component} from 'react'
+import {StyleSheet, View, Text, Dimensions, Platform, TouchableOpacity, Vibration} from 'react-native'
 
 if (Platform.OS !== 'web') {
-	var Camera = require('react-native-camera');
-	var BarcodeScanner = require('react-native-barcodescanner');
+	var Camera = require('react-native-camera')
+	var BarcodeScanner = require('react-native-barcodescanner')
 }
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import OverlayButton from '../components/base/OverlayButton';
+import Icon from 'react-native-vector-icons/Ionicons'
+import OverlayButton from '../components/base/OverlayButton'
 
 
-const {height, width} = Dimensions.get('window');
-const cameraSize = 250;
-const borderColor = 'rgba(255,255,255,0.6)';
-const borderBoxSize = 35;
+const {height, width} = Dimensions.get('window')
+const cameraSize = 250
+const borderColor = 'rgba(255,255,255,0.6)'
+const borderBoxSize = 35
 
 
 class QRCode extends Component {
 	constructor(props) {
-		super(props);
-		this.succesed = false;
+		super(props)
+		this.succesed = false
 	}
 
 
 	_onBarCodeRead(result) {
-		const {router, actions} = this.props;
-		if (this.succesed) return;
+		const {router, actions} = this.props
+		if (this.succesed) {return}
 
-		this.succesed = true;
-		Vibration.vibrate();
+		this.succesed = true
+		Vibration.vibrate()
 		actions.checkToken(result.data, ()=> {
-			router.pop();
-			actions.toast('登陆成功');
-		});
-		router.pop();
+			router.pop()
+			actions.toast('登陆成功')
+		})
+		router.pop()
 	}
 
 
@@ -49,13 +49,13 @@ class QRCode extends Component {
 				onPress={this._onClosePress.bind(this)}>
 				<View style={styles.iconWrapper}>
 					<Icon
-						name='ios-close'
+						name="ios-close"
 						size={40}
-						color='rgba(255,255,255,0.7)'
+						color="rgba(255,255,255,0.7)"
 						style={styles.closeIcon}/>
 				</View>
 			</OverlayButton>
-		);
+		)
 
 
 		// for web
@@ -66,7 +66,7 @@ class QRCode extends Component {
 						只有原生 APP 才支持二维码
 					</Text>
 				</View>
-			);
+			)
 		}
 
 		// for android
@@ -85,7 +85,7 @@ class QRCode extends Component {
 		// for ios
 		return (
 			<Camera
-				ref='camera'
+				ref="camera"
 				style={styles.camera}
 				aspect={Camera.constants.Aspect.Fill}
 				onBarCodeRead={this._onBarCodeRead.bind(this)}>
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
 		right: 30,
 		top: 0
 	}
-});
+})
 
 
-export const LayoutComponent = QRCode;
+export const LayoutComponent = QRCode

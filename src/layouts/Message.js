@@ -1,30 +1,30 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, Platform, StatusBar} from 'react-native';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import TabBar from '../components/TabBar';
-import Return from '../components/base/Return';
-import MessageList from '../components/MessageList';
+import React, {Component} from 'react'
+import {View, StyleSheet, Dimensions, Platform, StatusBar} from 'react-native'
+import ScrollableTabView from 'react-native-scrollable-tab-view'
+import TabBar from '../components/TabBar'
+import Return from '../components/base/Return'
+import MessageList from '../components/MessageList'
 
 
-const {height, width} = Dimensions.get('window');
-const STATUS_BAR_HEIGHT = 20;
+const {height, width} = Dimensions.get('window')
+const STATUS_BAR_HEIGHT = 20
 
 class Message extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			didFocus: false
-		};
+		}
 	}
 
 
 	componentDidMount() {
-		this.props.actions.getMessageList();
+		this.props.actions.getMessageList()
 	}
 
 
 	componentWillUnmount(){
-		this.props.actions.markAsRead();
+		this.props.actions.markAsRead()
 	}
 
 
@@ -33,14 +33,14 @@ class Message extends Component {
 			setTimeout(()=>{
 				this.setState({
 					didFocus: true
-				});
-			});
+				})
+			})
 		}
 	}
 
 
 	_renderTabBar() {
-		const statusBarHeight = Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0;
+		const statusBarHeight = Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0
 		const props = {
 			style: {
 				backgroundColor: '#292829',
@@ -52,7 +52,7 @@ class Message extends Component {
 			tabUnderlineStyle: {
 				backgroundColor: 'rgba(241,196,15,1)'
 			}
-		};
+		}
 		return (
 			<TabBar {...props}/>
 		)
@@ -60,14 +60,14 @@ class Message extends Component {
 
 
 	render() {
-		const {fetchMessagesPending, hasNotRead, hasRead, isMarkAsReadLoading, actions, router} = this.props;
+		const {fetchMessagesPending, hasNotRead, hasRead, isMarkAsReadLoading, actions, router} = this.props
 
 
 		return (
 			<View style={styles.container}>
 				<ScrollableTabView
 					style={styles.scrollableTabView}
-					edgeHitWidth={(width/3)*2}
+					edgeHitWidth={(width / 3) * 2}
 					renderTabBar={this._renderTabBar.bind(this)}>
 					<MessageList
 						router={router}
@@ -75,7 +75,7 @@ class Message extends Component {
 						pending={ fetchMessagesPending }
 						data={ this.state.didFocus ? hasNotRead : [] }
 						style={styles.userTopicPage}
-						tabLabel={ "未读消息 " + hasNotRead.length }
+						tabLabel={ '未读消息 ' + hasNotRead.length }
 						getMessageList={actions.getMessageList}
 					/>
 					<MessageList
@@ -84,7 +84,7 @@ class Message extends Component {
 						pending={ fetchMessagesPending }
 						data={ this.state.didFocus ? hasRead : [] }
 						style={styles.userTopicPage}
-						tabLabel={"已读消息 " + hasRead.length}
+						tabLabel={'已读消息 ' + hasRead.length}
 						getMessageList={actions.getMessageList}
 					/>
 				</ScrollableTabView>
@@ -106,10 +106,10 @@ const styles = StyleSheet.create({
 	scrollableTabView: {
 		flex: 1
 	}
-});
+})
 
 
-export const LayoutComponent = Message;
+export const LayoutComponent = Message
 export function mapStateToProps(state) {
 	return {
 		...state.message,

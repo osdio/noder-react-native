@@ -1,16 +1,16 @@
-import React, {Component, PropTypes} from 'react';
-import {Dimensions, View, Text, ListView, StyleSheet, Image, TouchableOpacity, RefreshControl} from 'react-native';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Icon from 'react-native-vector-icons/Ionicons';
-import moment from 'moment';
-import CommentHtml from './CommentHtml';
-import CommentUp from './CommentUp';
-import * as Constants from '../constants';
+import React, {Component, PropTypes} from 'react'
+import {Dimensions, View, Text, ListView, StyleSheet, Image, TouchableOpacity, RefreshControl} from 'react-native'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+import Icon from 'react-native-vector-icons/Ionicons'
+import moment from 'moment'
+import CommentHtml from './CommentHtml'
+import CommentUp from './CommentUp'
+import * as Constants from '../constants'
 
-import {parseImgUrl} from '../utils';
+import {parseImgUrl} from '../utils'
 
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 
 class CommentList extends Component {
@@ -34,12 +34,12 @@ class CommentList extends Component {
 
 
 	constructor(props) {
-		super(props);
-		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+		super(props)
+		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 		this.state = {
 			ds: ds.cloneWithRows(props.data.concat([]).reverse())
-		};
-		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+		}
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
 	}
 
 
@@ -53,7 +53,7 @@ class CommentList extends Component {
 
 
 	componentDidMount() {
-		setTimeout(() => this._scrollToReply(), 0);
+		setTimeout(() => this._scrollToReply(), 0)
 	}
 
 
@@ -61,14 +61,14 @@ class CommentList extends Component {
 		this._listView.scrollTo({
 			x: 0,
 			y: 0
-		});
+		})
 	}
 
 
 	_scrollToReply() {
-		const {focusedReply} = this.props;
+		const {focusedReply} = this.props
 		if (focusedReply) {
-			let row = this[focusedReply];
+			let row = this[focusedReply]
 			if (row && row.measure) {
 				row.measure((x, y, width, height, pageX, pageY) => {
 					this._listView.setNativeProps({
@@ -76,14 +76,14 @@ class CommentList extends Component {
 							x: 0,
 							y: y
 						}
-					});
-				});
+					})
+				})
 
 				row.setNativeProps({
 					styles: {
 						backgroundColor: 'red'
 					}
-				});
+				})
 			}
 		}
 	}
@@ -105,24 +105,24 @@ class CommentList extends Component {
 						<Icon
 							name={'ios-reply'}
 							size={22}
-							color='rgba(0,0,0,0.35)'
+							color="rgba(0,0,0,0.35)"
 							style={styles.replyIcon}
 						/>
 					</TouchableOpacity>
 				</View>
-			);
+			)
 		}
 	}
 
 
 	_renderRow(comment, sectionID, rowID, highlightRow) {
-		const authorName = comment.author.loginname;
-		const date = moment(comment.create_at).startOf('minute').fromNow();
-		const commentNum = this.props.data.length - parseInt(rowID);
-		let focusStyle = {};
+		const authorName = comment.author.loginname
+		const date = moment(comment.create_at).startOf('minute').fromNow()
+		const commentNum = this.props.data.length - parseInt(rowID)
+		let focusStyle = {}
 		if (this.props.focusedReply) {
-			let replyId = this.props.focusedReply;
-			if (replyId == comment.id) {
+			let replyId = this.props.focusedReply
+			if (replyId === comment.id) {
 				focusStyle = {
 					backgroundColor: 'rgba(0,2,125,0.07)'
 				}
@@ -132,7 +132,7 @@ class CommentList extends Component {
 
 		return (
 			<View
-				ref={view=>this[comment.id]=view}
+				ref={view=>this[comment.id] = view}
 				key={comment.id}
 				style={[styles.commentWrapper,focusStyle]}>
 				<View key="imageWrapper" style={[styles.imageWrapper]}>
@@ -143,9 +143,7 @@ class CommentList extends Component {
 					}}>
 						<Image
 							style={styles.authorImg}
-							source={{uri:parseImgUrl(comment.author.avatar_url)}}
-						>
-						</Image>
+							source={{uri:parseImgUrl(comment.author.avatar_url)}}/>
 					</TouchableOpacity>
 
 					<Text style={styles.commentNumText}>
@@ -186,7 +184,7 @@ class CommentList extends Component {
 		return (
 			<ListView
 				enableEmptySections
-				ref={view=>this._listView=view}
+				ref={view=>this._listView = view}
 				style={{backgroundColor:'rgba(255,255,255,1)'}}
 				showsVerticalScrollIndicator={true}
 				initialListSize={10}
@@ -198,17 +196,16 @@ class CommentList extends Component {
 						<RefreshControl
 							refreshing={this.props.pending}
 							onRefresh={this.props.onPullRefresh}
-							{...Constants.refreshControl}
-						  />
+							{...Constants.refreshControl}/>
 					}
 			/>
 		)
 	}
 }
 
-const authorImgSize = 35;
-const commentContentOffset = 15 * 2 + authorImgSize;
-const commentIconSize = 12;
+const authorImgSize = 35
+const commentContentOffset = 15 * 2 + authorImgSize
+const commentIconSize = 12
 
 
 const commentHtmlStyle = StyleSheet.create({
@@ -217,7 +214,7 @@ const commentHtmlStyle = StyleSheet.create({
 		height: width - commentContentOffset - 15,
 		resizeMode: Image.resizeMode.contain
 	}
-});
+})
 
 
 const styles = StyleSheet.create({
@@ -304,7 +301,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center'
 	}
-});
+})
 
 
-export default CommentList;
+export default CommentList

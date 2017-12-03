@@ -1,18 +1,18 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes'
 
 
 const initialState = {
 	hasNotRead: [],
 	hasRead: [],
 	unreadMessageCount: 0
-};
+}
 
 
 export default function (state = initialState, action) {
-	const { payload, error, meta = {} } = action;
-	const { sequence = {} } = meta;
+	const { payload, error, meta = {} } = action
+	const { sequence = {} } = meta
 	if (sequence.type === 'start' || error) {
-		return state;
+		return state
 	}
 
 	switch (action.type) {
@@ -22,17 +22,17 @@ export default function (state = initialState, action) {
 				unreadMessageCount: payload.hasnot_read_messages.length,
 				hasRead: payload.has_read_messages,
 				hasNotRead: payload.hasnot_read_messages
-			};
+			}
 		case types.GET_REDUCER_FROM_ASYNC_STORAGE:
 			return {
 				...state,
 				...(payload.message || initialState)
-			};
+			}
 		case types.GET_UNREAD_MESSAGE_COUNT:
 			return {
 				...state,
 				unreadMessageCount: payload
-			};
+			}
 
 		case types.MARK_AS_READ:
 			return {
@@ -40,10 +40,10 @@ export default function (state = initialState, action) {
 				hasNotRead: [],
 				hasRead: state.hasNotRead.concat(state.hasRead),
 				unreadMessageCount: 0
-			};
+			}
 		case types.LOGOUT:
-			return initialState;
+			return initialState
 		default :
-			return state;
+			return state
 	}
 }

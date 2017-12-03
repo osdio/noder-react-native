@@ -1,16 +1,16 @@
 import React, {
 	Component,
 	PropTypes
-} from 'react';
+} from 'react'
 import {
 	Image,
 	View,
 	StyleSheet,
 	Text,
 	TouchableOpacity
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 
 export default class CustomImage extends Component {
@@ -30,26 +30,26 @@ export default class CustomImage extends Component {
 
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			size: props.defaultSize,
 			isLoaded: false,
 			error: false
-		};
-		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-		this._loadImg(props.uri, props.maxImageWidth);
+		}
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
+		this._loadImg(props.uri, props.maxImageWidth)
 	}
 
 
 	_loadImg(uri, maxImageWidth) {
-		if (!uri) return;
-		const startTime = new Date().getTime();
+		if (!uri) {return}
+		const startTime = new Date().getTime()
 		Image.getSize(uri, (w, h)=> {
 			if (w >= maxImageWidth) {
-				h = (maxImageWidth / w) * h;
-				w = maxImageWidth;
+				h = (maxImageWidth / w) * h
+				w = maxImageWidth
 			}
-			let leftTime = 500 - (new Date().getTime() - startTime);
+			let leftTime = 500 - (new Date().getTime() - startTime)
 			if (leftTime > 0) {
 				setTimeout(()=> {
 					this.setState({
@@ -58,8 +58,8 @@ export default class CustomImage extends Component {
 							height: h
 						},
 						isLoaded: true
-					});
-				}, leftTime);
+					})
+				}, leftTime)
 			}
 			else {
 				this.setState({
@@ -68,26 +68,26 @@ export default class CustomImage extends Component {
 						height: h
 					},
 					isLoaded: true
-				});
+				})
 			}
 		}, ()=> {
 			this.setState({
 				error: true
-			});
-		});
+			})
+		})
 	}
 
 
 	render() {
-		const {uri, style} = this.props;
-		const {size, isLoaded, error} = this.state;
+		const {uri, style} = this.props
+		const {size, isLoaded, error} = this.state
 		if (isLoaded) {
 			return (
 				<Image
 					source={{uri}}
 					style={[style, size]}
 				/>
-			);
+			)
 		}
 
 		if (error) {
@@ -104,7 +104,7 @@ export default class CustomImage extends Component {
 						</Text>
 					</View>
 				</TouchableOpacity>
-			);
+			)
 		}
 
 		return (
@@ -115,7 +115,7 @@ export default class CustomImage extends Component {
 					style={styles.icon}
 				/>
 			</View>
-		);
+		)
 	}
 }
 
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
 	icon: {
 		color: 'rgba(0,0,0,0.5)'
 	}
-});
+})

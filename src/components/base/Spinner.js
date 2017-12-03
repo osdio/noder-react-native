@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {ActivityIndicator} from 'react-native';
+import React, {Component} from 'react'
+import {ActivityIndicator} from 'react-native'
 
 
 class Spinner extends Component {
@@ -17,6 +17,6 @@ class Spinner extends Component {
 }
 
 
-export default Spinner;
+export default Spinner
 
 

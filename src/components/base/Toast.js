@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text, Dimensions, Animated} from 'react-native';
+import React, {Component, PropTypes} from 'react'
+import {StyleSheet, Text, Dimensions, Animated} from 'react-native'
 
-const {height, width} = Dimensions.get('window');
-const toastWidth = width * 0.7;
-const defaultText = 'Toast';
-const defaultTimeout = 2000;
+const {height, width} = Dimensions.get('window')
+const toastWidth = width * 0.7
+const defaultText = 'Toast'
+const defaultTimeout = 2000
 
 
 class Toast extends Component {
@@ -19,33 +19,33 @@ class Toast extends Component {
 
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			fadeAnim: new Animated.Value(0.4),
 			show: false,
 			text: defaultText,
 			timeout: defaultTimeout
-		};
+		}
 	}
 
 
 	componentWillUnmount() {
-		clearTimeout(this.timeout);
+		clearTimeout(this.timeout)
 	}
 
 
 	show(text = defaultText, timeout = defaultTimeout) {
-		const {duration} = this.props;
+		const {duration} = this.props
 		Animated.timing(this.state.fadeAnim, {
 			toValue: 1,
 			duration: duration
-		}).start();
+		}).start()
 
 		this.setState({
 			show: true,
 			text,
 			timeout
-		});
+		})
 
 		this.timeout = setTimeout(()=> {
 			Animated.timing(this.state.fadeAnim, {
@@ -54,17 +54,17 @@ class Toast extends Component {
 			}).start(()=> {
 				this.setState({
 					show: false
-				});
-			});
-		}, timeout - duration);
+				})
+			})
+		}, timeout - duration)
 	}
 
 
 	render() {
 		const opacity = {
 			opacity: this.state.fadeAnim
-		};
-		if (!this.state.show) return null;
+		}
+		if (!this.state.show) {return null}
 		return (
 			<Animated.View style={[styles.container, this.props.style, opacity]}>
 				<Text style={styles.text}>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		lineHeight: 16 * 1.5
 	}
-});
+})
 
 
-export default Toast;
+export default Toast

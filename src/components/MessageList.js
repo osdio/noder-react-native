@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import {View, StyleSheet, Text, Image, ListView, TouchableHighlight, Dimensions, RefreshControl} from 'react-native';
-import moment from 'moment';
-import {parseImgUrl} from '../utils';
-import * as Constants from '../constants';
+import React, {Component, PropTypes} from 'react'
+import {View, StyleSheet, Text, Image, ListView, TouchableHighlight, Dimensions, RefreshControl} from 'react-native'
+import moment from 'moment'
+import {parseImgUrl} from '../utils'
+import * as Constants from '../constants'
 
 
-const {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window')
 
 
 class MessageList extends Component {
@@ -25,8 +25,8 @@ class MessageList extends Component {
 
 
 	constructor(props) {
-		super(props);
-		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+		super(props)
+		this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
 		this.state = {
 			ds: this.ds.cloneWithRows(props.data)
 		}
@@ -37,7 +37,7 @@ class MessageList extends Component {
 		if (nextProps.data !== this.props.data) {
 			this.setState({
 				ds: this.state.ds.cloneWithRows(nextProps.data)
-			});
+			})
 		}
 	}
 
@@ -48,12 +48,12 @@ class MessageList extends Component {
 			from: 'message',
 			reply: message.reply,
 			id: message.topic.id
-		});
+		})
 	}
 
 
 	_renderRowFooter(message) {
-		const date = moment(message.reply.create_at).startOf('minute').fromNow();
+		const date = moment(message.reply.create_at).startOf('minute').fromNow()
 
 		return (
 			<View style={styles.topicFooter}>
@@ -61,7 +61,7 @@ class MessageList extends Component {
 					<Text>
 						{message.author.loginname}
 					</Text>
-					<Text style={styles[message.type+'Text']}>
+					<Text style={styles[message.type + 'Text']}>
 						{message.type == 'reply' ? ' 回复' : ' @'}
 					</Text>
 				</Text>
@@ -75,13 +75,13 @@ class MessageList extends Component {
 
 
 	_renderRow(message) {
-		var topic = message.topic;
+		var topic = message.topic
 
 
 		return (
 			<TouchableHighlight
 				onPress={()=>{this._onRowPress(message)}}
-				underlayColor='#3498DB'
+				underlayColor="#3498DB"
 				key={message.id}>
 				<View style={styles.row}>
 					<Image
@@ -105,7 +105,7 @@ class MessageList extends Component {
 
 
 	_renderHeader() {
-		const {data, didFocus} = this.props;
+		const {data, didFocus} = this.props
 		if (!data.length && didFocus) {
 			return (
 				<View style={styles.emptyMessage}>
@@ -115,12 +115,12 @@ class MessageList extends Component {
 				</View>
 			)
 		}
-		return null;
+		return null
 	}
 
 
 	render() {
-		const {pending, didFocus, getMessageList} = this.props;
+		const {pending, didFocus, getMessageList} = this.props
 		return (
 			<ListView
 				enableEmptySections
@@ -145,72 +145,72 @@ class MessageList extends Component {
 
 
 const styles = StyleSheet.create({
-	"row": {
-		"height": 90,
-		"flexDirection": "row",
-		"borderBottomColor": "rgba(0, 0, 0, 0.02)",
-		"borderBottomWidth": 1,
-		"paddingTop": 25,
-		"paddingRight": 20,
-		"paddingBottom": 25,
-		"paddingLeft": 20,
+	'row': {
+		'height': 90,
+		'flexDirection': 'row',
+		'borderBottomColor': 'rgba(0, 0, 0, 0.02)',
+		'borderBottomWidth': 1,
+		'paddingTop': 25,
+		'paddingRight': 20,
+		'paddingBottom': 25,
+		'paddingLeft': 20,
 		alignItems: 'center'
 	},
-	"img": {
-		"height": 40,
-		"width": 40,
-		"borderRadius": 20,
+	'img': {
+		'height': 40,
+		'width': 40,
+		'borderRadius': 20,
 		marginRight: 20
 	},
-	"topic": {
+	'topic': {
 		flexDirection: 'column',
 		width: width - 20 * 3 - 40
 	},
-	"title": {
-		"fontSize": 15
+	'title': {
+		'fontSize': 15
 	},
-	"topicFooter": {
-		"marginTop": 10,
-		"flexDirection": "row",
+	'topicFooter': {
+		'marginTop': 10,
+		'flexDirection': 'row',
 		width: width - (20 + 90)
 	},
-	"topicFooter text": {
-		"fontSize": 11,
-		"color": "rgba(0, 0, 0, 0.4)"
+	'topicFooter text': {
+		'fontSize': 11,
+		'color': 'rgba(0, 0, 0, 0.4)'
 	},
-	"topicFooter date": {
-		"position": "absolute",
-		"right": 0,
-		"top": 0
+	'topicFooter date': {
+		'position': 'absolute',
+		'right': 0,
+		'top': 0
 	},
-	"topicFooter count": {
-		"marginRight": 15
+	'topicFooter count': {
+		'marginRight': 15
 	},
-	"topicFooter top": {
-		"fontSize": 11,
-		"marginTop": 1,
-		"marginRight": 0,
-		"marginBottom": 0,
-		"marginLeft": 10,
-		"color": "#E74C3C"
+	'topicFooter top': {
+		'fontSize': 11,
+		'marginTop': 1,
+		'marginRight': 0,
+		'marginBottom': 0,
+		'marginLeft': 10,
+		'color': '#E74C3C'
 	},
-	"topicFooter good": {
-		"fontSize": 11,
-		"marginTop": 1,
-		"marginRight": 0,
-		"marginBottom": 0,
-		"marginLeft": 10,
-		"color": "#2ECC71"
+	'topicFooter good': {
+		'fontSize': 11,
+		'marginTop': 1,
+		'marginRight': 0,
+		'marginBottom': 0,
+		'marginLeft': 10,
+		'color': '#2ECC71'
 	},
-	"topicFooter tab": {
-		"fontSize": 11,
-		"marginTop": 1,
-		"marginRight": 0,
-		"marginBottom": 0,
-		"marginLeft": 10
+	'topicFooter tab': {
+		'fontSize': 11,
+		'marginTop': 1,
+		'marginRight': 0,
+		'marginBottom': 0,
+		'marginLeft': 10
 	},
-	"loading": {
-		"marginTop": 250
+	'loading': {
+		'marginTop': 250
 	},
 	rowFooterText: {
 		fontSize: 13,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
 		fontSize: 24
 	}
 
-});
+})
 
 
-export default MessageList;
+export default MessageList

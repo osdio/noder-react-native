@@ -1,38 +1,38 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, PickerIOS, TouchableOpacity, TextInput, ScrollView, Dimensions, DeviceEventEmitter, LayoutAnimation, Picker, Platform} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Nav from '../components/Nav';
-import Modal from '../components/base/Modal';
-import Loading from '../components/base/Loading';
-import config from '../configs/index';
-import animations from '../configs/animations';
+import React, {Component} from 'react'
+import {View, Text, StyleSheet, PickerIOS, TouchableOpacity, TextInput, ScrollView, Dimensions, DeviceEventEmitter, LayoutAnimation, Picker, Platform} from 'react-native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import Nav from '../components/Nav'
+import Modal from '../components/base/Modal'
+import Loading from '../components/base/Loading'
+import config from '../configs/index'
+import animations from '../configs/animations'
 
 
-const {width, height} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window')
 
-const PickerItemIOS = PickerIOS.Item;
+const PickerItemIOS = PickerIOS.Item
 
 
 class Publish extends Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.tabs = {
 			ask: '问答',
 			share: '分享',
 			job: '招聘'
-		};
+		}
 		this.state = {
 			selectTab: 'share',
 			isPickerShow: false,
 			dirty: false
-		};
-		this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this);
-		this.resetKeyboardSpace = this.resetKeyboardSpace.bind(this);
+		}
+		this.updateKeyboardSpace = this.updateKeyboardSpace.bind(this)
+		this.resetKeyboardSpace = this.resetKeyboardSpace.bind(this)
 	}
 
 
 	updateKeyboardSpace(e) {
-		LayoutAnimation.configureNext(animations.keyboard.layout.spring);
+		LayoutAnimation.configureNext(animations.keyboard.layout.spring)
 		this.commentsView && this.commentsView.setNativeProps({
 			style: {
 				height: contentHeight - e.endCoordinates.height
@@ -41,7 +41,7 @@ class Publish extends Component {
 	}
 
 	resetKeyboardSpace() {
-		LayoutAnimation.configureNext(animations.keyboard.layout.spring);
+		LayoutAnimation.configureNext(animations.keyboard.layout.spring)
 		this.commentsView && this.commentsView.setNativeProps({
 			style: {
 				height: contentHeight
@@ -51,13 +51,13 @@ class Publish extends Component {
 
 
 	componentDidMount() {
-		DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace);
-		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace);
+		DeviceEventEmitter.addListener('keyboardWillShow', this.updateKeyboardSpace)
+		DeviceEventEmitter.addListener('keyboardWillHide', this.resetKeyboardSpace)
 	}
 
 
 	_blur() {
-		this.titleInput.blur();
+		this.titleInput.blur()
 		this.contentInput.blur()
 	}
 
@@ -80,24 +80,24 @@ class Publish extends Component {
 
 
 	_submit() {
-		if (this.state.isPublishing || !this._validateForm()) return;
+		if (this.state.isPublishing || !this._validateForm()) {return}
 
 		this.setState({
 			isPublishing: true
-		});
+		})
 
-		const {actions, publishPending, router} = this.props;
+		const {actions, publishPending, router} = this.props
 
 		actions.publish({
 			title: this.titleInputValue,
 			tab: this.state.selectTab,
 			content: this.contentInputValue + '\n' + config.replySuffix,
 			resolved: ()=> {
-				actions.toast('发布成功!');
-				router.pop();
+				actions.toast('发布成功!')
+				router.pop()
 			},
 			rejected: ()=> {
-				actions.toast('发布失败');
+				actions.toast('发布失败')
 			}
 		})
 
@@ -108,7 +108,7 @@ class Publish extends Component {
 		this.setState({
 			isPickerShow: true,
 			dirty: true
-		});
+		})
 		this._blur()
 	}
 
@@ -143,7 +143,7 @@ class Publish extends Component {
 						<Icon
 							name={'ios-keypad'}
 							size={24}
-							color='#1ABC9C'
+							color="#1ABC9C"
 							style={[styles.selectorIcon, styles.labelIcon]}
 						/>
 
@@ -154,12 +154,12 @@ class Publish extends Component {
 						<Icon
 							name={'ios-arrow-right'}
 							size={24}
-							color='rgba(0,0,0,0.35)'
+							color="rgba(0,0,0,0.35)"
 							style={styles.selectorIcon}
 						/>
 					</View>
 				</TouchableOpacity>
-			);
+			)
 		}
 
 		else {
@@ -168,7 +168,7 @@ class Publish extends Component {
 					<Icon
 						name={'ios-keypad'}
 						size={24}
-						color='#1ABC9C'
+						color="#1ABC9C"
 						style={[styles.selectorIcon, styles.labelIcon]}
 					/>
 
@@ -185,13 +185,13 @@ class Publish extends Component {
 
 
 	render() {
-		const {router, publishPending} = this.props;
+		const {router, publishPending} = this.props
 
 		const navs = {
 			Left: {
 				text: '返回',
 				onPress: ()=> {
-					router.pop();
+					router.pop()
 					this._blur()
 				}
 			},
@@ -202,14 +202,14 @@ class Publish extends Component {
 				text: '发布',
 				onPress: ()=> this._submit()
 			}
-		};
+		}
 
 		const modal = (
 			<Modal
 				onPressBackdrop={()=>{
 						this.setState({
 							isPickerShow: false
-						});
+						})
 					}}
 				style={styles.modal}
 			>
@@ -222,7 +222,7 @@ class Publish extends Component {
 					</Picker>
 				</View>
 			</Modal>
-		);
+		)
 
 
 		return (
@@ -232,7 +232,7 @@ class Publish extends Component {
 				/>
 
 				<ScrollView
-					ref={view=>this.contentView=view}
+					ref={view=>this.contentView = view}
 					style={styles.content}>
 
 					{this._renderPicker()}
@@ -241,13 +241,13 @@ class Publish extends Component {
 						<Icon
 							name={'ios-bolt'}
 							size={24}
-							color='#1ABC9C'
+							color="#1ABC9C"
 							style={[styles.selectorIcon, styles.labelIcon]}
 						/>
 
 						<TextInput
-							ref={view=>this.titleInput=view}
-							placeholder='请输入标题'
+							ref={view=>this.titleInput = view}
+							placeholder="请输入标题"
 							style={styles.titleInput}
 							onChangeText={(text) => {
                                 this.titleInputValue = text
@@ -257,7 +257,7 @@ class Publish extends Component {
 
 
 					<TextInput
-						ref={view=>this.contentInput=view}
+						ref={view=>this.contentInput = view}
 						style={styles.topicContent}
 						multiline={true}
 						onChangeText={(text) => {
@@ -276,8 +276,8 @@ class Publish extends Component {
 }
 
 
-const textColor = 'rgba(0,0,0,0.7)';
-const contentHeight = height - 51 * 2 - Nav.navHeight;
+const textColor = 'rgba(0,0,0,0.7)'
+const contentHeight = height - 51 * 2 - Nav.navHeight
 
 const styles = StyleSheet.create({
 	container: {
@@ -335,14 +335,14 @@ const styles = StyleSheet.create({
 	pickerAndroid: {
 		flex: 1
 	}
-});
+})
 
 
-export const LayoutComponent = Publish;
+export const LayoutComponent = Publish
 export function mapStateToProps(state) {
 	return {
 		...state.topicUI
-	};
+	}
 }
 
 

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react'
+import {View, StyleSheet, TouchableOpacity} from 'react-native'
 
-const overlayButtonSize = 45;
+const overlayButtonSize = 45
 
 
 class OverlayButton extends Component {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		left: 20,
 		bottom: 20
 	}
-});
+})
 
 
-export default OverlayButton;
+export default OverlayButton

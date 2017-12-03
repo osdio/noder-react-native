@@ -1,4 +1,4 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/ActionTypes'
 
 
 const initialState = {
@@ -7,11 +7,11 @@ const initialState = {
 		timeout: 2000,
 		id: null
 	}
-};
+}
 
 
 export default function (state = initialState, action) {
-	const { payload ={} } = action;
+	const { payload = {} } = action
 	switch (action.type) {
 		case types.TOAST:
 			return {
@@ -20,8 +20,8 @@ export default function (state = initialState, action) {
 					...state.toast,
 					...payload
 				}
-			};
+			}
 		default :
-			return state;
+			return state
 	}
 }

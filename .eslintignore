@@ -1,2 +1,7 @@
-/node_modules/
+# node_modules ignored by default
+
+**/staticBundle.js
+**/main.js
+Libraries/vendor/**/*
+
 /web/output/

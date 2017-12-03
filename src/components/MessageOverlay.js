@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import OverlayButton from './base/OverlayButton';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, {Component, PropTypes} from 'react'
+import {View, Text, StyleSheet, Dimensions} from 'react-native'
+import OverlayButton from './base/OverlayButton'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 
 class MessageOverlay extends Component {
@@ -18,7 +18,7 @@ class MessageOverlay extends Component {
 
 
 	_renderMessageCount() {
-		const count = this.props.count;
+		const count = this.props.count
 
 		if (count > 0) {
 			return (
@@ -42,9 +42,9 @@ class MessageOverlay extends Component {
 					onPress={ () => this.props.toMessage() }>
 					<View style={styles.iconWrapper}>
 						<Icon
-							name='ios-email-outline'
+							name="ios-email-outline"
 							size={28}
-							color='rgba(255,255,255,0.9)'
+							color="rgba(255,255,255,0.9)"
 							style={styles.icon}/>
 					</View>
 
@@ -57,9 +57,9 @@ class MessageOverlay extends Component {
 }
 
 
-const overlaySize = 45;
-const countBoxSize = 20;
-const countTextSize = 10;
+const overlaySize = 45
+const countBoxSize = 20
+const countTextSize = 10
 
 
 const styles = StyleSheet.create({
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 		backgroundColor: 'blue',
 		borderRadius: overlaySize / 2
 	}
-});
+})
 
 
-export default MessageOverlay;
+export default MessageOverlay

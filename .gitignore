@@ -58,3 +58,4 @@ fastlane/screenshots
 
 # other
 e2e/output/
+*.sublime-*

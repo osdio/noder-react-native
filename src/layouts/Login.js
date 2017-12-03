@@ -4,7 +4,6 @@ import {
 	View,
 	Text,
 	TouchableHighlight,
-	ActivityIndicatorIOS,
 	StyleSheet,
 	Dimensions,
 	Image,

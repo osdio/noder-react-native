@@ -5,7 +5,7 @@ import asyncActionCallbackMiddleware from './asyncActionCallbackMiddleware'
 import utilsMiddleware from './utilsMiddleware'
 import minPendingTimeMiddleware from './minPendingTime'
 import syncReducerToAsyncStorage from './syncReducerToAsyncStorage'
-import createLogger from 'redux-logger'
+import {createLogger} from 'redux-logger'
 import reducers from '../reducers'
 
 

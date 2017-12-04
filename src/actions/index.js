@@ -3,12 +3,9 @@ import * as utils from './utils'
 import * as message from './message'
 import * as topic from './topic'
 
-
 export default {
-	...user,
-	...utils,
-	...message,
-	...topic
+  ...user,
+  ...utils,
+  ...message,
+  ...topic
 }
-
-

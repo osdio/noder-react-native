@@ -25,7 +25,8 @@
     "push-android-prod": "code-push release-react Noder android --deploymentName Production",
     "push-ios-prod": "code-push release-react Noder ios --deploymentName Production",
     "push-key": "code-push deployment ls Noder -k",
-    "i-taobao": "npm i --registry=https://registry.npm.taobao.org"
+    "i-taobao": "npm i --registry=https://registry.npm.taobao.org",
+    "standard": "eslint --fix  '**/*.js'"
   },
   "dependencies": {
     "fetch-detector": "^1.0.0",
@@ -68,7 +69,12 @@
     "coffee-script": "^1.9.2",
     "dev-ip": "^1.0.1",
     "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-standard": "^3.0.1",
     "file-loader": "^0.9.0",
     "gulp": "^3.9.1",
     "gulp-replace": "^0.5.4",
@@ -82,6 +88,8 @@
     "react-test-renderer": "16.0.0-alpha.6",
     "redux-devtools": "^3.3.1",
     "run-sequence": "^1.2.2",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.1",
     "url-loader": "^0.5.7",
     "webdriver-manager": "^12.0.6",
     "webpack": "^1.13.2",
@@ -95,5 +103,16 @@
     "node": ">= 6.11.1",
     "npm": ">= 3.x"
   },
-  "bundleId": "org.reactjs.native.example.noder"
+  "bundleId": "org.reactjs.native.example.noder",
+  "standard": {
+    "ignore": [],
+    "globals": [
+      "__DEV__"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype",
+      "react"
+    ]
+  }
 }

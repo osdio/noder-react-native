@@ -1,5 +1,6 @@
 {
   "extends": ["standard", "standard-react"],
+  "parser": "babel-eslint",
   "globals": {
     "__DEV__": true,
     "__dirname": false,

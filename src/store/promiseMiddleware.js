@@ -1,61 +1,61 @@
-import { isFSA } from 'flux-standard-action';
-import _ from 'lodash';
+import { isFSA } from 'flux-standard-action'
+import _ from 'lodash'
 
-function isPromise(val) {
-	return val && typeof val.then === 'function';
+function isPromise (val) {
+  return val && typeof val.then === 'function'
 }
 
-export default function promiseMiddleware({ dispatch }) {
-	return next => action => {
-		if (!isFSA(action)) {
-			return isPromise(action)
+export default function promiseMiddleware ({ dispatch }) {
+  return next => action => {
+    if (!isFSA(action)) {
+      return isPromise(action)
 				? action.then(dispatch)
-				: next(action);
-		}
-		const { meta = {}, payload } = action;
+				: next(action)
+    }
+    const { meta = {}, payload } = action
 
-		const id = _.uniqueId();
+    const id = _.uniqueId()
 
-		if (isPromise(payload)) {
-			dispatch({
-				...action,
-				payload: undefined,
-				meta: {
-					...meta,
-					sequence: {
-						type: 'start',
-						id
-					}
-				}
-			});
+    if (isPromise(payload)) {
+      dispatch({
+        ...action,
+        payload: undefined,
+        meta: {
+          ...meta,
+          sequence: {
+            type: 'start',
+            id
+          }
+        }
+      })
 
-			return payload.then(
+      return payload.then(
 				result => dispatch({
-					...action,
-					payload: result,
-					meta: {
-						...meta,
-						sequence: {
-							type: 'next',
-							id
-						}
-					}
-				}),
+  ...action,
+  payload: result,
+  meta: {
+    ...meta,
+    sequence: {
+      type: 'next',
+      id
+    }
+  }
+}),
 				error => dispatch({
-					...action,
-					payload: error,
-					error: true,
-					meta: {
-						...meta,
-						sequence: {
-							type: 'next',
-							id
-						}
-					}
-				})
-			);
-		}
+  ...action,
+  payload: error,
+  error: true,
+  meta: {
+    ...meta,
+    sequence: {
+      type: 'next',
+      id
+    }
+  }
+})
+			)
+    }
 
-		return next(action);
-	};
+    return next(action)
+  }
 }

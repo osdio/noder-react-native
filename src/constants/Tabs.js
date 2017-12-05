@@ -1,1 +1,1 @@
-export const tabs = ['good', 'ask', 'all', 'share', 'job'];
+export const tabs = ['good', 'ask', 'all', 'share', 'job']

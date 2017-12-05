@@ -17,7 +17,7 @@ For local development you need to follow the below commands:
 ```
 git clone https://github.com/flyskywhy/noder-react-native.git noder
 cd noder
-npm install
+yarn install
 ```
 
 

@@ -7,14 +7,14 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"react": "16.0.0-alpha.6",
-		"react-native": "0.43.4"
+		"react": "16.0.0",
+		"react-native": "0.50.4"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",
 		"babel-preset-react-native": "4.0.0",
 		"jest": "21.2.1",
-		"react-test-renderer": "16.0.0-alpha.6"
+		"react-test-renderer": "16.0.0"
 	},
 	"jest": {
 		"preset": "react-native"

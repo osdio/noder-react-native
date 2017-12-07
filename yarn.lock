@@ -1679,9 +1679,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-code-push@1.11.2-beta:
-  version "1.11.2-beta"
-  resolved "http://registry.npm.taobao.org/code-push/download/code-push-1.11.2-beta.tgz#642f5199edb0fd6d6d300e439883b03b8b252737"
+code-push@2.0.4:
+  version "2.0.4"
+  resolved "http://registry.npm.taobao.org/code-push/download/code-push-2.0.4.tgz#c0da90a8ca38f97478bf37136c78d066563f4905"
   dependencies:
     q "^1.4.1"
     recursive-fs "0.1.4"
@@ -1978,7 +1978,15 @@ crc@^3.4.4:
   version "3.5.0"
   resolved "http://registry.npm.taobao.org/crc/download/crc-3.5.0.tgz#98b8ba7d489665ba3979f59b21381374101a1964"
 
-create-react-class@^15.5.1, create-react-class@^15.5.2:
+create-react-class@15.6.0:
+  version "15.6.0"
+  resolved "http://registry.npm.taobao.org/create-react-class/download/create-react-class-15.6.0.tgz#ab448497c26566e1e29413e883207d57cfe7bed4"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
+create-react-class@^15.5.1, create-react-class@^15.5.2, create-react-class@^15.6.2:
   version "15.6.2"
   resolved "http://registry.npm.taobao.org/create-react-class/download/create-react-class-15.6.2.tgz#cf1ed15f12aad7f14ef5f2dfe05e6c42f91ef02a"
   dependencies:
@@ -2947,7 +2955,7 @@ fbjs@0.8.3:
     promise "^7.1.1"
     ua-parser-js "^0.7.9"
 
-fbjs@^0.8.14, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.14, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.9, fbjs@~0.8.9:
   version "0.8.16"
   resolved "http://registry.npm.taobao.org/fbjs/download/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -3715,6 +3723,10 @@ hoist-non-react-statics@^1.0.3:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
+hoist-non-react-statics@^2.3.1:
+  version "2.3.1"
+  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/home-or-tmp/download/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -3860,7 +3872,7 @@ image-size@^0.6.0:
   version "0.6.2"
   resolved "http://registry.npm.taobao.org/image-size/download/image-size-0.6.2.tgz#8ee316d4298b028b965091b673d5f1537adee5b4"
 
-immutable@3.7.6:
+immutable@3.7.6, immutable@~3.7.6:
   version "3.7.6"
   resolved "http://registry.npm.taobao.org/immutable/download/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
 
@@ -6224,21 +6236,27 @@ react-mixin@3.1.0:
     object-assign "^4.0.1"
     smart-mixin "^2.0.0"
 
-react-native-barcodescanner@^3.1.1:
+"react-native-barcodescanner@git+https://github.com/const-z/react-native-barcodescanner":
   version "3.1.1"
-  resolved "http://registry.npm.taobao.org/react-native-barcodescanner/download/react-native-barcodescanner-3.1.1.tgz#99cdc4e89caac8ac6d5fd844fb6b72b9c4485928"
+  resolved "git+https://github.com/const-z/react-native-barcodescanner#5db3a2c4140a3b6db6e1b74c0bfaae65eb214b5a"
 
-react-native-blur@^2.0.0:
-  version "2.0.0"
-  resolved "http://registry.npm.taobao.org/react-native-blur/download/react-native-blur-2.0.0.tgz#284b3abfb42c2d90924aa15f494ccb88d6055342"
+react-native-blur@3.2.2:
+  version "3.2.2"
+  resolved "http://registry.npm.taobao.org/react-native-blur/download/react-native-blur-3.2.2.tgz#5bfb50638d148982c9560436554ed01d77d6d07d"
+  dependencies:
+    prop-types "^15.5.10"
 
-react-native-button@^1.6.0:
-  version "1.8.2"
-  resolved "http://registry.npm.taobao.org/react-native-button/download/react-native-button-1.8.2.tgz#49e5cadd22ee443adea52a85539d288aa2117ade"
+react-native-button@2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/react-native-button/download/react-native-button-2.1.0.tgz#a39e23292922afeea4f7be141dd43e18f1b51876"
+  dependencies:
+    prop-types "^15.5.10"
 
-react-native-camera@^0.6.0:
-  version "0.6.0"
-  resolved "http://registry.npm.taobao.org/react-native-camera/download/react-native-camera-0.6.0.tgz#dd2760b7857d660761c78f2da575b494fdc8dcb5"
+react-native-camera@0.12.0:
+  version "0.12.0"
+  resolved "http://registry.npm.taobao.org/react-native-camera/download/react-native-camera-0.12.0.tgz#51afa8acf1696d9d973074b6454c5ba2cce6ac18"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-cli@^2.0.1:
   version "2.0.1"
@@ -6249,25 +6267,38 @@ react-native-cli@^2.0.1:
     prompt "^0.2.14"
     semver "^5.0.3"
 
-react-native-code-push@^2.1.1-beta:
-  version "2.1.1-beta"
-  resolved "http://registry.npm.taobao.org/react-native-code-push/download/react-native-code-push-2.1.1-beta.tgz#3058741e0ac4b766bb831f11c59c8fb9903ffcd4"
+react-native-code-push@^5.2.0-beta:
+  version "5.2.1"
+  resolved "http://registry.npm.taobao.org/react-native-code-push/download/react-native-code-push-5.2.1.tgz#b96cabf4be74e0caac8d55d1126aa48dba695490"
   dependencies:
-    code-push "1.11.2-beta"
+    code-push "2.0.4"
     glob "^5.0.15"
+    hoist-non-react-statics "^2.3.1"
     inquirer "1.1.2"
     plist "1.2.0"
     xcode "0.9.2"
 
-react-native-html-render@^1.0.5:
-  version "1.0.5"
-  resolved "http://registry.npm.taobao.org/react-native-html-render/download/react-native-html-render-1.0.5.tgz#929e7e49ce56a34d2c5073702beedaaa12c2e92f"
-
-react-native-scrollable-tab-view@^0.7.4:
-  version "0.7.4"
-  resolved "http://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-0.7.4.tgz#623a047cbfab35a27b8689095af524e9aac74b62"
+"react-native-deprecated-custom-components@git+https://github.com/facebookarchive/react-native-custom-components":
+  version "0.1.1"
+  resolved "git+https://github.com/facebookarchive/react-native-custom-components#83c4fa19ccc9b6cd48ff80e457c493332819b486"
   dependencies:
-    react-static-container "^1.0.1"
+    create-react-class "15.6.0"
+    fbjs "~0.8.9"
+    immutable "~3.7.6"
+    prop-types "^15.5.10"
+    react-timer-mixin "^0.13.2"
+    rebound "^0.0.13"
+
+"react-native-html-render@git+https://github.com/soliury/react-native-html-render":
+  version "1.0.5"
+  resolved "git+https://github.com/soliury/react-native-html-render#4f591ef66f63a01c6c1e97d8bb579ce05eeae5be"
+
+react-native-scrollable-tab-view@0.8.0:
+  version "0.8.0"
+  resolved "http://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-0.8.0.tgz#5cb1fcfce07bf530a3c81ab51fc5071144edac5c"
+  dependencies:
+    create-react-class "^15.6.2"
+    prop-types "^15.6.0"
     react-timer-mixin "^0.13.3"
 
 react-native-vector-icons@^4.0.1:
@@ -6352,10 +6383,6 @@ react-redux@4.4.8:
     lodash "^4.2.0"
     loose-envify "^1.1.0"
     prop-types "^15.5.4"
-
-react-static-container@^1.0.1:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/react-static-container/download/react-static-container-1.0.2.tgz#30a4f7548860be1d55d5eb4c20645b835c2bdf34"
 
 react-test-renderer@16.0.0:
   version "16.0.0"
@@ -6505,7 +6532,7 @@ readline2@^1.0.1:
     is-fullwidth-code-point "^1.0.0"
     mute-stream "0.0.5"
 
-rebound@0.0.13:
+rebound@0.0.13, rebound@^0.0.13:
   version "0.0.13"
   resolved "http://registry.npm.taobao.org/rebound/download/rebound-0.0.13.tgz#4a225254caf7da756797b19c5817bf7a7941fac1"
 

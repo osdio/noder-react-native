@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {Dimensions, View, StyleSheet, Animated, Easing, Platform, TouchableWithoutFeedback} from 'react-native'
+import PropTypes from 'prop-types'
 
 if (Platform.OS !== 'web') {
   var BlurView = require('react-native-blur').BlurView

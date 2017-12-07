@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {StyleSheet, Dimensions, Animated} from 'react-native'
+import PropTypes from 'prop-types'
 import Spinner from './Spinner'
 
 const { height, width } = Dimensions.get('window')

@@ -1,6 +1,5 @@
 import React, {
-	Component,
-	PropTypes
+	Component
 } from 'react'
 import {
 	Image,
@@ -9,6 +8,7 @@ import {
 	Text,
 	TouchableOpacity
 } from 'react-native'
+import PropTypes from 'prop-types'
 import Icon from 'react-native-vector-icons/Ionicons'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 

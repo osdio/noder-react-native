@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {StyleSheet, Text, Dimensions, Animated} from 'react-native'
+import PropTypes from 'prop-types'
 
 const {height, width} = Dimensions.get('window')
 const toastWidth = width * 0.7

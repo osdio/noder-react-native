@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {StyleSheet, Text, TouchableOpacity, View, Dimensions, Animated} from 'react-native'
+import PropTypes from 'prop-types'
 
 const { width } = Dimensions.get('window')
 const underLineColor = '#3498DB'

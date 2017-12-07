@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {View, StyleSheet, Text, Image, ListView, TouchableHighlight, Dimensions, RefreshControl} from 'react-native'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import {parseImgUrl} from '../utils'
 import * as Constants from '../constants'

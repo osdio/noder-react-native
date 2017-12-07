@@ -3,7 +3,7 @@ import codePush from 'react-native-code-push'
 
 export function shouldSync () {
   return NetInfo
-		.fetch()
+		.getConnectionInfo()
 		.then(reach => {
   if (__DEV__) { return false }
   if (Platform.OS === 'ios') {

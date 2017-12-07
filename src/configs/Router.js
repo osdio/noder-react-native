@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactNative from 'react-native'
-import {Navigator, Platform, BackAndroid} from 'react-native'
+import {Platform, BackHandler} from 'react-native'
+import {Navigator} from 'react-native-deprecated-custom-components'
 import _ from 'lodash'
 import * as About from '../layouts/About'
 import * as QRCode from '../layouts/QRCode'
@@ -24,7 +25,7 @@ class Router {
   constructor (navigator) {
     this.navigator = navigator
     if (Platform.OS === 'android') {
-      BackAndroid.addEventListener('hardwareBackPress', () => {
+      BackHandler.addEventListener('hardwareBackPress', () => {
         const routesList = this.navigator.getCurrentRoutes()
         const currentRoute = routesList[routesList.length - 1]
         if (currentRoute.name !== 'home') {

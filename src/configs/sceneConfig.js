@@ -1,5 +1,6 @@
 import React from 'react'
-import {Dimensions, Navigator} from 'react-native'
+import {Dimensions} from 'react-native'
+import {Navigator} from 'react-native-deprecated-custom-components'
 
 const { width } = Dimensions.get('window')
 

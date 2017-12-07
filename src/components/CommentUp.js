@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {View, TouchableOpacity, StyleSheet, Text} from 'react-native'
+import PropTypes from 'prop-types'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Spinner from './base/Spinner'

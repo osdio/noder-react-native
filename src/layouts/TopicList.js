@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {View, StyleSheet, Text, ListView, Dimensions, RefreshControl} from 'react-native'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import TopicRow from './../components/TopicRow'

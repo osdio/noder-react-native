@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {View, Text, StyleSheet, Dimensions, Alert, Easing, Platform} from 'react-native'
 import UserOverlay from '../components/UserOverlay'
 import MessageOverlay from '../components/MessageOverlay'

@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {View, StyleSheet, Text, Image, TouchableHighlight, Dimensions} from 'react-native'
+import PropTypes from 'prop-types'
 import { parseImgUrl } from '../utils'
 
 const { width } = Dimensions.get('window')

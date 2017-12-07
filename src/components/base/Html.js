@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {StyleSheet, Image, Dimensions} from 'react-native'
+import PropTypes from 'prop-types'
 import _ from 'lodash'
 import HtmlRender from 'react-native-html-render'
 import PureRenderMixin from 'react-addons-pure-render-mixin'

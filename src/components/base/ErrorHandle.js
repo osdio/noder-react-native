@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native'
+import PropTypes from 'prop-types'
 
 class ErrorHandle extends Component {
   static propTypes = {

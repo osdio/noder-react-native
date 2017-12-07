@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
-import {Navigator, StyleSheet, View, Text, Image, Dimensions} from 'react-native'
+import React, {Component} from 'react'
+import {StyleSheet, View, Text, ImageBackground, Dimensions} from 'react-native'
+import {Navigator} from 'react-native-deprecated-custom-components'
 import * as Home from './Home'
 import * as UtilsComponent from './Utils'
 import Router from '../configs/Router'
@@ -56,7 +57,7 @@ class Navigation extends Component {
 
   render () {
     return (
-      <Image
+      <ImageBackground
         source={{ uri: config.bgImgUri }}
         style={styles.bg}>
         <Navigator
@@ -65,7 +66,7 @@ class Navigation extends Component {
           configureScene={this.configureScene.bind(this)}
           renderScene={this.renderScene.bind(this)} />
         <Utils />
-      </Image>
+      </ImageBackground>
     )
   }
 }

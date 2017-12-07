@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {Dimensions, View, Text, ListView, StyleSheet, Image, TouchableOpacity, RefreshControl} from 'react-native'
+import PropTypes from 'prop-types'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import Icon from 'react-native-vector-icons/Ionicons'
 import moment from 'moment'

@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {
   View,
   Dimensions,
@@ -10,6 +10,7 @@ import {
   Animated,
   ViewPagerAndroid
 } from 'react-native'
+import PropTypes from 'prop-types'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 const {height, width} = Dimensions.get('window')

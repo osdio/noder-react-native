@@ -103,7 +103,7 @@ class User extends Component {
         }}>
         <View style={styles.iconWrapper}>
           <Icon
-            name='ios-compose'
+            name='ios-paper-outline'
             size={34}
             color='rgba(255,255,255,0.7)' />
         </View>
@@ -115,7 +115,7 @@ class User extends Component {
         onPress={() => this.setting.show()}>
         <View style={styles.iconWrapper}>
           <Icon
-            name='ios-gear'
+            name='ios-cog'
             size={34}
             color='rgba(255,255,255,0.7)' />
         </View>

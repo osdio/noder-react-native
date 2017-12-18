@@ -16,9 +16,6 @@ exports.config = {
         WebDriverIO: {
             url: 'http://localhost:3000',
             browser: 'chrome'
-        },
-        ReactWeb: {
-            require: CODECEPT_WORK_PATH + '/helpers/reactweb_helper.js'
         }
     },
     multiple: {

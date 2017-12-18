@@ -1677,27 +1677,19 @@ code-push@1.11.2-beta:
     superagent-proxy "^1.0.0"
     yazl "^2.4.1"
 
-codeceptjs-webdriverio@^1.1.0:
+codeceptjs@1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.taobao.org/codeceptjs-webdriverio/download/codeceptjs-webdriverio-1.1.0.tgz#dea40681bff852638b6e8595d70a00b8a916ff88"
-  dependencies:
-    codeceptjs "*"
-    webdriverio "*"
-
-codeceptjs@*:
-  version "1.0.3"
-  resolved "http://registry.npm.taobao.org/codeceptjs/download/codeceptjs-1.0.3.tgz#9236b4bcbc74e034bb9890a25da7bc6d3430d1c1"
+  resolved "http://registry.npm.taobao.org/codeceptjs/download/codeceptjs-1.1.0.tgz#da8bcc52bd81052d9d236bc9911bc50b191cf60a"
   dependencies:
     chalk "^1.1.3"
-    co "^4.6.0"
-    commander "^2.9.0"
+    commander "^2.12.2"
     escape-string-regexp "^1.0.3"
     get-function-arguments "^1.0.0"
     glob "^6.0.1"
     inquirer "^0.11.0"
-    js-function-reflector "^1.3.0"
+    js-function-reflector "^1.3.1"
     mkdirp "^0.5.1"
-    mocha "^3.1.2"
+    mocha "^4.0.1"
     requireg "^0.1.5"
 
 coffee-script@^1.9.2:
@@ -1732,13 +1724,7 @@ commander@2.6.x:
   version "2.6.0"
   resolved "http://registry.npm.taobao.org/commander/download/commander-2.6.0.tgz#9df7e52fb2a0cb0fb89058ee80c3104225f37e1d"
 
-commander@2.9.0:
-  version "2.9.0"
-  resolved "http://registry.npm.taobao.org/commander/download/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
-  dependencies:
-    graceful-readlink ">= 1.0.0"
-
-commander@^2.9.0:
+commander@^2.12.2, commander@^2.9.0:
   version "2.12.2"
   resolved "http://registry.npm.taobao.org/commander/download/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
@@ -2099,12 +2085,6 @@ debug@2, debug@2.6.9, debug@^2.1.1, debug@^2.2.0, debug@^2.6.6, debug@^2.6.8:
   dependencies:
     ms "2.0.0"
 
-debug@2.6.8:
-  version "2.6.8"
-  resolved "http://registry.npm.taobao.org/debug/download/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
-  dependencies:
-    ms "2.0.0"
-
 debug@3.1.0, debug@^3.1.0:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/debug/download/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
@@ -2242,10 +2222,6 @@ detect-libc@^1.0.2:
 dev-ip@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/dev-ip/download/dev-ip-1.0.1.tgz#a76a3ed1855be7a012bb8ac16cb80f3c00dc28f0"
-
-diff@3.2.0:
-  version "3.2.0"
-  resolved "http://registry.npm.taobao.org/diff/download/diff-3.2.0.tgz#c9ce393a4b7cbd0b058a725c93df299027868ff9"
 
 diff@3.3.1:
   version "3.3.1"
@@ -3298,17 +3274,6 @@ glob2base@^0.0.12:
   dependencies:
     find-index "^0.1.1"
 
-glob@7.1.1:
-  version "7.1.1"
-  resolved "http://registry.npm.taobao.org/glob/download/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
-  dependencies:
-    fs.realpath "^1.0.0"
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "^3.0.2"
-    once "^1.3.0"
-    path-is-absolute "^1.0.0"
-
 glob@7.1.2, glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1:
   version "7.1.2"
   resolved "http://registry.npm.taobao.org/glob/download/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
@@ -3442,17 +3407,9 @@ graceful-fs@~1.2.0:
   version "1.2.3"
   resolved "http://registry.npm.taobao.org/graceful-fs/download/graceful-fs-1.2.3.tgz#15a4806a57547cb2d2dbf27f42e89a8c3451b364"
 
-"graceful-readlink@>= 1.0.0":
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/graceful-readlink/download/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
-
 growl@1.10.3:
   version "1.10.3"
   resolved "http://registry.npm.taobao.org/growl/download/growl-1.10.3.tgz#1926ba90cf3edfe2adb4927f5880bc22c66c790f"
-
-growl@1.9.2:
-  version "1.9.2"
-  resolved "http://registry.npm.taobao.org/growl/download/growl-1.9.2.tgz#0ea7743715db8d8de2c5ede1775e1b45ac85c02f"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -4478,7 +4435,7 @@ joi@^6.6.1:
     moment "2.x.x"
     topo "1.x.x"
 
-js-function-reflector@^1.3.0:
+js-function-reflector@^1.3.1:
   version "1.3.1"
   resolved "http://registry.npm.taobao.org/js-function-reflector/download/js-function-reflector-1.3.1.tgz#411968480c16274f4d3dbc17473c4938c7105fb6"
 
@@ -4551,7 +4508,7 @@ json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "http://registry.npm.taobao.org/json-stringify-safe/download/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
-json3@3.3.2, json3@^3.3.2:
+json3@^3.3.2:
   version "3.3.2"
   resolved "http://registry.npm.taobao.org/json3/download/json3-3.3.2.tgz#3c0434743df93e2f5c42aee7b19bcb483575f4e1"
 
@@ -4700,20 +4657,9 @@ lodash-es@^4.17.4, lodash-es@^4.2.1:
   version "4.17.4"
   resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
-lodash._baseassign@^3.0.0:
-  version "3.2.0"
-  resolved "http://registry.npm.taobao.org/lodash._baseassign/download/lodash._baseassign-3.2.0.tgz#8c38a099500f215ad09e59f1722fd0c52bfe0a4e"
-  dependencies:
-    lodash._basecopy "^3.0.0"
-    lodash.keys "^3.0.0"
-
 lodash._basecopy@^3.0.0:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz#8da0e6a876cf344c0ad8a54882111dd3c5c7ca36"
-
-lodash._basecreate@^3.0.0:
-  version "3.0.3"
-  resolved "http://registry.npm.taobao.org/lodash._basecreate/download/lodash._basecreate-3.0.3.tgz#1bc661614daa7fc311b7d03bf16806a0213cf821"
 
 lodash._basefor@^3.0.0:
   version "3.0.3"
@@ -4754,14 +4700,6 @@ lodash._root@^3.0.0:
 lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "http://registry.npm.taobao.org/lodash.cond/download/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
-
-lodash.create@3.1.1:
-  version "3.1.1"
-  resolved "http://registry.npm.taobao.org/lodash.create/download/lodash.create-3.1.1.tgz#d7f2849f0dbda7e04682bb8cd72ab022461debe7"
-  dependencies:
-    lodash._baseassign "^3.0.0"
-    lodash._basecreate "^3.0.0"
-    lodash._isiterateecall "^3.0.0"
 
 lodash.escape@^3.0.0:
   version "3.2.0"
@@ -5072,23 +5010,6 @@ mkdirp@0.5.1, mkdirp@0.x.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   resolved "http://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-mocha@^3.1.2:
-  version "3.5.3"
-  resolved "http://registry.npm.taobao.org/mocha/download/mocha-3.5.3.tgz#1e0480fe36d2da5858d1eb6acc38418b26eaa20d"
-  dependencies:
-    browser-stdout "1.3.0"
-    commander "2.9.0"
-    debug "2.6.8"
-    diff "3.2.0"
-    escape-string-regexp "1.0.5"
-    glob "7.1.1"
-    growl "1.9.2"
-    he "1.1.1"
-    json3 "3.3.2"
-    lodash.create "3.1.1"
-    mkdirp "0.5.1"
-    supports-color "3.1.2"
 
 mocha@^4.0.1:
   version "4.0.1"
@@ -6198,9 +6119,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-"react-web@git+https://github.com/flyskywhy/react-web.git":
+"react-web@https://github.com/flyskywhy/react-web.git#73e1bbc":
   version "0.4.6"
-  resolved "git+https://github.com/flyskywhy/react-web.git#c8a90fddc21fa7787a4596f83f418194e049baee"
+  resolved "https://github.com/flyskywhy/react-web.git#73e1bbc4894b3cb1029efa8cbd8cd9fb3736d5af"
   dependencies:
     animated "0.1.3"
     autobind-decorator "1.3.3"
@@ -7287,12 +7208,6 @@ superagent@^1.7.2:
     readable-stream "1.0.27-1"
     reduce-component "1.0.1"
 
-supports-color@3.1.2:
-  version "3.1.2"
-  resolved "http://registry.npm.taobao.org/supports-color/download/supports-color-3.1.2.tgz#72a262894d9d408b956ca05ff37b2ed8a6e2a2d5"
-  dependencies:
-    has-flag "^1.0.0"
-
 supports-color@4.4.0:
   version "4.4.0"
   resolved "http://registry.npm.taobao.org/supports-color/download/supports-color-4.4.0.tgz#883f7ddabc165142b2a61427f3352ded195d1a3e"
@@ -7866,7 +7781,7 @@ webdriver-manager@^12.0.6:
     semver "^5.3.0"
     xml2js "^0.4.17"
 
-webdriverio@*:
+webdriverio@4.9.11:
   version "4.9.11"
   resolved "http://registry.npm.taobao.org/webdriverio/download/webdriverio-4.9.11.tgz#a828713c5a44be99afbe07eb5b523d5eccd04b44"
   dependencies:

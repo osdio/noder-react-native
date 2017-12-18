@@ -18,8 +18,7 @@
     "e2e-android": "codeceptjs run --profile=android",
     "e2e-ios": "codeceptjs run --profile=ios",
     "checkversion": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
-    "patch-codeceptjs-webdriverio": "wget https://raw.githubusercontent.com/flyskywhy/CodeceptJS/master/lib/helper/WebDriverIO.js -O node_modules/codeceptjs/lib/helper/WebDriverIO.js",
-    "postinstall": "npm run checkversion; npm run patch-codeceptjs-webdriverio",
+    "postinstall": "npm run checkversion",
     "push-android": "code-push release-react Noder android --deploymentName Staging",
     "push-ios": "code-push release-react Noder ios --deploymentName Staging",
     "push-android-prod": "code-push release-react Noder android --deploymentName Production",
@@ -65,7 +64,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-native": "4.0.0",
     "babel-preset-stage-1": "^6.5.0",
-    "codeceptjs-webdriverio": "^1.1.0",
+    "codeceptjs": "1.1.0",
     "coffee-script": "^1.9.2",
     "dev-ip": "^1.0.1",
     "eslint": "^3.19.0",
@@ -92,6 +91,7 @@
     "standard": "^10.0.1",
     "url-loader": "^0.5.7",
     "webdriver-manager": "^12.0.6",
+    "webdriverio": "4.9.11",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1",
     "webpack-html-plugin": "^0.1.1"
@@ -100,8 +100,8 @@
     "preset": "react-native"
   },
   "devEngines": {
-    "node": ">= 6.11.1",
-    "npm": ">= 3.x"
+    "node": ">= 8.9.1",
+    "npm": ">= 5.x"
   },
   "bundleId": "org.reactjs.native.example.noder",
   "standard": {

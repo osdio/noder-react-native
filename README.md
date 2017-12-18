@@ -38,7 +38,7 @@ npm run web
 
 
 ## e2e test
-JS app code in `src/`write once run on Android, iOS and Web by react-native and react-web, now JS test case in `e2e/` with locator ~ write once run on them too, with [CodeceptJS](https://github.com/Codeception/CodeceptJS) and `npm run patch-codeceptjs-webdriverio`.
+JS app code in `src/`write once run on Android, iOS and Web by react-native and react-web, now JS test case in `e2e/` with locator ~ write once run on them too with [CodeceptJS](https://github.com/Codeception/CodeceptJS) .
 ### Web test
 After install server side of test by `npm run e2e-update-server-web`, please run:
 ```

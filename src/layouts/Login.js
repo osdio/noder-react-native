@@ -25,17 +25,17 @@ class Login extends Component {
     const {ui, router, actions} = this.props
     if (ui.checkTokenPending) { return }
     if (Platform.OS !== 'web') {
-      Camera.checkDeviceAuthorizationStatus()
-				.then((isAuth) => {
-  if (isAuth) {
-    router.toQRCode()
-  } else {
-    actions.toast('请在设置中开启Noder对相机的访问')
-  }
-})
-				.catch((err) => {
-  actions.toast('获取相机访问权错误')
-})
+      Platform.OS === 'android' ? router.toQRCode() : Camera.checkDeviceAuthorizationStatus()
+        .then((isAuth) => {
+          if (isAuth) {
+            router.toQRCode()
+          } else {
+            actions.toast('请在设置中开启Noder对相机的访问')
+          }
+        })
+        .catch(() => {
+          actions.toast('获取相机访问权错误')
+        })
     }
   }
 

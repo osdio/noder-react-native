@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 
 if (Platform.OS !== 'web') {
-  var Camera = require('react-native-camera')
+  var Camera = require('react-native-camera').default
 }
 
 import Spinner from '../components/base/Spinner'

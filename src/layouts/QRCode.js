@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {StyleSheet, View, Text, Dimensions, Platform, TouchableOpacity, Vibration} from 'react-native'
 
 if (Platform.OS !== 'web') {
-  var Camera = require('react-native-camera')
+  var Camera = require('react-native-camera').default
   var BarcodeScanner = require('react-native-barcodescanner')
 }
 

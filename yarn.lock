@@ -6504,9 +6504,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-"react-web@https://github.com/flyskywhy/react-web.git#7c9e7df":
+"react-web@https://github.com/flyskywhy/react-web.git#99adb56":
   version "0.4.6"
-  resolved "https://github.com/flyskywhy/react-web.git#7c9e7dfdc225d749d51db14d7f1ec5c2fd086e7c"
+  resolved "https://github.com/flyskywhy/react-web.git#99adb561836f1b9d9b9640ecca3ea1d13f16d27c"
   dependencies:
     animated "0.1.3"
     autobind-decorator "1.3.3"

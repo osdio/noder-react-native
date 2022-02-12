@@ -24,7 +24,7 @@
     "push-android-prod": "code-push release-react Noder android --deploymentName Production",
     "push-ios-prod": "code-push release-react Noder ios --deploymentName Production",
     "push-key": "code-push deployment ls Noder -k",
-    "i-taobao": "npm i --registry=https://registry.npm.taobao.org",
+    "i-taobao": "npm i --registry=https://registry.npmmirror.com",
     "standard": "eslint --fix  '**/*.js'"
   },
   "dependencies": {
